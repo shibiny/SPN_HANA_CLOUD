@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_BATCH_STOCK" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View for Batch Stock Data"/>
+  <metadata changedAt="2020-11-22 10:33:58.486"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="24"/>
+  <dataSources>
+    <DataSource id="MCHA">
+      <resourceUri>MCHA</resourceUri>
+    </DataSource>
+    <DataSource id="MCHB">
+      <resourceUri>MCHB</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="CHARG"/>
+        <viewAttribute id="ERSDA"/>
+        <viewAttribute id="VFDAT"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="LICHA"/>
+        <viewAttribute id="LWEDT"/>
+        <viewAttribute id="LGORT"/>
+        <viewAttribute id="CLABS"/>
+        <viewAttribute id="CUMLM"/>
+        <viewAttribute id="CINSM"/>
+        <viewAttribute id="CEINM"/>
+        <viewAttribute id="CSPEM"/>
+        <viewAttribute id="CRETM"/>
+        <viewAttribute id="CVMLA"/>
+        <viewAttribute id="CVMUM"/>
+        <viewAttribute id="CVMIN"/>
+        <viewAttribute id="CVMEI"/>
+        <viewAttribute id="CVMSP"/>
+        <viewAttribute id="CVMRE"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="MCHA">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CHARG" source="CHARG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ERSDA" source="ERSDA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VFDAT" source="VFDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LICHA" source="LICHA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LWEDT" source="LWEDT"/>
+      </input>
+      <input node="MCHB">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LGORT" source="LGORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLABS" source="CLABS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CUMLM" source="CUMLM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CINSM" source="CINSM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CEINM" source="CEINM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CSPEM" source="CSPEM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CRETM" source="CRETM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CVMLA" source="CVMLA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CVMUM" source="CVMUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CVMIN" source="CVMIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CVMEI" source="CVMEI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CVMSP" source="CVMSP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CVMRE" source="CVMRE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CHARG" source="CHARG"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+    <joinAttribute name="WERKS"/>
+    <joinAttribute name="CHARG"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="CHARG" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Batch"/>
+        <keyMapping columnObjectName="Join_1" columnName="CHARG"/>
+      </attribute>
+      <attribute id="LIFNR" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor"/>
+        <keyMapping columnObjectName="Join_1" columnName="LIFNR"/>
+      </attribute>
+      <attribute id="LGORT" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Storage Location"/>
+        <keyMapping columnObjectName="Join_1" columnName="LGORT"/>
+      </attribute>
+      <attribute id="LWEDT" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last GR Date"/>
+        <keyMapping columnObjectName="Join_1" columnName="LWEDT"/>
+      </attribute>
+      <attribute id="LICHA" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor Batch Number"/>
+        <keyMapping columnObjectName="Join_1" columnName="LICHA"/>
+      </attribute>
+      <attribute id="VFDAT" hidden="true" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VFDAT"/>
+        <keyMapping columnObjectName="Join_1" columnName="VFDAT"/>
+      </attribute>
+      <attribute id="MATNR$local">
+        <descriptions defaultDescription="MATNR"/>
+        <keyMapping columnObjectName="Join_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="WERKS$local">
+        <descriptions defaultDescription="WERKS"/>
+        <keyMapping columnObjectName="Join_1" columnName="WERKS"/>
+      </attribute>
+      <attribute id="ERSDA$local">
+        <descriptions defaultDescription="ERSDA"/>
+        <keyMapping columnObjectName="Join_1" columnName="ERSDA"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Actual_Remaining_Shelf_Life" hidden="false" order="19" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Actual Remaining Shelf Life"/>
+        <keyCalculation datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+          <formula>daysbetween(now(),daydate(&quot;VFDAT&quot;))</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Expiry_Date" hidden="false" order="20" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Expiry Date"/>
+        <keyCalculation datatype="DATE" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;VFDAT&quot;)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Article_Batch" hidden="false" order="21" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Batch"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="28">
+          <formula>&quot;Article_Code&quot;+' - '+ltrim(&quot;CHARG&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Batch_Number" hidden="false" order="22" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Batch Number"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="10">
+          <formula>ltrim(&quot;CHARG&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="CLABS" order="7" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Unrestricted-Use Stock"/>
+        <measureMapping columnObjectName="Join_1" columnName="CLABS"/>
+      </measure>
+      <measure id="CUMLM" order="8" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock In Transfer"/>
+        <measureMapping columnObjectName="Join_1" columnName="CUMLM"/>
+      </measure>
+      <measure id="CINSM" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock In Quality Inspection"/>
+        <measureMapping columnObjectName="Join_1" columnName="CINSM"/>
+      </measure>
+      <measure id="CEINM" order="10" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Total Stock in All Restricted Batches"/>
+        <measureMapping columnObjectName="Join_1" columnName="CEINM"/>
+      </measure>
+      <measure id="CSPEM" order="11" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Blocked Stock"/>
+        <measureMapping columnObjectName="Join_1" columnName="CSPEM"/>
+      </measure>
+      <measure id="CRETM" order="12" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Blocked Stock Returns"/>
+        <measureMapping columnObjectName="Join_1" columnName="CRETM"/>
+      </measure>
+      <measure id="CVMLA" order="13" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="LP Unrestricted-Use Stock"/>
+        <measureMapping columnObjectName="Join_1" columnName="CVMLA"/>
+      </measure>
+      <measure id="CVMUM" order="14" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="LP Stock In Transfer"/>
+        <measureMapping columnObjectName="Join_1" columnName="CVMUM"/>
+      </measure>
+      <measure id="CVMIN" order="15" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="LP Stock In Quality Inspection"/>
+        <measureMapping columnObjectName="Join_1" columnName="CVMIN"/>
+      </measure>
+      <measure id="CVMEI" order="16" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="LP Total Stock in All Restricted Batches"/>
+        <measureMapping columnObjectName="Join_1" columnName="CVMEI"/>
+      </measure>
+      <measure id="CVMSP" order="17" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="LP Blocked Stock"/>
+        <measureMapping columnObjectName="Join_1" columnName="CVMSP"/>
+      </measure>
+      <measure id="CVMRE" order="18" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="LP Blocked Stock Returns"/>
+        <measureMapping columnObjectName="Join_1" columnName="CVMRE"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE_SITE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_MATNR" attributeName="MATNR"/>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_Article_Code" attributeName="Article_Code"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_SITE">
+        <attributes>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_SITE_WERKS" attributeName="WERKS"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_TIME">
+        <attributes>
+          <attributeRef>ERSDA$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE_SAP</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/></shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="257"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+    <shape modelObjectName="MCHA" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="MCHB" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="Join_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="457" y="768"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="760" y="16"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="224"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="705"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_TIME" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="760" y="1521"/>
+      </shape></shapes>
+</layout>
+</Calculation:scenario>

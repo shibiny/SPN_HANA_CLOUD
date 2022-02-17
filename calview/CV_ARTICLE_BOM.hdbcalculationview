@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_ARTICLE_BOM" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="CV_ARTICLE_BOM"/>
+  <metadata changedAt="2019-12-11 13:16:13.863"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="MAST">
+      <resourceUri>MAST</resourceUri>
+    </DataSource>
+    <DataSource id="AV_BOM_DETAILS">
+      <resourceUri>AV_BOM_DETAILS</resourceUri>
+    </DataSource>
+    <DataSource id="AT_ARTICLE_MASTER">
+      <resourceUri>AT_ARTICLE_MASTER</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="BOM_Category"/>
+        <viewAttribute id="BOM"/>
+        <viewAttribute id="Alternative_BOM"/>
+        <viewAttribute id="Base_Unit"/>
+        <viewAttribute id="Base_Quantity"/>
+        <viewAttribute id="Created_On"/>
+        <viewAttribute id="Changed_On"/>
+        <viewAttribute id="Creation_Site"/>
+        <viewAttribute id="Component_Unit"/>
+        <viewAttribute id="Component_Quantity"/>
+        <viewAttribute id="Component_Article_Code"/>
+        <viewAttribute id="Component_Article_Desc"/>
+        <viewAttribute id="Trim_Percentage"/>
+        <viewAttribute id="Waste_Perentage"/>
+      <viewAttribute hidden="true" id="JOIN$STLNR$BOM"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="MAST">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STLNR$BOM" source="STLNR"/>
+      </input>
+      <input node="AV_BOM_DETAILS">
+        <mapping xsi:type="Calculation:AttributeMapping" target="BOM_Category" source="BOM_Category"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BOM" source="BOM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Alternative_BOM" source="Alternative_BOM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Base_Unit" source="Base_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Base_Quantity" source="Base_Quantity"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Created_On" source="Created_On"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Changed_On" source="Changed_On"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Creation_Site" source="Creation_Site"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Component_Unit" source="Component_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Component_Quantity" source="Component_Quantity"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Component_Article_Code" source="Component_Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Component_Article_Desc" source="Component_Article_Desc"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Trim_Percentage" source="Trim_Percentage"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Waste_Perentage" source="Waste_Perentage"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$STLNR$BOM" source="BOM"/>
+      </input>
+    <joinAttribute name="JOIN$STLNR$BOM"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="Department_Code"/>
+        <viewAttribute id="Category_Code"/>
+        <viewAttribute id="SubCategory_Code"/>
+        <viewAttribute id="BMC_Code"/>
+        <viewAttribute id="Brand"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="BOM_Category"/>
+        <viewAttribute id="BOM"/>
+        <viewAttribute id="Base_Unit"/>
+        <viewAttribute id="Base_Quantity"/>
+        <viewAttribute id="Created_On"/>
+        <viewAttribute id="Changed_On"/>
+        <viewAttribute id="Creation_Site"/>
+        <viewAttribute id="Component_Unit"/>
+        <viewAttribute id="Component_Quantity"/>
+        <viewAttribute id="Alternative_BOM"/>
+        <viewAttribute id="Component_Article_Code"/>
+        <viewAttribute id="Component_Article_Desc"/>
+        <viewAttribute id="Trim_Percentage"/>
+        <viewAttribute id="Waste_Perentage"/>
+      <viewAttribute hidden="true" id="JOIN$MATNR$MATNR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BOM_Category" source="BOM_Category"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BOM" source="BOM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Base_Unit" source="Base_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Base_Quantity" source="Base_Quantity"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Created_On" source="Created_On"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Changed_On" source="Changed_On"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Creation_Site" source="Creation_Site"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Component_Unit" source="Component_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Component_Quantity" source="Component_Quantity"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Alternative_BOM" source="Alternative_BOM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Component_Article_Code" source="Component_Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Component_Article_Desc" source="Component_Article_Desc"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Trim_Percentage" source="Trim_Percentage"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Waste_Perentage" source="Waste_Perentage"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+      </input>
+      <input node="AT_ARTICLE_MASTER">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="Article_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Code" source="Department_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_Code" source="Category_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SubCategory_Code" source="SubCategory_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_Code" source="BMC_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Brand" source="Brand"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+      </input>
+    <joinAttribute name="JOIN$MATNR$MATNR"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_2">
+    <descriptions/>
+    <attributes>
+      <attribute id="Article_Code" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyMapping columnObjectName="Join_2" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="Article_Description" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Description"/>
+        <keyMapping columnObjectName="Join_2" columnName="Article_Description"/>
+      </attribute>
+      <attribute id="Department_Code" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department Code"/>
+        <keyMapping columnObjectName="Join_2" columnName="Department_Code"/>
+      </attribute>
+      <attribute id="Category_Code" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category Code"/>
+        <keyMapping columnObjectName="Join_2" columnName="Category_Code"/>
+      </attribute>
+      <attribute id="SubCategory_Code" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SubCategory Code"/>
+        <keyMapping columnObjectName="Join_2" columnName="SubCategory_Code"/>
+      </attribute>
+      <attribute id="BMC_Code" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC Code"/>
+        <keyMapping columnObjectName="Join_2" columnName="BMC_Code"/>
+      </attribute>
+      <attribute id="Brand" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Brand"/>
+        <keyMapping columnObjectName="Join_2" columnName="Brand"/>
+      </attribute>
+      <attribute id="Site" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site"/>
+        <keyMapping columnObjectName="Join_2" columnName="WERKS"/>
+      </attribute>
+      <attribute id="BOM_Category" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BOM Category"/>
+        <keyMapping columnObjectName="Join_2" columnName="BOM_Category"/>
+      </attribute>
+      <attribute id="BOM" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BOM"/>
+        <keyMapping columnObjectName="Join_2" columnName="BOM"/>
+      </attribute>
+      <attribute id="Base_Unit" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Base Unit"/>
+        <keyMapping columnObjectName="Join_2" columnName="Base_Unit"/>
+      </attribute>
+      <attribute id="Base_Quantity" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Base Quantity"/>
+        <keyMapping columnObjectName="Join_2" columnName="Base_Quantity"/>
+      </attribute>
+      <attribute id="Created_On" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Created On"/>
+        <keyMapping columnObjectName="Join_2" columnName="Created_On"/>
+      </attribute>
+      <attribute id="Changed_On" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Changed On"/>
+        <keyMapping columnObjectName="Join_2" columnName="Changed_On"/>
+      </attribute>
+      <attribute id="Creation_Site" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Creation Site"/>
+        <keyMapping columnObjectName="Join_2" columnName="Creation_Site"/>
+      </attribute>
+      <attribute id="Component_Unit" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Component Unit"/>
+        <keyMapping columnObjectName="Join_2" columnName="Component_Unit"/>
+      </attribute>
+      <attribute id="Alternative_BOM" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Alternative_BOM"/>
+        <keyMapping columnObjectName="Join_2" columnName="Alternative_BOM"/>
+      </attribute>
+      <attribute id="Component_Article_Code" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Component Article Code"/>
+        <keyMapping columnObjectName="Join_2" columnName="Component_Article_Code"/>
+      </attribute>
+      <attribute id="Component_Article_Desc" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Component Article Description"/>
+        <keyMapping columnObjectName="Join_2" columnName="Component_Article_Desc"/>
+      </attribute>
+      <attribute id="Trim_Percentage" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Trim Percentage"/>
+        <keyMapping columnObjectName="Join_2" columnName="Trim_Percentage"/>
+      </attribute>
+      <attribute id="Waste_Perentage" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Waste Perentage"/>
+        <keyMapping columnObjectName="Join_2" columnName="Waste_Perentage"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Component_Quantity" order="17" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Component Quantity"/>
+        <measureMapping columnObjectName="Join_2" columnName="Component_Quantity"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="300"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="MAST" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="AV_BOM_DETAILS" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="200"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="AT_ARTICLE_MASTER" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

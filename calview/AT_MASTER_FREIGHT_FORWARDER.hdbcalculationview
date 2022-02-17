@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="AT_MASTER_FREIGHT_FORWARDER" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="AT_MASTER_FREIGHT_FORWARDER"/>
+  <metadata changedAt="2020-11-10 16:38:23.333"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="EKPA" clientColumn="MANDT">
+      <resourceUri>EKPA</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="PARVW"/>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="EBELP"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="LIFN2"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="EKPA"/>
+    <filter>(&quot;PARVW&quot; ='FF')</filter>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Projection_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="EBELN" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EBELN"/>
+        <keyMapping columnObjectName="Projection_1" columnName="EBELN"/>
+      </attribute>
+      <attribute id="EBELP" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EBELP"/>
+        <keyMapping columnObjectName="Projection_1" columnName="EBELP"/>
+      </attribute>
+      <attribute id="EKORG" hidden="true" key="true" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EKORG"/>
+        <keyMapping columnObjectName="Projection_1" columnName="EKORG"/>
+      </attribute>
+      <attribute id="WERKS" hidden="true" key="true" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WERKS"/>
+        <keyMapping columnObjectName="Projection_1" columnName="WERKS"/>
+      </attribute>
+      <attribute id="LIFN2" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Freight Forwarder"/>
+        <keyMapping columnObjectName="Projection_1" columnName="LIFN2"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/></shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="190"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

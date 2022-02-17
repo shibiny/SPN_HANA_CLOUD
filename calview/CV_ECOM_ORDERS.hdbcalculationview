@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_ECOM_ORDERS" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Reporting view on ECOM orders based on S11 table ZRET_ECOM_ORD"/>
+  <metadata changedAt="2020-10-04 14:13:56.143"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="22"/>
+  <dataSources>
+    <DataSource id="ZRET_ECOM_ORD">
+      <resourceUri>ZRET_ECOM_ORD</resourceUri>
+    </DataSource>
+    <DataSource id="MEAN">
+      <resourceUri>MEAN</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="ORDER_DATE"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="RECEIPT"/>
+        <viewAttribute id="ECOMM_ORDER"/>
+        <viewAttribute id="EAN11"/>
+        <viewAttribute id="ZRETURN"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="ZTYPE"/>
+        <viewAttribute id="ORDER_VAL"/>
+        <viewAttribute id="SHIPPING"/>
+        <viewAttribute id="TOTAL"/>
+        <viewAttribute id="NEW_RECEIPT"/>
+        <viewAttribute id="NEW_POS"/>
+        <viewAttribute id="STATUS"/>
+        <viewAttribute id="ORD_QTY"/>
+        <viewAttribute id="ORD_VAL"/>
+        <viewAttribute id="MATNR"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Article_Code" length="18" expressionLanguage="COLUMN_ENGINE">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="ZRET_ECOM_ORD">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_DATE" source="ORDER_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RECEIPT" source="RECEIPT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ECOMM_ORDER" source="ECOMM_ORDER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EAN11" source="EAN11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZRETURN" source="ZRETURN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MENGE" source="MENGE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZTYPE" source="ZTYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_VAL" source="ORDER_VAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SHIPPING" source="SHIPPING"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TOTAL" source="TOTAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NEW_RECEIPT" source="NEW_RECEIPT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NEW_POS" source="NEW_POS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATUS" source="STATUS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORD_QTY" source="ORD_QTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORD_VAL" source="ORD_VAL"/>
+      </input>
+      <input node="MEAN">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EAN11" source="EAN11"/>
+      </input>
+    <joinAttribute name="EAN11"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="RECEIPT" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RECEIPT"/>
+        <keyMapping columnObjectName="Join_1" columnName="RECEIPT"/>
+      </attribute>
+      <attribute id="ECOMM_ORDER" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ECOMM_ORDER"/>
+        <keyMapping columnObjectName="Join_1" columnName="ECOMM_ORDER"/>
+      </attribute>
+      <attribute id="EAN11" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EAN11"/>
+        <keyMapping columnObjectName="Join_1" columnName="EAN11"/>
+      </attribute>
+      <attribute id="ZRETURN" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZRETURN"/>
+        <keyMapping columnObjectName="Join_1" columnName="ZRETURN"/>
+      </attribute>
+      <attribute id="ZTYPE" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZTYPE"/>
+        <keyMapping columnObjectName="Join_1" columnName="ZTYPE"/>
+      </attribute>
+      <attribute id="NEW_RECEIPT" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="NEW_RECEIPT"/>
+        <keyMapping columnObjectName="Join_1" columnName="NEW_RECEIPT"/>
+      </attribute>
+      <attribute id="NEW_POS" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="NEW_POS"/>
+        <keyMapping columnObjectName="Join_1" columnName="NEW_POS"/>
+      </attribute>
+      <attribute id="STATUS" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STATUS"/>
+        <keyMapping columnObjectName="Join_1" columnName="STATUS"/>
+      </attribute>
+      <attribute id="MATNR$local">
+        <descriptions defaultDescription="MATNR"/>
+        <keyMapping columnObjectName="Join_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="WERKS$local">
+        <descriptions defaultDescription="WERKS"/>
+        <keyMapping columnObjectName="Join_1" columnName="WERKS"/>
+      </attribute>
+      <attribute id="ORDER_DATE$local">
+        <descriptions defaultDescription="ORDER_DATE"/>
+        <keyMapping columnObjectName="Join_1" columnName="ORDER_DATE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="MENGE" order="5" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="MENGE"/>
+        <measureMapping columnObjectName="Join_1" columnName="MENGE"/>
+      </measure>
+      <measure id="ORDER_VAL" order="7" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="ORDER_VAL"/>
+        <measureMapping columnObjectName="Join_1" columnName="ORDER_VAL"/>
+      </measure>
+      <measure id="SHIPPING" order="8" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="SHIPPING"/>
+        <measureMapping columnObjectName="Join_1" columnName="SHIPPING"/>
+      </measure>
+      <measure id="TOTAL" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="TOTAL"/>
+        <measureMapping columnObjectName="Join_1" columnName="TOTAL"/>
+      </measure>
+      <measure id="ORD_QTY" order="13" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="ORD_QTY"/>
+        <measureMapping columnObjectName="Join_1" columnName="ORD_QTY"/>
+      </measure>
+      <measure id="ORD_VAL" order="14" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="ORD_VAL"/>
+        <measureMapping columnObjectName="Join_1" columnName="ORD_VAL"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE_SITE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_MATNR" attributeName="MATNR"/>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_Article_Code" attributeName="Article_Code"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_SITE">
+        <attributes>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_SITE_WERKS" attributeName="WERKS"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_TIME">
+        <attributes>
+          <attributeRef>ORDER_DATE$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE_SAP</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/></shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="370"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+    <shape modelObjectName="ZRET_ECOM_ORD" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="MEAN" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="Join_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="457" y="816"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="497"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="16"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="802" y="689"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_TIME" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="802" y="288"/>
+      </shape></shapes>
+</layout>
+</Calculation:scenario>

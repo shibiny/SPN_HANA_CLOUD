@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_R_MASTER_LISTING_COMMENTS" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Calculation View for Listing/Delisting Comments"/>
+  <metadata changedAt="2021-03-30 17:09:38.706"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="ZMLIST">
+      <resourceUri>ZMLIST</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="FILIA"/>
+        <viewAttribute id="ARTNR"/>
+        <viewAttribute id="DATBI"/>
+        <viewAttribute id="DATAB"/>
+        <viewAttribute id="DATAE"/>
+        <viewAttribute id="REMARKS"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="Date_Valid_From" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;DATAB&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Date_Valid_To" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;DATBI&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Last_Changed_Date" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;DATAE&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="ZMLIST"/>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Projection_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="Date_Valid_From" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Date Valid From"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Date_Valid_From"/>
+      </attribute>
+      <attribute id="Date_Valid_To" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Date Valid To"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Date_Valid_To"/>
+      </attribute>
+      <attribute id="Last_Changed_Date" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Changed Date"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Last_Changed_Date"/>
+      </attribute>
+      <attribute id="REMARKS" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Comments"/>
+        <keyMapping columnObjectName="Projection_1" columnName="REMARKS"/>
+      </attribute>
+      <attribute id="ARTNR$local">
+        <keyMapping columnObjectName="Projection_1" columnName="ARTNR"/>
+      </attribute>
+      <attribute id="FILIA$local">
+        <descriptions defaultDescription="Site ID"/>
+        <keyMapping columnObjectName="Projection_1" columnName="FILIA"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Site_Article" hidden="false" order="6" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Article"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="23">
+          <formula>&quot;WERKS&quot;+'-'+&quot;Article_Code&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Last_14_Changed_Date" hidden="false" order="7" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last 14 Changed Date Flag"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="1">
+          <formula>If(&quot;Last_Changed_Date&quot;&gt;=adddays(now(),-15), 'Y', 'N')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Listing_Flag" hidden="false" order="8" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Listing Flag"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="20">
+          <formula>If(&quot;Date_Valid_To&quot;&lt;now(), 'DELISTED', if(&quot;Date_Valid_From&quot;&gt;now(), 'FUTURE LISTED', 'LISTED'))</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures>
+      <measure id="Unique_Count" hidden="false" order="5" aggregationType="sum" measureType="simple" aggregatable="true" calculatedMeasureType="counter" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Unique Count"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="WERKS" dimensionUri="AT_MASTER_SITE"/>
+          <attribute attributeName="Date_Valid_To"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>ARTNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_SITE">
+        <attributes>
+          <attributeRef>FILIA$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="230"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape modelObjectName="Projection_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="447" y="656"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="16"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="811" y="240"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

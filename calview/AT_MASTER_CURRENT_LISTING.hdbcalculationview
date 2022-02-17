@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="AT_MASTER_CURRENT_LISTING" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="AT_MASTER_CURRENT_LISTING"/>
+  <metadata changedAt="2020-10-04 14:43:24.309"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="WLK1">
+      <resourceUri>WLK1</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="COLUMN_ENGINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="FILIA"/>
+        <viewAttribute id="ARTNR"/>
+        <viewAttribute id="DATBI"/>
+        <viewAttribute id="DATAB"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="Date_To" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;DATBI&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Date_From" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;DATAB&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Listed" length="1" expressionLanguage="COLUMN_ENGINE">
+          <formula>'Y'</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="WLK1"/>
+    <filter>&quot;Date_To&quot;&gt;=now() and &quot;Date_From&quot;&lt;=now()</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="FILIA"/>
+        <viewAttribute id="ARTNR"/>
+        <viewAttribute id="Listed"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Article_Code" length="18" expressionLanguage="COLUMN_ENGINE">
+          <formula>ltrim(&quot;ARTNR&quot;,'0')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+    <restrictedViewAttributes/>
+      <input node="Projection_1"/>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Aggregation_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="Site_ID" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site ID"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="FILIA"/>
+      </attribute>
+      <attribute id="Article_Code" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article_Code"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="Listed" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Listed"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="Listed"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="360"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="260"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

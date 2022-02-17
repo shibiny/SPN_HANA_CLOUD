@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_INFLATION_DATA" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View for Inflation Calculation"/>
+  <metadata changedAt="2020-12-07 08:53:07.668"/>
+  <localVariables>
+    <variable id="CY_Date_From" parameter="true">
+      <descriptions defaultDescription="CY Date From"/>
+      <variableProperties datatype="DATE" mandatory="true" defaultValue="undefined">
+        <valueDomain type="Date"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="CY_Date_To" parameter="true">
+      <descriptions defaultDescription="CY Date To"/>
+      <variableProperties datatype="DATE" mandatory="true" defaultValue="undefined">
+        <valueDomain type="Date"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="LY_Date_From" parameter="true">
+      <descriptions defaultDescription="LY Date From"/>
+      <variableProperties datatype="DATE" mandatory="true" defaultValue="undefined">
+        <valueDomain type="Date"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="LY_Date_To" parameter="true">
+      <descriptions defaultDescription="LY Date To"/>
+      <variableProperties datatype="DATE" mandatory="true" defaultValue="undefined">
+        <valueDomain type="Date"/>
+        <selection multiLine="false" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="CV_MOVEMENTS_VIEW_V01">
+      <resourceUri>CV_MOVEMENTS_VIEW_V01</resourceUri>
+    </DataSource>
+    <DataSource id="LY$$$$CV_MOVEMENTS_VIEW_V01$$">
+      <resourceUri>CV_MOVEMENTS_VIEW_V01</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="CY">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Sales_Quantity"/>
+        <viewAttribute id="Sales_Cost"/>
+        <viewAttribute id="Sales_Value_Excl_VAT"/>
+        <viewAttribute id="DATE"/>
+        <viewAttribute id="ZHIER_TYPE"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="CDT6_Description"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="BMC_Description"/>
+        <viewAttribute id="Department"/>
+        <viewAttribute id="Category"/>
+        <viewAttribute id="SubCategory"/>
+        <viewAttribute id="CDT4"/>
+        <viewAttribute id="CDT5"/>
+        <viewAttribute id="CDT6"/>
+        <viewAttribute id="BMC"/>
+        <viewAttribute id="Buyers_Name"/>
+        <viewAttribute id="Commercial_Manager"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="Article"/>
+        <viewAttribute id="Site_Article"/>
+        <viewAttribute id="ZCUR_REG"/>
+        <viewAttribute id="WEEK"/>
+        <viewAttribute id="WEEK_YEAR"/>
+        <viewAttribute id="Seasonal"/>
+        <viewAttribute id="Source"/>
+        <viewAttribute id="Site_Region"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Site_Article_Week" length="30" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;Site_Article&quot;+'-'+&quot;WEEK&quot;</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="CV_MOVEMENTS_VIEW_V01"/>
+    <filter>(&quot;Sales_Quantity&quot; &gt;'0') AND (&quot;DATE&quot; &gt;='$$CY_Date_From$$' AND &quot;DATE&quot;&lt;='$$CY_Date_To$$') AND (&quot;ZHIER_TYPE&quot; ='REGIONAL')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute aggregationType="sum" id="CY_Sales_Quantity"/>
+        <viewAttribute aggregationType="sum" id="CY_Sales_Cost"/>
+        <viewAttribute aggregationType="sum" id="CY_Sales_Value"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="CDT6_Description"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="BMC_Description"/>
+        <viewAttribute id="Department"/>
+        <viewAttribute id="Category"/>
+        <viewAttribute id="SubCategory"/>
+        <viewAttribute id="CDT4"/>
+        <viewAttribute id="CDT5"/>
+        <viewAttribute id="CDT6"/>
+        <viewAttribute id="BMC"/>
+        <viewAttribute id="Buyers_Name"/>
+        <viewAttribute id="Commercial_Manager"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="Article"/>
+        <viewAttribute id="Site_Article"/>
+        <viewAttribute id="ZCUR_REG"/>
+        <viewAttribute id="WEEK"/>
+        <viewAttribute id="WEEK_YEAR"/>
+        <viewAttribute id="Seasonal"/>
+        <viewAttribute id="Source"/>
+        <viewAttribute id="Site_Article_Week"/>
+        <viewAttribute id="Site_Region"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+      <input node="CY">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CY_Sales_Quantity" source="Sales_Quantity"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CY_Sales_Cost" source="Sales_Cost"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CY_Sales_Value" source="Sales_Value_Excl_VAT"/></input>
+    </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="LY">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Sales_Quantity"/>
+        <viewAttribute id="Sales_Cost"/>
+        <viewAttribute id="Sales_Value_Excl_VAT"/>
+        <viewAttribute id="DATE"/>
+        <viewAttribute id="ZHIER_TYPE"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="CDT6_Description"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="BMC_Description"/>
+        <viewAttribute id="Department"/>
+        <viewAttribute id="Category"/>
+        <viewAttribute id="SubCategory"/>
+        <viewAttribute id="CDT4"/>
+        <viewAttribute id="CDT5"/>
+        <viewAttribute id="CDT6"/>
+        <viewAttribute id="BMC"/>
+        <viewAttribute id="Buyers_Name"/>
+        <viewAttribute id="Commercial_Manager"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="Article"/>
+        <viewAttribute id="Site_Article"/>
+        <viewAttribute id="ZCUR_REG"/>
+        <viewAttribute id="WEEK"/>
+        <viewAttribute id="Seasonal"/>
+        <viewAttribute id="Source"/>
+        <viewAttribute id="Site_Region"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Site_Article_Week" length="30" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;Site_Article&quot;+'-'+&quot;WEEK&quot;</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="LY$$$$CV_MOVEMENTS_VIEW_V01$$"/>
+    <filter>(&quot;Sales_Quantity&quot; &gt;'0') AND (&quot;DATE&quot; &gt;='$$LY_Date_From$$' AND &quot;DATE&quot;&lt;='$$LY_Date_To$$') AND (&quot;ZHIER_TYPE&quot; ='REGIONAL')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_2">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute aggregationType="sum" id="LY_Sales_Quantity"/>
+        <viewAttribute aggregationType="sum" id="LY_Sales_Cost"/>
+        <viewAttribute aggregationType="sum" id="LY_Sales_Value"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="CDT6_Description"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="BMC_Description"/>
+        <viewAttribute id="Department"/>
+        <viewAttribute id="Category"/>
+        <viewAttribute id="SubCategory"/>
+        <viewAttribute id="CDT4"/>
+        <viewAttribute id="CDT5"/>
+        <viewAttribute id="CDT6"/>
+        <viewAttribute id="BMC"/>
+        <viewAttribute id="Buyers_Name"/>
+        <viewAttribute id="Commercial_Manager"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="Article"/>
+        <viewAttribute id="Site_Article"/>
+        <viewAttribute id="ZCUR_REG"/>
+        <viewAttribute id="WEEK"/>
+        <viewAttribute id="Seasonal"/>
+        <viewAttribute id="Source"/>
+        <viewAttribute id="Site_Article_Week"/>
+        <viewAttribute id="Site_Region"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+      <input node="LY">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LY_Sales_Quantity" source="Sales_Quantity"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LY_Sales_Cost" source="Sales_Cost"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LY_Sales_Value" source="Sales_Value_Excl_VAT"/></input>
+    </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="inner">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="CDT6_Description"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="BMC_Description"/>
+        <viewAttribute id="Department"/>
+        <viewAttribute id="Category"/>
+        <viewAttribute id="SubCategory"/>
+        <viewAttribute id="CDT4"/>
+        <viewAttribute id="CDT5"/>
+        <viewAttribute id="CDT6"/>
+        <viewAttribute id="BMC"/>
+        <viewAttribute id="Buyers_Name"/>
+        <viewAttribute id="Commercial_Manager"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="Article"/>
+        <viewAttribute id="Site_Article"/>
+        <viewAttribute id="ZCUR_REG"/>
+        <viewAttribute id="WEEK"/>
+        <viewAttribute id="WEEK_YEAR"/>
+        <viewAttribute id="Seasonal"/>
+        <viewAttribute id="Source"/>
+        <viewAttribute id="Site_Article_Week"/>
+        <viewAttribute id="LY_Sales_Quantity"/>
+        <viewAttribute id="LY_Sales_Cost"/>
+        <viewAttribute id="LY_Sales_Value"/>
+        <viewAttribute id="CY_Sales_Quantity"/>
+        <viewAttribute id="CY_Sales_Cost"/>
+        <viewAttribute id="CY_Sales_Value"/>
+        <viewAttribute id="Site_Region"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DECIMAL" id="CY_RSP" length="13" scale="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>If(&quot;CY_Sales_Quantity&quot;=0, 0, &quot;CY_Sales_Value&quot;/&quot;CY_Sales_Quantity&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DECIMAL" id="CY_Cost" length="13" scale="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>If(&quot;CY_Sales_Quantity&quot;=0, 0, &quot;CY_Sales_Cost&quot;/&quot;CY_Sales_Quantity&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DECIMAL" id="LY_RSP" length="13" scale="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>If(&quot;LY_Sales_Quantity&quot;=0, 0, &quot;LY_Sales_Value&quot;/&quot;LY_Sales_Quantity&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DECIMAL" id="LY_Cost" length="13" scale="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>If(&quot;LY_Sales_Quantity&quot;=0, 0, &quot;LY_Sales_Cost&quot;/&quot;LY_Sales_Quantity&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Aggregation_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Description" source="Department_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_Description" source="Category_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_Description" source="Subcategory_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_Description" source="CDT4_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_Description" source="CDT5_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_Description" source="CDT6_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_Description" source="BMC_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department" source="Department"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category" source="Category"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SubCategory" source="SubCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4" source="CDT4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5" source="CDT5"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6" source="CDT6"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC" source="BMC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Buyers_Name" source="Buyers_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Commercial_Manager" source="Commercial_Manager"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="Article_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article" source="Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Article" source="Site_Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCUR_REG" source="ZCUR_REG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEEK" source="WEEK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEEK_YEAR" source="WEEK_YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Seasonal" source="Seasonal"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Source" source="Source"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Article_Week" source="Site_Article_Week"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CY_Sales_Quantity" source="CY_Sales_Quantity"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CY_Sales_Cost" source="CY_Sales_Cost"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CY_Sales_Value" source="CY_Sales_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Region" source="Site_Region"/>
+      </input>
+      <input node="Aggregation_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LY_Sales_Quantity" source="LY_Sales_Quantity"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LY_Sales_Cost" source="LY_Sales_Cost"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LY_Sales_Value" source="LY_Sales_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Article_Week" source="Site_Article_Week"/>
+      </input>
+    <joinAttribute name="Site_Article_Week"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="CDT6_Description"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="BMC_Description"/>
+        <viewAttribute id="Department"/>
+        <viewAttribute id="Category"/>
+        <viewAttribute id="SubCategory"/>
+        <viewAttribute id="CDT4"/>
+        <viewAttribute id="CDT5"/>
+        <viewAttribute id="CDT6"/>
+        <viewAttribute id="BMC"/>
+        <viewAttribute id="Buyers_Name"/>
+        <viewAttribute id="Commercial_Manager"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="Article"/>
+        <viewAttribute id="Site_Article"/>
+        <viewAttribute id="ZCUR_REG"/>
+        <viewAttribute id="WEEK"/>
+        <viewAttribute id="WEEK_YEAR"/>
+        <viewAttribute id="Seasonal"/>
+        <viewAttribute id="Source"/>
+        <viewAttribute id="Site_Article_Week"/>
+        <viewAttribute id="LY_Sales_Quantity"/>
+        <viewAttribute id="LY_Sales_Cost"/>
+        <viewAttribute id="LY_Sales_Value"/>
+        <viewAttribute id="CY_Sales_Quantity"/>
+        <viewAttribute id="CY_Sales_Cost"/>
+        <viewAttribute id="CY_Sales_Value"/>
+        <viewAttribute id="CY_RSP"/>
+        <viewAttribute id="CY_Cost"/>
+        <viewAttribute id="LY_RSP"/>
+        <viewAttribute id="LY_Cost"/>
+        <viewAttribute id="Site_Region"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DECIMAL" id="Adjusted_RSP" length="13" scale="2" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;CY_Sales_Quantity&quot;*&quot;LY_RSP&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DECIMAL" id="Adjusted_Cost" length="13" scale="2" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;CY_Sales_Quantity&quot;*&quot;LY_Cost&quot;</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Join_1"/>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Projection_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="Department_ID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department ID"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Department_ID"/>
+      </attribute>
+      <attribute id="Department_Description" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department Description"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Department_Description"/>
+      </attribute>
+      <attribute id="Category_ID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category ID"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Category_ID"/>
+      </attribute>
+      <attribute id="Category_Description" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category Description"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Category_Description"/>
+      </attribute>
+      <attribute id="Subcategory_ID" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Subcategory ID"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Subcategory_ID"/>
+      </attribute>
+      <attribute id="Subcategory_Description" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Subcategory Description"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Subcategory_Description"/>
+      </attribute>
+      <attribute id="CDT4_ID" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4 ID"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CDT4_ID"/>
+      </attribute>
+      <attribute id="CDT4_Description" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4_Description"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CDT4_Description"/>
+      </attribute>
+      <attribute id="CDT5_ID" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5 ID"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CDT5_ID"/>
+      </attribute>
+      <attribute id="CDT5_Description" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5_Description"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CDT5_Description"/>
+      </attribute>
+      <attribute id="CDT6_ID" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6 ID"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CDT6_ID"/>
+      </attribute>
+      <attribute id="CDT6_Description" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6 Description"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CDT6_Description"/>
+      </attribute>
+      <attribute id="BMC_ID" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC ID"/>
+        <keyMapping columnObjectName="Projection_1" columnName="BMC_ID"/>
+      </attribute>
+      <attribute id="BMC_Description" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC Description"/>
+        <keyMapping columnObjectName="Projection_1" columnName="BMC_Description"/>
+      </attribute>
+      <attribute id="Department" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Department"/>
+      </attribute>
+      <attribute id="Category" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Category"/>
+      </attribute>
+      <attribute id="SubCategory" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SubCategory"/>
+        <keyMapping columnObjectName="Projection_1" columnName="SubCategory"/>
+      </attribute>
+      <attribute id="CDT4" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CDT4"/>
+      </attribute>
+      <attribute id="CDT5" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CDT5"/>
+      </attribute>
+      <attribute id="CDT6" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CDT6"/>
+      </attribute>
+      <attribute id="BMC" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC"/>
+        <keyMapping columnObjectName="Projection_1" columnName="BMC"/>
+      </attribute>
+      <attribute id="Buyers_Name" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Buyers Name"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Buyers_Name"/>
+      </attribute>
+      <attribute id="Commercial_Manager" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Commercial Manager"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Commercial_Manager"/>
+      </attribute>
+      <attribute id="Article_Code" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="Article_Description" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Description"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Article_Description"/>
+      </attribute>
+      <attribute id="Article" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Article"/>
+      </attribute>
+      <attribute id="Site_Article" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Article"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Site_Article"/>
+      </attribute>
+      <attribute id="ZCUR_REG" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Current Region"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ZCUR_REG"/>
+      </attribute>
+      <attribute id="WEEK" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEEK"/>
+        <keyMapping columnObjectName="Projection_1" columnName="WEEK"/>
+      </attribute>
+      <attribute id="WEEK_YEAR" order="30" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEEK_YEAR"/>
+        <keyMapping columnObjectName="Projection_1" columnName="WEEK_YEAR"/>
+      </attribute>
+      <attribute id="Seasonal" order="31" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Seasonal"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Seasonal"/>
+      </attribute>
+      <attribute id="Source" order="32" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Source"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Source"/>
+      </attribute>
+      <attribute id="Site_Article_Week" key="true" order="33" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Article Week"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Site_Article_Week"/>
+      </attribute>
+      <attribute id="CY_RSP" order="34" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CY RSP"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CY_RSP"/>
+      </attribute>
+      <attribute id="CY_Cost" order="35" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CY Cost"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CY_Cost"/>
+      </attribute>
+      <attribute id="LY_RSP" order="36" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LY RSP"/>
+        <keyMapping columnObjectName="Projection_1" columnName="LY_RSP"/>
+      </attribute>
+      <attribute id="LY_Cost" order="37" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LY Cost"/>
+        <keyMapping columnObjectName="Projection_1" columnName="LY_Cost"/>
+      </attribute>
+      <attribute id="Site_Region" order="48" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Region"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Site_Region"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="LY_Sales_Quantity" order="38" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="LY Sales Quantity"/>
+        <measureMapping columnObjectName="Projection_1" columnName="LY_Sales_Quantity"/>
+      </measure>
+      <measure id="LY_Sales_Cost" order="39" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="LY Sales Cost"/>
+        <measureMapping columnObjectName="Projection_1" columnName="LY_Sales_Cost"/>
+      </measure>
+      <measure id="LY_Sales_Value" order="40" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="LY Sales Value"/>
+        <measureMapping columnObjectName="Projection_1" columnName="LY_Sales_Value"/>
+      </measure>
+      <measure id="CY_Sales_Quantity" order="41" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="CY Sales Quantity"/>
+        <measureMapping columnObjectName="Projection_1" columnName="CY_Sales_Quantity"/>
+      </measure>
+      <measure id="CY_Sales_Cost" order="42" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="CY Sales Cost"/>
+        <measureMapping columnObjectName="Projection_1" columnName="CY_Sales_Cost"/>
+      </measure>
+      <measure id="CY_Sales_Value" order="43" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="CY Sales Value"/>
+        <measureMapping columnObjectName="Projection_1" columnName="CY_Sales_Value"/>
+      </measure>
+      <measure id="Adjusted_RSP" order="44" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Adjusted RSP"/>
+        <measureMapping columnObjectName="Projection_1" columnName="Adjusted_RSP"/>
+      </measure>
+      <measure id="Adjusted_Cost" order="45" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Adjusted Cost"/>
+        <measureMapping columnObjectName="Projection_1" columnName="Adjusted_Cost"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="RSP_Inflation" hidden="false" order="46" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="RSP Inflation"/>
+        <formula>If(&quot;Adjusted_RSP&quot;=0, 0, ((&quot;CY_Sales_Value&quot;/&quot;Adjusted_RSP&quot;)-1)*100)</formula>
+      </measure>
+      <measure id="Cost_Inflation" hidden="false" order="47" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Cost Inflation"/>
+        <formula>If(&quot;Adjusted_Cost&quot;=0, 0, ((&quot;CY_Sales_Cost&quot;/&quot;Adjusted_Cost&quot;)-1)*100)</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="CY" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="417"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="339"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="LY" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="417"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="339"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="243"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Aggregation_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Aggregation_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

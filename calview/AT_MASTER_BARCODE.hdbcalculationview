@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="AT_MASTER_BARCODE" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Master Data View for all Article Barcodes"/>
+  <metadata changedAt="2020-11-24 10:52:17.728"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="MEAN">
+      <resourceUri>MEAN</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews/>
+  <logicalModel id="MEAN">
+    <descriptions/>
+    <attributes>
+      <attribute id="MATNR" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MATNR"/>
+        <keyMapping columnObjectName="MEAN" columnName="MATNR"/>
+      </attribute>
+      <attribute id="MEINH" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Unit of Measure"/>
+        <keyMapping columnObjectName="MEAN" columnName="MEINH"/>
+      </attribute>
+      <attribute id="EAN11" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Barcode"/>
+        <keyMapping columnObjectName="MEAN" columnName="EAN11"/>
+      </attribute>
+      <attribute id="EANTP" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Barcode Category"/>
+        <keyMapping columnObjectName="MEAN" columnName="EANTP"/>
+      </attribute>
+      <attribute id="HPEAN" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Main Barcode Indicator"/>
+        <keyMapping columnObjectName="MEAN" columnName="HPEAN"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Article_Code" hidden="false" order="6" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="18">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/></shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

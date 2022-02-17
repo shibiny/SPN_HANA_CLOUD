@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="3.0" id="AT_MASTER_TIME" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Attribute View for Time Master Data"/>
+  <metadata changedAt="2021-06-22 09:52:39.054"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="M_TIME_DIMENSION">
+      <resourceUri>M_TIME_DIMENSION</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews/>
+  <inlineHierarchy xsi:type="Dimension:LeveledHierarchy" id="Time_Hierarchy" aggregateAllNodes="true" emptyValueIsNull="true" rootNodeVisibility="DO_NOT_ADD_ROOT_NODE" withRootNode="false" nodeStyle="NAME_PATH_ENFORCED">
+    <descriptions defaultDescription="Time Hierarchy"/>
+    <unassignedMemberProperties mode="TRUE" name="_NA_" drillable="true" includeNulls="true" nullConvertValue="_#_">
+      <caption label="Not Assigned"/>
+      <nullCaption label="Null"/>
+    </unassignedMemberProperties>
+    <levels>
+      <level levelAttribute="YEAR" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="YEAR"/>
+      <level levelAttribute="QUARTER" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="QUARTER"/>
+      <level levelAttribute="MONTH" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="MONTH"/>
+      <level levelAttribute="WEEK" levelType="MDLEVEL_TYPE_REGULAR" order="4" orderAttribute="WEEK"/>
+      <level levelAttribute="DATE" levelType="MDLEVEL_TYPE_REGULAR" order="5" orderAttribute="DATE"/>
+    </levels>
+  </inlineHierarchy>
+  <logicalModel id="M_TIME_DIMENSION">
+    <descriptions/>
+    <attributes>
+      <attribute id="DATE" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DATE"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="DATE_SQL"/>
+      </attribute>
+      <attribute id="DATE_SAP" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DATE_SAP"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="DATE_SAP"/>
+      </attribute>
+      <attribute id="YEAR" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="YEAR"/>
+      </attribute>
+      <attribute id="QUARTER" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="QUARTER"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="QUARTER"/>
+      </attribute>
+      <attribute id="MONTH" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MONTH"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="MONTH"/>
+      </attribute>
+      <attribute id="WEEK" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEEK"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="WEEK"/>
+      </attribute>
+      <attribute id="WEEK_YEAR" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEEK_YEAR"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="WEEK_YEAR"/>
+      </attribute>
+      <attribute id="DAY_OF_WEEK" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DAY_OF_WEEK"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="DAY_OF_WEEK"/>
+      </attribute>
+      <attribute id="DAY" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DAY"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="DAY"/>
+      </attribute>
+      <attribute id="CALQUARTER" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CALQUARTER"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="CALQUARTER"/>
+      </attribute>
+      <attribute id="CALMONTH" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CALMONTH"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="CALMONTH"/>
+      </attribute>
+      <attribute id="CALWEEK" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CALWEEK"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="CALWEEK"/>
+      </attribute>
+      <attribute id="YEAR_INT" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR_INT"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="YEAR_INT"/>
+      </attribute>
+      <attribute id="MONTH_INT" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MONTH_INT"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="MONTH_INT"/>
+      </attribute>
+      <attribute id="QUARTER_INT" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="QUARTER_INT"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="QUARTER_INT"/>
+      </attribute>
+      <attribute id="WEEK_INT" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEEK_INT"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="WEEK_INT"/>
+      </attribute>
+      <attribute id="WEEK_YEAR_INT" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEEK_YEAR_INT"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="WEEK_YEAR_INT"/>
+      </attribute>
+      <attribute id="DAY_OF_WEEK_INT" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DAY_OF_WEEK_INT"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="DAY_OF_WEEK_INT"/>
+      </attribute>
+      <attribute id="DAY_INT" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DAY_INT"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="DAY_INT"/>
+      </attribute>
+      <attribute id="MONTH_LAST_DAY" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MONTH_LAST_DAY"/>
+        <keyMapping columnObjectName="M_TIME_DIMENSION" columnName="MONTH_LAST_DAY"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Week_Last_Day" hidden="false" order="21" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Week Last Day"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="1">
+          <formula>if(&quot;DAY_OF_WEEK_INT&quot;=5,1,0)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

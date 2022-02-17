@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_COMPETITION_PRICE" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View for Competition Price"/>
+  <metadata changedAt="2021-04-24 15:13:48.541"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="ZCOMP_PRICING">
+      <resourceUri>ZCOMP_PRICING</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="CNAME"/>
+        <viewAttribute id="CDATE"/>
+        <viewAttribute id="CPRICE"/>
+        <viewAttribute id="COMMENTS"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Competitor_Name" length="60" expressionLanguage="COLUMN_ENGINE">
+          <formula>If(&quot;CNAME&quot;='CARREFOUR HYPER', 'CarrefourHyper', &quot;CNAME&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DECIMAL" id="Competitor_Price" length="13" scale="2" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;CPRICE&quot;</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="ZCOMP_PRICING"/>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Projection_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="VKORG" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VKORG"/>
+        <keyMapping columnObjectName="Projection_1" columnName="VKORG"/>
+      </attribute>
+      <attribute id="COMMENTS" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="COMMENTS"/>
+        <keyMapping columnObjectName="Projection_1" columnName="COMMENTS"/>
+      </attribute>
+      <attribute id="Competitor_Name" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Competitor_Name"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Competitor_Name"/>
+      </attribute>
+      <attribute id="MATNR$local">
+        <keyMapping columnObjectName="Projection_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="CDATE$local">
+        <keyMapping columnObjectName="Projection_1" columnName="CDATE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Unique_Key" hidden="false" key="true" order="5" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Unique Key"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="90">
+          <formula>&quot;Article_Code&quot;+'-'+&quot;VKORG&quot;+'-'+&quot;Competitor_Name&quot;+'-'+&quot;DATE_SAP&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Competitor_Price" order="4" aggregationType="max" measureType="simple">
+        <descriptions defaultDescription="Competitor_Price"/>
+        <measureMapping columnObjectName="Projection_1" columnName="Competitor_Price"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="Unique_Count" hidden="false" order="6" aggregationType="sum" measureType="simple" aggregatable="true" calculatedMeasureType="counter" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Unique Count"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="Unique_Key"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_TIME">
+        <attributes>
+          <attributeRef>CDATE$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE_SAP</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="340"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape modelObjectName="Projection_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="382" y="672"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="708" y="16"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_TIME" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="560"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

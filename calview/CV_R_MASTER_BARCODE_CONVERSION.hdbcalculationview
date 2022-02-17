@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_R_MASTER_BARCODE_CONVERSION" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="CV_R_MASTER_BARCODE_CONVERSION"/>
+  <metadata changedAt="2021-05-19 10:48:46.527"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="MARM">
+      <resourceUri>MARM</resourceUri>
+    </DataSource>
+    <DataSource id="MEAN">
+      <resourceUri>MEAN</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="EAN11"/>
+        <viewAttribute id="MEINH"/>
+        <viewAttribute id="UMREZ"/>
+        <viewAttribute id="UMREN"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DECIMAL" id="Base_Unit_Conversion" length="10" scale="2" expressionLanguage="COLUMN_ENGINE">
+          <formula>If(&quot;UMREN&quot;=0, 0, &quot;UMREZ&quot;/&quot;UMREN&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Article_Code" length="18" expressionLanguage="COLUMN_ENGINE">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="MARM">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINH" source="MEINH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREZ" source="UMREZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREN" source="UMREN"/>
+      </input>
+      <input node="MEAN">
+        <mapping xsi:type="Calculation:AttributeMapping" target="EAN11" source="EAN11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINH" source="MEINH"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+    <joinAttribute name="MEINH"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="Article_Code" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article_Code"/>
+        <keyMapping columnObjectName="Join_1" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="EAN11" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EAN11"/>
+        <keyMapping columnObjectName="Join_1" columnName="EAN11"/>
+      </attribute>
+      <attribute id="MEINH" key="true" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MEINH"/>
+        <keyMapping columnObjectName="Join_1" columnName="MEINH"/>
+      </attribute>
+      <attribute id="Base_Unit_Conversion" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Base_Unit_Conversion"/>
+        <keyMapping columnObjectName="Join_1" columnName="Base_Unit_Conversion"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures>
+      <measure id="Barcode_Count" hidden="false" order="5" aggregationType="sum" measureType="simple" aggregatable="true" calculatedMeasureType="counter" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Barcode Count"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="EAN11"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="200"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+    <shape modelObjectName="MARM" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="MEAN" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

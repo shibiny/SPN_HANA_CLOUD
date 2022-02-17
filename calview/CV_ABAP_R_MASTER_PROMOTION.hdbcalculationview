@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_ABAP_R_MASTER_PROMOTION" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="For External View in ABAP of Promotion Master"/>
+  <metadata changedAt="2021-05-19 10:48:43.108"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="CV_R_MASTER_PROMOTION">
+      <resourceUri>CV_R_MASTER_PROMOTION</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews/>
+  <logicalModel id="CV_R_MASTER_PROMOTION">
+    <descriptions/>
+    <attributes>
+      <attribute id="Sales_Org_Promotion" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Org Promotion"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="Sales_Org_Promotion"/>
+      </attribute>
+      <attribute id="Distribution_Channel_Promotion" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Distribution Channel Promotion"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="Distribution_Channel_Promotion"/>
+      </attribute>
+      <attribute id="Promo_Number" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Number"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="Promo_Number"/>
+      </attribute>
+      <attribute id="Promo_Description" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Description"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="Promo_Description"/>
+      </attribute>
+      <attribute id="Promo_Category" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Category"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="Promo_Category"/>
+      </attribute>
+      <attribute id="Article_Code" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="Sales_Unit_Promotion" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Unit Promotion"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="Sales_Unit_Promotion"/>
+      </attribute>
+      <attribute id="Normal_Sales_Price" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Normal Sales Price"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="Normal_Sales_Price"/>
+      </attribute>
+      <attribute id="Promo_Sales_Price" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Sales Price"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="Promo_Sales_Price"/>
+      </attribute>
+      <attribute id="AKTNR" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AKTNR"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="AKTNR"/>
+      </attribute>
+      <attribute id="Promo_Type_ID" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Type ID"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="Promo_Type_ID"/>
+      </attribute>
+      <attribute id="Promo_Type" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Type"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="Promo_Type"/>
+      </attribute>
+      <attribute id="ARTNR" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ARTNR"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="ARTNR"/>
+      </attribute>
+      <attribute id="VKDAB" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VKDAB"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="VKDAB"/>
+      </attribute>
+      <attribute id="VKDBI" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VKDBI"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="VKDBI"/>
+      </attribute>
+      <attribute id="ALIVO" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ALIVO"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="ALIVO"/>
+      </attribute>
+      <attribute id="ALIBI" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ALIBI"/>
+        <keyMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="ALIBI"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Promotion_Count" order="14" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Promotion Count"/>
+        <measureMapping columnObjectName="CV_R_MASTER_PROMOTION" columnName="Promotion_Count"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/></shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

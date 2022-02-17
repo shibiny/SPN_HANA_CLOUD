@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_CC_COMMISSION" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View for Credit Card Commission Data"/>
+  <metadata changedAt="2020-12-10 12:19:45.341"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="ZSP_CC_COMM">
+      <resourceUri>ZSP_CC_COMM</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Commission">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="ZDATE"/>
+        <viewAttribute id="CC_COMM"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="ZSP_CC_COMM"/>
+    <filter>(&quot;MANDT&quot; ='100')</filter>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Commission">
+    <descriptions/>
+    <attributes>
+      <attribute id="WERKS$local">
+        <descriptions defaultDescription="WERKS"/>
+        <keyMapping columnObjectName="Commission" columnName="WERKS"/>
+      </attribute>
+      <attribute id="ZDATE$local">
+        <descriptions defaultDescription="ZDATE"/>
+        <keyMapping columnObjectName="Commission" columnName="ZDATE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="CC_COMM" order="1" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Card Commission Value"/>
+        <measureMapping columnObjectName="Commission" columnName="CC_COMM"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_SITE">
+        <attributes>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_TIME">
+        <attributes>
+          <attributeRef>ZDATE$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE_SAP</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/></shape>
+      <shape expanded="true" modelObjectName="Commission" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="310"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+      <shape modelObjectName="Commission" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="382" y="464"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="700" y="16"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_TIME" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="320"/>
+      </shape></shapes>
+</layout>
+</Calculation:scenario>

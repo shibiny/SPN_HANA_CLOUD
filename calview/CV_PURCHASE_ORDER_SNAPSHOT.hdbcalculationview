@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_PURCHASE_ORDER_SNAPSHOT" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View for Purchase Orders snapshot"/>
+  <metadata changedAt="2020-11-19 12:38:23.072"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="ZRET_PO_LIST">
+      <resourceUri>ZRET_PO_LIST</resourceUri>
+    </DataSource>
+    <DataSource id="AT_MASTER_ARTICLE">
+      <resourceUri>AT_MASTER_ARTICLE</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Snapshot">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="EBELP"/>
+        <viewAttribute id="ZAEHK"/>
+        <viewAttribute id="AEDAT"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="MAKTX"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="EINDT"/>
+        <viewAttribute id="NETPR"/>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="KWERT"/>
+        <viewAttribute id="INCO1"/>
+        <viewAttribute id="ZEBELN"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="ZRET_PO_LIST"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="EBELP"/>
+        <viewAttribute id="ZAEHK"/>
+        <viewAttribute id="AEDAT"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="MAKTX"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="EINDT"/>
+        <viewAttribute id="NETPR"/>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="KWERT"/>
+        <viewAttribute id="INCO1"/>
+        <viewAttribute id="ZEBELN"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="CDT6_Description"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="BMC_Description"/>
+        <viewAttribute id="Buyers_Name"/>
+        <viewAttribute id="Commercial_Manager"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="Department"/>
+        <viewAttribute id="Category"/>
+        <viewAttribute id="SubCategory"/>
+        <viewAttribute id="CDT4"/>
+        <viewAttribute id="CDT5"/>
+        <viewAttribute id="CDT6"/>
+        <viewAttribute id="BMC"/>
+        <viewAttribute id="Article"/>
+        <viewAttribute id="Article_Code"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Snapshot">
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELN" source="EBELN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELP" source="EBELP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZAEHK" source="ZAEHK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AEDAT" source="AEDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAKTX" source="MAKTX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MENGE" source="MENGE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EINDT" source="EINDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETPR" source="NETPR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KWERT" source="KWERT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INCO1" source="INCO1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZEBELN" source="ZEBELN"/>
+      </input>
+      <input node="AT_MASTER_ARTICLE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="Article_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Description" source="Department_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_Description" source="Category_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_Description" source="Subcategory_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_Description" source="CDT6_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_Description" source="BMC_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Buyers_Name" source="Buyers_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Commercial_Manager" source="Commercial_Manager"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_Description" source="CDT4_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_Description" source="CDT5_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department" source="Department"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category" source="Category"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SubCategory" source="SubCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4" source="CDT4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5" source="CDT5"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6" source="CDT6"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC" source="BMC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article" source="Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="EBELN" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EBELN"/>
+        <keyMapping columnObjectName="Join_1" columnName="EBELN"/>
+      </attribute>
+      <attribute id="EBELP" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EBELP"/>
+        <keyMapping columnObjectName="Join_1" columnName="EBELP"/>
+      </attribute>
+      <attribute id="ZAEHK" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZAEHK"/>
+        <keyMapping columnObjectName="Join_1" columnName="ZAEHK"/>
+      </attribute>
+      <attribute id="AEDAT" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AEDAT"/>
+        <keyMapping columnObjectName="Join_1" columnName="AEDAT"/>
+      </attribute>
+      <attribute id="LIFNR" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LIFNR"/>
+        <keyMapping columnObjectName="Join_1" columnName="LIFNR"/>
+      </attribute>
+      <attribute id="MATNR" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MATNR"/>
+        <keyMapping columnObjectName="Join_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="MAKTX" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MAKTX"/>
+        <keyMapping columnObjectName="Join_1" columnName="MAKTX"/>
+      </attribute>
+      <attribute id="MEINS" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MEINS"/>
+        <keyMapping columnObjectName="Join_1" columnName="MEINS"/>
+      </attribute>
+      <attribute id="EINDT" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EINDT"/>
+        <keyMapping columnObjectName="Join_1" columnName="EINDT"/>
+      </attribute>
+      <attribute id="KSCHL" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="KSCHL"/>
+        <keyMapping columnObjectName="Join_1" columnName="KSCHL"/>
+      </attribute>
+      <attribute id="INCO1" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="INCO1"/>
+        <keyMapping columnObjectName="Join_1" columnName="INCO1"/>
+      </attribute>
+      <attribute id="ZEBELN" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZEBELN"/>
+        <keyMapping columnObjectName="Join_1" columnName="ZEBELN"/>
+      </attribute>
+      <attribute id="Article_Description" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Description"/>
+        <keyMapping columnObjectName="Join_1" columnName="Article_Description"/>
+      </attribute>
+      <attribute id="Department_ID" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="Department_ID"/>
+      </attribute>
+      <attribute id="Department_Description" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department Description"/>
+        <keyMapping columnObjectName="Join_1" columnName="Department_Description"/>
+      </attribute>
+      <attribute id="Category_ID" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="Category_ID"/>
+      </attribute>
+      <attribute id="Category_Description" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category Description"/>
+        <keyMapping columnObjectName="Join_1" columnName="Category_Description"/>
+      </attribute>
+      <attribute id="Subcategory_ID" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Subcategory ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="Subcategory_ID"/>
+      </attribute>
+      <attribute id="Subcategory_Description" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Subcategory Description"/>
+        <keyMapping columnObjectName="Join_1" columnName="Subcategory_Description"/>
+      </attribute>
+      <attribute id="CDT4_ID" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4 ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CDT4_ID"/>
+      </attribute>
+      <attribute id="CDT5_ID" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5 ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CDT5_ID"/>
+      </attribute>
+      <attribute id="CDT6_ID" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6 ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CDT6_ID"/>
+      </attribute>
+      <attribute id="CDT6_Description" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6 Description"/>
+        <keyMapping columnObjectName="Join_1" columnName="CDT6_Description"/>
+      </attribute>
+      <attribute id="BMC_ID" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="BMC_ID"/>
+      </attribute>
+      <attribute id="BMC_Description" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC Description"/>
+        <keyMapping columnObjectName="Join_1" columnName="BMC_Description"/>
+      </attribute>
+      <attribute id="Buyers_Name" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Buyers Name"/>
+        <keyMapping columnObjectName="Join_1" columnName="Buyers_Name"/>
+      </attribute>
+      <attribute id="Commercial_Manager" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Commercial Manager"/>
+        <keyMapping columnObjectName="Join_1" columnName="Commercial_Manager"/>
+      </attribute>
+      <attribute id="CDT4_Description" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4_Description"/>
+        <keyMapping columnObjectName="Join_1" columnName="CDT4_Description"/>
+      </attribute>
+      <attribute id="CDT5_Description" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5_Description"/>
+        <keyMapping columnObjectName="Join_1" columnName="CDT5_Description"/>
+      </attribute>
+      <attribute id="Department" order="30" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department"/>
+        <keyMapping columnObjectName="Join_1" columnName="Department"/>
+      </attribute>
+      <attribute id="Category" order="31" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category"/>
+        <keyMapping columnObjectName="Join_1" columnName="Category"/>
+      </attribute>
+      <attribute id="SubCategory" order="32" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SubCategory"/>
+        <keyMapping columnObjectName="Join_1" columnName="SubCategory"/>
+      </attribute>
+      <attribute id="CDT4" order="33" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4"/>
+        <keyMapping columnObjectName="Join_1" columnName="CDT4"/>
+      </attribute>
+      <attribute id="CDT5" order="34" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5"/>
+        <keyMapping columnObjectName="Join_1" columnName="CDT5"/>
+      </attribute>
+      <attribute id="CDT6" order="35" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6"/>
+        <keyMapping columnObjectName="Join_1" columnName="CDT6"/>
+      </attribute>
+      <attribute id="BMC" order="36" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC"/>
+        <keyMapping columnObjectName="Join_1" columnName="BMC"/>
+      </attribute>
+      <attribute id="Article" order="37" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article"/>
+        <keyMapping columnObjectName="Join_1" columnName="Article"/>
+      </attribute>
+      <attribute id="Article_Code" order="38" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyMapping columnObjectName="Join_1" columnName="Article_Code"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="MENGE" order="39" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="MENGE"/>
+        <measureMapping columnObjectName="Join_1" columnName="MENGE"/>
+      </measure>
+      <measure id="NETPR" order="40" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="NETPR"/>
+        <measureMapping columnObjectName="Join_1" columnName="NETPR"/>
+      </measure>
+      <measure id="KWERT" order="41" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="KWERT"/>
+        <measureMapping columnObjectName="Join_1" columnName="KWERT"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/></shape>
+      <shape expanded="true" modelObjectName="Snapshot" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+    <shape modelObjectName="Snapshot" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

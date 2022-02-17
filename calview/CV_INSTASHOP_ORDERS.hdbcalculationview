@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_INSTASHOP_ORDERS" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="CV_INSTASHOP_ORDERS"/>
+  <metadata changedAt="2020-05-03 14:06:55.856"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="ZRET_INSTA_ORD">
+      <resourceUri>ZRET_INSTA_ORD</resourceUri>
+    </DataSource>
+    <DataSource id="AT_MASTER_TIME">
+      <resourceUri>AT_MASTER_TIME</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="ORDER_DATE"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="INSTA_ORDER"/>
+        <viewAttribute id="ORDER_VAL"/>
+        <viewAttribute id="ZTYPE"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="ZRET_INSTA_ORD"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Site_ID"/>
+        <viewAttribute id="InstaShop_Order"/>
+        <viewAttribute id="Order_Value"/>
+        <viewAttribute id="DATE"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="WEEK"/>
+        <viewAttribute id="YEAR_INT"/>
+        <viewAttribute id="MONTH_INT"/>
+        <viewAttribute id="WEEK_INT"/>
+        <viewAttribute id="ZTYPE"/>
+      <viewAttribute hidden="true" id="JOIN$ORDER_DATE$DATE_SAP"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Yesterday_Flag" length="20" expressionLanguage="COLUMN_ENGINE">
+          <formula>If(&quot;DATE&quot;=daydate(adddays(now(),-1)),'Yesterday','Not_Yesterday')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="MTD_Flag" length="20" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(component(&quot;DATE&quot;,2)=component(adddays(now(),-1),2),'MTD','Not_MTD')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="YTD_Flag" length="20" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(component(&quot;DATE&quot;,1)=component(adddays(now(),-1),1),'YTD','Not_YTD')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_ID" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="InstaShop_Order" source="INSTA_ORDER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Order_Value" source="ORDER_VAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZTYPE" source="ZTYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ORDER_DATE$DATE_SAP" source="ORDER_DATE"/>
+      </input>
+      <input node="AT_MASTER_TIME">
+        <mapping xsi:type="Calculation:AttributeMapping" target="DATE" source="DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH" source="MONTH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEEK" source="WEEK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="YEAR_INT" source="YEAR_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MONTH_INT" source="MONTH_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEEK_INT" source="WEEK_INT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ORDER_DATE$DATE_SAP" source="DATE_SAP"/>
+      </input>
+    <joinAttribute name="JOIN$ORDER_DATE$DATE_SAP"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="Site_ID" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site_ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="Site_ID"/>
+      </attribute>
+      <attribute id="InstaShop_Order" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="InstaShop_Order"/>
+        <keyMapping columnObjectName="Join_1" columnName="InstaShop_Order"/>
+      </attribute>
+      <attribute id="DATE" key="true" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DATE"/>
+        <keyMapping columnObjectName="Join_1" columnName="DATE"/>
+      </attribute>
+      <attribute id="YEAR" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR"/>
+        <keyMapping columnObjectName="Join_1" columnName="YEAR"/>
+      </attribute>
+      <attribute id="MONTH" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MONTH"/>
+        <keyMapping columnObjectName="Join_1" columnName="MONTH"/>
+      </attribute>
+      <attribute id="WEEK" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEEK"/>
+        <keyMapping columnObjectName="Join_1" columnName="WEEK"/>
+      </attribute>
+      <attribute id="YEAR_INT" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR_INT"/>
+        <keyMapping columnObjectName="Join_1" columnName="YEAR_INT"/>
+      </attribute>
+      <attribute id="MONTH_INT" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MONTH_INT"/>
+        <keyMapping columnObjectName="Join_1" columnName="MONTH_INT"/>
+      </attribute>
+      <attribute id="WEEK_INT" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEEK_INT"/>
+        <keyMapping columnObjectName="Join_1" columnName="WEEK_INT"/>
+      </attribute>
+      <attribute id="ZTYPE" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZTYPE"/>
+        <keyMapping columnObjectName="Join_1" columnName="ZTYPE"/>
+      </attribute>
+      <attribute id="Yesterday_Flag" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Yesterday_Flag"/>
+        <keyMapping columnObjectName="Join_1" columnName="Yesterday_Flag"/>
+      </attribute>
+      <attribute id="MTD_Flag" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MTD_Flag"/>
+        <keyMapping columnObjectName="Join_1" columnName="MTD_Flag"/>
+      </attribute>
+      <attribute id="YTD_Flag" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YTD_Flag"/>
+        <keyMapping columnObjectName="Join_1" columnName="YTD_Flag"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Order_GT_0_Indicator" hidden="false" order="12" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Order_GT_0_Indicator"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="1">
+          <formula>If(&quot;Order_Value&quot;&gt;0,1,0)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Order_Value" order="10" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Order_Value"/>
+        <measureMapping columnObjectName="Join_1" columnName="Order_Value"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="Insta_Order_Count" hidden="false" order="11" aggregationType="sum" measureType="simple" aggregatable="true" calculatedMeasureType="counter" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="InstaShop Order Count"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="InstaShop_Order"/>
+          <attribute attributeName="Order_GT_0_Indicator"/>
+          <attribute attributeName="Yesterday_Flag"/>
+          <attribute attributeName="MTD_Flag"/>
+          <attribute attributeName="YTD_Flag"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/></shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="AT_MASTER_TIME" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

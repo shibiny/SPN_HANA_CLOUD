@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_CURRENT_RSP_BARCODE" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View for Current RSPs at Barcode level"/>
+  <metadata changedAt="2021-10-14 12:35:45.86"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="21"/>
+  <dataSources>
+    <DataSource id="CV_CURRENT_RSP">
+      <resourceUri>CV_CURRENT_RSP</resourceUri>
+    </DataSource>
+    <DataSource id="MARM">
+      <resourceUri>MARM</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="inner">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="Site_Article"/>
+        <viewAttribute id="Dist_Chan"/>
+        <viewAttribute id="VRKME"/>
+        <viewAttribute id="KONWA"/>
+        <viewAttribute id="RSP_Promo"/>
+        <viewAttribute id="RSP_NonPromo"/>
+        <viewAttribute id="RSP_20"/>
+        <viewAttribute id="RSP_40"/>
+        <viewAttribute id="RSP_60"/>
+        <viewAttribute id="UMREZ"/>
+        <viewAttribute id="UMREN"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="No_Repeat_Key"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="Promo_RSP"/>
+        <viewAttribute id="Normal_RSP"/>
+        <viewAttribute id="Site_ID_Generic"/>
+        <viewAttribute id="RSP_65"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="INTEGER" id="Conversion_Factor" expressionLanguage="COLUMN_ENGINE">
+          <formula>If(&quot;UMREN&quot;=0, 0, &quot;UMREZ&quot;/&quot;UMREN&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="CV_CURRENT_RSP">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Article" source="Site_Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Dist_Chan" source="Dist_Chan"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VRKME" source="VRKME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONWA" source="KONWA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RSP_Promo" source="RSP_Promo"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RSP_NonPromo" source="RSP_NonPromo"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RSP_20" source="RSP_20"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RSP_40" source="RSP_40"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RSP_60" source="RSP_60"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="No_Repeat_Key" source="No_Repeat_Key"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_RSP" source="Promo_RSP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Normal_RSP" source="Normal_RSP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_ID_Generic" source="Site_ID_Generic"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RSP_65" source="RSP_65"/>
+      </input>
+      <input node="MARM">
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREZ" source="UMREZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREN" source="UMREN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VRKME" source="MEINH"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+    <joinAttribute name="VRKME"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="Article_Code" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyMapping columnObjectName="Join_1" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="WERKS" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Code"/>
+        <keyMapping columnObjectName="Join_1" columnName="WERKS"/>
+      </attribute>
+      <attribute id="Site_Article" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Article"/>
+        <keyMapping columnObjectName="Join_1" columnName="Site_Article"/>
+      </attribute>
+      <attribute id="Dist_Chan" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Distribution Channel"/>
+        <keyMapping columnObjectName="Join_1" columnName="Dist_Chan"/>
+      </attribute>
+      <attribute id="VRKME" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Unit"/>
+        <keyMapping columnObjectName="Join_1" columnName="VRKME"/>
+      </attribute>
+      <attribute id="KONWA" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Currency"/>
+        <keyMapping columnObjectName="Join_1" columnName="KONWA"/>
+      </attribute>
+      <attribute id="RSP_Promo" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RSP Promo"/>
+        <keyMapping columnObjectName="Join_1" columnName="RSP_Promo"/>
+      </attribute>
+      <attribute id="RSP_NonPromo" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RSP NonPromo"/>
+        <keyMapping columnObjectName="Join_1" columnName="RSP_NonPromo"/>
+      </attribute>
+      <attribute id="Conversion_Factor" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Conversion Factor"/>
+        <keyMapping columnObjectName="Join_1" columnName="Conversion_Factor"/>
+      </attribute>
+      <attribute id="No_Repeat_Key" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="No Repeat Key"/>
+        <keyMapping columnObjectName="Join_1" columnName="No_Repeat_Key"/>
+      </attribute>
+      <attribute id="VKORG" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Organization"/>
+        <keyMapping columnObjectName="Join_1" columnName="VKORG"/>
+      </attribute>
+      <attribute id="Site_ID_Generic" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site ID Generic"/>
+        <keyMapping columnObjectName="Join_1" columnName="Site_ID_Generic"/>
+      </attribute>
+      <attribute id="MATNR$local">
+        <keyMapping columnObjectName="Join_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="VRKME$local">
+        <descriptions defaultDescription="Sales Unit"/>
+        <keyMapping columnObjectName="Join_1" columnName="VRKME"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="RSP_20" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="RSP 20"/>
+        <measureMapping columnObjectName="Join_1" columnName="RSP_20"/>
+      </measure>
+      <measure id="RSP_40" order="10" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="RSP 40"/>
+        <measureMapping columnObjectName="Join_1" columnName="RSP_40"/>
+      </measure>
+      <measure id="RSP_60" order="11" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="RSP 60"/>
+        <measureMapping columnObjectName="Join_1" columnName="RSP_60"/>
+      </measure>
+      <measure id="Promo_RSP" order="15" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Promo RSP"/>
+        <measureMapping columnObjectName="Join_1" columnName="Promo_RSP"/>
+      </measure>
+      <measure id="Normal_RSP" order="16" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Normal RSP"/>
+        <measureMapping columnObjectName="Join_1" columnName="Normal_RSP"/>
+      </measure>
+      <measure id="RSP_65" order="18" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="RSP 65"/>
+        <measureMapping columnObjectName="Join_1" columnName="RSP_65"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_ARTICLE_Article_Code" attributeName="Article_Code">
+            <descriptions defaultDescription="AT_MASTER_ARTICLE_Article_Code"/>
+          </attributeReference>
+          <attributeReference attributeName="House_Brand" hidden="true"/>
+          <attributeReference attributeName="Source" hidden="true"/>
+          <attributeReference attributeName="Base_Unit" hidden="true"/>
+          <attributeReference attributeName="Tax_Code" hidden="true"/>
+          <attributeReference attributeName="Created_On" hidden="true"/>
+          <attributeReference attributeName="Last_Change" hidden="true"/>
+          <attributeReference attributeName="Article_Type" hidden="true"/>
+          <attributeReference attributeName="Order_Unit" hidden="true"/>
+          <attributeReference attributeName="Gross_Weight" hidden="true"/>
+          <attributeReference attributeName="Net_Weight" hidden="true"/>
+          <attributeReference attributeName="Weight_Unit" hidden="true"/>
+          <attributeReference attributeName="Volume" hidden="true"/>
+          <attributeReference attributeName="Volume_Unit" hidden="true"/>
+          <attributeReference attributeName="Temperature" hidden="true"/>
+          <attributeReference attributeName="Barcode" hidden="true"/>
+          <attributeReference attributeName="Length" hidden="true"/>
+          <attributeReference attributeName="Height" hidden="true"/>
+          <attributeReference attributeName="Width" hidden="true"/>
+          <attributeReference attributeName="Unit" hidden="true"/>
+          <attributeReference attributeName="Remaining_Shelf_Life" hidden="true"/>
+          <attributeReference attributeName="Total_Shelf_Life" hidden="true"/>
+          <attributeReference attributeName="Tax_Class" hidden="true"/>
+          <attributeReference attributeName="EWM_Storage_Condition" hidden="true"/>
+          <attributeReference attributeName="EWM_Article_Group" hidden="true"/>
+          <attributeReference attributeName="EWM_Article_Type" hidden="true"/>
+          <attributeReference attributeName="Quality" hidden="true"/>
+          <attributeReference attributeName="Strategy" hidden="true"/>
+          <attributeReference attributeName="Expected_Waste_Percent" hidden="true"/>
+          <attributeReference attributeName="Ethnic_Group" hidden="true"/>
+          <attributeReference attributeName="Purpose" hidden="true"/>
+          <attributeReference attributeName="Expected_Margin_Value" hidden="true"/>
+          <attributeReference attributeName="Label_Short_Description" hidden="true"/>
+          <attributeReference attributeName="Dimension_Verify" hidden="true"/>
+          <attributeReference attributeName="Print_Expiry" hidden="true"/>
+          <attributeReference attributeName="Price_Classification" hidden="true"/>
+          <attributeReference attributeName="Label_Description" hidden="true"/>
+          <attributeReference attributeName="Expected_Sales_Week" hidden="true"/>
+          <attributeReference attributeName="Speciality" hidden="true"/>
+          <attributeReference attributeName="Generic_Article" hidden="true"/>
+          <attributeReference attributeName="Generic_Article_Conversion" hidden="true"/>
+          <attributeReference attributeName="Generic_Article_UOM" hidden="true"/>
+          <attributeReference attributeName="Top_20Percent_Contributor" hidden="true"/>
+          <attributeReference attributeName="Safety_Stk_Multiplier" hidden="true"/>
+          <attributeReference attributeName="Seasonal" hidden="true"/>
+          <attributeReference attributeName="Listed_Sites" hidden="true"/>
+          <attributeReference attributeName="Centrally_Produced" hidden="true"/>
+          <attributeReference attributeName="Allow_Poor_Performance" hidden="true"/>
+          <attributeReference attributeName="Excise_Tax_Percent" hidden="true"/>
+          <attributeReference attributeName="Excise_Value" hidden="true"/>
+          <attributeReference attributeName="Expected_RTS_Percent" hidden="true"/>
+          <attributeReference attributeName="Display_Temperature" hidden="true"/>
+          <attributeReference attributeName="Additional_Barcode_List" hidden="true"/>
+          <attributeReference attributeName="Article_Role" hidden="true"/>
+          <attributeReference attributeName="Anchor" hidden="true"/>
+          <attributeReference attributeName="ECommerce" hidden="true"/>
+          <attributeReference attributeName="First_Sold_Date" hidden="true"/>
+          <attributeReference attributeName="Content_UOM" hidden="true"/>
+          <attributeReference attributeName="Content" hidden="true"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_BARCODE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+          <attributeRef>VRKME$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+          <attributeName>MEINH</attributeName>
+        </associatedAttributeNames>
+        <properties joinType="referential" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_BARCODE_MATNR" attributeName="MATNR" hidden="true"/>
+          <attributeReference alias="AT_MASTER_BARCODE_Article_Code" attributeName="Article_Code" hidden="true"/>
+          <attributeReference attributeName="MEINH" hidden="true"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="221"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="CV_CURRENT_RSP" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="MARM" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="Join_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="404" y="608"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="773" y="16"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_BARCODE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="688"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

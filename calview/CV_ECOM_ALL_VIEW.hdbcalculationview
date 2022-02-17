@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_ECOM_ALL_VIEW" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Reporting View for all Ecommerce"/>
+  <metadata changedAt="2021-09-26 16:04:27.305"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="29"/>
+  <dataSources>
+    <DataSource id="ZRET_ECOM_ORD">
+      <resourceUri>ZRET_ECOM_ORD</resourceUri>
+    </DataSource>
+    <DataSource id="MEAN">
+      <resourceUri>MEAN</resourceUri>
+    </DataSource>
+    <DataSource id="MKPF">
+      <resourceUri>MKPF</resourceUri>
+    </DataSource>
+    <DataSource id="MSEG">
+      <resourceUri>MSEG</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="EAN11"/>
+        <viewAttribute id="ORDER_DATE"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="ECOMM_ORDER"/>
+        <viewAttribute id="ORD_QTY"/>
+        <viewAttribute id="ORD_VAL"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="ORDER_VAL"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Online_Channel" length="15" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(in(&quot;WERKS&quot;,'RS01','RS03','RS07','RS08','RS09','RS10','RS40','RS45','RS63','RS72','RS75','RS81','RS84','RS91'),'Waitrose','Spinneys')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Transaction_ID" length="15" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;ECOMM_ORDER&quot;+&quot;WERKS&quot;</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="ZRET_ECOM_ORD"/>
+    <filter>(not isNull(&quot;EAN11&quot;))</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Spinneys" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="MEINH"/>
+        <viewAttribute id="ORDER_DATE"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="ORD_QTY"/>
+        <viewAttribute id="ORD_VAL"/>
+        <viewAttribute id="Online_Channel"/>
+        <viewAttribute id="Transaction_ID"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="ORDER_VAL"/>
+      <viewAttribute hidden="true" id="JOIN$EAN11$EAN11"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_DATE" source="ORDER_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORD_QTY" source="ORD_QTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORD_VAL" source="ORD_VAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Online_Channel" source="Online_Channel"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Transaction_ID" source="Transaction_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MENGE" source="MENGE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_VAL" source="ORDER_VAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$EAN11$EAN11" source="EAN11"/>
+      </input>
+      <input node="MEAN">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINH" source="MEINH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$EAN11$EAN11" source="EAN11"/>
+      </input>
+    <joinAttribute name="JOIN$EAN11$EAN11"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Filtered_MKPF">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MBLNR"/>
+        <viewAttribute id="MJAHR"/>
+        <viewAttribute id="BUDAT"/>
+        <viewAttribute id="BKTXT"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Transaction_ID" length="15" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;MBLNR&quot;+'-'+&quot;MJAHR&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Online_Channel" length="15" expressionLanguage="COLUMN_ENGINE">
+          <formula>If(Match(leftstr(&quot;BKTXT&quot;,11),'POS/****/IN'),'InstaShop',If(Match(leftstr(&quot;BKTXT&quot;,13),'POS/****/NOON') OR Match(leftstr(&quot;BKTXT&quot;,13),'POS/****/NNOW'),'NOON', If(Match(leftstr(&quot;BKTXT&quot;,11),'POS/****/EC'),'Spinneys','In-Store')))</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="MKPF"/>
+    <filter>(in (&quot;Online_Channel&quot;,'InstaShop','NOON'))</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Filtered_MSEG">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="BWART"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="SHKZG"/>
+        <viewAttribute id="DMBTR"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="VKWRT"/>
+        <viewAttribute id="MBLNR"/>
+        <viewAttribute id="MJAHR"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DECIMAL" id="Sales_Quantity" length="13" scale="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;SHKZG&quot;='S',&quot;MENGE&quot;*-1,&quot;MENGE&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DECIMAL" id="Sales_Cost" length="13" scale="2" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;SHKZG&quot;='S',&quot;DMBTR&quot;*-1,&quot;DMBTR&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DECIMAL" id="Sales_Value" length="13" scale="2" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;SHKZG&quot;='S',&quot;VKWRT&quot;*-1,&quot;VKWRT&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="MSEG"/>
+    <filter>(in (&quot;BWART&quot;,'251','252'))</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Non_Spinneys" cardinality="C1_N" joinType="referential">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Transaction_ID"/>
+        <viewAttribute id="Online_Channel"/>
+        <viewAttribute id="BUDAT"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="Sales_Quantity"/>
+        <viewAttribute id="Sales_Cost"/>
+        <viewAttribute id="Sales_Value"/>
+      <viewAttribute hidden="true" id="JOIN$MBLNR$MBLNR"/>
+      <viewAttribute hidden="true" id="JOIN$MJAHR$MJAHR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Filtered_MKPF">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Transaction_ID" source="Transaction_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Online_Channel" source="Online_Channel"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUDAT" source="BUDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MBLNR$MBLNR" source="MBLNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MJAHR$MJAHR" source="MJAHR"/>
+      </input>
+      <input node="Filtered_MSEG">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Quantity" source="Sales_Quantity"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Cost" source="Sales_Cost"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Value" source="Sales_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MBLNR$MBLNR" source="MBLNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MJAHR$MJAHR" source="MJAHR"/>
+      </input>
+    <joinAttribute name="JOIN$MBLNR$MBLNR"/>
+    <joinAttribute name="JOIN$MJAHR$MJAHR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Transaction_ID"/>
+        <viewAttribute id="Online_Channel"/>
+        <viewAttribute id="BUDAT"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="Sales_Cost"/>
+        <viewAttribute id="Sales_Quantity"/>
+        <viewAttribute id="Sales_Value"/>
+        <viewAttribute id="MEINS"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="Non_Spinneys">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Transaction_ID" source="Transaction_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Online_Channel" source="Online_Channel"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUDAT" source="BUDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Cost" source="Sales_Cost"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Quantity" source="Sales_Quantity"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Value" source="Sales_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="Spinneys">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Transaction_ID" source="Transaction_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Online_Channel" source="Online_Channel"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUDAT" source="ORDER_DATE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Sales_Cost" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Quantity" source="MENGE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Value" source="ORDER_VAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINH"/>
+      </input>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Union_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="Transaction_ID" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Transaction_ID"/>
+        <keyMapping columnObjectName="Union_1" columnName="Transaction_ID"/>
+      </attribute>
+      <attribute id="Online_Channel" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Online_Channel"/>
+        <keyMapping columnObjectName="Union_1" columnName="Online_Channel"/>
+      </attribute>
+      <attribute id="MATNR$local">
+        <keyMapping columnObjectName="Union_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="WERKS$local">
+        <keyMapping columnObjectName="Union_1" columnName="WERKS"/>
+      </attribute>
+      <attribute id="BUDAT$local">
+        <keyMapping columnObjectName="Union_1" columnName="BUDAT"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Posting_Date" hidden="false" order="6" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Posting Date"/>
+        <keyCalculation datatype="DATE" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;DATE&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Flag_Yesterday" hidden="false" order="7" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Flag Yesterday"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="1">
+          <formula>If(&quot;DATE&quot;=adddays(daydate(now()),-1), 'Y', 'N')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Flag_Current_Year" hidden="false" order="8" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Flag Current Year"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="1">
+          <formula>If(&quot;YEAR_INT&quot;=component(adddays(daydate(now()),-1),1), 'Y', 'N')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Sales_Cost" order="3" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Sales_Cost"/>
+        <measureMapping columnObjectName="Union_1" columnName="Sales_Cost"/>
+      </measure>
+      <measure id="Sales_Quantity" order="4" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Sales_Quantity"/>
+        <measureMapping columnObjectName="Union_1" columnName="Sales_Quantity"/>
+      </measure>
+      <measure id="Sales_Value" order="5" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Sales_Value"/>
+        <measureMapping columnObjectName="Union_1" columnName="Sales_Value"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="Sales_Value_Excl_VAT" hidden="false" order="9" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="2">
+        <descriptions defaultDescription="Sales Value Excluding VAT"/>
+        <formula>if(&quot;Country&quot;='OM', if(&quot;DATE_SAP&quot;&gt;'20210415', if(&quot;TAXM1&quot;='2', &quot;Sales_Value&quot;*9.531/10/1.05, &quot;Sales_Value&quot;*9.531/10), &quot;Sales_Value&quot;*9.531/10), 
+if(&quot;Country&quot;='AE', if(&quot;DATE_SAP&quot;&gt;'20180703' and &quot;DATE_SAP&quot;&lt;'20180924', if(&quot;TAXM1&quot;='2', &quot;Sales_Value&quot;/1.05/1.0476, &quot;Sales_Value&quot;), if(&quot;DATE_SAP&quot;&gt;'20180923', if(&quot;TAXM1&quot;='2', &quot;Sales_Value&quot;/1.05, &quot;Sales_Value&quot;), &quot;Sales_Value&quot;)), &quot;Sales_Value&quot;))</formula>
+      </measure>
+      <measure id="Transaction_Count" hidden="false" order="10" aggregationType="sum" measureType="simple" aggregatable="true" calculatedMeasureType="counter" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Transaction Count"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="Transaction_ID"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE_SITE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_MATNR" attributeName="MATNR"/>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_Article_Code" attributeName="Article_Code"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_SITE">
+        <attributes>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_SITE_WERKS" attributeName="WERKS"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_TIME">
+        <attributes>
+          <attributeRef>BUDAT$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE_SAP</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="false" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="176" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="340" y="469"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Spinneys" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="253" y="373"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Spinneys" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="MEAN" modelObjectNameSpace="Spinneys" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Filtered_MKPF" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="469"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Filtered_MSEG" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="469"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Non_Spinneys" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="373"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Filtered_MKPF" modelObjectNameSpace="Non_Spinneys" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Filtered_MSEG" modelObjectNameSpace="Non_Spinneys" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="false" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="257"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape modelObjectName="Union_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="457" y="848"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="799" y="16"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="208"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="689"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_TIME" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="799" y="1521"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

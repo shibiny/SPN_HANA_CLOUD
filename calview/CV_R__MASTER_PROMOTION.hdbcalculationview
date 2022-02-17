@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_R_MASTER_PROMOTION" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Reporting View for Promotion Master Data"/>
+  <metadata changedAt="2021-05-19 10:48:48.228"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="29"/>
+  <dataSources>
+    <DataSource id="WAKH">
+      <resourceUri>WAKH</resourceUri>
+    </DataSource>
+    <DataSource id="WAKP">
+      <resourceUri>WAKP</resourceUri>
+    </DataSource>
+    <DataSource id="WAKT">
+      <resourceUri>WAKT</resourceUri>
+    </DataSource>
+    <DataSource id="TWAAT">
+      <resourceUri>TWAAT</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Promotion" cardinality="C1_N" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="AKTNR"/>
+        <viewAttribute id="Promo_Category"/>
+        <viewAttribute id="AKART"/>
+        <viewAttribute id="Sales_Org_Promotion"/>
+        <viewAttribute id="Distribution_Channel_Promotion"/>
+        <viewAttribute id="VKDAB"/>
+        <viewAttribute id="VKDBI"/>
+        <viewAttribute id="ARTNR"/>
+        <viewAttribute id="Sales_Unit_Promotion"/>
+        <viewAttribute id="Promo_Sales_Price"/>
+        <viewAttribute id="Normal_Sales_Price"/>
+        <viewAttribute id="ALIVO"/>
+        <viewAttribute id="ALIBI"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Promo_Number" length="10" expressionLanguage="COLUMN_ENGINE">
+          <formula>ltrim(&quot;AKTNR&quot;,'0')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Promo_Sale_From" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;VKDAB&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Promo_Sale_To" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;VKDBI&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Article_Code" length="18" expressionLanguage="COLUMN_ENGINE">
+          <formula>ltrim(&quot;ARTNR&quot;,'0')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Promo_Listed_From" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;ALIVO&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Promo_Listed_To" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;ALIBI&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="WAKH">
+        <mapping xsi:type="Calculation:AttributeMapping" target="AKTNR" source="AKTNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Category" source="AKTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AKART" source="AKART"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Org_Promotion" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Distribution_Channel_Promotion" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKDAB" source="VKDAB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKDBI" source="VKDBI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ALIVO" source="ALIVO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ALIBI" source="ALIBI"/>
+      </input>
+      <input node="WAKP">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ARTNR" source="ARTNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Unit_Promotion" source="MEBME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Sales_Price" source="PLVKP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Normal_Sales_Price" source="NVKP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AKTNR" source="AKTNR"/>
+      </input>
+    <joinAttribute name="AKTNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="inner">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Sales_Org_Promotion"/>
+        <viewAttribute id="Distribution_Channel_Promotion"/>
+        <viewAttribute id="Promo_Number"/>
+        <viewAttribute id="Promo_Description"/>
+        <viewAttribute id="Promo_Category"/>
+        <viewAttribute id="AKART"/>
+        <viewAttribute id="Promo_Sale_From"/>
+        <viewAttribute id="Promo_Sale_To"/>
+        <viewAttribute id="Sales_Unit_Promotion"/>
+        <viewAttribute id="Promo_Sales_Price"/>
+        <viewAttribute id="Normal_Sales_Price"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="AKTNR"/>
+        <viewAttribute id="Promo_Listed_From"/>
+        <viewAttribute id="Promo_Listed_To"/>
+        <viewAttribute id="ARTNR"/>
+        <viewAttribute id="VKDAB"/>
+        <viewAttribute id="VKDBI"/>
+        <viewAttribute id="ALIVO"/>
+        <viewAttribute id="ALIBI"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Promotion">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Org_Promotion" source="Sales_Org_Promotion"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Distribution_Channel_Promotion" source="Distribution_Channel_Promotion"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Number" source="Promo_Number"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Category" source="Promo_Category"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AKART" source="AKART"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Sale_From" source="Promo_Sale_From"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Sale_To" source="Promo_Sale_To"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Unit_Promotion" source="Sales_Unit_Promotion"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Sales_Price" source="Promo_Sales_Price"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Normal_Sales_Price" source="Normal_Sales_Price"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AKTNR" source="AKTNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Listed_From" source="Promo_Listed_From"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Listed_To" source="Promo_Listed_To"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ARTNR" source="ARTNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKDAB" source="VKDAB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKDBI" source="VKDBI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ALIVO" source="ALIVO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ALIBI" source="ALIBI"/>
+      </input>
+      <input node="WAKT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Description" source="AKTKT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AKTNR" source="AKTNR"/>
+      </input>
+    <joinAttribute name="AKTNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="SPRAS"/>
+        <viewAttribute id="ARTTX"/>
+        <viewAttribute id="AKART"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="TWAAT"/>
+    <filter>(&quot;MANDT&quot; ='100') AND (&quot;SPRAS&quot; ='E')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Promotion_Type" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Sales_Org_Promotion"/>
+        <viewAttribute id="Distribution_Channel_Promotion"/>
+        <viewAttribute id="Promo_Number"/>
+        <viewAttribute id="Promo_Description"/>
+        <viewAttribute id="Promo_Category"/>
+        <viewAttribute id="Promo_Sale_From"/>
+        <viewAttribute id="Promo_Sale_To"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Sales_Unit_Promotion"/>
+        <viewAttribute id="Normal_Sales_Price"/>
+        <viewAttribute id="Promo_Sales_Price"/>
+        <viewAttribute id="AKTNR"/>
+        <viewAttribute id="Promo_Type"/>
+        <viewAttribute id="Promo_Listed_From"/>
+        <viewAttribute id="Promo_Listed_To"/>
+        <viewAttribute id="Promo_Type_ID"/>
+        <viewAttribute id="ARTNR"/>
+        <viewAttribute id="VKDAB"/>
+        <viewAttribute id="VKDBI"/>
+        <viewAttribute id="ALIVO"/>
+        <viewAttribute id="ALIBI"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Org_Promotion" source="Sales_Org_Promotion"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Distribution_Channel_Promotion" source="Distribution_Channel_Promotion"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Number" source="Promo_Number"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Description" source="Promo_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Category" source="Promo_Category"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Sale_From" source="Promo_Sale_From"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Sale_To" source="Promo_Sale_To"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Unit_Promotion" source="Sales_Unit_Promotion"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Normal_Sales_Price" source="Normal_Sales_Price"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Sales_Price" source="Promo_Sales_Price"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AKTNR" source="AKTNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Listed_From" source="Promo_Listed_From"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Listed_To" source="Promo_Listed_To"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Type_ID" source="AKART"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ARTNR" source="ARTNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKDAB" source="VKDAB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKDBI" source="VKDBI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ALIVO" source="ALIVO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ALIBI" source="ALIBI"/>
+      </input>
+      <input node="Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Type" source="ARTTX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Promo_Type_ID" source="AKART"/>
+      </input>
+    <joinAttribute name="Promo_Type_ID"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Promotion_Type">
+    <descriptions/>
+    <attributes>
+      <attribute id="Sales_Org_Promotion" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Org Promotion"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Sales_Org_Promotion"/>
+      </attribute>
+      <attribute id="Distribution_Channel_Promotion" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Distribution Channel Promotion"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Distribution_Channel_Promotion"/>
+      </attribute>
+      <attribute id="Promo_Number" key="true" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Number"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Promo_Number"/>
+      </attribute>
+      <attribute id="Promo_Description" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Description"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Promo_Description"/>
+      </attribute>
+      <attribute id="Promo_Category" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Category"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Promo_Category"/>
+      </attribute>
+      <attribute id="Promo_Sale_From" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Sale From"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Promo_Sale_From"/>
+      </attribute>
+      <attribute id="Promo_Sale_To" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Sale To"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Promo_Sale_To"/>
+      </attribute>
+      <attribute id="Article_Code" key="true" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="Sales_Unit_Promotion" key="true" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Unit Promotion"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Sales_Unit_Promotion"/>
+      </attribute>
+      <attribute id="Normal_Sales_Price" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Normal Sales Price"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Normal_Sales_Price"/>
+      </attribute>
+      <attribute id="Promo_Sales_Price" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Sales Price"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Promo_Sales_Price"/>
+      </attribute>
+      <attribute id="AKTNR" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AKTNR"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="AKTNR"/>
+      </attribute>
+      <attribute id="Promo_Type_ID" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Type ID"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Promo_Type_ID"/>
+      </attribute>
+      <attribute id="Promo_Type" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Type"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Promo_Type"/>
+      </attribute>
+      <attribute id="Promo_Listed_From" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Listed From"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Promo_Listed_From"/>
+      </attribute>
+      <attribute id="Promo_Listed_To" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Listed To"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="Promo_Listed_To"/>
+      </attribute>
+      <attribute id="ARTNR" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ARTNR"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="ARTNR"/>
+      </attribute>
+      <attribute id="VKDAB" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VKDAB"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="VKDAB"/>
+      </attribute>
+      <attribute id="VKDBI" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VKDBI"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="VKDBI"/>
+      </attribute>
+      <attribute id="ALIVO" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ALIVO"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="ALIVO"/>
+      </attribute>
+      <attribute id="ALIBI" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ALIBI"/>
+        <keyMapping columnObjectName="Promotion_Type" columnName="ALIBI"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures>
+      <measure id="Promotion_Count" hidden="false" order="18" aggregationType="sum" measureType="simple" aggregatable="true" calculatedMeasureType="counter" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Promotion Count"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="Promo_Number"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Promotion" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="357"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="WAKH" modelObjectNameSpace="Promotion" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="WAKP" modelObjectNameSpace="Promotion" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Promotion" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="WAKT" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Promotion_Type" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Promotion_Type" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Promotion_Type" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

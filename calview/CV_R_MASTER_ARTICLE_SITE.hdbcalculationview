@@ -1,0 +1,1834 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_R_MASTER_ARTICLE_SITE" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Reporting View for Site Article Master Data with Current Listings"/>
+  <metadata changedAt="2021-01-17 16:55:55.951"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="AT_MASTER_ARTICLE_SITE">
+      <resourceUri>AT_MASTER_ARTICLE_SITE</resourceUri>
+    </DataSource>
+    <DataSource id="AT_MASTER_ARTICLE">
+      <resourceUri>AT_MASTER_ARTICLE</resourceUri>
+    </DataSource>
+    <DataSource id="AT_MASTER_SITE">
+      <resourceUri>AT_MASTER_SITE</resourceUri>
+    </DataSource>
+    <DataSource id="AT_MASTER_ORIGINAL_VENDOR">
+      <resourceUri>AT_MASTER_ORIGINAL_VENDOR</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Art_Site" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Site_Article"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="Blocked_for_Procurement"/>
+        <viewAttribute id="ABC_Indicator"/>
+        <viewAttribute id="Unit_Issue"/>
+        <viewAttribute id="RP_Type_ID_Current"/>
+        <viewAttribute id="Facings"/>
+        <viewAttribute id="Min_Lot_Size"/>
+        <viewAttribute id="Source_Of_Supply"/>
+        <viewAttribute id="HS_Code"/>
+        <viewAttribute id="Delivery_Cycle_ID"/>
+        <viewAttribute id="Planning_Cycle_ID"/>
+        <viewAttribute id="Rounding_Profile"/>
+        <viewAttribute id="Distribution_Profile"/>
+        <viewAttribute id="Safety_Stock"/>
+        <viewAttribute id="RP_Type_Description_Current"/>
+        <viewAttribute id="Planning_Cycle_Text"/>
+        <viewAttribute id="Delivery_Cycle_Text"/>
+        <viewAttribute id="RA_Name"/>
+        <viewAttribute id="Last_Sold_Date"/>
+        <viewAttribute id="Last_Order_Date"/>
+        <viewAttribute id="Last_Receipt_Date"/>
+        <viewAttribute id="Listed_Current"/>
+        <viewAttribute id="RP_Type_Current"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="Article_Description_Upper"/>
+        <viewAttribute id="Brand"/>
+        <viewAttribute id="House_Brand"/>
+        <viewAttribute id="Source"/>
+        <viewAttribute id="Base_Unit"/>
+        <viewAttribute id="Tax_Code"/>
+        <viewAttribute id="Created_On"/>
+        <viewAttribute id="Last_Change"/>
+        <viewAttribute id="Article_Type"/>
+        <viewAttribute id="Order_Unit"/>
+        <viewAttribute id="Gross_Weight"/>
+        <viewAttribute id="Net_Weight"/>
+        <viewAttribute id="Weight_Unit"/>
+        <viewAttribute id="Volume"/>
+        <viewAttribute id="Volume_Unit"/>
+        <viewAttribute id="Temperature"/>
+        <viewAttribute id="Barcode"/>
+        <viewAttribute id="Length"/>
+        <viewAttribute id="Height"/>
+        <viewAttribute id="Width"/>
+        <viewAttribute id="Unit"/>
+        <viewAttribute id="Remaining_Shelf_Life"/>
+        <viewAttribute id="Total_Shelf_Life"/>
+        <viewAttribute id="Tax_Class"/>
+        <viewAttribute id="EWM_Storage_Condition"/>
+        <viewAttribute id="EWM_Article_Group"/>
+        <viewAttribute id="EWM_Article_Type"/>
+        <viewAttribute id="Quality"/>
+        <viewAttribute id="Strategy"/>
+        <viewAttribute id="Expected_Waste_Percent"/>
+        <viewAttribute id="Ethnic_Group"/>
+        <viewAttribute id="Purpose"/>
+        <viewAttribute id="Expected_Margin_Value"/>
+        <viewAttribute id="Label_Short_Description"/>
+        <viewAttribute id="Print_Expiry"/>
+        <viewAttribute id="Dimension_Verify"/>
+        <viewAttribute id="Price_Classification"/>
+        <viewAttribute id="Label_Description"/>
+        <viewAttribute id="Status"/>
+        <viewAttribute id="Expected_Sales_Week"/>
+        <viewAttribute id="Speciality"/>
+        <viewAttribute id="Generic_Article"/>
+        <viewAttribute id="Generic_Article_UOM"/>
+        <viewAttribute id="Generic_Article_Conversion"/>
+        <viewAttribute id="Top_20Percent_Contributor"/>
+        <viewAttribute id="Safety_Stk_Multiplier"/>
+        <viewAttribute id="Seasonal"/>
+        <viewAttribute id="Listed_Sites"/>
+        <viewAttribute id="Centrally_Produced"/>
+        <viewAttribute id="Allow_Poor_Performance"/>
+        <viewAttribute id="Excise_Tax_Percent"/>
+        <viewAttribute id="Excise_Value"/>
+        <viewAttribute id="Expected_RTS_Percent"/>
+        <viewAttribute id="Display_Temperature"/>
+        <viewAttribute id="Article_Role"/>
+        <viewAttribute id="Additional_Barcode_List"/>
+        <viewAttribute id="Anchor"/>
+        <viewAttribute id="ECommerce"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="CDT6_Description"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="BMC_Description"/>
+        <viewAttribute id="Buyers_Name"/>
+        <viewAttribute id="Commercial_Manager"/>
+        <viewAttribute id="EComm_Min_Max"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="Department"/>
+        <viewAttribute id="Category"/>
+        <viewAttribute id="SubCategory"/>
+        <viewAttribute id="CDT4"/>
+        <viewAttribute id="CDT5"/>
+        <viewAttribute id="CDT6"/>
+        <viewAttribute id="BMC"/>
+        <viewAttribute id="Article"/>
+        <viewAttribute id="Country_Of_Origin_Article"/>
+        <viewAttribute id="Content"/>
+        <viewAttribute id="Content_UOM"/>
+        <viewAttribute id="First_Sold_Date"/>
+        <viewAttribute id="MATNR"/>
+      <viewAttribute hidden="true" id="JOIN$MATNR$MATNR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="AT_MASTER_ARTICLE_SITE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Article" source="Site_Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Blocked_for_Procurement" source="Blocked_for_Procurement"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ABC_Indicator" source="ABC_Indicator"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Unit_Issue" source="Unit_Issue"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RP_Type_ID_Current" source="RP_Type_ID_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Facings" source="Facings"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Min_Lot_Size" source="Min_Lot_Size"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Source_Of_Supply" source="Source_Of_Supply"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HS_Code" source="HS_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_ID" source="Delivery_Cycle_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Planning_Cycle_ID" source="Planning_Cycle_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Rounding_Profile" source="Rounding_Profile"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Distribution_Profile" source="Distribution_Profile"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Safety_Stock" source="Safety_Stock"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RP_Type_Description_Current" source="RP_Type_Description_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Planning_Cycle_Text" source="Planning_Cycle_Text"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_Text" source="Delivery_Cycle_Text"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RA_Name" source="RA_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Sold_Date" source="Last_Sold_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Order_Date" source="Last_Order_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Receipt_Date" source="Last_Receipt_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Listed_Current" source="Listed_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RP_Type_Current" source="RP_Type_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+      </input>
+      <input node="AT_MASTER_ARTICLE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="Article_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description_Upper" source="Article_Description_Upper"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Brand" source="Brand"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="House_Brand" source="House_Brand"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Source" source="Source"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Base_Unit" source="Base_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Tax_Code" source="Tax_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Created_On" source="Created_On"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Change" source="Last_Change"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Type" source="Article_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Order_Unit" source="Order_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Gross_Weight" source="Gross_Weight"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Net_Weight" source="Net_Weight"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Weight_Unit" source="Weight_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Volume" source="Volume"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Volume_Unit" source="Volume_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Temperature" source="Temperature"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Barcode" source="Barcode"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Length" source="Length"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Height" source="Height"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Width" source="Width"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Unit" source="Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Remaining_Shelf_Life" source="Remaining_Shelf_Life"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Total_Shelf_Life" source="Total_Shelf_Life"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Tax_Class" source="Tax_Class"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EWM_Storage_Condition" source="EWM_Storage_Condition"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EWM_Article_Group" source="EWM_Article_Group"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EWM_Article_Type" source="EWM_Article_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Quality" source="Quality"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Strategy" source="Strategy"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expected_Waste_Percent" source="Expected_Waste_Percent"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Ethnic_Group" source="Ethnic_Group"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Purpose" source="Purpose"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expected_Margin_Value" source="Expected_Margin_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Label_Short_Description" source="Label_Short_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Print_Expiry" source="Print_Expiry"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Dimension_Verify" source="Dimension_Verify"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Price_Classification" source="Price_Classification"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Label_Description" source="Label_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Status" source="Status"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expected_Sales_Week" source="Expected_Sales_Week"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Speciality" source="Speciality"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Generic_Article" source="Generic_Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Generic_Article_UOM" source="Generic_Article_UOM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Generic_Article_Conversion" source="Generic_Article_Conversion"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Top_20Percent_Contributor" source="Top_20Percent_Contributor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Safety_Stk_Multiplier" source="Safety_Stk_Multiplier"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Seasonal" source="Seasonal"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Listed_Sites" source="Listed_Sites"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Centrally_Produced" source="Centrally_Produced"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Allow_Poor_Performance" source="Allow_Poor_Performance"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Excise_Tax_Percent" source="Excise_Tax_Percent"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Excise_Value" source="Excise_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expected_RTS_Percent" source="Expected_RTS_Percent"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Display_Temperature" source="Display_Temperature"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Role" source="Article_Role"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Additional_Barcode_List" source="Additional_Barcode_List"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Anchor" source="Anchor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ECommerce" source="ECommerce"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Description" source="Department_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_Description" source="Category_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_Description" source="Subcategory_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_Description" source="CDT6_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_Description" source="BMC_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Buyers_Name" source="Buyers_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Commercial_Manager" source="Commercial_Manager"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EComm_Min_Max" source="EComm_Min_Max"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_Description" source="CDT4_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_Description" source="CDT5_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department" source="Department"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category" source="Category"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SubCategory" source="SubCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4" source="CDT4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5" source="CDT5"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6" source="CDT6"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC" source="BMC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article" source="Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country_Of_Origin_Article" source="Country_Of_Origin_Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Content" source="Content"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Content_UOM" source="Content_UOM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="First_Sold_Date" source="First_Sold_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+      </input>
+    <joinAttribute name="JOIN$MATNR$MATNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Site_Only">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="ZHIER_TYPE"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="Site_Region"/>
+        <viewAttribute id="ZCUR_REG"/>
+        <viewAttribute id="ZREG_MGR"/>
+        <viewAttribute id="ZCITY"/>
+        <viewAttribute id="ZDELI_CTR"/>
+        <viewAttribute id="ZRES_VILLAS"/>
+        <viewAttribute id="ZRES_APRT"/>
+        <viewAttribute id="ZCLS_SCH"/>
+        <viewAttribute id="ZCOM_CTR"/>
+        <viewAttribute id="ZSHOP_MAL"/>
+        <viewAttribute id="ZCOMM_AREA"/>
+        <viewAttribute id="ZOFF_BLK"/>
+        <viewAttribute id="ZNEW_CMTY"/>
+        <viewAttribute id="ZEST_CMTY"/>
+        <viewAttribute id="ZGOOD_ASBTY"/>
+        <viewAttribute id="ZAMP_PRK"/>
+        <viewAttribute id="ZENR_WORK"/>
+        <viewAttribute id="ZOPN_HRS"/>
+        <viewAttribute id="ZMAIN_SHP"/>
+        <viewAttribute id="ZTOP_SHP"/>
+        <viewAttribute id="ZCONV"/>
+        <viewAttribute id="ZLUCNH_TIME"/>
+        <viewAttribute id="ZWESTERN"/>
+        <viewAttribute id="ZASIAN"/>
+        <viewAttribute id="ZARABIC"/>
+        <viewAttribute id="ZCHINESE"/>
+        <viewAttribute id="ZPOP_LOW"/>
+        <viewAttribute id="ZPOP_MED"/>
+        <viewAttribute id="ZPOP_HIGH"/>
+        <viewAttribute id="ZEXP_SALES"/>
+        <viewAttribute id="ZCOMP"/>
+        <viewAttribute id="ZSTORE_TYPE"/>
+        <viewAttribute id="ZNEW_REG"/>
+        <viewAttribute id="ZDEMOGRAPH"/>
+        <viewAttribute id="ZACE_CLUSTER"/>
+        <viewAttribute id="ZLONGITUDE"/>
+        <viewAttribute id="ZLATITUDE"/>
+        <viewAttribute id="ZGSA"/>
+        <viewAttribute id="ZOPR_HRS"/>
+        <viewAttribute id="ZLIQUOR_STORE"/>
+        <viewAttribute id="ZDEPT"/>
+        <viewAttribute id="Site_Closing_Date"/>
+        <viewAttribute id="Email_Address"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="PSTLZ"/>
+        <viewAttribute id="VLFKZ"/>
+        <viewAttribute id="Store_Manager"/>
+        <viewAttribute id="Mobile_Number"/>
+        <viewAttribute id="Latitude"/>
+        <viewAttribute id="Longitude"/>
+        <viewAttribute id="Store_Type"/>
+        <viewAttribute id="Fax"/>
+        <viewAttribute id="Site"/>
+        <viewAttribute id="Sales_Area"/>
+        <viewAttribute id="Sales_Area_Unit"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="AT_MASTER_SITE"/>
+    <filter>(&quot;ZHIER_TYPE&quot; ='REGIONAL')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Site_Article"/>
+        <viewAttribute id="Blocked_for_Procurement"/>
+        <viewAttribute id="ABC_Indicator"/>
+        <viewAttribute id="Unit_Issue"/>
+        <viewAttribute id="RP_Type_ID_Current"/>
+        <viewAttribute id="Facings"/>
+        <viewAttribute id="Min_Lot_Size"/>
+        <viewAttribute id="Source_Of_Supply"/>
+        <viewAttribute id="HS_Code"/>
+        <viewAttribute id="Delivery_Cycle_ID"/>
+        <viewAttribute id="Planning_Cycle_ID"/>
+        <viewAttribute id="Rounding_Profile"/>
+        <viewAttribute id="Distribution_Profile"/>
+        <viewAttribute id="Safety_Stock"/>
+        <viewAttribute id="RP_Type_Description_Current"/>
+        <viewAttribute id="Planning_Cycle_Text"/>
+        <viewAttribute id="Delivery_Cycle_Text"/>
+        <viewAttribute id="RA_Name"/>
+        <viewAttribute id="Last_Sold_Date"/>
+        <viewAttribute id="Last_Order_Date"/>
+        <viewAttribute id="Last_Receipt_Date"/>
+        <viewAttribute id="Listed_Current"/>
+        <viewAttribute id="RP_Type_Current"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="Article_Description_Upper"/>
+        <viewAttribute id="Brand"/>
+        <viewAttribute id="House_Brand"/>
+        <viewAttribute id="Source"/>
+        <viewAttribute id="Base_Unit"/>
+        <viewAttribute id="Tax_Code"/>
+        <viewAttribute id="Created_On"/>
+        <viewAttribute id="Last_Change"/>
+        <viewAttribute id="Article_Type"/>
+        <viewAttribute id="Order_Unit"/>
+        <viewAttribute id="Gross_Weight"/>
+        <viewAttribute id="Net_Weight"/>
+        <viewAttribute id="Weight_Unit"/>
+        <viewAttribute id="Volume"/>
+        <viewAttribute id="Volume_Unit"/>
+        <viewAttribute id="Temperature"/>
+        <viewAttribute id="Barcode"/>
+        <viewAttribute id="Length"/>
+        <viewAttribute id="Height"/>
+        <viewAttribute id="Width"/>
+        <viewAttribute id="Unit"/>
+        <viewAttribute id="Remaining_Shelf_Life"/>
+        <viewAttribute id="Total_Shelf_Life"/>
+        <viewAttribute id="Tax_Class"/>
+        <viewAttribute id="EWM_Storage_Condition"/>
+        <viewAttribute id="EWM_Article_Group"/>
+        <viewAttribute id="EWM_Article_Type"/>
+        <viewAttribute id="Quality"/>
+        <viewAttribute id="Strategy"/>
+        <viewAttribute id="Expected_Waste_Percent"/>
+        <viewAttribute id="Ethnic_Group"/>
+        <viewAttribute id="Purpose"/>
+        <viewAttribute id="Expected_Margin_Value"/>
+        <viewAttribute id="Label_Short_Description"/>
+        <viewAttribute id="Print_Expiry"/>
+        <viewAttribute id="Dimension_Verify"/>
+        <viewAttribute id="Price_Classification"/>
+        <viewAttribute id="Label_Description"/>
+        <viewAttribute id="Status"/>
+        <viewAttribute id="Expected_Sales_Week"/>
+        <viewAttribute id="Speciality"/>
+        <viewAttribute id="Generic_Article"/>
+        <viewAttribute id="Generic_Article_UOM"/>
+        <viewAttribute id="Generic_Article_Conversion"/>
+        <viewAttribute id="Top_20Percent_Contributor"/>
+        <viewAttribute id="Safety_Stk_Multiplier"/>
+        <viewAttribute id="Seasonal"/>
+        <viewAttribute id="Listed_Sites"/>
+        <viewAttribute id="Centrally_Produced"/>
+        <viewAttribute id="Allow_Poor_Performance"/>
+        <viewAttribute id="Excise_Tax_Percent"/>
+        <viewAttribute id="Excise_Value"/>
+        <viewAttribute id="Expected_RTS_Percent"/>
+        <viewAttribute id="Display_Temperature"/>
+        <viewAttribute id="Article_Role"/>
+        <viewAttribute id="Additional_Barcode_List"/>
+        <viewAttribute id="Anchor"/>
+        <viewAttribute id="ECommerce"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="CDT6_Description"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="BMC_Description"/>
+        <viewAttribute id="Buyers_Name"/>
+        <viewAttribute id="Commercial_Manager"/>
+        <viewAttribute id="EComm_Min_Max"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="Department"/>
+        <viewAttribute id="Category"/>
+        <viewAttribute id="SubCategory"/>
+        <viewAttribute id="CDT4"/>
+        <viewAttribute id="CDT5"/>
+        <viewAttribute id="CDT6"/>
+        <viewAttribute id="BMC"/>
+        <viewAttribute id="Article"/>
+        <viewAttribute id="Country_Of_Origin_Article"/>
+        <viewAttribute id="Content"/>
+        <viewAttribute id="Content_UOM"/>
+        <viewAttribute id="First_Sold_Date"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="Site_Region"/>
+        <viewAttribute id="ZCUR_REG"/>
+        <viewAttribute id="ZREG_MGR"/>
+        <viewAttribute id="ZCITY"/>
+        <viewAttribute id="ZDELI_CTR"/>
+        <viewAttribute id="ZRES_VILLAS"/>
+        <viewAttribute id="ZRES_APRT"/>
+        <viewAttribute id="ZCLS_SCH"/>
+        <viewAttribute id="ZCOM_CTR"/>
+        <viewAttribute id="ZSHOP_MAL"/>
+        <viewAttribute id="ZCOMM_AREA"/>
+        <viewAttribute id="ZOFF_BLK"/>
+        <viewAttribute id="ZNEW_CMTY"/>
+        <viewAttribute id="ZEST_CMTY"/>
+        <viewAttribute id="ZGOOD_ASBTY"/>
+        <viewAttribute id="ZAMP_PRK"/>
+        <viewAttribute id="ZENR_WORK"/>
+        <viewAttribute id="ZOPN_HRS"/>
+        <viewAttribute id="ZMAIN_SHP"/>
+        <viewAttribute id="ZTOP_SHP"/>
+        <viewAttribute id="ZCONV"/>
+        <viewAttribute id="ZLUCNH_TIME"/>
+        <viewAttribute id="ZWESTERN"/>
+        <viewAttribute id="ZASIAN"/>
+        <viewAttribute id="ZARABIC"/>
+        <viewAttribute id="ZCHINESE"/>
+        <viewAttribute id="ZPOP_LOW"/>
+        <viewAttribute id="ZPOP_MED"/>
+        <viewAttribute id="ZPOP_HIGH"/>
+        <viewAttribute id="ZEXP_SALES"/>
+        <viewAttribute id="ZCOMP"/>
+        <viewAttribute id="ZSTORE_TYPE"/>
+        <viewAttribute id="ZNEW_REG"/>
+        <viewAttribute id="ZDEMOGRAPH"/>
+        <viewAttribute id="ZACE_CLUSTER"/>
+        <viewAttribute id="ZLONGITUDE"/>
+        <viewAttribute id="ZLATITUDE"/>
+        <viewAttribute id="ZGSA"/>
+        <viewAttribute id="ZOPR_HRS"/>
+        <viewAttribute id="ZLIQUOR_STORE"/>
+        <viewAttribute id="Site_Closing_Date"/>
+        <viewAttribute id="Email_Address"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="PSTLZ"/>
+        <viewAttribute id="VLFKZ"/>
+        <viewAttribute id="Store_Manager"/>
+        <viewAttribute id="Mobile_Number"/>
+        <viewAttribute id="Latitude"/>
+        <viewAttribute id="Longitude"/>
+        <viewAttribute id="Store_Type"/>
+        <viewAttribute id="Fax"/>
+        <viewAttribute id="Site"/>
+        <viewAttribute id="Sales_Area"/>
+        <viewAttribute id="Sales_Area_Unit"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+      <viewAttribute hidden="true" id="JOIN$WERKS$WERKS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Art_Site">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Article" source="Site_Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Blocked_for_Procurement" source="Blocked_for_Procurement"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ABC_Indicator" source="ABC_Indicator"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Unit_Issue" source="Unit_Issue"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RP_Type_ID_Current" source="RP_Type_ID_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Facings" source="Facings"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Min_Lot_Size" source="Min_Lot_Size"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Source_Of_Supply" source="Source_Of_Supply"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HS_Code" source="HS_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_ID" source="Delivery_Cycle_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Planning_Cycle_ID" source="Planning_Cycle_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Rounding_Profile" source="Rounding_Profile"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Distribution_Profile" source="Distribution_Profile"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Safety_Stock" source="Safety_Stock"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RP_Type_Description_Current" source="RP_Type_Description_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Planning_Cycle_Text" source="Planning_Cycle_Text"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_Text" source="Delivery_Cycle_Text"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RA_Name" source="RA_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Sold_Date" source="Last_Sold_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Order_Date" source="Last_Order_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Receipt_Date" source="Last_Receipt_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Listed_Current" source="Listed_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RP_Type_Current" source="RP_Type_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="Article_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description_Upper" source="Article_Description_Upper"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Brand" source="Brand"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="House_Brand" source="House_Brand"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Source" source="Source"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Base_Unit" source="Base_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Tax_Code" source="Tax_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Created_On" source="Created_On"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Change" source="Last_Change"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Type" source="Article_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Order_Unit" source="Order_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Gross_Weight" source="Gross_Weight"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Net_Weight" source="Net_Weight"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Weight_Unit" source="Weight_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Volume" source="Volume"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Volume_Unit" source="Volume_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Temperature" source="Temperature"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Barcode" source="Barcode"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Length" source="Length"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Height" source="Height"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Width" source="Width"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Unit" source="Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Remaining_Shelf_Life" source="Remaining_Shelf_Life"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Total_Shelf_Life" source="Total_Shelf_Life"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Tax_Class" source="Tax_Class"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EWM_Storage_Condition" source="EWM_Storage_Condition"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EWM_Article_Group" source="EWM_Article_Group"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EWM_Article_Type" source="EWM_Article_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Quality" source="Quality"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Strategy" source="Strategy"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expected_Waste_Percent" source="Expected_Waste_Percent"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Ethnic_Group" source="Ethnic_Group"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Purpose" source="Purpose"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expected_Margin_Value" source="Expected_Margin_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Label_Short_Description" source="Label_Short_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Print_Expiry" source="Print_Expiry"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Dimension_Verify" source="Dimension_Verify"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Price_Classification" source="Price_Classification"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Label_Description" source="Label_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Status" source="Status"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expected_Sales_Week" source="Expected_Sales_Week"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Speciality" source="Speciality"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Generic_Article" source="Generic_Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Generic_Article_UOM" source="Generic_Article_UOM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Generic_Article_Conversion" source="Generic_Article_Conversion"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Top_20Percent_Contributor" source="Top_20Percent_Contributor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Safety_Stk_Multiplier" source="Safety_Stk_Multiplier"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Seasonal" source="Seasonal"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Listed_Sites" source="Listed_Sites"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Centrally_Produced" source="Centrally_Produced"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Allow_Poor_Performance" source="Allow_Poor_Performance"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Excise_Tax_Percent" source="Excise_Tax_Percent"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Excise_Value" source="Excise_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expected_RTS_Percent" source="Expected_RTS_Percent"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Display_Temperature" source="Display_Temperature"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Role" source="Article_Role"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Additional_Barcode_List" source="Additional_Barcode_List"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Anchor" source="Anchor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ECommerce" source="ECommerce"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Description" source="Department_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_Description" source="Category_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_Description" source="Subcategory_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_Description" source="CDT6_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_Description" source="BMC_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Buyers_Name" source="Buyers_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Commercial_Manager" source="Commercial_Manager"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EComm_Min_Max" source="EComm_Min_Max"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_Description" source="CDT4_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_Description" source="CDT5_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department" source="Department"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category" source="Category"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SubCategory" source="SubCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4" source="CDT4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5" source="CDT5"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6" source="CDT6"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC" source="BMC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article" source="Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country_Of_Origin_Article" source="Country_Of_Origin_Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Content" source="Content"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Content_UOM" source="Content_UOM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="First_Sold_Date" source="First_Sold_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$WERKS$WERKS" source="WERKS"/>
+      </input>
+      <input node="Site_Only">
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Region" source="Site_Region"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCUR_REG" source="ZCUR_REG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZREG_MGR" source="ZREG_MGR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCITY" source="ZCITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZDELI_CTR" source="ZDELI_CTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZRES_VILLAS" source="ZRES_VILLAS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZRES_APRT" source="ZRES_APRT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCLS_SCH" source="ZCLS_SCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCOM_CTR" source="ZCOM_CTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZSHOP_MAL" source="ZSHOP_MAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCOMM_AREA" source="ZCOMM_AREA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZOFF_BLK" source="ZOFF_BLK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZNEW_CMTY" source="ZNEW_CMTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZEST_CMTY" source="ZEST_CMTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZGOOD_ASBTY" source="ZGOOD_ASBTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZAMP_PRK" source="ZAMP_PRK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZENR_WORK" source="ZENR_WORK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZOPN_HRS" source="ZOPN_HRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZMAIN_SHP" source="ZMAIN_SHP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZTOP_SHP" source="ZTOP_SHP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCONV" source="ZCONV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLUCNH_TIME" source="ZLUCNH_TIME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZWESTERN" source="ZWESTERN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZASIAN" source="ZASIAN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZARABIC" source="ZARABIC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCHINESE" source="ZCHINESE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZPOP_LOW" source="ZPOP_LOW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZPOP_MED" source="ZPOP_MED"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZPOP_HIGH" source="ZPOP_HIGH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZEXP_SALES" source="ZEXP_SALES"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCOMP" source="ZCOMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZSTORE_TYPE" source="ZSTORE_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZNEW_REG" source="ZNEW_REG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZDEMOGRAPH" source="ZDEMOGRAPH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZACE_CLUSTER" source="ZACE_CLUSTER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLONGITUDE" source="ZLONGITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLATITUDE" source="ZLATITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZGSA" source="ZGSA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZOPR_HRS" source="ZOPR_HRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLIQUOR_STORE" source="ZLIQUOR_STORE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Closing_Date" source="Site_Closing_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Email_Address" source="Email_Address"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PSTLZ" source="PSTLZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VLFKZ" source="VLFKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Store_Manager" source="Store_Manager"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Mobile_Number" source="Mobile_Number"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Latitude" source="Latitude"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Longitude" source="Longitude"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Store_Type" source="Store_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Fax" source="Fax"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site" source="Site"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Area" source="Sales_Area"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Area_Unit" source="Sales_Area_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$WERKS$WERKS" source="WERKS"/>
+      </input>
+    <joinAttribute name="JOIN$WERKS$WERKS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Vendor">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Purchase_Org"/>
+        <viewAttribute id="Vendor_Code"/>
+        <viewAttribute id="Vendor_Name"/>
+        <viewAttribute id="Country_Of_Origin"/>
+        <viewAttribute id="MATNR"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="AT_MASTER_ORIGINAL_VENDOR"/>
+    <filter>(&quot;Purchase_Org&quot; ='3100')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="C1_N" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Site_Article"/>
+        <viewAttribute id="Blocked_for_Procurement"/>
+        <viewAttribute id="ABC_Indicator"/>
+        <viewAttribute id="Unit_Issue"/>
+        <viewAttribute id="RP_Type_ID_Current"/>
+        <viewAttribute id="Facings"/>
+        <viewAttribute id="Min_Lot_Size"/>
+        <viewAttribute id="Source_Of_Supply"/>
+        <viewAttribute id="HS_Code"/>
+        <viewAttribute id="Delivery_Cycle_ID"/>
+        <viewAttribute id="Planning_Cycle_ID"/>
+        <viewAttribute id="Rounding_Profile"/>
+        <viewAttribute id="Distribution_Profile"/>
+        <viewAttribute id="Safety_Stock"/>
+        <viewAttribute id="RP_Type_Description_Current"/>
+        <viewAttribute id="Planning_Cycle_Text"/>
+        <viewAttribute id="Delivery_Cycle_Text"/>
+        <viewAttribute id="RA_Name"/>
+        <viewAttribute id="Last_Sold_Date"/>
+        <viewAttribute id="Last_Order_Date"/>
+        <viewAttribute id="Last_Receipt_Date"/>
+        <viewAttribute id="Listed_Current"/>
+        <viewAttribute id="RP_Type_Current"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="Article_Description_Upper"/>
+        <viewAttribute id="Brand"/>
+        <viewAttribute id="House_Brand"/>
+        <viewAttribute id="Source"/>
+        <viewAttribute id="Base_Unit"/>
+        <viewAttribute id="Tax_Code"/>
+        <viewAttribute id="Created_On"/>
+        <viewAttribute id="Last_Change"/>
+        <viewAttribute id="Article_Type"/>
+        <viewAttribute id="Order_Unit"/>
+        <viewAttribute id="Gross_Weight"/>
+        <viewAttribute id="Net_Weight"/>
+        <viewAttribute id="Weight_Unit"/>
+        <viewAttribute id="Volume"/>
+        <viewAttribute id="Volume_Unit"/>
+        <viewAttribute id="Temperature"/>
+        <viewAttribute id="Barcode"/>
+        <viewAttribute id="Length"/>
+        <viewAttribute id="Height"/>
+        <viewAttribute id="Width"/>
+        <viewAttribute id="Unit"/>
+        <viewAttribute id="Remaining_Shelf_Life"/>
+        <viewAttribute id="Total_Shelf_Life"/>
+        <viewAttribute id="Tax_Class"/>
+        <viewAttribute id="EWM_Storage_Condition"/>
+        <viewAttribute id="EWM_Article_Group"/>
+        <viewAttribute id="EWM_Article_Type"/>
+        <viewAttribute id="Quality"/>
+        <viewAttribute id="Strategy"/>
+        <viewAttribute id="Expected_Waste_Percent"/>
+        <viewAttribute id="Ethnic_Group"/>
+        <viewAttribute id="Purpose"/>
+        <viewAttribute id="Expected_Margin_Value"/>
+        <viewAttribute id="Label_Short_Description"/>
+        <viewAttribute id="Print_Expiry"/>
+        <viewAttribute id="Dimension_Verify"/>
+        <viewAttribute id="Price_Classification"/>
+        <viewAttribute id="Label_Description"/>
+        <viewAttribute id="Status"/>
+        <viewAttribute id="Expected_Sales_Week"/>
+        <viewAttribute id="Speciality"/>
+        <viewAttribute id="Generic_Article"/>
+        <viewAttribute id="Generic_Article_UOM"/>
+        <viewAttribute id="Generic_Article_Conversion"/>
+        <viewAttribute id="Top_20Percent_Contributor"/>
+        <viewAttribute id="Safety_Stk_Multiplier"/>
+        <viewAttribute id="Seasonal"/>
+        <viewAttribute id="Listed_Sites"/>
+        <viewAttribute id="Centrally_Produced"/>
+        <viewAttribute id="Allow_Poor_Performance"/>
+        <viewAttribute id="Excise_Tax_Percent"/>
+        <viewAttribute id="Excise_Value"/>
+        <viewAttribute id="Expected_RTS_Percent"/>
+        <viewAttribute id="Display_Temperature"/>
+        <viewAttribute id="Article_Role"/>
+        <viewAttribute id="Additional_Barcode_List"/>
+        <viewAttribute id="Anchor"/>
+        <viewAttribute id="ECommerce"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="CDT6_Description"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="BMC_Description"/>
+        <viewAttribute id="Buyers_Name"/>
+        <viewAttribute id="Commercial_Manager"/>
+        <viewAttribute id="EComm_Min_Max"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="Department"/>
+        <viewAttribute id="Category"/>
+        <viewAttribute id="SubCategory"/>
+        <viewAttribute id="CDT4"/>
+        <viewAttribute id="CDT5"/>
+        <viewAttribute id="CDT6"/>
+        <viewAttribute id="BMC"/>
+        <viewAttribute id="Article"/>
+        <viewAttribute id="Country_Of_Origin_Article"/>
+        <viewAttribute id="Content"/>
+        <viewAttribute id="Content_UOM"/>
+        <viewAttribute id="First_Sold_Date"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="Site_Region"/>
+        <viewAttribute id="ZCUR_REG"/>
+        <viewAttribute id="ZREG_MGR"/>
+        <viewAttribute id="ZCITY"/>
+        <viewAttribute id="ZDELI_CTR"/>
+        <viewAttribute id="ZRES_VILLAS"/>
+        <viewAttribute id="ZRES_APRT"/>
+        <viewAttribute id="ZCLS_SCH"/>
+        <viewAttribute id="ZCOM_CTR"/>
+        <viewAttribute id="ZSHOP_MAL"/>
+        <viewAttribute id="ZCOMM_AREA"/>
+        <viewAttribute id="ZOFF_BLK"/>
+        <viewAttribute id="ZNEW_CMTY"/>
+        <viewAttribute id="ZEST_CMTY"/>
+        <viewAttribute id="ZGOOD_ASBTY"/>
+        <viewAttribute id="ZAMP_PRK"/>
+        <viewAttribute id="ZENR_WORK"/>
+        <viewAttribute id="ZOPN_HRS"/>
+        <viewAttribute id="ZMAIN_SHP"/>
+        <viewAttribute id="ZTOP_SHP"/>
+        <viewAttribute id="ZCONV"/>
+        <viewAttribute id="ZLUCNH_TIME"/>
+        <viewAttribute id="ZWESTERN"/>
+        <viewAttribute id="ZASIAN"/>
+        <viewAttribute id="ZARABIC"/>
+        <viewAttribute id="ZCHINESE"/>
+        <viewAttribute id="ZPOP_LOW"/>
+        <viewAttribute id="ZPOP_MED"/>
+        <viewAttribute id="ZPOP_HIGH"/>
+        <viewAttribute id="ZEXP_SALES"/>
+        <viewAttribute id="ZCOMP"/>
+        <viewAttribute id="ZSTORE_TYPE"/>
+        <viewAttribute id="ZNEW_REG"/>
+        <viewAttribute id="ZDEMOGRAPH"/>
+        <viewAttribute id="ZACE_CLUSTER"/>
+        <viewAttribute id="ZLONGITUDE"/>
+        <viewAttribute id="ZLATITUDE"/>
+        <viewAttribute id="ZGSA"/>
+        <viewAttribute id="ZOPR_HRS"/>
+        <viewAttribute id="ZLIQUOR_STORE"/>
+        <viewAttribute id="Site_Closing_Date"/>
+        <viewAttribute id="Email_Address"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="PSTLZ"/>
+        <viewAttribute id="VLFKZ"/>
+        <viewAttribute id="Store_Manager"/>
+        <viewAttribute id="Mobile_Number"/>
+        <viewAttribute id="Latitude"/>
+        <viewAttribute id="Longitude"/>
+        <viewAttribute id="Store_Type"/>
+        <viewAttribute id="Fax"/>
+        <viewAttribute id="Site"/>
+        <viewAttribute id="Sales_Area"/>
+        <viewAttribute id="Sales_Area_Unit"/>
+        <viewAttribute id="Vendor_Code"/>
+        <viewAttribute id="Vendor_Name"/>
+        <viewAttribute id="Country_Of_Origin"/>
+        <viewAttribute id="WERKS"/>
+      <viewAttribute hidden="true" id="JOIN$MATNR$MATNR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Article" source="Site_Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Blocked_for_Procurement" source="Blocked_for_Procurement"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ABC_Indicator" source="ABC_Indicator"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Unit_Issue" source="Unit_Issue"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RP_Type_ID_Current" source="RP_Type_ID_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Facings" source="Facings"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Min_Lot_Size" source="Min_Lot_Size"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Source_Of_Supply" source="Source_Of_Supply"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HS_Code" source="HS_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_ID" source="Delivery_Cycle_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Planning_Cycle_ID" source="Planning_Cycle_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Rounding_Profile" source="Rounding_Profile"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Distribution_Profile" source="Distribution_Profile"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Safety_Stock" source="Safety_Stock"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RP_Type_Description_Current" source="RP_Type_Description_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Planning_Cycle_Text" source="Planning_Cycle_Text"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_Text" source="Delivery_Cycle_Text"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RA_Name" source="RA_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Sold_Date" source="Last_Sold_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Order_Date" source="Last_Order_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Receipt_Date" source="Last_Receipt_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Listed_Current" source="Listed_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RP_Type_Current" source="RP_Type_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="Article_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description_Upper" source="Article_Description_Upper"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Brand" source="Brand"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="House_Brand" source="House_Brand"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Source" source="Source"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Base_Unit" source="Base_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Tax_Code" source="Tax_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Created_On" source="Created_On"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Change" source="Last_Change"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Type" source="Article_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Order_Unit" source="Order_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Gross_Weight" source="Gross_Weight"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Net_Weight" source="Net_Weight"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Weight_Unit" source="Weight_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Volume" source="Volume"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Volume_Unit" source="Volume_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Temperature" source="Temperature"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Barcode" source="Barcode"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Length" source="Length"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Height" source="Height"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Width" source="Width"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Unit" source="Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Remaining_Shelf_Life" source="Remaining_Shelf_Life"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Total_Shelf_Life" source="Total_Shelf_Life"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Tax_Class" source="Tax_Class"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EWM_Storage_Condition" source="EWM_Storage_Condition"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EWM_Article_Group" source="EWM_Article_Group"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EWM_Article_Type" source="EWM_Article_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Quality" source="Quality"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Strategy" source="Strategy"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expected_Waste_Percent" source="Expected_Waste_Percent"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Ethnic_Group" source="Ethnic_Group"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Purpose" source="Purpose"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expected_Margin_Value" source="Expected_Margin_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Label_Short_Description" source="Label_Short_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Print_Expiry" source="Print_Expiry"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Dimension_Verify" source="Dimension_Verify"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Price_Classification" source="Price_Classification"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Label_Description" source="Label_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Status" source="Status"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expected_Sales_Week" source="Expected_Sales_Week"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Speciality" source="Speciality"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Generic_Article" source="Generic_Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Generic_Article_UOM" source="Generic_Article_UOM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Generic_Article_Conversion" source="Generic_Article_Conversion"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Top_20Percent_Contributor" source="Top_20Percent_Contributor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Safety_Stk_Multiplier" source="Safety_Stk_Multiplier"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Seasonal" source="Seasonal"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Listed_Sites" source="Listed_Sites"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Centrally_Produced" source="Centrally_Produced"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Allow_Poor_Performance" source="Allow_Poor_Performance"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Excise_Tax_Percent" source="Excise_Tax_Percent"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Excise_Value" source="Excise_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Expected_RTS_Percent" source="Expected_RTS_Percent"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Display_Temperature" source="Display_Temperature"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Role" source="Article_Role"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Additional_Barcode_List" source="Additional_Barcode_List"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Anchor" source="Anchor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ECommerce" source="ECommerce"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Description" source="Department_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_Description" source="Category_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_Description" source="Subcategory_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_Description" source="CDT6_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_Description" source="BMC_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Buyers_Name" source="Buyers_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Commercial_Manager" source="Commercial_Manager"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EComm_Min_Max" source="EComm_Min_Max"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_Description" source="CDT4_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_Description" source="CDT5_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department" source="Department"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category" source="Category"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SubCategory" source="SubCategory"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4" source="CDT4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5" source="CDT5"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6" source="CDT6"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC" source="BMC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article" source="Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country_Of_Origin_Article" source="Country_Of_Origin_Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Content" source="Content"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Content_UOM" source="Content_UOM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="First_Sold_Date" source="First_Sold_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Region" source="Site_Region"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCUR_REG" source="ZCUR_REG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZREG_MGR" source="ZREG_MGR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCITY" source="ZCITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZDELI_CTR" source="ZDELI_CTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZRES_VILLAS" source="ZRES_VILLAS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZRES_APRT" source="ZRES_APRT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCLS_SCH" source="ZCLS_SCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCOM_CTR" source="ZCOM_CTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZSHOP_MAL" source="ZSHOP_MAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCOMM_AREA" source="ZCOMM_AREA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZOFF_BLK" source="ZOFF_BLK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZNEW_CMTY" source="ZNEW_CMTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZEST_CMTY" source="ZEST_CMTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZGOOD_ASBTY" source="ZGOOD_ASBTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZAMP_PRK" source="ZAMP_PRK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZENR_WORK" source="ZENR_WORK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZOPN_HRS" source="ZOPN_HRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZMAIN_SHP" source="ZMAIN_SHP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZTOP_SHP" source="ZTOP_SHP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCONV" source="ZCONV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLUCNH_TIME" source="ZLUCNH_TIME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZWESTERN" source="ZWESTERN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZASIAN" source="ZASIAN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZARABIC" source="ZARABIC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCHINESE" source="ZCHINESE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZPOP_LOW" source="ZPOP_LOW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZPOP_MED" source="ZPOP_MED"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZPOP_HIGH" source="ZPOP_HIGH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZEXP_SALES" source="ZEXP_SALES"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCOMP" source="ZCOMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZSTORE_TYPE" source="ZSTORE_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZNEW_REG" source="ZNEW_REG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZDEMOGRAPH" source="ZDEMOGRAPH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZACE_CLUSTER" source="ZACE_CLUSTER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLONGITUDE" source="ZLONGITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLATITUDE" source="ZLATITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZGSA" source="ZGSA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZOPR_HRS" source="ZOPR_HRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLIQUOR_STORE" source="ZLIQUOR_STORE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Closing_Date" source="Site_Closing_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Email_Address" source="Email_Address"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PSTLZ" source="PSTLZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VLFKZ" source="VLFKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Store_Manager" source="Store_Manager"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Mobile_Number" source="Mobile_Number"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Latitude" source="Latitude"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Longitude" source="Longitude"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Store_Type" source="Store_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Fax" source="Fax"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site" source="Site"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Area" source="Sales_Area"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Sales_Area_Unit" source="Sales_Area_Unit"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+      </input>
+      <input node="Vendor">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Vendor_Code" source="Vendor_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Vendor_Name" source="Vendor_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country_Of_Origin" source="Country_Of_Origin"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+      </input>
+    <joinAttribute name="JOIN$MATNR$MATNR"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_3">
+    <descriptions/>
+    <attributes>
+      <attribute id="Site_Article" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Article"/>
+        <keyMapping columnObjectName="Join_3" columnName="Site_Article"/>
+      </attribute>
+      <attribute id="Blocked_for_Procurement" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Blocked_for_Procurement"/>
+        <keyMapping columnObjectName="Join_3" columnName="Blocked_for_Procurement"/>
+      </attribute>
+      <attribute id="ABC_Indicator" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ABC Indicator"/>
+        <keyMapping columnObjectName="Join_3" columnName="ABC_Indicator"/>
+      </attribute>
+      <attribute id="Unit_Issue" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Unit Issue"/>
+        <keyMapping columnObjectName="Join_3" columnName="Unit_Issue"/>
+      </attribute>
+      <attribute id="RP_Type_ID_Current" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP Type ID Current"/>
+        <keyMapping columnObjectName="Join_3" columnName="RP_Type_ID_Current"/>
+      </attribute>
+      <attribute id="Facings" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Facings"/>
+        <keyMapping columnObjectName="Join_3" columnName="Facings"/>
+      </attribute>
+      <attribute id="Min_Lot_Size" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Minimum Lot Size"/>
+        <keyMapping columnObjectName="Join_3" columnName="Min_Lot_Size"/>
+      </attribute>
+      <attribute id="Source_Of_Supply" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Source Of Supply"/>
+        <keyMapping columnObjectName="Join_3" columnName="Source_Of_Supply"/>
+      </attribute>
+      <attribute id="HS_Code" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="HS Code (Import Code)"/>
+        <keyMapping columnObjectName="Join_3" columnName="HS_Code"/>
+      </attribute>
+      <attribute id="Delivery_Cycle_ID" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Delivery Cycle ID"/>
+        <keyMapping columnObjectName="Join_3" columnName="Delivery_Cycle_ID"/>
+      </attribute>
+      <attribute id="Planning_Cycle_ID" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Planning Cycle ID"/>
+        <keyMapping columnObjectName="Join_3" columnName="Planning_Cycle_ID"/>
+      </attribute>
+      <attribute id="Rounding_Profile" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Rounding Profile"/>
+        <keyMapping columnObjectName="Join_3" columnName="Rounding_Profile"/>
+      </attribute>
+      <attribute id="Distribution_Profile" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Distribution Profile"/>
+        <keyMapping columnObjectName="Join_3" columnName="Distribution_Profile"/>
+      </attribute>
+      <attribute id="Safety_Stock" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Safety Stock"/>
+        <keyMapping columnObjectName="Join_3" columnName="Safety_Stock"/>
+      </attribute>
+      <attribute id="RP_Type_Description_Current" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP Type Description Current"/>
+        <keyMapping columnObjectName="Join_3" columnName="RP_Type_Description_Current"/>
+      </attribute>
+      <attribute id="Planning_Cycle_Text" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Planning Cycle Text"/>
+        <keyMapping columnObjectName="Join_3" columnName="Planning_Cycle_Text"/>
+      </attribute>
+      <attribute id="Delivery_Cycle_Text" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Delivery Cycle Text"/>
+        <keyMapping columnObjectName="Join_3" columnName="Delivery_Cycle_Text"/>
+      </attribute>
+      <attribute id="RA_Name" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RA Name"/>
+        <keyMapping columnObjectName="Join_3" columnName="RA_Name"/>
+      </attribute>
+      <attribute id="Last_Sold_Date" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Sold Date"/>
+        <keyMapping columnObjectName="Join_3" columnName="Last_Sold_Date"/>
+      </attribute>
+      <attribute id="Last_Order_Date" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Order Date"/>
+        <keyMapping columnObjectName="Join_3" columnName="Last_Order_Date"/>
+      </attribute>
+      <attribute id="Last_Receipt_Date" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Receipt Date"/>
+        <keyMapping columnObjectName="Join_3" columnName="Last_Receipt_Date"/>
+      </attribute>
+      <attribute id="Listed_Current" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Listed Current"/>
+        <keyMapping columnObjectName="Join_3" columnName="Listed_Current"/>
+      </attribute>
+      <attribute id="RP_Type_Current" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP Type Current"/>
+        <keyMapping columnObjectName="Join_3" columnName="RP_Type_Current"/>
+      </attribute>
+      <attribute id="Article_Code" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyMapping columnObjectName="Join_3" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="Article_Description" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Description"/>
+        <keyMapping columnObjectName="Join_3" columnName="Article_Description"/>
+      </attribute>
+      <attribute id="Article_Description_Upper" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ARTICLE DESCRIPTION"/>
+        <keyMapping columnObjectName="Join_3" columnName="Article_Description_Upper"/>
+      </attribute>
+      <attribute id="Brand" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Brand"/>
+        <keyMapping columnObjectName="Join_3" columnName="Brand"/>
+      </attribute>
+      <attribute id="House_Brand" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="House Brand"/>
+        <keyMapping columnObjectName="Join_3" columnName="House_Brand"/>
+      </attribute>
+      <attribute id="Source" order="30" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Source"/>
+        <keyMapping columnObjectName="Join_3" columnName="Source"/>
+      </attribute>
+      <attribute id="Base_Unit" order="31" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Base Unit"/>
+        <keyMapping columnObjectName="Join_3" columnName="Base_Unit"/>
+      </attribute>
+      <attribute id="Tax_Code" order="32" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Tax Code"/>
+        <keyMapping columnObjectName="Join_3" columnName="Tax_Code"/>
+      </attribute>
+      <attribute id="Created_On" order="33" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Created On"/>
+        <keyMapping columnObjectName="Join_3" columnName="Created_On"/>
+      </attribute>
+      <attribute id="Last_Change" order="34" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Change"/>
+        <keyMapping columnObjectName="Join_3" columnName="Last_Change"/>
+      </attribute>
+      <attribute id="Article_Type" order="35" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Type"/>
+        <keyMapping columnObjectName="Join_3" columnName="Article_Type"/>
+      </attribute>
+      <attribute id="Order_Unit" order="36" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Order Unit"/>
+        <keyMapping columnObjectName="Join_3" columnName="Order_Unit"/>
+      </attribute>
+      <attribute id="Gross_Weight" order="37" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Gross Weight"/>
+        <keyMapping columnObjectName="Join_3" columnName="Gross_Weight"/>
+      </attribute>
+      <attribute id="Net_Weight" order="38" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Net Weight"/>
+        <keyMapping columnObjectName="Join_3" columnName="Net_Weight"/>
+      </attribute>
+      <attribute id="Weight_Unit" order="39" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Weight Unit"/>
+        <keyMapping columnObjectName="Join_3" columnName="Weight_Unit"/>
+      </attribute>
+      <attribute id="Volume" order="40" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Volume"/>
+        <keyMapping columnObjectName="Join_3" columnName="Volume"/>
+      </attribute>
+      <attribute id="Volume_Unit" order="41" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Volume Unit"/>
+        <keyMapping columnObjectName="Join_3" columnName="Volume_Unit"/>
+      </attribute>
+      <attribute id="Temperature" order="42" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Temperature"/>
+        <keyMapping columnObjectName="Join_3" columnName="Temperature"/>
+      </attribute>
+      <attribute id="Barcode" order="43" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Barcode"/>
+        <keyMapping columnObjectName="Join_3" columnName="Barcode"/>
+      </attribute>
+      <attribute id="Length" order="44" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Length"/>
+        <keyMapping columnObjectName="Join_3" columnName="Length"/>
+      </attribute>
+      <attribute id="Height" order="45" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Height"/>
+        <keyMapping columnObjectName="Join_3" columnName="Height"/>
+      </attribute>
+      <attribute id="Width" order="46" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Width"/>
+        <keyMapping columnObjectName="Join_3" columnName="Width"/>
+      </attribute>
+      <attribute id="Unit" order="47" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Unit"/>
+        <keyMapping columnObjectName="Join_3" columnName="Unit"/>
+      </attribute>
+      <attribute id="Remaining_Shelf_Life" order="48" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Remaining Shelf Life"/>
+        <keyMapping columnObjectName="Join_3" columnName="Remaining_Shelf_Life"/>
+      </attribute>
+      <attribute id="Total_Shelf_Life" order="49" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Total Shelf Life"/>
+        <keyMapping columnObjectName="Join_3" columnName="Total_Shelf_Life"/>
+      </attribute>
+      <attribute id="Tax_Class" order="50" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Tax Class"/>
+        <keyMapping columnObjectName="Join_3" columnName="Tax_Class"/>
+      </attribute>
+      <attribute id="EWM_Storage_Condition" order="51" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EWM Storage Condition"/>
+        <keyMapping columnObjectName="Join_3" columnName="EWM_Storage_Condition"/>
+      </attribute>
+      <attribute id="EWM_Article_Group" order="52" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EWM Article Group"/>
+        <keyMapping columnObjectName="Join_3" columnName="EWM_Article_Group"/>
+      </attribute>
+      <attribute id="EWM_Article_Type" order="53" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EWM Article Type"/>
+        <keyMapping columnObjectName="Join_3" columnName="EWM_Article_Type"/>
+      </attribute>
+      <attribute id="Quality" order="54" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Quality"/>
+        <keyMapping columnObjectName="Join_3" columnName="Quality"/>
+      </attribute>
+      <attribute id="Strategy" order="55" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Strategy"/>
+        <keyMapping columnObjectName="Join_3" columnName="Strategy"/>
+      </attribute>
+      <attribute id="Expected_Waste_Percent" order="56" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Expected Waste Percentage"/>
+        <keyMapping columnObjectName="Join_3" columnName="Expected_Waste_Percent"/>
+      </attribute>
+      <attribute id="Ethnic_Group" order="57" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Ethnic Group"/>
+        <keyMapping columnObjectName="Join_3" columnName="Ethnic_Group"/>
+      </attribute>
+      <attribute id="Purpose" order="58" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purpose"/>
+        <keyMapping columnObjectName="Join_3" columnName="Purpose"/>
+      </attribute>
+      <attribute id="Expected_Margin_Value" order="59" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Expected Margin Value"/>
+        <keyMapping columnObjectName="Join_3" columnName="Expected_Margin_Value"/>
+      </attribute>
+      <attribute id="Label_Short_Description" order="60" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Label Short Description"/>
+        <keyMapping columnObjectName="Join_3" columnName="Label_Short_Description"/>
+      </attribute>
+      <attribute id="Print_Expiry" order="61" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Print Expiry"/>
+        <keyMapping columnObjectName="Join_3" columnName="Print_Expiry"/>
+      </attribute>
+      <attribute id="Dimension_Verify" order="62" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Dimension Verify"/>
+        <keyMapping columnObjectName="Join_3" columnName="Dimension_Verify"/>
+      </attribute>
+      <attribute id="Price_Classification" order="63" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Price Classification"/>
+        <keyMapping columnObjectName="Join_3" columnName="Price_Classification"/>
+      </attribute>
+      <attribute id="Label_Description" order="64" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Label Description"/>
+        <keyMapping columnObjectName="Join_3" columnName="Label_Description"/>
+      </attribute>
+      <attribute id="Status" order="65" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Status"/>
+        <keyMapping columnObjectName="Join_3" columnName="Status"/>
+      </attribute>
+      <attribute id="Expected_Sales_Week" order="66" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Expected Sales Week"/>
+        <keyMapping columnObjectName="Join_3" columnName="Expected_Sales_Week"/>
+      </attribute>
+      <attribute id="Speciality" order="67" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Speciality"/>
+        <keyMapping columnObjectName="Join_3" columnName="Speciality"/>
+      </attribute>
+      <attribute id="Generic_Article" order="68" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Generic Article"/>
+        <keyMapping columnObjectName="Join_3" columnName="Generic_Article"/>
+      </attribute>
+      <attribute id="Generic_Article_UOM" order="69" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Generic Article UOM"/>
+        <keyMapping columnObjectName="Join_3" columnName="Generic_Article_UOM"/>
+      </attribute>
+      <attribute id="Generic_Article_Conversion" order="70" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Generic Article Conversion"/>
+        <keyMapping columnObjectName="Join_3" columnName="Generic_Article_Conversion"/>
+      </attribute>
+      <attribute id="Top_20Percent_Contributor" order="71" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Top 20% Contributor"/>
+        <keyMapping columnObjectName="Join_3" columnName="Top_20Percent_Contributor"/>
+      </attribute>
+      <attribute id="Safety_Stk_Multiplier" order="72" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Safety Stock Multiplier"/>
+        <keyMapping columnObjectName="Join_3" columnName="Safety_Stk_Multiplier"/>
+      </attribute>
+      <attribute id="Seasonal" order="73" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Seasonal"/>
+        <keyMapping columnObjectName="Join_3" columnName="Seasonal"/>
+      </attribute>
+      <attribute id="Listed_Sites" order="74" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Listed Sites"/>
+        <keyMapping columnObjectName="Join_3" columnName="Listed_Sites"/>
+      </attribute>
+      <attribute id="Centrally_Produced" order="75" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Centrally Produced"/>
+        <keyMapping columnObjectName="Join_3" columnName="Centrally_Produced"/>
+      </attribute>
+      <attribute id="Allow_Poor_Performance" order="76" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Allow Poor Performance"/>
+        <keyMapping columnObjectName="Join_3" columnName="Allow_Poor_Performance"/>
+      </attribute>
+      <attribute id="Excise_Tax_Percent" order="77" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Excise Tax%"/>
+        <keyMapping columnObjectName="Join_3" columnName="Excise_Tax_Percent"/>
+      </attribute>
+      <attribute id="Excise_Value" order="78" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Excise Value"/>
+        <keyMapping columnObjectName="Join_3" columnName="Excise_Value"/>
+      </attribute>
+      <attribute id="Expected_RTS_Percent" order="79" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Expected RTS%"/>
+        <keyMapping columnObjectName="Join_3" columnName="Expected_RTS_Percent"/>
+      </attribute>
+      <attribute id="Display_Temperature" order="80" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Display Temperature"/>
+        <keyMapping columnObjectName="Join_3" columnName="Display_Temperature"/>
+      </attribute>
+      <attribute id="Article_Role" order="81" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Role"/>
+        <keyMapping columnObjectName="Join_3" columnName="Article_Role"/>
+      </attribute>
+      <attribute id="Additional_Barcode_List" order="82" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Additional Barcode List"/>
+        <keyMapping columnObjectName="Join_3" columnName="Additional_Barcode_List"/>
+      </attribute>
+      <attribute id="Anchor" order="83" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Anchor"/>
+        <keyMapping columnObjectName="Join_3" columnName="Anchor"/>
+      </attribute>
+      <attribute id="ECommerce" order="84" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ECommerce"/>
+        <keyMapping columnObjectName="Join_3" columnName="ECommerce"/>
+      </attribute>
+      <attribute id="Department_ID" order="85" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department ID"/>
+        <keyMapping columnObjectName="Join_3" columnName="Department_ID"/>
+      </attribute>
+      <attribute id="Department_Description" order="86" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department Description"/>
+        <keyMapping columnObjectName="Join_3" columnName="Department_Description"/>
+      </attribute>
+      <attribute id="Category_ID" order="87" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category ID"/>
+        <keyMapping columnObjectName="Join_3" columnName="Category_ID"/>
+      </attribute>
+      <attribute id="Category_Description" order="88" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category Description"/>
+        <keyMapping columnObjectName="Join_3" columnName="Category_Description"/>
+      </attribute>
+      <attribute id="Subcategory_ID" order="89" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Subcategory ID"/>
+        <keyMapping columnObjectName="Join_3" columnName="Subcategory_ID"/>
+      </attribute>
+      <attribute id="Subcategory_Description" order="90" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Subcategory Description"/>
+        <keyMapping columnObjectName="Join_3" columnName="Subcategory_Description"/>
+      </attribute>
+      <attribute id="CDT4_ID" order="91" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4 ID"/>
+        <keyMapping columnObjectName="Join_3" columnName="CDT4_ID"/>
+      </attribute>
+      <attribute id="CDT5_ID" order="92" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5 ID"/>
+        <keyMapping columnObjectName="Join_3" columnName="CDT5_ID"/>
+      </attribute>
+      <attribute id="CDT6_ID" order="93" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6 ID"/>
+        <keyMapping columnObjectName="Join_3" columnName="CDT6_ID"/>
+      </attribute>
+      <attribute id="CDT6_Description" order="94" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6 Description"/>
+        <keyMapping columnObjectName="Join_3" columnName="CDT6_Description"/>
+      </attribute>
+      <attribute id="BMC_ID" order="95" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC ID"/>
+        <keyMapping columnObjectName="Join_3" columnName="BMC_ID"/>
+      </attribute>
+      <attribute id="BMC_Description" order="96" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC Description"/>
+        <keyMapping columnObjectName="Join_3" columnName="BMC_Description"/>
+      </attribute>
+      <attribute id="Buyers_Name" order="97" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Buyers Name"/>
+        <keyMapping columnObjectName="Join_3" columnName="Buyers_Name"/>
+      </attribute>
+      <attribute id="Commercial_Manager" order="98" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Commercial Manager"/>
+        <keyMapping columnObjectName="Join_3" columnName="Commercial_Manager"/>
+      </attribute>
+      <attribute id="EComm_Min_Max" order="99" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ECommerce Min Max"/>
+        <keyMapping columnObjectName="Join_3" columnName="EComm_Min_Max"/>
+      </attribute>
+      <attribute id="CDT4_Description" order="100" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4_Description"/>
+        <keyMapping columnObjectName="Join_3" columnName="CDT4_Description"/>
+      </attribute>
+      <attribute id="CDT5_Description" order="101" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5_Description"/>
+        <keyMapping columnObjectName="Join_3" columnName="CDT5_Description"/>
+      </attribute>
+      <attribute id="Department" order="102" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department"/>
+        <keyMapping columnObjectName="Join_3" columnName="Department"/>
+      </attribute>
+      <attribute id="Category" order="103" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category"/>
+        <keyMapping columnObjectName="Join_3" columnName="Category"/>
+      </attribute>
+      <attribute id="SubCategory" order="104" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SubCategory"/>
+        <keyMapping columnObjectName="Join_3" columnName="SubCategory"/>
+      </attribute>
+      <attribute id="CDT4" order="105" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4"/>
+        <keyMapping columnObjectName="Join_3" columnName="CDT4"/>
+      </attribute>
+      <attribute id="CDT5" order="106" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5"/>
+        <keyMapping columnObjectName="Join_3" columnName="CDT5"/>
+      </attribute>
+      <attribute id="CDT6" order="107" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6"/>
+        <keyMapping columnObjectName="Join_3" columnName="CDT6"/>
+      </attribute>
+      <attribute id="BMC" order="108" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC"/>
+        <keyMapping columnObjectName="Join_3" columnName="BMC"/>
+      </attribute>
+      <attribute id="Article" order="109" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article"/>
+        <keyMapping columnObjectName="Join_3" columnName="Article"/>
+      </attribute>
+      <attribute id="Country_Of_Origin_Article" order="110" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country Of Origin - Article"/>
+        <keyMapping columnObjectName="Join_3" columnName="Country_Of_Origin_Article"/>
+      </attribute>
+      <attribute id="Content" order="111" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Content"/>
+        <keyMapping columnObjectName="Join_3" columnName="Content"/>
+      </attribute>
+      <attribute id="Content_UOM" order="112" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Content UOM"/>
+        <keyMapping columnObjectName="Join_3" columnName="Content_UOM"/>
+      </attribute>
+      <attribute id="First_Sold_Date" order="113" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="First Sold Date"/>
+        <keyMapping columnObjectName="Join_3" columnName="First_Sold_Date"/>
+      </attribute>
+      <attribute id="NAME1" order="114" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Description"/>
+        <keyMapping columnObjectName="Join_3" columnName="NAME1"/>
+      </attribute>
+      <attribute id="Site_Region" order="115" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Region"/>
+        <keyMapping columnObjectName="Join_3" columnName="Site_Region"/>
+      </attribute>
+      <attribute id="ZCUR_REG" order="116" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Group"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZCUR_REG"/>
+      </attribute>
+      <attribute id="ZREG_MGR" order="117" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Regional Manager"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZREG_MGR"/>
+      </attribute>
+      <attribute id="ZCITY" order="118" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="City"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZCITY"/>
+      </attribute>
+      <attribute id="ZDELI_CTR" order="119" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Deli Counter"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZDELI_CTR"/>
+      </attribute>
+      <attribute id="ZRES_VILLAS" order="120" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Residential - Villas"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZRES_VILLAS"/>
+      </attribute>
+      <attribute id="ZRES_APRT" order="121" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Residential - Apartments"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZRES_APRT"/>
+      </attribute>
+      <attribute id="ZCLS_SCH" order="122" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Close to School"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZCLS_SCH"/>
+      </attribute>
+      <attribute id="ZCOM_CTR" order="123" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Community Center"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZCOM_CTR"/>
+      </attribute>
+      <attribute id="ZSHOP_MAL" order="124" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Shopping Mall"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZSHOP_MAL"/>
+      </attribute>
+      <attribute id="ZCOMM_AREA" order="125" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Commercial Area"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZCOMM_AREA"/>
+      </attribute>
+      <attribute id="ZOFF_BLK" order="126" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Office Block"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZOFF_BLK"/>
+      </attribute>
+      <attribute id="ZNEW_CMTY" order="127" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="New Community"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZNEW_CMTY"/>
+      </attribute>
+      <attribute id="ZEST_CMTY" order="128" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Established Community"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZEST_CMTY"/>
+      </attribute>
+      <attribute id="ZGOOD_ASBTY" order="129" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Good Accessibility"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZGOOD_ASBTY"/>
+      </attribute>
+      <attribute id="ZAMP_PRK" order="130" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Ample Parking"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZAMP_PRK"/>
+      </attribute>
+      <attribute id="ZENR_WORK" order="131" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Enroute to Work or Home"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZENR_WORK"/>
+      </attribute>
+      <attribute id="ZOPN_HRS" order="132" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Opening Hours"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZOPN_HRS"/>
+      </attribute>
+      <attribute id="ZMAIN_SHP" order="133" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Main Shop"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZMAIN_SHP"/>
+      </attribute>
+      <attribute id="ZTOP_SHP" order="134" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Top-Up Shop"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZTOP_SHP"/>
+      </attribute>
+      <attribute id="ZCONV" order="135" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Convenience"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZCONV"/>
+      </attribute>
+      <attribute id="ZLUCNH_TIME" order="136" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Lunch Time"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZLUCNH_TIME"/>
+      </attribute>
+      <attribute id="ZWESTERN" order="137" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Western"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZWESTERN"/>
+      </attribute>
+      <attribute id="ZASIAN" order="138" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Asian"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZASIAN"/>
+      </attribute>
+      <attribute id="ZARABIC" order="139" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Arabic"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZARABIC"/>
+      </attribute>
+      <attribute id="ZCHINESE" order="140" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Chinese"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZCHINESE"/>
+      </attribute>
+      <attribute id="ZPOP_LOW" order="141" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Population Low"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZPOP_LOW"/>
+      </attribute>
+      <attribute id="ZPOP_MED" order="142" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Population Medium"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZPOP_MED"/>
+      </attribute>
+      <attribute id="ZPOP_HIGH" order="143" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Population High"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZPOP_HIGH"/>
+      </attribute>
+      <attribute id="ZEXP_SALES" order="144" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZEXP_SALES"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZEXP_SALES"/>
+      </attribute>
+      <attribute id="ZCOMP" order="145" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Competition Name"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZCOMP"/>
+      </attribute>
+      <attribute id="ZSTORE_TYPE" order="146" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Store Type"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZSTORE_TYPE"/>
+      </attribute>
+      <attribute id="ZNEW_REG" order="147" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="New Region"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZNEW_REG"/>
+      </attribute>
+      <attribute id="ZDEMOGRAPH" order="148" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demographic"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZDEMOGRAPH"/>
+      </attribute>
+      <attribute id="ZACE_CLUSTER" order="149" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ACE Cluster"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZACE_CLUSTER"/>
+      </attribute>
+      <attribute id="ZLONGITUDE" order="150" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Longitude"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZLONGITUDE"/>
+      </attribute>
+      <attribute id="ZLATITUDE" order="151" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Latitude"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZLATITUDE"/>
+      </attribute>
+      <attribute id="ZGSA" order="152" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Gross Selling Area (GSA)"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZGSA"/>
+      </attribute>
+      <attribute id="ZOPR_HRS" order="153" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Operating Hours"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZOPR_HRS"/>
+      </attribute>
+      <attribute id="ZLIQUOR_STORE" order="154" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Liqour Store Name"/>
+        <keyMapping columnObjectName="Join_3" columnName="ZLIQUOR_STORE"/>
+      </attribute>
+      <attribute id="Site_Closing_Date" order="155" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Closing Date"/>
+        <keyMapping columnObjectName="Join_3" columnName="Site_Closing_Date"/>
+      </attribute>
+      <attribute id="Email_Address" order="156" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Email_Address"/>
+        <keyMapping columnObjectName="Join_3" columnName="Email_Address"/>
+      </attribute>
+      <attribute id="EKORG" order="157" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Org"/>
+        <keyMapping columnObjectName="Join_3" columnName="EKORG"/>
+      </attribute>
+      <attribute id="VKORG" order="158" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchase Org"/>
+        <keyMapping columnObjectName="Join_3" columnName="VKORG"/>
+      </attribute>
+      <attribute id="VTWEG" order="159" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Distribution Channel"/>
+        <keyMapping columnObjectName="Join_3" columnName="VTWEG"/>
+      </attribute>
+      <attribute id="PSTLZ" order="160" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Postal Code"/>
+        <keyMapping columnObjectName="Join_3" columnName="PSTLZ"/>
+      </attribute>
+      <attribute id="VLFKZ" order="161" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Category"/>
+        <keyMapping columnObjectName="Join_3" columnName="VLFKZ"/>
+      </attribute>
+      <attribute id="Store_Manager" order="162" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Store_Manager"/>
+        <keyMapping columnObjectName="Join_3" columnName="Store_Manager"/>
+      </attribute>
+      <attribute id="Mobile_Number" order="163" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Mobile_Number"/>
+        <keyMapping columnObjectName="Join_3" columnName="Mobile_Number"/>
+      </attribute>
+      <attribute id="Latitude" order="164" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Latitude"/>
+        <keyMapping columnObjectName="Join_3" columnName="Latitude"/>
+      </attribute>
+      <attribute id="Longitude" order="165" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Longitude"/>
+        <keyMapping columnObjectName="Join_3" columnName="Longitude"/>
+      </attribute>
+      <attribute id="Store_Type" order="166" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Store_Type"/>
+        <keyMapping columnObjectName="Join_3" columnName="Store_Type"/>
+      </attribute>
+      <attribute id="Fax" order="167" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Fax"/>
+        <keyMapping columnObjectName="Join_3" columnName="Fax"/>
+      </attribute>
+      <attribute id="Site" order="168" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site"/>
+        <keyMapping columnObjectName="Join_3" columnName="Site"/>
+      </attribute>
+      <attribute id="Sales_Area" order="169" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Area"/>
+        <keyMapping columnObjectName="Join_3" columnName="Sales_Area"/>
+      </attribute>
+      <attribute id="Sales_Area_Unit" order="170" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Area Unit"/>
+        <keyMapping columnObjectName="Join_3" columnName="Sales_Area_Unit"/>
+      </attribute>
+      <attribute id="Vendor_Code" order="171" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor Code"/>
+        <keyMapping columnObjectName="Join_3" columnName="Vendor_Code"/>
+      </attribute>
+      <attribute id="Vendor_Name" order="172" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor Name"/>
+        <keyMapping columnObjectName="Join_3" columnName="Vendor_Name"/>
+      </attribute>
+      <attribute id="Country_Of_Origin" order="173" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country Of Origin"/>
+        <keyMapping columnObjectName="Join_3" columnName="Country_Of_Origin"/>
+      </attribute>
+      <attribute id="WERKS" order="174" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site ID"/>
+        <keyMapping columnObjectName="Join_3" columnName="WERKS"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures>
+      <measure id="Article_Site_Count" hidden="false" order="1" aggregationType="sum" measureType="simple" aggregatable="true" calculatedMeasureType="counter" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Article Site Count"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="Site_Article"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="328.6900820831794" y="112"/>
+        <rectangleSize height="0" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Art_Site" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="92" y="536.9999976158142"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    <shape modelObjectName="AT_MASTER_ARTICLE_SITE" modelObjectNameSpace="Art_Site" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="Art_Site" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Site_Only" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="302" y="536.9999976158142"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="118.66666666666666" y="376.9999988079071"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    <shape modelObjectName="Art_Site" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Site_Only" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Vendor" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="395.83468516943316" y="376.9999988079071"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="328.6900820831794" y="217"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Vendor" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

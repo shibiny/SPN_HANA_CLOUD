@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="AT_MASTER_ORIGINAL_VENDOR" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View for the Original Vendor of the Article"/>
+  <metadata changedAt="2020-08-25 11:10:28.146"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="EINA">
+      <resourceUri>EINA</resourceUri>
+    </DataSource>
+    <DataSource id="LFA1">
+      <resourceUri>LFA1</resourceUri>
+    </DataSource>
+    <DataSource id="EINE">
+      <resourceUri>EINE</resourceUri>
+    </DataSource>
+    <DataSource id="MARM">
+      <resourceUri>MARM</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="INFNR"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="LOEKZ"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="LAND1"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="TELF1"/>
+        <viewAttribute id="TELF2"/>
+        <viewAttribute id="ORT01"/>
+        <viewAttribute id="PFACH"/>
+        <viewAttribute id="STCD1"/>
+        <viewAttribute id="TELFX"/>
+        <viewAttribute id="IDNLF"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="EINA">
+        <mapping xsi:type="Calculation:AttributeMapping" target="INFNR" source="INFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LOEKZ" source="LOEKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IDNLF" source="IDNLF"/>
+      </input>
+      <input node="LFA1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAND1" source="LAND1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELF1" source="TELF1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELF2" source="TELF2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORT01" source="ORT01"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PFACH" source="PFACH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STCD1" source="STCD1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELFX" source="TELFX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+      </input>
+    <joinAttribute name="LIFNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_EINA">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="INFNR"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="LOEKZ"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="LAND1"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="TELF1"/>
+        <viewAttribute id="TELF2"/>
+        <viewAttribute id="ORT01"/>
+        <viewAttribute id="PFACH"/>
+        <viewAttribute id="STCD1"/>
+        <viewAttribute id="TELFX"/>
+        <viewAttribute id="IDNLF"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_1"/>
+    <filter>(&quot;LOEKZ&quot; ='')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_EINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="INFNR"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="LOEKZ"/>
+        <viewAttribute id="MINBM"/>
+        <viewAttribute id="APLFZ"/>
+        <viewAttribute id="EVERS"/>
+        <viewAttribute id="EKGRP"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="EINE"/>
+    <filter>(in (&quot;EKORG&quot;,'3100','6100','7100')) AND (&quot;WERKS&quot; ='') AND (&quot;LOEKZ&quot; ='')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Active_Vendors" cardinality="C1_N" joinType="referential">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="LAND1"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="TELF1"/>
+        <viewAttribute id="TELF2"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="MINBM"/>
+        <viewAttribute id="APLFZ"/>
+        <viewAttribute id="EVERS"/>
+        <viewAttribute id="ORT01"/>
+        <viewAttribute id="PFACH"/>
+        <viewAttribute id="STCD1"/>
+        <viewAttribute id="TELFX"/>
+        <viewAttribute id="IDNLF"/>
+        <viewAttribute id="EKGRP"/>
+      <viewAttribute hidden="true" id="JOIN$INFNR$INFNR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Projection_EINA">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAND1" source="LAND1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELF1" source="TELF1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELF2" source="TELF2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORT01" source="ORT01"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PFACH" source="PFACH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STCD1" source="STCD1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELFX" source="TELFX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IDNLF" source="IDNLF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$INFNR$INFNR" source="INFNR"/>
+      </input>
+      <input node="Projection_EINE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MINBM" source="MINBM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="APLFZ" source="APLFZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EVERS" source="EVERS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKGRP" source="EKGRP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$INFNR$INFNR" source="INFNR"/>
+      </input>
+    <joinAttribute name="JOIN$INFNR$INFNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Non_DC">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="LAND1"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="TELF1"/>
+        <viewAttribute id="TELF2"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="MINBM"/>
+        <viewAttribute id="APLFZ"/>
+        <viewAttribute id="EVERS"/>
+        <viewAttribute id="ORT01"/>
+        <viewAttribute id="PFACH"/>
+        <viewAttribute id="STCD1"/>
+        <viewAttribute id="TELFX"/>
+        <viewAttribute id="IDNLF"/>
+        <viewAttribute id="EKGRP"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Vendor_Code" length="10" expressionLanguage="COLUMN_ENGINE">
+          <formula>ltrim(&quot;LIFNR&quot;,'0')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Active_Vendors"/>
+    <filter>(not in (&quot;LIFNR&quot;,'RD01','D001','D002','D003','D004','D005','RO01'))</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="DC">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="LAND1"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="TELF1"/>
+        <viewAttribute id="TELF2"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="MINBM"/>
+        <viewAttribute id="APLFZ"/>
+        <viewAttribute id="EVERS"/>
+        <viewAttribute id="ORT01"/>
+        <viewAttribute id="PFACH"/>
+        <viewAttribute id="STCD1"/>
+        <viewAttribute id="TELFX"/>
+        <viewAttribute id="IDNLF"/>
+        <viewAttribute id="EKGRP"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Vendor_Code" length="10" expressionLanguage="COLUMN_ENGINE">
+          <formula>''</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Active_Vendors"/>
+    <filter>(in (&quot;LIFNR&quot;,'RD01','D001','D002','D003','D004','D005','RO01'))</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute datatype="NVARCHAR" id="MEINS" length="3"/>
+        <viewAttribute datatype="NVARCHAR" id="LAND1" length="3"/>
+        <viewAttribute datatype="NVARCHAR" id="NAME1" length="35"/>
+        <viewAttribute datatype="NVARCHAR" id="TELF1" length="16"/>
+        <viewAttribute datatype="NVARCHAR" id="TELF2" length="16"/>
+        <viewAttribute datatype="NVARCHAR" id="EKORG" length="4"/>
+        <viewAttribute datatype="DECIMAL" id="MINBM" length="13" scale="3"/>
+        <viewAttribute datatype="DECIMAL" id="APLFZ" length="3"/>
+        <viewAttribute datatype="NVARCHAR" id="EVERS" length="2"/>
+        <viewAttribute datatype="NVARCHAR" id="Vendor_Code" length="10"/>
+        <viewAttribute datatype="NVARCHAR" id="ORT01" length="35"/>
+        <viewAttribute datatype="NVARCHAR" id="PFACH" length="10"/>
+        <viewAttribute datatype="NVARCHAR" id="STCD1" length="16"/>
+        <viewAttribute datatype="NVARCHAR" id="TELFX" length="31"/>
+        <viewAttribute datatype="NVARCHAR" id="IDNLF" length="35"/>
+        <viewAttribute datatype="NVARCHAR" id="EKGRP" length="3"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="Non_DC">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAND1" source="LAND1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELF1" source="TELF1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELF2" source="TELF2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MINBM" source="MINBM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="APLFZ" source="APLFZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EVERS" source="EVERS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Vendor_Code" source="Vendor_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORT01" source="ORT01"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PFACH" source="PFACH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STCD1" source="STCD1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELFX" source="TELFX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IDNLF" source="IDNLF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKGRP" source="EKGRP"/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="DC">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Vendor_Code" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MEINS" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="LAND1" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="NAME1" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TELF1" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TELF2" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="MINBM" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="APLFZ" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="EVERS" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="ORT01" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="PFACH" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="STCD1" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="TELFX" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="IDNLF" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="EKGRP" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+      </input>
+    </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="Vendor_Code"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="LAND1"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="TELF1"/>
+        <viewAttribute id="TELF2"/>
+        <viewAttribute id="MINBM"/>
+        <viewAttribute id="APLFZ"/>
+        <viewAttribute id="EVERS"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="UMREZ"/>
+        <viewAttribute id="UMREN"/>
+        <viewAttribute id="ORT01"/>
+        <viewAttribute id="PFACH"/>
+        <viewAttribute id="STCD1"/>
+        <viewAttribute id="TELFX"/>
+        <viewAttribute id="IDNLF"/>
+        <viewAttribute id="EKGRP"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="INTEGER" id="Unit_Conversion_Factor" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;UMREN&quot;=0,0,&quot;UMREZ&quot;/&quot;UMREN&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Union_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Vendor_Code" source="Vendor_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAND1" source="LAND1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELF1" source="TELF1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELF2" source="TELF2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MINBM" source="MINBM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="APLFZ" source="APLFZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EVERS" source="EVERS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORT01" source="ORT01"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PFACH" source="PFACH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STCD1" source="STCD1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELFX" source="TELFX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IDNLF" source="IDNLF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKGRP" source="EKGRP"/>
+      </input>
+      <input node="MARM">
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREZ" source="UMREZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREN" source="UMREN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINH"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+    <joinAttribute name="MEINS"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_2">
+    <descriptions/>
+    <attributes>
+      <attribute id="Purchase_Org" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchase Organization"/>
+        <keyMapping columnObjectName="Join_2" columnName="EKORG"/>
+      </attribute>
+      <attribute id="Vendor_Code" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor Code"/>
+        <keyMapping columnObjectName="Join_2" columnName="Vendor_Code"/>
+      </attribute>
+      <attribute id="Vendor_Name" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor Name"/>
+        <keyMapping columnObjectName="Join_2" columnName="NAME1"/>
+      </attribute>
+      <attribute id="Country_Of_Origin" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country Of Origin"/>
+        <keyMapping columnObjectName="Join_2" columnName="LAND1"/>
+      </attribute>
+      <attribute id="Telephone1" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Telephone1"/>
+        <keyMapping columnObjectName="Join_2" columnName="TELF1"/>
+      </attribute>
+      <attribute id="Telephone2" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Telephone2"/>
+        <keyMapping columnObjectName="Join_2" columnName="TELF2"/>
+      </attribute>
+      <attribute id="MOQ" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Minimum Purchase Order Quantity"/>
+        <keyMapping columnObjectName="Join_2" columnName="MINBM"/>
+      </attribute>
+      <attribute id="Delivery_Time" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Planned Delivery Time in Days"/>
+        <keyMapping columnObjectName="Join_2" columnName="APLFZ"/>
+      </attribute>
+      <attribute id="Mode_Transport" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Mode of Transport"/>
+        <keyMapping columnObjectName="Join_2" columnName="EVERS"/>
+      </attribute>
+      <attribute id="Order_Unit" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Order Unit"/>
+        <keyMapping columnObjectName="Join_2" columnName="MEINS"/>
+      </attribute>
+      <attribute id="Unit_Conversion_Factor" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Unit_Conversion_Factor"/>
+        <keyMapping columnObjectName="Join_2" columnName="Unit_Conversion_Factor"/>
+      </attribute>
+      <attribute id="MATNR" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MATNR"/>
+        <keyMapping columnObjectName="Join_2" columnName="MATNR"/>
+      </attribute>
+      <attribute id="City" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="City"/>
+        <keyMapping columnObjectName="Join_2" columnName="ORT01"/>
+      </attribute>
+      <attribute id="PO_Box" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PO Box"/>
+        <keyMapping columnObjectName="Join_2" columnName="PFACH"/>
+      </attribute>
+      <attribute id="Tax_Number" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Tax Number"/>
+        <keyMapping columnObjectName="Join_2" columnName="STCD1"/>
+      </attribute>
+      <attribute id="Fax" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Fax"/>
+        <keyMapping columnObjectName="Join_2" columnName="TELFX"/>
+      </attribute>
+      <attribute id="Vendor_Article_Number" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor Article Number"/>
+        <keyMapping columnObjectName="Join_2" columnName="IDNLF"/>
+      </attribute>
+      <attribute id="Purchase_Group" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchase Group"/>
+        <keyMapping columnObjectName="Join_2" columnName="EKGRP"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Article_Code" hidden="false" key="true" order="2" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="18">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="629"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="EINA" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="LFA1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Projection_EINA" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="551"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_EINE" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="551"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Active_Vendors" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="455"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Projection_EINA" modelObjectNameSpace="Active_Vendors" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_EINE" modelObjectNameSpace="Active_Vendors" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Non_DC" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="377"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="DC" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="377"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+    <shape modelObjectName="Union_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="MARM" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

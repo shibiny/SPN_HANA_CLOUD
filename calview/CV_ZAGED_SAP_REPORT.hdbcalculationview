@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_ZAGED_SAP_REPORT" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View based on the logic of SAP report ZAGED"/>
+  <metadata changedAt="2020-12-13 14:00:32.41"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="31"/>
+  <dataSources>
+    <DataSource id="MBEW">
+      <resourceUri>MBEW</resourceUri>
+    </DataSource>
+    <DataSource id="MCHA">
+      <resourceUri>MCHA</resourceUri>
+    </DataSource>
+    <DataSource id="MCHB">
+      <resourceUri>MCHB</resourceUri>
+    </DataSource>
+    <DataSource id="MARC">
+      <resourceUri>MARC</resourceUri>
+    </DataSource>
+    <DataSource id="AT_MASTER_LAST_RECEIPT_DATE">
+      <resourceUri>AT_MASTER_LAST_RECEIPT_DATE</resourceUri>
+    </DataSource>
+    <DataSource id="AT_MASTER_ARTICLE">
+      <resourceUri>AT_MASTER_ARTICLE</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Curr_Stock">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BWKEY"/>
+        <viewAttribute id="BWTAR"/>
+        <viewAttribute id="LBKUM"/>
+        <viewAttribute id="SALK3"/>
+        <viewAttribute id="VERPR"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="MBEW"/>
+    <filter>(&quot;BWTAR&quot; ='') AND (&quot;LBKUM&quot; !=0) AND (&quot;SALK3&quot; !=0)</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Batch_Details" cardinality="C1_N" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="CHARG"/>
+        <viewAttribute id="LAEDA"/>
+        <viewAttribute id="VFDAT"/>
+        <viewAttribute id="LWEDT"/>
+        <viewAttribute id="CLABS"/>
+        <viewAttribute id="CUMLM"/>
+        <viewAttribute id="CINSM"/>
+        <viewAttribute id="CEINM"/>
+        <viewAttribute id="CSPEM"/>
+        <viewAttribute id="CRETM"/>
+        <viewAttribute id="CVMLA"/>
+        <viewAttribute id="CVMUM"/>
+        <viewAttribute id="CVMIN"/>
+        <viewAttribute id="CVMEI"/>
+        <viewAttribute id="CVMSP"/>
+        <viewAttribute id="CVMRE"/>
+      <viewAttribute hidden="true" id="JOIN$MATNR$MATNR"/>
+      <viewAttribute hidden="true" id="JOIN$WERKS$WERKS"/>
+      <viewAttribute hidden="true" id="JOIN$CHARG$CHARG"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DECIMAL" id="Batch_Qty" length="13" scale="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;CLABS&quot;+&quot;CUMLM&quot;+&quot;CINSM&quot;+&quot;CEINM&quot;+&quot;CSPEM&quot;+&quot;CRETM&quot;+&quot;CVMUM&quot;+&quot;CVMIN&quot;+&quot;CVMEI&quot;+&quot;CVMSP&quot;+&quot;CVMRE&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Receipt_Date" length="8" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;LWEDT&quot;='00000000',&quot;LAEDA&quot;,&quot;LWEDT&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="MCHA">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAEDA" source="LAEDA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VFDAT" source="VFDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LWEDT" source="LWEDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$WERKS$WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CHARG$CHARG" source="CHARG"/>
+      </input>
+      <input node="MCHB">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CHARG" source="CHARG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLABS" source="CLABS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CUMLM" source="CUMLM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CINSM" source="CINSM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CEINM" source="CEINM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CSPEM" source="CSPEM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CRETM" source="CRETM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CVMLA" source="CVMLA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CVMUM" source="CVMUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CVMIN" source="CVMIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CVMEI" source="CVMEI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CVMSP" source="CVMSP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CVMRE" source="CVMRE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$WERKS$WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CHARG$CHARG" source="CHARG"/>
+      </input>
+    <joinAttribute name="JOIN$MATNR$MATNR"/>
+    <joinAttribute name="JOIN$WERKS$WERKS"/>
+    <joinAttribute name="JOIN$CHARG$CHARG"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Curr_Stk" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BWKEY"/>
+        <viewAttribute id="LBKUM"/>
+        <viewAttribute id="SALK3"/>
+        <viewAttribute id="VERPR"/>
+        <viewAttribute id="XCHPF"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Curr_Stock">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWKEY" source="BWKEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LBKUM" source="LBKUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALK3" source="SALK3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERPR" source="VERPR"/>
+      </input>
+      <input node="MARC">
+        <mapping xsi:type="Calculation:AttributeMapping" target="XCHPF" source="XCHPF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWKEY" source="WERKS"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+    <joinAttribute name="BWKEY"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Curr_Non_Batch">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BWKEY"/>
+        <viewAttribute id="LBKUM"/>
+        <viewAttribute id="SALK3"/>
+        <viewAttribute id="VERPR"/>
+        <viewAttribute id="XCHPF"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Article_Code" length="18" expressionLanguage="COLUMN_ENGINE">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Curr_Stk"/>
+    <filter>(&quot;XCHPF&quot; ='')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Curr_Batch">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BWKEY"/>
+        <viewAttribute id="LBKUM"/>
+        <viewAttribute id="SALK3"/>
+        <viewAttribute id="VERPR"/>
+        <viewAttribute id="XCHPF"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Article_Code" length="18" expressionLanguage="COLUMN_ENGINE">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Curr_Stk"/>
+    <filter>(&quot;XCHPF&quot; ='X')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Batch_Data">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="CHARG"/>
+        <viewAttribute id="LAEDA"/>
+        <viewAttribute id="VFDAT"/>
+        <viewAttribute id="LWEDT"/>
+        <viewAttribute id="Batch_Qty"/>
+        <viewAttribute id="Receipt_Date"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Article_Code" length="18" expressionLanguage="COLUMN_ENGINE">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Batch_Details"/>
+    <filter>(&quot;Batch_Qty&quot; !='0')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Curr_Batch_Stk" cardinality="C1_N" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BWKEY"/>
+        <viewAttribute id="LBKUM"/>
+        <viewAttribute id="SALK3"/>
+        <viewAttribute id="VERPR"/>
+        <viewAttribute id="XCHPF"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Batch_Qty"/>
+        <viewAttribute id="Receipt_Date"/>
+        <viewAttribute id="VFDAT"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Curr_Batch">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWKEY" source="BWKEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LBKUM" source="LBKUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALK3" source="SALK3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERPR" source="VERPR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="XCHPF" source="XCHPF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+      </input>
+      <input node="Batch_Data">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Batch_Qty" source="Batch_Qty"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Receipt_Date" source="Receipt_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VFDAT" source="VFDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWKEY" source="WERKS"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+    <joinAttribute name="BWKEY"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BWKEY"/>
+        <viewAttribute id="LBKUM"/>
+        <viewAttribute id="SALK3"/>
+        <viewAttribute id="VERPR"/>
+        <viewAttribute id="XCHPF"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Batch_Qty"/>
+        <viewAttribute id="Receipt_Date"/>
+        <viewAttribute id="VFDAT"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="Last_Receipt_Date" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;Receipt_Date&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Curr_Batch_Stk"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BWKEY"/>
+        <viewAttribute id="LBKUM"/>
+        <viewAttribute id="SALK3"/>
+        <viewAttribute id="VERPR"/>
+        <viewAttribute id="XCHPF"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Last_Receipt_Date"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Curr_Non_Batch">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWKEY" source="BWKEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LBKUM" source="LBKUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALK3" source="SALK3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERPR" source="VERPR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="XCHPF" source="XCHPF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+      </input>
+      <input node="AT_MASTER_LAST_RECEIPT_DATE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Receipt_Date" source="Last_Receipt_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWKEY" source="Site_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+      </input>
+    <joinAttribute name="BWKEY"/>
+    <joinAttribute name="Article_Code"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BWKEY"/>
+        <viewAttribute id="LBKUM"/>
+        <viewAttribute id="SALK3"/>
+        <viewAttribute id="VERPR"/>
+        <viewAttribute id="XCHPF"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Batch_Qty"/>
+        <viewAttribute id="VFDAT"/>
+        <viewAttribute id="Last_Receipt_Date"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="Projection_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWKEY" source="BWKEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LBKUM" source="LBKUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALK3" source="SALK3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERPR" source="VERPR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="XCHPF" source="XCHPF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Batch_Qty" source="Batch_Qty"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VFDAT" source="VFDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Receipt_Date" source="Last_Receipt_Date"/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="Join_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWKEY" source="BWKEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LBKUM" source="LBKUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALK3" source="SALK3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERPR" source="VERPR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="XCHPF" source="XCHPF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Batch_Qty" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="VFDAT" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Receipt_Date" source="Last_Receipt_Date"/>
+      </input>
+    </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BWKEY"/>
+        <viewAttribute id="LBKUM"/>
+        <viewAttribute id="SALK3"/>
+        <viewAttribute id="VERPR"/>
+        <viewAttribute id="XCHPF"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Batch_Qty"/>
+        <viewAttribute id="VFDAT"/>
+        <viewAttribute id="Last_Receipt_Date"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="Article_Description_Upper"/>
+        <viewAttribute id="Remaining_Shelf_Life"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="BMC_ID"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Union_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWKEY" source="BWKEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LBKUM" source="LBKUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALK3" source="SALK3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERPR" source="VERPR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="XCHPF" source="XCHPF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Batch_Qty" source="Batch_Qty"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VFDAT" source="VFDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Receipt_Date" source="Last_Receipt_Date"/>
+      </input>
+      <input node="AT_MASTER_ARTICLE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="Article_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description_Upper" source="Article_Description_Upper"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Remaining_Shelf_Life" source="Remaining_Shelf_Life"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="MATNR" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article_Num"/>
+        <keyMapping columnObjectName="Join_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="BWKEY" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="BWKEY"/>
+      </attribute>
+      <attribute id="XCHPF" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Batch Indicator"/>
+        <keyMapping columnObjectName="Join_1" columnName="XCHPF"/>
+      </attribute>
+      <attribute id="Article_Code" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article_Code"/>
+        <keyMapping columnObjectName="Join_1" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="VFDAT" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VFDAT"/>
+        <keyMapping columnObjectName="Join_1" columnName="VFDAT"/>
+      </attribute>
+      <attribute id="Last_Receipt_Date" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last_Receipt_Date"/>
+        <keyMapping columnObjectName="Join_1" columnName="Last_Receipt_Date"/>
+      </attribute>
+      <attribute id="Article_Description" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Description"/>
+        <keyMapping columnObjectName="Join_1" columnName="Article_Description"/>
+      </attribute>
+      <attribute id="Article_Description_Upper" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ARTICLE DESCRIPTION"/>
+        <keyMapping columnObjectName="Join_1" columnName="Article_Description_Upper"/>
+      </attribute>
+      <attribute id="Remaining_Shelf_Life" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Remaining Shelf Life"/>
+        <keyMapping columnObjectName="Join_1" columnName="Remaining_Shelf_Life"/>
+      </attribute>
+      <attribute id="Department_ID" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="Department_ID"/>
+      </attribute>
+      <attribute id="Category_ID" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="Category_ID"/>
+      </attribute>
+      <attribute id="Subcategory_ID" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Subcategory ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="Subcategory_ID"/>
+      </attribute>
+      <attribute id="CDT4_ID" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4 ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CDT4_ID"/>
+      </attribute>
+      <attribute id="CDT5_ID" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5 ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CDT5_ID"/>
+      </attribute>
+      <attribute id="CDT6_ID" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6 ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="CDT6_ID"/>
+      </attribute>
+      <attribute id="BMC_ID" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC ID"/>
+        <keyMapping columnObjectName="Join_1" columnName="BMC_ID"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="LBKUM" order="17" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Total Valuated Stock"/>
+        <measureMapping columnObjectName="Join_1" columnName="LBKUM"/>
+      </measure>
+      <measure id="SALK3" order="18" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Total Stock Value"/>
+        <measureMapping columnObjectName="Join_1" columnName="SALK3"/>
+      </measure>
+      <measure id="VERPR" order="19" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Moving Average Price"/>
+        <measureMapping columnObjectName="Join_1" columnName="VERPR"/>
+      </measure>
+      <measure id="Batch_Qty" order="20" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Batch Quantity"/>
+        <measureMapping columnObjectName="Join_1" columnName="Batch_Qty"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="186" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Curr_Stock" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="263" y="745"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Batch_Details" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="649"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="MCHA" modelObjectNameSpace="Batch_Details" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="MCHB" modelObjectNameSpace="Batch_Details" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Curr_Stk" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="263" y="649"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Curr_Stock" modelObjectNameSpace="Curr_Stk" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="MARC" modelObjectNameSpace="Curr_Stk" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Curr_Non_Batch" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="263" y="475"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Curr_Batch" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="571"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Batch_Data" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="571"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Curr_Batch_Stk" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="109" y="475"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Curr_Batch" modelObjectNameSpace="Curr_Batch_Stk" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Batch_Data" modelObjectNameSpace="Curr_Batch_Stk" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Projection_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="109" y="379"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="263" y="379"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Curr_Non_Batch" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="AT_MASTER_LAST_RECEIPT_DATE" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="186" y="263"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="186" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+    <shape modelObjectName="Union_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

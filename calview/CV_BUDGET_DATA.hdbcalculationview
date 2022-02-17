@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_BUDGET_DATA" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View for Site-wise Finance Budget"/>
+  <metadata changedAt="2021-02-18 15:58:57.69"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="ZSP_BUDGET_DATA">
+      <resourceUri>ZSP_BUDGET_DATA</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Budget">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="ZDATE"/>
+        <viewAttribute id="BUDGET_VAL"/>
+        <viewAttribute id="MANDT"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="ZSP_BUDGET_DATA"/>
+    <filter>(&quot;MANDT&quot; ='100')</filter>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Budget">
+    <descriptions/>
+    <attributes>
+      <attribute id="WERKS$local">
+        <keyMapping columnObjectName="Budget" columnName="WERKS"/>
+      </attribute>
+      <attribute id="ZDATE$local">
+        <keyMapping columnObjectName="Budget" columnName="ZDATE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Last_1_Date" hidden="false" order="2" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Yesterday Date"/>
+        <keyCalculation datatype="DATE" expressionLanguage="COLUMN_ENGINE">
+          <formula>adddays(now(),-1)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Last_7_Date" hidden="false" order="3" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last 7 Day&apos;s Date"/>
+        <keyCalculation datatype="DATE" expressionLanguage="COLUMN_ENGINE">
+          <formula>adddays(now(),-7)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="MTD_Dates" hidden="false" order="4" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MTD Dates"/>
+        <keyCalculation datatype="INTEGER" expressionLanguage="SQL">
+          <formula>month(now())</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="YTD_Dates" hidden="false" order="5" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YTD Dates"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="4">
+          <formula>year(now())</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="BUDGET_VAL" order="1" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="BUDGET_VAL"/>
+        <measureMapping columnObjectName="Budget" columnName="BUDGET_VAL"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="Last_7_Days_Budget_Value" hidden="false" order="6" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="2">
+        <descriptions defaultDescription="Last 7 Days Budget Value"/>
+        <formula>If(&quot;DATE&quot;&gt;=&quot;Last_7_Date&quot; and &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;BUDGET_VAL&quot;,0)</formula>
+      </measure>
+      <measure id="Yesterday_Budget_Value" hidden="false" order="7" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="2">
+        <descriptions defaultDescription="Yesterday Budget Value"/>
+        <formula>If(&quot;DATE&quot;=&quot;Last_1_Date&quot;,&quot;BUDGET_VAL&quot;,0)</formula>
+      </measure>
+      <measure id="MTD_Budget_Value" hidden="false" order="8" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="2">
+        <descriptions defaultDescription="MTD Budget Value"/>
+        <formula>If(&quot;MONTH_INT&quot;=&quot;MTD_Dates&quot; AND &quot;YEAR&quot;=&quot;YTD_Dates&quot; AND &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;BUDGET_VAL&quot;,0)</formula>
+      </measure>
+      <measure id="YTD_Budget_Value" hidden="false" order="9" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="2">
+        <descriptions defaultDescription="YTD Budget Value"/>
+        <formula>If(&quot;YEAR&quot;=&quot;YTD_Dates&quot; AND &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;BUDGET_VAL&quot;,0)</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_SITE">
+        <attributes>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_TIME">
+        <attributes>
+          <attributeRef>ZDATE$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE_SAP</attributeName>
+        </associatedAttributeNames>
+        <properties joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Budget" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="340"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape modelObjectName="Budget" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="382" y="464"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="708" y="16"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_TIME" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="320"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

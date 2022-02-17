@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_PURCHASE_CONDITIONS" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View for Condition Types in PO"/>
+  <metadata changedAt="2020-11-19 08:55:56.38"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="EKKI">
+      <resourceUri>EKKI</resourceUri>
+    </DataSource>
+    <DataSource id="KONV">
+      <resourceUri>KONV</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="RESWK"/>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="EBELP"/>
+        <viewAttribute id="KNUMV"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="ZITEM_NO" length="6" expressionLanguage="COLUMN_ENGINE">
+          <formula>'0'+&quot;EBELP&quot;</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="EKKI"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KNUMV"/>
+        <viewAttribute id="KPOSN"/>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="KRECH"/>
+        <viewAttribute id="KAWRT"/>
+        <viewAttribute id="KBETR"/>
+        <viewAttribute id="WAERS"/>
+        <viewAttribute id="KKURS"/>
+        <viewAttribute id="KPEIN"/>
+        <viewAttribute id="KMEIN"/>
+        <viewAttribute id="KUMZA"/>
+        <viewAttribute id="KUMNE"/>
+        <viewAttribute id="KWERT"/>
+        <viewAttribute id="KAPPL"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="KONV"/>
+    <filter>(&quot;KAPPL&quot; ='M')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="RESWK"/>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="EBELP"/>
+        <viewAttribute id="KNUMV"/>
+        <viewAttribute id="KPOSN"/>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="KRECH"/>
+        <viewAttribute id="KAWRT"/>
+        <viewAttribute id="KBETR"/>
+        <viewAttribute id="WAERS"/>
+        <viewAttribute id="KKURS"/>
+        <viewAttribute id="KPEIN"/>
+        <viewAttribute id="KMEIN"/>
+        <viewAttribute id="KUMZA"/>
+        <viewAttribute id="KUMNE"/>
+        <viewAttribute id="KWERT"/>
+      <viewAttribute hidden="true" id="JOIN$KNUMV$KNUMV"/>
+      <viewAttribute hidden="true" id="JOIN$ZITEM_NO$KPOSN"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RESWK" source="RESWK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELN" source="EBELN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELP" source="EBELP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KNUMV$KNUMV" source="KNUMV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ZITEM_NO$KPOSN" source="ZITEM_NO"/>
+      </input>
+      <input node="Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KNUMV" source="KNUMV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KPOSN" source="KPOSN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KRECH" source="KRECH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KAWRT" source="KAWRT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR" source="KBETR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WAERS" source="WAERS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KKURS" source="KKURS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KPEIN" source="KPEIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KMEIN" source="KMEIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KUMZA" source="KUMZA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KUMNE" source="KUMNE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KWERT" source="KWERT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KNUMV$KNUMV" source="KNUMV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ZITEM_NO$KPOSN" source="KPOSN"/>
+      </input>
+    <joinAttribute name="JOIN$KNUMV$KNUMV"/>
+    <joinAttribute name="JOIN$ZITEM_NO$KPOSN"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="LIFNR" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LIFNR"/>
+        <keyMapping columnObjectName="Join_1" columnName="LIFNR"/>
+      </attribute>
+      <attribute id="RESWK" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RESWK"/>
+        <keyMapping columnObjectName="Join_1" columnName="RESWK"/>
+      </attribute>
+      <attribute id="EBELN" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EBELN"/>
+        <keyMapping columnObjectName="Join_1" columnName="EBELN"/>
+      </attribute>
+      <attribute id="EBELP" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EBELP"/>
+        <keyMapping columnObjectName="Join_1" columnName="EBELP"/>
+      </attribute>
+      <attribute id="KNUMV" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="KNUMV"/>
+        <keyMapping columnObjectName="Join_1" columnName="KNUMV"/>
+      </attribute>
+      <attribute id="KPOSN" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="KPOSN"/>
+        <keyMapping columnObjectName="Join_1" columnName="KPOSN"/>
+      </attribute>
+      <attribute id="KSCHL" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="KSCHL"/>
+        <keyMapping columnObjectName="Join_1" columnName="KSCHL"/>
+      </attribute>
+      <attribute id="KRECH" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="KRECH"/>
+        <keyMapping columnObjectName="Join_1" columnName="KRECH"/>
+      </attribute>
+      <attribute id="WAERS" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WAERS"/>
+        <keyMapping columnObjectName="Join_1" columnName="WAERS"/>
+      </attribute>
+      <attribute id="KMEIN" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="KMEIN"/>
+        <keyMapping columnObjectName="Join_1" columnName="KMEIN"/>
+      </attribute>
+      <attribute id="KPEIN" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="KPEIN"/>
+        <keyMapping columnObjectName="Join_1" columnName="KPEIN"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Vendor_Number" hidden="false" order="19" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor Number"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="10">
+          <formula>ltrim(&quot;LIFNR&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="PO_Number" hidden="false" order="20" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PO Number"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="10">
+          <formula>ltrim(&quot;EBELN&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="PO_Item" hidden="false" order="21" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PO Item"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="6">
+          <formula>ltrim(&quot;EBELP&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="KAWRT" order="12" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="KAWRT"/>
+        <measureMapping columnObjectName="Join_1" columnName="KAWRT"/>
+      </measure>
+      <measure id="KBETR" order="13" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="KBETR"/>
+        <measureMapping columnObjectName="Join_1" columnName="KBETR"/>
+      </measure>
+      <measure id="KKURS" order="14" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="KKURS"/>
+        <measureMapping columnObjectName="Join_1" columnName="KKURS"/>
+      </measure>
+      <measure id="KUMZA" order="15" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="KUMZA"/>
+        <measureMapping columnObjectName="Join_1" columnName="KUMZA"/>
+      </measure>
+      <measure id="KUMNE" order="16" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="KUMNE"/>
+        <measureMapping columnObjectName="Join_1" columnName="KUMNE"/>
+      </measure>
+      <measure id="KWERT" order="17" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="KWERT"/>
+        <measureMapping columnObjectName="Join_1" columnName="KWERT"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="Conversion_Factor" hidden="false" order="18" aggregationType="sum" measureType="simple" datatype="DOUBLE" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Conversion Factor"/>
+        <formula>If(&quot;KUMNE&quot;=0, 0, &quot;KUMZA&quot;/&quot;KUMNE&quot;)</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

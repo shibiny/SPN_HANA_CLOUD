@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_CUST_COUNT_SITE" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="CV_CUST_COUNT_SITE"/>
+  <metadata changedAt="2021-09-21 10:46:32.317"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="AV_CUST_COUNT_SITE">
+      <resourceUri>AV_CUST_COUNT_SITE</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="ZDATE"/>
+        <viewAttribute id="ZUNI_RCPT_NO"/>
+        <viewAttribute id="ZSALES_VAL_IVAT"/>
+        <viewAttribute id="ZSALES_QTY"/>
+        <viewAttribute id="Transaction_Count_Site"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="AV_CUST_COUNT_SITE"/>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Projection_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="WERKS$local">
+        <descriptions defaultDescription="WERKS"/>
+        <keyMapping columnObjectName="Projection_1" columnName="WERKS"/>
+      </attribute>
+      <attribute id="ZDATE$local">
+        <descriptions defaultDescription="ZDATE"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ZDATE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="ZSALES_VAL_IVAT" order="1" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="ZSALES_VAL_IVAT"/>
+        <measureMapping columnObjectName="Projection_1" columnName="ZSALES_VAL_IVAT"/>
+      </measure>
+      <measure id="ZSALES_QTY" order="2" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="ZSALES_QTY"/>
+        <measureMapping columnObjectName="Projection_1" columnName="ZSALES_QTY"/>
+      </measure>
+      <measure id="Transaction_Count_Site" order="3" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Transaction Count Site"/>
+        <measureMapping columnObjectName="Projection_1" columnName="Transaction_Count_Site"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_SITE">
+        <attributes>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_TIME">
+        <attributes>
+          <attributeRef>ZDATE$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE_SAP</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/></shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="50" y="250"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+      <shape modelObjectName="Projection_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="382" y="496"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="780" y="16"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_TIME" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="368"/>
+      </shape></shapes>
+</layout>
+</Calculation:scenario>

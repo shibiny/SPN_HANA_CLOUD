@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_R_MASTER_ARTICLE" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Reporting View for Article Master"/>
+  <metadata changedAt="2021-08-30 14:55:25.712"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="MAMT">
+      <resourceUri>MAMT</resourceUri>
+    </DataSource>
+    <DataSource id="Arabic_Desc$$$$MAMT$$">
+      <resourceUri>MAMT</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Eng_Desc">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="MEINH"/>
+        <viewAttribute id="SPRAS"/>
+        <viewAttribute id="MTXID"/>
+        <viewAttribute id="POS_English_Description"/>
+        <viewAttribute id="MATNR"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="MAMT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="POS_English_Description" source="MAKTM"/></input>
+    <filter>(&quot;MANDT&quot; ='100') AND (in (&quot;MEINH&quot;,'EA','KG')) AND (&quot;SPRAS&quot; ='E') AND (&quot;MTXID&quot; ='02')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Arabic_Desc">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="MEINH"/>
+        <viewAttribute id="SPRAS"/>
+        <viewAttribute id="MTXID"/>
+        <viewAttribute id="POS_Arabic_Description"/>
+        <viewAttribute id="MATNR"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Arabic_Desc$$$$MAMT$$">
+        <mapping xsi:type="Calculation:AttributeMapping" target="POS_Arabic_Description" source="MAKTM"/></input>
+    <filter>(&quot;MANDT&quot; ='100') AND (in (&quot;MEINH&quot;,'EA','KG')) AND (&quot;SPRAS&quot; ='A') AND (&quot;MTXID&quot; ='02')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="POS_Descriptions" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="POS_English_Description"/>
+        <viewAttribute id="POS_Arabic_Description"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Eng_Desc">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="POS_English_Description" source="POS_English_Description"/>
+      </input>
+      <input node="Arabic_Desc">
+        <mapping xsi:type="Calculation:AttributeMapping" target="POS_Arabic_Description" source="POS_Arabic_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="POS_Descriptions">
+    <descriptions/>
+    <attributes>
+      <attribute id="POS_English_Description" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="POS_English_Description"/>
+        <keyMapping columnObjectName="POS_Descriptions" columnName="POS_English_Description"/>
+      </attribute>
+      <attribute id="POS_Arabic_Description" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="POS_Arabic_Description"/>
+        <keyMapping columnObjectName="POS_Descriptions" columnName="POS_Arabic_Description"/>
+      </attribute>
+      <attribute id="MATNR$local">
+        <keyMapping columnObjectName="POS_Descriptions" columnName="MATNR"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures>
+      <measure id="Count_Article" hidden="false" order="1" aggregationType="sum" measureType="simple" aggregatable="true" calculatedMeasureType="counter" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Count_Article"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="Article_Code" dimensionUri="AT_MASTER_ARTICLE"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="C1_1" joinType="rightOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Eng_Desc" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="299"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Arabic_Desc" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="299"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="POS_Descriptions" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="203"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Eng_Desc" modelObjectNameSpace="POS_Descriptions" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Arabic_Desc" modelObjectNameSpace="POS_Descriptions" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="POS_Descriptions" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="461" y="221"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="52" y="46"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

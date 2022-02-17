@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="AT_MASTER_ARTICLE_SITE" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View for Site Article Master Data with Current Listings"/>
+  <metadata changedAt="2021-04-17 13:30:03.347"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="AT_SITE_ARTICLE_MASTER_PRE">
+      <resourceUri>AT_SITE_ARTICLE_MASTER_PRE</resourceUri>
+    </DataSource>
+    <DataSource id="AT_MASTER_CURRENT_LISTING">
+      <resourceUri>AT_MASTER_CURRENT_LISTING</resourceUri>
+    </DataSource>
+    <DataSource id="MLAN">
+      <resourceUri>MLAN</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Site_Article">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MMSTA"/>
+        <viewAttribute id="MAABC"/>
+        <viewAttribute id="AUSME"/>
+        <viewAttribute id="DISMM"/>
+        <viewAttribute id="EISBE"/>
+        <viewAttribute id="BSTMI"/>
+        <viewAttribute id="BWSCL"/>
+        <viewAttribute id="STAWN"/>
+        <viewAttribute id="MRPPP"/>
+        <viewAttribute id="LFRHY"/>
+        <viewAttribute id="RDPRF"/>
+        <viewAttribute id="FPRFM"/>
+        <viewAttribute id="EISLO"/>
+        <viewAttribute id="DIBEZ"/>
+        <viewAttribute id="PPTXT"/>
+        <viewAttribute id="Delivery_Cycle_Text"/>
+        <viewAttribute id="DSNAM"/>
+        <viewAttribute id="LSDTE"/>
+        <viewAttribute id="LODTE"/>
+        <viewAttribute id="LRDTE"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="RP_Type_Current"/>
+        <viewAttribute id="Country"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="AT_SITE_ARTICLE_MASTER_PRE"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Listed"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MMSTA"/>
+        <viewAttribute id="MAABC"/>
+        <viewAttribute id="AUSME"/>
+        <viewAttribute id="DISMM"/>
+        <viewAttribute id="EISBE"/>
+        <viewAttribute id="BSTMI"/>
+        <viewAttribute id="BWSCL"/>
+        <viewAttribute id="STAWN"/>
+        <viewAttribute id="MRPPP"/>
+        <viewAttribute id="LFRHY"/>
+        <viewAttribute id="RDPRF"/>
+        <viewAttribute id="FPRFM"/>
+        <viewAttribute id="EISLO"/>
+        <viewAttribute id="DIBEZ"/>
+        <viewAttribute id="PPTXT"/>
+        <viewAttribute id="Delivery_Cycle_Text"/>
+        <viewAttribute id="DSNAM"/>
+        <viewAttribute id="LSDTE"/>
+        <viewAttribute id="LODTE"/>
+        <viewAttribute id="LRDTE"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="RP_Type_Current"/>
+        <viewAttribute id="Country"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Site_Article">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MMSTA" source="MMSTA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAABC" source="MAABC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AUSME" source="AUSME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DISMM" source="DISMM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EISBE" source="EISBE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTMI" source="BSTMI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWSCL" source="BWSCL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STAWN" source="STAWN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MRPPP" source="MRPPP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LFRHY" source="LFRHY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RDPRF" source="RDPRF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FPRFM" source="FPRFM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EISLO" source="EISLO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIBEZ" source="DIBEZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PPTXT" source="PPTXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_Text" source="Delivery_Cycle_Text"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DSNAM" source="DSNAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LSDTE" source="LSDTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LODTE" source="LODTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LRDTE" source="LRDTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RP_Type_Current" source="RP_Type_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      </input>
+      <input node="AT_MASTER_CURRENT_LISTING">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Listed" source="Listed"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="Site_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+      </input>
+    <joinAttribute name="WERKS"/>
+    <joinAttribute name="Article_Code"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Tax_Table">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="ALAND"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="TAXM1"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="MLAN"/>
+    <filter>(in (&quot;ALAND&quot;,'AE','OM'))</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Listed"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MMSTA"/>
+        <viewAttribute id="MAABC"/>
+        <viewAttribute id="AUSME"/>
+        <viewAttribute id="DISMM"/>
+        <viewAttribute id="EISBE"/>
+        <viewAttribute id="BSTMI"/>
+        <viewAttribute id="BWSCL"/>
+        <viewAttribute id="STAWN"/>
+        <viewAttribute id="MRPPP"/>
+        <viewAttribute id="LFRHY"/>
+        <viewAttribute id="RDPRF"/>
+        <viewAttribute id="FPRFM"/>
+        <viewAttribute id="EISLO"/>
+        <viewAttribute id="DIBEZ"/>
+        <viewAttribute id="PPTXT"/>
+        <viewAttribute id="Delivery_Cycle_Text"/>
+        <viewAttribute id="DSNAM"/>
+        <viewAttribute id="LSDTE"/>
+        <viewAttribute id="LODTE"/>
+        <viewAttribute id="LRDTE"/>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="RP_Type_Current"/>
+        <viewAttribute id="Country"/>
+        <viewAttribute id="TAXM1"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Listed" source="Listed"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MMSTA" source="MMSTA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAABC" source="MAABC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AUSME" source="AUSME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DISMM" source="DISMM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EISBE" source="EISBE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTMI" source="BSTMI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWSCL" source="BWSCL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STAWN" source="STAWN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MRPPP" source="MRPPP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LFRHY" source="LFRHY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RDPRF" source="RDPRF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FPRFM" source="FPRFM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EISLO" source="EISLO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIBEZ" source="DIBEZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PPTXT" source="PPTXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_Text" source="Delivery_Cycle_Text"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DSNAM" source="DSNAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LSDTE" source="LSDTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LODTE" source="LODTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LRDTE" source="LRDTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RP_Type_Current" source="RP_Type_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      </input>
+      <input node="Tax_Table">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TAXM1" source="TAXM1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="ALAND"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+    <joinAttribute name="Country"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_2">
+    <descriptions/>
+    <attributes>
+      <attribute id="Listed" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Listed"/>
+        <keyMapping columnObjectName="Join_2" columnName="Listed"/>
+      </attribute>
+      <attribute id="MATNR" key="true" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article with Leading Zero"/>
+        <keyMapping columnObjectName="Join_2" columnName="MATNR"/>
+      </attribute>
+      <attribute id="WERKS" key="true" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WERKS"/>
+        <keyMapping columnObjectName="Join_2" columnName="WERKS"/>
+      </attribute>
+      <attribute id="Blocked_for_Procurement" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Blocked for Procurement"/>
+        <keyMapping columnObjectName="Join_2" columnName="MMSTA"/>
+      </attribute>
+      <attribute id="ABC_Indicator" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ABC Indicator"/>
+        <keyMapping columnObjectName="Join_2" columnName="MAABC"/>
+      </attribute>
+      <attribute id="Unit_Issue" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Unit Issue"/>
+        <keyMapping columnObjectName="Join_2" columnName="AUSME"/>
+      </attribute>
+      <attribute id="RP_Type_ID_Current" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP_Type_ID_Current"/>
+        <keyMapping columnObjectName="Join_2" columnName="DISMM"/>
+      </attribute>
+      <attribute id="Facings" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Facings"/>
+        <keyMapping columnObjectName="Join_2" columnName="EISBE"/>
+      </attribute>
+      <attribute id="Min_Lot_Size" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Min_Lot_Size"/>
+        <keyMapping columnObjectName="Join_2" columnName="BSTMI"/>
+      </attribute>
+      <attribute id="Source_Of_Supply" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Source_Of_Supply"/>
+        <keyMapping columnObjectName="Join_2" columnName="BWSCL"/>
+      </attribute>
+      <attribute id="HS_Code" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="HS_Code"/>
+        <keyMapping columnObjectName="Join_2" columnName="STAWN"/>
+      </attribute>
+      <attribute id="Delivery_Cycle_ID" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Delivery_Cycle_ID"/>
+        <keyMapping columnObjectName="Join_2" columnName="MRPPP"/>
+      </attribute>
+      <attribute id="Planning_Cycle_ID" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Planning_Cycle_ID"/>
+        <keyMapping columnObjectName="Join_2" columnName="LFRHY"/>
+      </attribute>
+      <attribute id="Rounding_Profile" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Rounding_Profile"/>
+        <keyMapping columnObjectName="Join_2" columnName="RDPRF"/>
+      </attribute>
+      <attribute id="Distribution_Profile" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Distribution_Profile"/>
+        <keyMapping columnObjectName="Join_2" columnName="FPRFM"/>
+      </attribute>
+      <attribute id="Safety_Stock" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Safety_Stock"/>
+        <keyMapping columnObjectName="Join_2" columnName="EISLO"/>
+      </attribute>
+      <attribute id="RP_Type_Description_Current" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP_Type_Description_Current"/>
+        <keyMapping columnObjectName="Join_2" columnName="DIBEZ"/>
+      </attribute>
+      <attribute id="Planning_Cycle_Text" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Planning_Cycle_Text"/>
+        <keyMapping columnObjectName="Join_2" columnName="PPTXT"/>
+      </attribute>
+      <attribute id="Delivery_Cycle_Text" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Delivery Cycle Text"/>
+        <keyMapping columnObjectName="Join_2" columnName="Delivery_Cycle_Text"/>
+      </attribute>
+      <attribute id="RA_Name" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RA_Name"/>
+        <keyMapping columnObjectName="Join_2" columnName="DSNAM"/>
+      </attribute>
+      <attribute id="Last_Sold_Date" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Sold Date"/>
+        <keyMapping columnObjectName="Join_2" columnName="LSDTE"/>
+      </attribute>
+      <attribute id="Last_Order_Date" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Order Date"/>
+        <keyMapping columnObjectName="Join_2" columnName="LODTE"/>
+      </attribute>
+      <attribute id="Last_Receipt_Date" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Receipt Date"/>
+        <keyMapping columnObjectName="Join_2" columnName="LRDTE"/>
+      </attribute>
+      <attribute id="Article_Code" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyMapping columnObjectName="Join_2" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="RP_Type_Current" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP Type Current"/>
+        <keyMapping columnObjectName="Join_2" columnName="RP_Type_Current"/>
+      </attribute>
+      <attribute id="Country" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country"/>
+        <keyMapping columnObjectName="Join_2" columnName="Country"/>
+      </attribute>
+      <attribute id="TAXM1" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="TAXM1"/>
+        <keyMapping columnObjectName="Join_2" columnName="TAXM1"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Site_Article" hidden="false" order="1" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Article"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="22">
+          <formula>&quot;WERKS&quot;+'-'+&quot;Article_Code&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Listed_Current" hidden="false" order="2" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Listed Current"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="1">
+          <formula>If(isNull(&quot;Listed&quot;),'N',&quot;Listed&quot;)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="213" y="112"/>
+        <rectangleSize height="0" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Site_Article" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="91" y="516"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="91" y="376"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    <shape modelObjectName="Site_Article" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="AT_MASTER_CURRENT_LISTING" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Tax_Table" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="301" y="376"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="213" y="217"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Tax_Table" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

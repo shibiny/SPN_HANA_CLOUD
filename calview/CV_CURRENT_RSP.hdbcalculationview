@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_CURRENT_RSP" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View for the Current RSPs for article site combination"/>
+  <metadata changedAt="2021-10-14 12:33:27.25"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="37"/>
+  <dataSources>
+    <DataSource id="A073">
+      <resourceUri>A073</resourceUri>
+    </DataSource>
+    <DataSource id="KONP">
+      <resourceUri>KONP</resourceUri>
+    </DataSource>
+    <DataSource id="T001W">
+      <resourceUri>T001W</resourceUri>
+    </DataSource>
+    <DataSource id="A071">
+      <resourceUri>A071</resourceUri>
+    </DataSource>
+    <DataSource id="VKA0_Only$$$$KONP$$">
+      <resourceUri>KONP</resourceUri>
+    </DataSource>
+    <DataSource id="AT_MASTER_SITE">
+      <resourceUri>AT_MASTER_SITE</resourceUri>
+    </DataSource>
+    <DataSource id="WLK2">
+      <resourceUri>WLK2</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="A073_CTypes" filterExpressionLanguage="COLUMN_ENGINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KAPPL"/>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="VRKME"/>
+        <viewAttribute id="DATBI"/>
+        <viewAttribute id="DATAB"/>
+        <viewAttribute id="KNUMH"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="Current_Date" expressionLanguage="COLUMN_ENGINE">
+          <formula>now()</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Date_From" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;DATAB&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Date_To" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;DATBI&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="A073"/>
+    <filter>in(&quot;VTWEG&quot;,'20','40','60','65') and in(&quot;VKORG&quot;, '3100','7100','6100') and &quot;KSCHL&quot;='VKP0'and &quot;KAPPL&quot;='V' and &quot;Current_Date&quot;&gt;=&quot;Date_From&quot; and &quot;Current_Date&quot;&lt;=&quot;Date_To&quot;</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="VKP0_Only" filterExpressionLanguage="COLUMN_ENGINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KNUMH"/>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="KBETR"/>
+        <viewAttribute id="KONWA"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="KONP"/>
+    <filter>&quot;KSCHL&quot;='VKP0'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Non_Promo" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="VRKME"/>
+        <viewAttribute id="Date_From"/>
+        <viewAttribute id="KBETR_NonPromo"/>
+        <viewAttribute id="KONWA"/>
+      <viewAttribute hidden="true" id="JOIN$KNUMH$KNUMH"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="A073_CTypes">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VRKME" source="VRKME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Date_From" source="Date_From"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KNUMH$KNUMH" source="KNUMH"/>
+      </input>
+      <input node="VKP0_Only">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_NonPromo" source="KBETR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONWA" source="KONWA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KNUMH$KNUMH" source="KNUMH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+      </input>
+    <joinAttribute name="JOIN$KNUMH$KNUMH"/>
+    <joinAttribute name="KSCHL"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Site_Data">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="VKORG"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="T001W"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="A071_CTypes" filterExpressionLanguage="COLUMN_ENGINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KAPPL"/>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="VRKME"/>
+        <viewAttribute id="DATBI"/>
+        <viewAttribute id="DATAB"/>
+        <viewAttribute id="KNUMH"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="Current_Date" expressionLanguage="COLUMN_ENGINE">
+          <formula>now()</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Date_From" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;DATAB&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Date_To" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;DATBI&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="A071"/>
+    <filter>&quot;Current_Date&quot;&gt;=&quot;Date_From&quot; and &quot;Current_Date&quot;&lt;=&quot;Date_To&quot; and &quot;KSCHL&quot;='VKA0'and &quot;KAPPL&quot;='V' and  in(&quot;VTWEG&quot;,'20','40','60','65') and in(&quot;VKORG&quot;, '3100','7100','6100')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="VKA0_Only" filterExpressionLanguage="COLUMN_ENGINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KNUMH"/>
+        <viewAttribute id="KBETR"/>
+        <viewAttribute id="KONWA"/>
+        <viewAttribute id="KSCHL"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="VKA0_Only$$$$KONP$$"/>
+    <filter>&quot;KSCHL&quot;='VKA0'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Promo" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="VRKME"/>
+        <viewAttribute id="Date_From"/>
+        <viewAttribute id="KBETR_Promo"/>
+        <viewAttribute id="KONWA"/>
+      <viewAttribute hidden="true" id="JOIN$KNUMH$KNUMH"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DECIMAL" id="KBETR_Promo_Edited" length="11" scale="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>If(&quot;VKORG&quot;='6100', &quot;KBETR_Promo&quot;/10, &quot;KBETR_Promo&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="A071_CTypes">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VRKME" source="VRKME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Date_From" source="Date_From"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KNUMH$KNUMH" source="KNUMH"/>
+      </input>
+      <input node="VKA0_Only">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_Promo" source="KBETR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONWA" source="KONWA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KNUMH$KNUMH" source="KNUMH"/>
+      </input>
+    <joinAttribute name="KSCHL"/>
+    <joinAttribute name="JOIN$KNUMH$KNUMH"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Non_Promo_1" cardinality="C1_N" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="VRKME"/>
+        <viewAttribute id="Date_From"/>
+        <viewAttribute id="KBETR_NonPromo"/>
+        <viewAttribute id="KONWA"/>
+        <viewAttribute id="WERKS"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DECIMAL" id="KBETR_NonPromo_Edited" length="11" scale="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>If(&quot;VKORG&quot;='6100', &quot;KBETR_NonPromo&quot;/10, &quot;KBETR_NonPromo&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Non_Promo">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VRKME" source="VRKME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Date_From" source="Date_From"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_NonPromo" source="KBETR_NonPromo"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONWA" source="KONWA"/>
+      </input>
+      <input node="Site_Data">
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+      </input>
+    <joinAttribute name="VTWEG"/>
+    <joinAttribute name="VKORG"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="VRKME"/>
+        <viewAttribute id="Date_From"/>
+        <viewAttribute id="KBETR_Promo"/>
+        <viewAttribute id="KBETR_NonPromo"/>
+        <viewAttribute id="KONWA"/>
+        <viewAttribute id="KBETR_Promo_Edited"/>
+        <viewAttribute id="KBETR_NonPromo_Edited"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="Promo">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VRKME" source="VRKME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Date_From" source="Date_From"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_Promo" source="KBETR_Promo_Edited"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="KBETR_NonPromo" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONWA" source="KONWA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_Promo_Edited" source="KBETR_Promo_Edited"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="KBETR_NonPromo_Edited" null="true" value=""/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="Non_Promo_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VRKME" source="VRKME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Date_From" source="Date_From"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="KBETR_Promo" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_NonPromo" source="KBETR_NonPromo_Edited"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONWA" source="KONWA"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="KBETR_Promo_Edited" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_NonPromo_Edited" source="KBETR_NonPromo_Edited"/>
+      </input>
+    </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Site_Master">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="ZHIER_TYPE"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="Site"/>
+        <viewAttribute id="ZCUR_REG"/>
+        <viewAttribute id="Site_Region"/>
+        <viewAttribute id="ZSTORE_TYPE"/>
+        <viewAttribute id="Site_ID_Generic"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="AT_MASTER_SITE"/>
+    <filter>(&quot;ZHIER_TYPE&quot; ='REGIONAL')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="CN_1" joinType="inner">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="VRKME"/>
+        <viewAttribute id="Date_From"/>
+        <viewAttribute id="KBETR_Promo"/>
+        <viewAttribute id="KBETR_NonPromo"/>
+        <viewAttribute id="KONWA"/>
+        <viewAttribute id="ZHIER_TYPE"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="Site"/>
+        <viewAttribute id="ZCUR_REG"/>
+        <viewAttribute id="Site_Region"/>
+        <viewAttribute id="ZSTORE_TYPE"/>
+        <viewAttribute id="KBETR_Promo_Edited"/>
+        <viewAttribute id="KBETR_NonPromo_Edited"/>
+        <viewAttribute id="Site_ID_Generic"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Union_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VRKME" source="VRKME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Date_From" source="Date_From"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_Promo" source="KBETR_Promo"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_NonPromo" source="KBETR_NonPromo"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONWA" source="KONWA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_Promo_Edited" source="KBETR_Promo_Edited"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_NonPromo_Edited" source="KBETR_NonPromo_Edited"/>
+      </input>
+      <input node="Site_Master">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZHIER_TYPE" source="ZHIER_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site" source="Site"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCUR_REG" source="ZCUR_REG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Region" source="Site_Region"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZSTORE_TYPE" source="ZSTORE_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_ID_Generic" source="Site_ID_Generic"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+      </input>
+    <joinAttribute name="WERKS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="VRKME"/>
+        <viewAttribute id="Date_From"/>
+        <viewAttribute id="KBETR_Promo"/>
+        <viewAttribute id="KBETR_NonPromo"/>
+        <viewAttribute id="KONWA"/>
+        <viewAttribute id="ZHIER_TYPE"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="Site"/>
+        <viewAttribute id="ZCUR_REG"/>
+        <viewAttribute id="Site_Region"/>
+        <viewAttribute id="ZSTORE_TYPE"/>
+        <viewAttribute id="KWDHT"/>
+        <viewAttribute id="KBETR_Promo_Edited"/>
+        <viewAttribute id="KBETR_NonPromo_Edited"/>
+        <viewAttribute id="Site_ID_Generic"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VRKME" source="VRKME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Date_From" source="Date_From"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_Promo" source="KBETR_Promo"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_NonPromo" source="KBETR_NonPromo"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONWA" source="KONWA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZHIER_TYPE" source="ZHIER_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site" source="Site"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCUR_REG" source="ZCUR_REG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Region" source="Site_Region"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZSTORE_TYPE" source="ZSTORE_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_Promo_Edited" source="KBETR_Promo_Edited"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_NonPromo_Edited" source="KBETR_NonPromo_Edited"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_ID_Generic" source="Site_ID_Generic"/>
+      </input>
+      <input node="WLK2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KWDHT" source="KWDHT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+    <joinAttribute name="VKORG"/>
+    <joinAttribute name="VTWEG"/>
+    <joinAttribute name="MATNR"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="KSCHL" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Condition Type"/>
+        <keyMapping columnObjectName="Join_1" columnName="KSCHL"/>
+      </attribute>
+      <attribute id="VKORG" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Organization"/>
+        <keyMapping columnObjectName="Join_1" columnName="VKORG"/>
+      </attribute>
+      <attribute id="Dist_Chan" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Distribution Channel"/>
+        <keyMapping columnObjectName="Join_1" columnName="VTWEG"/>
+      </attribute>
+      <attribute id="WERKS" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Code"/>
+        <keyMapping columnObjectName="Join_1" columnName="WERKS"/>
+      </attribute>
+      <attribute id="VRKME" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Unit"/>
+        <keyMapping columnObjectName="Join_1" columnName="VRKME"/>
+      </attribute>
+      <attribute id="Date_From" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Date From"/>
+        <keyMapping columnObjectName="Join_1" columnName="Date_From"/>
+      </attribute>
+      <attribute id="KONWA" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Currency"/>
+        <keyMapping columnObjectName="Join_1" columnName="KONWA"/>
+      </attribute>
+      <attribute id="ZHIER_TYPE" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Hierarchy Type"/>
+        <keyMapping columnObjectName="Join_1" columnName="ZHIER_TYPE"/>
+      </attribute>
+      <attribute id="NAME1" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Description"/>
+        <keyMapping columnObjectName="Join_1" columnName="NAME1"/>
+      </attribute>
+      <attribute id="Site" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site"/>
+        <keyMapping columnObjectName="Join_1" columnName="Site"/>
+      </attribute>
+      <attribute id="ZCUR_REG" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Group"/>
+        <keyMapping columnObjectName="Join_1" columnName="ZCUR_REG"/>
+      </attribute>
+      <attribute id="Site_Region" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Region"/>
+        <keyMapping columnObjectName="Join_1" columnName="Site_Region"/>
+      </attribute>
+      <attribute id="ZSTORE_TYPE" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Store Type"/>
+        <keyMapping columnObjectName="Join_1" columnName="ZSTORE_TYPE"/>
+      </attribute>
+      <attribute id="No_Repeat_Key" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="No Repeat Key"/>
+        <keyMapping columnObjectName="Join_1" columnName="KWDHT"/>
+      </attribute>
+      <attribute id="MATNR" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MATNR"/>
+        <keyMapping columnObjectName="Join_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="RSP_Promo" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RSP Promo"/>
+        <keyMapping columnObjectName="Join_1" columnName="KBETR_Promo_Edited"/>
+      </attribute>
+      <attribute id="RSP_NonPromo" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RSP NonPromo"/>
+        <keyMapping columnObjectName="Join_1" columnName="KBETR_NonPromo_Edited"/>
+      </attribute>
+      <attribute id="Site_ID_Generic" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site ID Generic"/>
+        <keyMapping columnObjectName="Join_1" columnName="Site_ID_Generic"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Site_Article" hidden="false" order="1" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Article"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="25">
+          <formula>&quot;WERKS&quot;+'-'+&quot;Article_Code&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Article_Code" hidden="false" order="20" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="18">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Promo_RSP" order="21" aggregationType="max" measureType="simple">
+        <descriptions defaultDescription="Promo RSP"/>
+        <measureMapping columnObjectName="Join_1" columnName="KBETR_Promo_Edited"/>
+      </measure>
+      <measure id="Normal_RSP" order="22" aggregationType="max" measureType="simple">
+        <descriptions defaultDescription="Normal RSP"/>
+        <measureMapping columnObjectName="Join_1" columnName="KBETR_NonPromo_Edited"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="RSP_20" hidden="false" order="2" aggregationType="sum" measureType="simple" aggregatable="true" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="11" scale="3">
+        <descriptions defaultDescription="RSP 20"/>
+        <formula>if(&quot;Dist_Chan&quot;='20',&quot;Normal_RSP&quot;,0)</formula>
+      </measure>
+      <measure id="RSP_40" hidden="false" order="3" aggregationType="sum" measureType="simple" aggregatable="true" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="11" scale="3">
+        <descriptions defaultDescription="RSP 40"/>
+        <formula>if(&quot;Dist_Chan&quot;='40',&quot;Normal_RSP&quot;,0)</formula>
+      </measure>
+      <measure id="RSP_60" hidden="false" order="4" aggregationType="sum" measureType="simple" aggregatable="true" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="11" scale="3">
+        <descriptions defaultDescription="RSP 60"/>
+        <formula>if(&quot;Dist_Chan&quot;='60',&quot;Normal_RSP&quot;,0)</formula>
+      </measure>
+      <measure id="RSP_65" hidden="false" order="26" aggregationType="sum" measureType="simple" aggregatable="true" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="11" scale="3">
+        <descriptions defaultDescription="RSP 65"/>
+        <formula>if(&quot;Dist_Chan&quot;='65',&quot;Normal_RSP&quot;,0)</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="175" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="A073_CTypes" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="182" y="723"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="VKP0_Only" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="407" y="703"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Non_Promo" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="330" y="607"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="A073_CTypes" modelObjectNameSpace="Non_Promo" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="VKP0_Only" modelObjectNameSpace="Non_Promo" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Site_Data" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="484" y="607"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="A071_CTypes" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="607"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="VKA0_Only" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="607"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Promo" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="511"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="A071_CTypes" modelObjectNameSpace="Promo" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="VKA0_Only" modelObjectNameSpace="Promo" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Non_Promo_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="330" y="511"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Non_Promo" modelObjectNameSpace="Non_Promo_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Site_Data" modelObjectNameSpace="Non_Promo_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="252" y="395"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Site_Master" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="98" y="395"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="175" y="299"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Union_1" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Site_Master" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="175" y="203"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+    <shape modelObjectName="Join_4" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="WLK2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

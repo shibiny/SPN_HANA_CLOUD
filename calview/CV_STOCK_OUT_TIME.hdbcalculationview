@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_STOCK_OUT_TIME" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="CV_STOCK_OUT_TIME"/>
+  <metadata changedAt="2020-01-13 14:30:04.061"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="ZRET_ZERO_STOCK">
+      <resourceUri>ZRET_ZERO_STOCK</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="ERDAT"/>
+        <viewAttribute id="TIME"/>
+        <viewAttribute id="MENGE"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Article_Code" length="18" expressionLanguage="COLUMN_ENGINE">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Creation_Date" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;ERDAT&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="TIME" id="Creation_Time" expressionLanguage="COLUMN_ENGINE">
+          <formula>secondtime(&quot;TIME&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="ZRET_ZERO_STOCK"/>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Projection_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="WERKS" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site ID"/>
+        <keyMapping columnObjectName="Projection_1" columnName="WERKS"/>
+      </attribute>
+      <attribute id="Article_Code" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article_Code"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="Creation_Date" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Creation_Date"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Creation_Date"/>
+      </attribute>
+      <attribute id="Creation_Time" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Creation_Time"/>
+        <keyMapping columnObjectName="Projection_1" columnName="Creation_Time"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="MENGE" order="5" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity"/>
+        <measureMapping columnObjectName="Projection_1" columnName="MENGE"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/></shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="20" y="310"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

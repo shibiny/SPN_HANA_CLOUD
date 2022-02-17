@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_HOURLY_STOCK_TRACKER" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="CV_HOURLY_STOCK_TRACKER"/>
+  <metadata changedAt="2021-03-09 11:57:50.382"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="30"/>
+  <dataSources>
+    <DataSource id="ZTSLIM_HSTK">
+      <resourceUri>ZTSLIM_HSTK</resourceUri>
+    </DataSource>
+    <DataSource id="ZSLIM_HR_SALES">
+      <resourceUri>ZSLIM_HR_SALES</resourceUri>
+    </DataSource>
+    <DataSource id="MSEG">
+      <resourceUri>MSEG</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Stk">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="STOCK_DATE"/>
+        <viewAttribute id="ARTICLE_NUM"/>
+        <viewAttribute id="SITE_KEY"/>
+        <viewAttribute id="QTY_VLTD_UNREST_STK"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Stock_Time" length="6" expressionLanguage="COLUMN_ENGINE">
+          <formula>'030000'</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Opening_Stock_Date" expressionLanguage="COLUMN_ENGINE">
+          <formula>adddays(daydate(&quot;STOCK_DATE&quot;),1)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="ZTSLIM_HSTK"/>
+    <filter>(&quot;STOCK_DATE&quot; &gt;='20200831')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="HR_Sales">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="SALE_DATE"/>
+        <viewAttribute id="SALE_TIME"/>
+        <viewAttribute id="QTY"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="Sales_Date" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;SALE_DATE&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="ZSLIM_HR_SALES"/>
+    <filter>(&quot;SALE_DATE&quot; &gt;='20200901') AND (&quot;SALE_TIME&quot; &gt;='040000')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="BUDAT_MKPF"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="BWART"/>
+        <viewAttribute id="SHKZG"/>
+        <viewAttribute id="CPUTM_MKPF"/>
+        <viewAttribute id="MENGE"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="Posting_Date" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;BUDAT_MKPF&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Posting_Hour" length="6" expressionLanguage="COLUMN_ENGINE">
+          <formula>leftstr(&quot;CPUTM_MKPF&quot;,2)+'0000'</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DECIMAL" id="Quantity" length="13" scale="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;SHKZG&quot;='H',&quot;MENGE&quot;*-1,&quot;MENGE&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="MSEG"/>
+    <filter>(&quot;BUDAT_MKPF&quot; &gt;='20200901') AND (in (&quot;BWART&quot;,'101','102','161','162','301','302','501','502')) AND (&quot;CPUTM_MKPF&quot; &gt;='040000')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="Posting_Date"/>
+        <viewAttribute id="Posting_Hour"/>
+        <viewAttribute aggregationType="sum" id="Quantity"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+      <input node="Projection_1"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="ARTICLE_NUM"/>
+        <viewAttribute id="SITE_KEY"/>
+        <viewAttribute id="QTY_VLTD_UNREST_STK"/>
+        <viewAttribute id="Stock_Time"/>
+        <viewAttribute id="Opening_Stock_Date"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="Aggregation_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ARTICLE_NUM" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SITE_KEY" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QTY_VLTD_UNREST_STK" source="Quantity"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Stock_Time" source="Posting_Hour"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Opening_Stock_Date" source="Posting_Date"/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="HR_Sales">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ARTICLE_NUM" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SITE_KEY" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QTY_VLTD_UNREST_STK" source="QTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Stock_Time" source="SALE_TIME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Opening_Stock_Date" source="Sales_Date"/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="Stk">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ARTICLE_NUM" source="ARTICLE_NUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SITE_KEY" source="SITE_KEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="QTY_VLTD_UNREST_STK" source="QTY_VLTD_UNREST_STK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Stock_Time" source="Stock_Time"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Opening_Stock_Date" source="Opening_Stock_Date"/>
+      </input>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Union_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="ARTICLE_NUM" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ARTICLE_NUM"/>
+        <keyMapping columnObjectName="Union_1" columnName="ARTICLE_NUM"/>
+      </attribute>
+      <attribute id="SITE_KEY" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SITE_KEY"/>
+        <keyMapping columnObjectName="Union_1" columnName="SITE_KEY"/>
+      </attribute>
+      <attribute id="Stock_Time" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Stock_Time"/>
+        <keyMapping columnObjectName="Union_1" columnName="Stock_Time"/>
+      </attribute>
+      <attribute id="Opening_Stock_Date" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Opening_Stock_Date"/>
+        <keyMapping columnObjectName="Union_1" columnName="Opening_Stock_Date"/>
+      </attribute>
+      <attribute id="ARTICLE_NUM$local">
+        <descriptions defaultDescription="ARTICLE_NUM"/>
+        <keyMapping columnObjectName="Union_1" columnName="ARTICLE_NUM"/>
+      </attribute>
+      <attribute id="SITE_KEY$local">
+        <descriptions defaultDescription="SITE_KEY"/>
+        <keyMapping columnObjectName="Union_1" columnName="SITE_KEY"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="QTY_VLTD_UNREST_STK" order="3" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="QTY_VLTD_UNREST_STK"/>
+        <measureMapping columnObjectName="Union_1" columnName="QTY_VLTD_UNREST_STK"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>ARTICLE_NUM$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_SITE">
+        <attributes>
+          <attributeRef>SITE_KEY$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE_SITE">
+        <attributes>
+          <attributeRef>ARTICLE_NUM$local</attributeRef>
+          <attributeRef>SITE_KEY$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_MATNR" attributeName="MATNR"/>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_WERKS" attributeName="WERKS"/>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_Article_Code" attributeName="Article_Code"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="176" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Stk" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="330" y="373"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="HR_Sales" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="373"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="451"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="373"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="239"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape modelObjectName="Union_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="394" y="672"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="807" y="16"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="240"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="1224" y="30"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

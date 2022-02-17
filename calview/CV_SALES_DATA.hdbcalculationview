@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_SALES_DATA" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Calculation View on Sales from S121"/>
+  <metadata changedAt="2020-12-07 12:24:11.806"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="S121">
+      <resourceUri>S121</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="SPTAG"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="AKTNR"/>
+        <viewAttribute id="BASME"/>
+        <viewAttribute id="WAERK"/>
+        <viewAttribute aggregationType="sum" id="UMSMNG"/>
+        <viewAttribute aggregationType="sum" id="UMSGVP"/>
+        <viewAttribute aggregationType="sum" id="UMSGVO"/>
+        <viewAttribute aggregationType="sum" id="UMSGEO"/>
+        <viewAttribute aggregationType="sum" id="PRSNLS"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+      <input node="S121"/>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Aggregation_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="Site_ID" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site_ID"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="WERKS"/>
+      </attribute>
+      <attribute id="Promotion_Number" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Promotion Number"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="AKTNR"/>
+      </attribute>
+      <attribute id="Base_Unit_Sales" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Base Unit From Sales"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="BASME"/>
+      </attribute>
+      <attribute id="Currency" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Currency"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="WAERK"/>
+      </attribute>
+      <attribute id="MATNR$local">
+        <keyMapping columnObjectName="Aggregation_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="SPTAG$local">
+        <keyMapping columnObjectName="Aggregation_1" columnName="SPTAG"/>
+      </attribute>
+      <attribute id="WERKS$local">
+        <keyMapping columnObjectName="Aggregation_1" columnName="WERKS"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Sales_Qty" order="5" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Sales Quantity"/>
+        <measureMapping columnObjectName="Aggregation_1" columnName="UMSMNG"/>
+      </measure>
+      <measure id="Sales_Value_Incl_VAT" order="6" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Sales Value Incl VAT"/>
+        <measureMapping columnObjectName="Aggregation_1" columnName="UMSGVP"/>
+      </measure>
+      <measure id="Sales_Value" order="7" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Sales Value"/>
+        <measureMapping columnObjectName="Aggregation_1" columnName="UMSGVO"/>
+      </measure>
+      <measure id="Sales_Cost" order="8" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Sales Cost"/>
+        <measureMapping columnObjectName="Aggregation_1" columnName="UMSGEO"/>
+      </measure>
+      <measure id="Price_Reduction" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Price Reduction"/>
+        <measureMapping columnObjectName="Aggregation_1" columnName="PRSNLS"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_TIME">
+        <attributes>
+          <attributeRef>SPTAG$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE_SAP</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE_SITE">
+        <attributes>
+          <attributeRef>WERKS$local</attributeRef>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_MATNR" attributeName="MATNR"/>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_Article_Code" attributeName="Article_Code"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_SITE">
+        <attributes>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_SITE_WERKS" attributeName="WERKS"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="257"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape modelObjectName="Aggregation_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="447" y="848"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="208"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_TIME" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="701" y="16"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="701" y="417"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="701" y="898"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

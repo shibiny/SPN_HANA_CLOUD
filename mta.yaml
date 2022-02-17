@@ -1,0 +1,51 @@
+_schema-version: "2.1"
+ID: Spinneys
+version: 0.0.1
+description: "Spinney's HC"
+modules:
+ - name: db
+   type: hdb
+   path: db
+   requires:
+    - name: hdi_db
+      properties:
+          TARGET_CONTAINER: ~{hdi-container-name}
+    - name: remote-grant-service
+
+ - name: jobs
+   type: nodejs
+   path: jobs
+   provides:
+     - name: jobs_api
+       properties:
+         url: '${default-url}'
+   requires:
+     - name: hdi_db
+     - name: myjobxsjs-uaa
+     - name: jobScheduler
+   properties:
+      SAP_JWT_TRUST_ACL: '[{"clientid":"*","identityzone":"*"}]'
+
+resources:
+ - name: hdi_db
+   parameters:
+      service-name: HDI_ERP_PROD_DATA_MODELING
+      config:
+         schema: ERP_PROD_DATA_MODELING
+         makeUniqueName: false
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
+ - name: remote-grant-service
+   type: org.cloudfoundry.existing-service
+   parameters:
+     service-name: remote-grant-service
+ - name: jobScheduler
+   type: com.sap.xs.job-scheduler
+   parameters:
+     service-plan: standard
+ - name: myjobxsjs-uaa
+   type: com.sap.xs.uaa-space
+
+   
+  

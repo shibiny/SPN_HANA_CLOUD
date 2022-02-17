@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_R_CONSIGNMENT_ARTICLES" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View to identify Consignment Articles"/>
+  <metadata changedAt="2021-06-28 18:36:53.704"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="EINE">
+      <resourceUri>EINE</resourceUri>
+    </DataSource>
+    <DataSource id="EINA">
+      <resourceUri>EINA</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="ESOKZ"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="INFNR"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="EINE"/>
+    <filter>(&quot;WERKS&quot; ='') AND (&quot;ESOKZ&quot; ='2')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="INFNR"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="LIFNR"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="EINA"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="referential">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="EKORG"/>
+      <viewAttribute hidden="true" id="JOIN$INFNR$INFNR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$INFNR$INFNR" source="INFNR"/>
+      </input>
+      <input node="Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$INFNR$INFNR" source="INFNR"/>
+      </input>
+    <joinAttribute name="JOIN$INFNR$INFNR"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="EKORG" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EKORG"/>
+        <keyMapping columnObjectName="Join_1" columnName="EKORG"/>
+      </attribute>
+      <attribute id="LIFNR" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LIFNR"/>
+        <keyMapping columnObjectName="Join_1" columnName="LIFNR"/>
+      </attribute>
+      <attribute id="MATNR$local">
+        <descriptions defaultDescription="MATNR"/>
+        <keyMapping columnObjectName="Join_1" columnName="MATNR"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures>
+      <measure id="Article_Count" hidden="false" order="3" aggregationType="sum" measureType="simple" aggregatable="true" calculatedMeasureType="counter" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Article Count"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="Article_Code" dimensionUri="AT_MASTER_ARTICLE"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/></shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="299"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="299"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="203"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="Join_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="147" y="244"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="534" y="30"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

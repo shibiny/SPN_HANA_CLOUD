@@ -1,0 +1,1421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" schemaVersion="3.0" id="CV_MOVEMENTS_VIEW_V01" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View Based on Material Documents and Movement Types"/>
+  <metadata changedAt="2021-05-19 14:48:53.332"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="MSEG">
+      <resourceUri>MSEG</resourceUri>
+    </DataSource>
+    <DataSource id="MKPF">
+      <resourceUri>MKPF</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Filtered_MSEG">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MBLNR"/>
+        <viewAttribute id="MJAHR"/>
+        <viewAttribute id="BWART"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="LGORT"/>
+        <viewAttribute id="CHARG"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="SHKZG"/>
+        <viewAttribute id="WAERS"/>
+        <viewAttribute id="DMBTR"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="ERFMG"/>
+        <viewAttribute id="ERFME"/>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="LFBNR"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="VKWRT"/>
+        <viewAttribute id="VFDAT"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="MSEG"/>
+    <filter>(in (&quot;BWART&quot;,'201','202','251','252','601','602','701','702','711','712','X07','X08','X09','X10','X13','X14','X15','X16','Z03','Z04','X20','X21','641','642','161','162','101','102','501','502','641','642','643','644','261','262','301','302','303','304','305','306','X27','X28'))</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Mat_Documents" cardinality="C1_N" joinType="referential">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MBLNR"/>
+        <viewAttribute id="MJAHR"/>
+        <viewAttribute id="BLDAT"/>
+        <viewAttribute id="BUDAT"/>
+        <viewAttribute id="USNAM"/>
+        <viewAttribute id="XBLNR"/>
+        <viewAttribute id="BKTXT"/>
+        <viewAttribute id="LE_VBELN"/>
+        <viewAttribute id="SPE_MDNUM_EWM"/>
+        <viewAttribute id="GTS_CUSREF_NO"/>
+        <viewAttribute id="BWART"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="LGORT"/>
+        <viewAttribute id="CHARG"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="SHKZG"/>
+        <viewAttribute id="WAERS"/>
+        <viewAttribute id="DMBTR"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="ERFMG"/>
+        <viewAttribute id="ERFME"/>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="LFBNR"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="VKWRT"/>
+        <viewAttribute id="VFDAT"/>
+        <viewAttribute id="CPUTM"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="MKPF">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MBLNR" source="MBLNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MJAHR" source="MJAHR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BLDAT" source="BLDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUDAT" source="BUDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="USNAM" source="USNAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="XBLNR" source="XBLNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BKTXT" source="BKTXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LE_VBELN" source="LE_VBELN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SPE_MDNUM_EWM" source="SPE_MDNUM_EWM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GTS_CUSREF_NO" source="GTS_CUSREF_NO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CPUTM" source="CPUTM"/>
+      </input>
+      <input node="Filtered_MSEG">
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWART" source="BWART"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LGORT" source="LGORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CHARG" source="CHARG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SHKZG" source="SHKZG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WAERS" source="WAERS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DMBTR" source="DMBTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MENGE" source="MENGE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ERFMG" source="ERFMG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ERFME" source="ERFME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELN" source="EBELN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LFBNR" source="LFBNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKWRT" source="VKWRT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VFDAT" source="VFDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MBLNR" source="MBLNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MJAHR" source="MJAHR"/>
+      </input>
+    <joinAttribute name="MBLNR"/>
+    <joinAttribute name="MJAHR"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Mat_Documents">
+    <descriptions/>
+    <attributes>
+      <attribute id="MBLNR" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Material Document Number"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="MBLNR"/>
+      </attribute>
+      <attribute id="MJAHR" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Material Document Year"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="MJAHR"/>
+      </attribute>
+      <attribute id="BLDAT" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Document Date"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="BLDAT"/>
+      </attribute>
+      <attribute id="USNAM" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="User Name"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="USNAM"/>
+      </attribute>
+      <attribute id="XBLNR" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Reference Document Number"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="XBLNR"/>
+      </attribute>
+      <attribute id="BKTXT" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Document Header Text"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="BKTXT"/>
+      </attribute>
+      <attribute id="LE_VBELN" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Delivery Document Number"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="LE_VBELN"/>
+      </attribute>
+      <attribute id="SPE_MDNUM_EWM" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Material Document in EWM"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="SPE_MDNUM_EWM"/>
+      </attribute>
+      <attribute id="GTS_CUSREF_NO" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GTS_CUSREF_NO"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="GTS_CUSREF_NO"/>
+      </attribute>
+      <attribute id="BWART" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Movement Type"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="BWART"/>
+      </attribute>
+      <attribute id="LGORT" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Storage Location"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="LGORT"/>
+      </attribute>
+      <attribute id="CHARG" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Batch Number"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="CHARG"/>
+      </attribute>
+      <attribute id="LIFNR" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor Number"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="LIFNR"/>
+      </attribute>
+      <attribute id="SHKZG" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Credit/Debit Indicator"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="SHKZG"/>
+      </attribute>
+      <attribute id="WAERS" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Currency"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="WAERS"/>
+      </attribute>
+      <attribute id="MEINS" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Base Unit Of Measure"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="MEINS"/>
+      </attribute>
+      <attribute id="ERFME" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Unit Of Entry"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="ERFME"/>
+      </attribute>
+      <attribute id="EBELN" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PO Number"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="EBELN"/>
+      </attribute>
+      <attribute id="LFBNR" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LFBNR"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="LFBNR"/>
+      </attribute>
+      <attribute id="BUKRS" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Company Code"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="BUKRS"/>
+      </attribute>
+      <attribute id="VFDAT" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Shelf Life Expiration"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="VFDAT"/>
+      </attribute>
+      <attribute id="CPUTM" order="132" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Time of Entry"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="CPUTM"/>
+      </attribute>
+      <attribute id="BUDAT" order="174" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BUDAT"/>
+        <keyMapping columnObjectName="Mat_Documents" columnName="BUDAT"/>
+      </attribute>
+      <attribute id="MATNR$local">
+        <keyMapping columnObjectName="Mat_Documents" columnName="MATNR"/>
+      </attribute>
+      <attribute id="WERKS$local">
+        <keyMapping columnObjectName="Mat_Documents" columnName="WERKS"/>
+      </attribute>
+      <attribute id="BUDAT$local">
+        <keyMapping columnObjectName="Mat_Documents" columnName="BUDAT"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Last_1_Date" hidden="false" order="26" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Yesterday Date"/>
+        <keyCalculation datatype="DATE" expressionLanguage="COLUMN_ENGINE">
+          <formula>adddays(now(),-1)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Last_7_Date" hidden="false" order="27" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last 7 Day&apos;s Date"/>
+        <keyCalculation datatype="DATE" expressionLanguage="COLUMN_ENGINE">
+          <formula>adddays(now(),-7)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Last_30_Date" hidden="false" order="28" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last 30 Day&apos;s Date"/>
+        <keyCalculation datatype="DATE" expressionLanguage="COLUMN_ENGINE">
+          <formula>adddays(now(),-30)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Last_90_Date" hidden="false" order="29" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last 90 Day&apos;s Date"/>
+        <keyCalculation datatype="DATE" expressionLanguage="COLUMN_ENGINE">
+          <formula>adddays(now(),-90)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Adjusted_Date" hidden="false" order="30" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Adjusted Date (7-7)"/>
+        <keyCalculation datatype="DATE" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;CPUTM&quot;&gt;='000000' AND &quot;CPUTM&quot;&lt;'070000' , adddays(&quot;DATE&quot;,-1), &quot;DATE&quot;)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Online_Channel" hidden="false" order="31" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Online Channel"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="10">
+          <formula>If(Match(leftstr(&quot;BKTXT&quot;,11),'POS/****/IN'),'InstaShop',If(Match(leftstr(&quot;BKTXT&quot;,13),'POS/****/NOON') OR Match(leftstr(&quot;BKTXT&quot;,13),'POS/****/NNOW'),'NOON', If(Match(leftstr(&quot;BKTXT&quot;,11),'POS/****/EC'),'Spinneys','In-Store')))
+</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Online_Indicator" hidden="false" order="32" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Online Indicator"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="10">
+          <formula>If(Match(leftstr(&quot;BKTXT&quot;,11),'POS/****/IN') OR Match(leftstr(&quot;BKTXT&quot;,13),'POS/****/NOON') OR Match(leftstr(&quot;BKTXT&quot;,13),'POS/****/NNOW') OR Match(leftstr(&quot;BKTXT&quot;,11),'POS/****/EC'),'Online','In-Store')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="DMBTR" order="16" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Cost"/>
+        <measureMapping columnObjectName="Mat_Documents" columnName="DMBTR"/>
+      </measure>
+      <measure id="MENGE" order="17" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Quantity in Base Unit"/>
+        <measureMapping columnObjectName="Mat_Documents" columnName="MENGE"/>
+      </measure>
+      <measure id="ERFMG" order="19" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Quantity in Unit of Entry"/>
+        <measureMapping columnObjectName="Mat_Documents" columnName="ERFMG"/>
+      </measure>
+      <measure id="VKWRT" order="24" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Value at Sales"/>
+        <measureMapping columnObjectName="Mat_Documents" columnName="VKWRT"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="Claims_Cost" hidden="false" order="91" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Claims Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_CLAIMS&quot;*-1,&quot;COST_CLAIMS&quot;)</formula>
+      
+        </measure>
+      <measure id="Claims_Quantity" hidden="false" order="92" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Claims Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_CLAIMS&quot;*-1,&quot;QTY_CLAIMS&quot;)</formula>
+      
+        </measure>
+      <measure id="IDT_Cost" hidden="false" order="93" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="IDT Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_IDT&quot;*-1,&quot;COST_IDT&quot;)</formula>
+      
+        </measure>
+      <measure id="IDT_Quantity" hidden="false" order="94" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="IDT Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_IDT&quot;*-1,&quot;QTY_IDT&quot;)</formula>
+      
+        </measure>
+      <measure id="IDT_Waste_Cost" hidden="false" order="95" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="IDT Waste Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_IDT_WASTE&quot;*-1,&quot;COST_IDT_WASTE&quot;)</formula>
+      
+        </measure>
+      <measure id="IDT_Waste_Quantity" hidden="false" order="96" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="IDT Waste Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_IDT_WASTE&quot;*-1,&quot;QTY_IDT_WASTE&quot;)</formula>
+      
+        </measure>
+      <measure id="Quality_Inspection_Cost" hidden="false" order="97" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Quality Inspection Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_QUALITY_INSPECTION&quot;*-1,&quot;COST_QUALITY_INSPECTION&quot;)</formula>
+      
+        </measure>
+      <measure id="Quality_Inspection_Quantity" hidden="false" order="98" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Quality Inspection Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_QUALITY_INSPECTION&quot;*-1,&quot;QTY_QUALITY_INSPECTION&quot;)</formula>
+      
+        </measure>
+      <measure id="Quantity" hidden="false" order="99" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;MENGE&quot;*-1,&quot;MENGE&quot;)</formula>
+      
+        </measure>
+      <measure id="Returns_Only_Quantity" hidden="false" order="100" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Returns Only Quantity"/>
+        <formula>&quot;QTY_SALES_252&quot;</formula>
+      
+        </measure>
+      <measure id="Returns_Only_Value" hidden="false" order="101" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Returns Only Value"/>
+        <formula>&quot;VALUE_SALES_252&quot;</formula>
+      
+        </measure>
+      <measure id="Returns_Only_Value_Excl_VAT" hidden="false" order="102" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Returns Only Value Excl VAT"/>
+        <formula>if(&quot;Country&quot;='OM', if(&quot;DATE_SAP&quot;&gt;'20210415', if(&quot;TAXM1&quot;='2', (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_252&quot;*-1,&quot;VALUE_SALES_252&quot;))*9.531/10/1.05, (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_252&quot;*-1,&quot;VALUE_SALES_252&quot;))*9.531/10), (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_252&quot;*-1,&quot;VALUE_SALES_252&quot;))*9.531/10), 
+if(&quot;Country&quot;='AE', if(&quot;DATE_SAP&quot;&gt;'20180703' and &quot;DATE_SAP&quot;&lt;'20180924', if(&quot;TAXM1&quot;='2', (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_252&quot;*-1,&quot;VALUE_SALES_252&quot;))/1.05/1.0476, (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_252&quot;*-1,&quot;VALUE_SALES_252&quot;))), if(&quot;DATE_SAP&quot;&gt;'20180923', if(&quot;TAXM1&quot;='2', (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_252&quot;*-1,&quot;VALUE_SALES_252&quot;))/1.05, (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_252&quot;*-1,&quot;VALUE_SALES_252&quot;))), (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_252&quot;*-1,&quot;VALUE_SALES_252&quot;)))), (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_252&quot;*-1,&quot;VALUE_SALES_252&quot;))))</formula>
+      
+        </measure>
+      <measure id="Sales_Only_Quantity" hidden="false" order="103" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Sales Only Quantity"/>
+        <formula>&quot;QTY_SALES_251&quot;</formula>
+      
+        </measure>
+      <measure id="Sales_Only_Value" hidden="false" order="104" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Sales Only Value"/>
+        <formula>&quot;VALUE_SALES_251&quot;</formula>
+      
+        </measure>
+      <measure id="Sales_Only_Value_Excl_VAT" hidden="false" order="105" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Sales Only Value Excl VAT"/>
+        <formula>if(&quot;Country&quot;='OM', if(&quot;DATE_SAP&quot;&gt;'20210415', if(&quot;TAXM1&quot;='2', (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_251&quot;*-1,&quot;VALUE_SALES_251&quot;))*9.531/10/1.05, (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_251&quot;*-1,&quot;VALUE_SALES_251&quot;))*9.531/10), (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_251&quot;*-1,&quot;VALUE_SALES_251&quot;))*9.531/10), 
+if(&quot;Country&quot;='AE', if(&quot;DATE_SAP&quot;&gt;'20180703' and &quot;DATE_SAP&quot;&lt;'20180924', if(&quot;TAXM1&quot;='2', (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_251&quot;*-1,&quot;VALUE_SALES_251&quot;))/1.05/1.0476, (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_251&quot;*-1,&quot;VALUE_SALES_251&quot;))), if(&quot;DATE_SAP&quot;&gt;'20180923', if(&quot;TAXM1&quot;='2', (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_251&quot;*-1,&quot;VALUE_SALES_251&quot;))/1.05, (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_251&quot;*-1,&quot;VALUE_SALES_251&quot;))), (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_251&quot;*-1,&quot;VALUE_SALES_251&quot;)))), (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_251&quot;*-1,&quot;VALUE_SALES_251&quot;))))</formula>
+      
+        </measure>
+      <measure id="RTS_Cost" hidden="false" order="106" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="RTS Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_RTS&quot;*-1,&quot;COST_RTS&quot;)</formula>
+      
+        </measure>
+      <measure id="RTS_Quantity" hidden="false" order="107" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="RTS Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_RTS&quot;*-1,&quot;QTY_RTS&quot;)</formula>
+      
+        </measure>
+      <measure id="Sales_Order_Cost" hidden="false" order="108" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Sales Order Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_SALES_ORDER&quot;*-1,&quot;COST_SALES_ORDER&quot;)</formula>
+      
+        </measure>
+      <measure id="Sales_Order_Quantity" hidden="false" order="109" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Sales Order Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_SALES_ORDER&quot;*-1,&quot;QTY_SALES_ORDER&quot;)</formula>
+      
+        </measure>
+      <measure id="Sales_Order_Value" hidden="false" order="110" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Sales Order Value"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES_ORDER&quot;*-1,&quot;VALUE_SALES_ORDER&quot;)</formula>
+      
+        </measure>
+      <measure id="Sales_Cost" hidden="false" order="111" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Sales Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_SALES&quot;*-1,&quot;COST_SALES&quot;)</formula>
+      
+        </measure>
+      <measure id="Sales_Quantity" hidden="false" order="112" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Sales Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_SALES&quot;*-1,&quot;QTY_SALES&quot;)</formula>
+      
+        </measure>
+      <measure id="Sales_Value" hidden="false" order="113" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Sales Value"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES&quot;*-1,&quot;VALUE_SALES&quot;)</formula>
+      
+        </measure>
+      <measure id="Sales_Value_Excl_VAT" hidden="false" order="114" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="4">
+        <descriptions defaultDescription="Sales Value Excl VAT"/>
+        <formula>if(&quot;Country&quot;='OM', if(&quot;DATE_SAP&quot;&gt;'20210415', if(&quot;TAXM1&quot;='2', (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES&quot;*-1,&quot;VALUE_SALES&quot;))*9.531/10/1.05, (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES&quot;*-1,&quot;VALUE_SALES&quot;))*9.531/10), (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES&quot;*-1,&quot;VALUE_SALES&quot;))*9.531/10), 
+if(&quot;Country&quot;='AE', if(&quot;DATE_SAP&quot;&gt;'20180703' and &quot;DATE_SAP&quot;&lt;'20180924', if(&quot;TAXM1&quot;='2', (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES&quot;*-1,&quot;VALUE_SALES&quot;))/1.05/1.0476, (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES&quot;*-1,&quot;VALUE_SALES&quot;))), if(&quot;DATE_SAP&quot;&gt;'20180923', if(&quot;TAXM1&quot;='2', (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES&quot;*-1,&quot;VALUE_SALES&quot;))/1.05, (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES&quot;*-1,&quot;VALUE_SALES&quot;))), (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES&quot;*-1,&quot;VALUE_SALES&quot;)))), (if(&quot;SHKZG&quot;='S',&quot;VALUE_SALES&quot;*-1,&quot;VALUE_SALES&quot;))))</formula>
+      
+        </measure>
+      <measure id="Sampling_Cost" hidden="false" order="115" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Sampling Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_SAMPLING&quot;*-1,&quot;COST_SAMPLING&quot;)</formula>
+      
+        </measure>
+      <measure id="Sampling_Quantity" hidden="false" order="116" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Sampling Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_SAMPLING&quot;*-1,&quot;QTY_SAMPLING&quot;)</formula>
+      
+        </measure>
+      <measure id="ShopUse_Cost" hidden="false" order="117" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="ShopUse Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_SHOPUSE&quot;*-1,&quot;COST_SHOPUSE&quot;)</formula>
+      
+        </measure>
+      <measure id="ShopUse_Quantity" hidden="false" order="118" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="ShopUse Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_SHOPUSE&quot;*-1,&quot;QTY_SHOPUSE&quot;)</formula>
+      
+        </measure>
+      <measure id="Shrinkage_DC_Cost" hidden="false" order="119" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Shrinkage DC Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_SHRINKAGE_DC&quot;*-1,&quot;COST_SHRINKAGE_DC&quot;)</formula>
+      
+        </measure>
+      <measure id="Shrinkage_DC_Quantity" hidden="false" order="120" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Shrinkage DC Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_SHRINKAGE_DC&quot;*-1,&quot;QTY_SHRINKAGE_DC&quot;)</formula>
+      
+        </measure>
+      <measure id="Shrinkage_Site_Cost" hidden="false" order="121" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Shrinkage Site Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_SHRINKAGE_SITE&quot;*-1,&quot;COST_SHRINKAGE_SITE&quot;)</formula>
+      
+        </measure>
+      <measure id="Shrinkage_Site_Quantity" hidden="false" order="122" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Shrinkage Site Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_SHRINKAGE_SITE&quot;*-1,&quot;QTY_SHRINKAGE_SITE&quot;)</formula>
+      
+        </measure>
+      <measure id="Wastage_Cost" hidden="false" order="123" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Wastage Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_WASTAGE&quot;*-1,&quot;COST_WASTAGE&quot;)</formula>
+      
+        </measure>
+      <measure id="Wastage_Quantity" hidden="false" order="124" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Wastage Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_WASTAGE&quot;*-1,&quot;QTY_WASTAGE&quot;)</formula>
+      
+        </measure>
+      <measure id="Trim_Waste_Cost" hidden="false" order="125" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Trim Waste Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_TRIM_WASTE&quot;*-1,&quot;COST_TRIM_WASTE&quot;)</formula>
+      
+        </measure>
+      <measure id="Trim_Waste_Quantity" hidden="false" order="126" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Trim Waste Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_TRIM_WASTE&quot;*-1,&quot;QTY_TRIM_WASTE&quot;)</formula>
+      
+        </measure>
+      <measure id="Total_Waste_Cost" hidden="false" order="127" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Total Waste Cost"/>
+        <formula>&quot;IDT_Waste_Cost&quot;+&quot;Trim_Waste_Cost&quot;+&quot;Wastage_Cost&quot;</formula>
+      
+        </measure>
+      <measure id="Total_Waste_Quantity" hidden="false" order="128" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Total Waste Quantity"/>
+        <formula>&quot;IDT_Waste_Quantity&quot;+&quot;Trim_Waste_Quantity&quot;+&quot;Wastage_Quantity&quot;</formula>
+      
+        </measure>
+      <measure id="Out_DPU_Cost" hidden="false" order="129" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Out DPU Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_OUT_PROD_UNITS&quot;*-1,&quot;COST_OUT_PROD_UNITS&quot;)</formula>
+      
+        </measure>
+      <measure id="Out_DPU_Quantity" hidden="false" order="130" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Out DPU Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_OUT_PROD_UNITS&quot;*-1,&quot;QTY_OUT_PROD_UNITS&quot;)</formula>
+      
+        </measure>
+      <measure id="Out_DPU_Value" hidden="false" order="131" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Out DPU Value"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;VALUE_OUT_PROD_UNITS&quot;*-1,&quot;VALUE_OUT_PROD_UNITS&quot;)</formula>
+      
+        </measure>
+      <measure id="Consumption_BOM_Cost" hidden="false" order="133" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Consumption BOM Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_BOM_CONSUMPTION&quot;*-1,&quot;COST_BOM_CONSUMPTION&quot;)</formula>
+      
+        </measure>
+      <measure id="Consumption_BOM_Quantity" hidden="false" order="134" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Consumption BOM Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_BOM_CONSUMPTION&quot;*-1,&quot;QTY_BOM_CONSUMPTION&quot;)</formula>
+      
+        </measure>
+      <measure id="WH_Free_Stock_Cost" hidden="false" order="135" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="WH Free Stock Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_FREE_STOCK&quot;,&quot;COST_FREE_STOCK&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="WH_Free_Stock_Quantity" hidden="false" order="136" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="WH Free Stock Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_FREE_STOCK&quot;,&quot;QTY_FREE_STOCK&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="WH_Free_Stock_Value" hidden="false" order="137" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="WH Free Stock Value"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;VALUE_FREE_STOCK&quot;,&quot;VALUE_FREE_STOCK&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="WH_GR_Cost" hidden="false" order="138" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="WH GR Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_GR&quot;,&quot;COST_GR&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="WH_GR_Quantity" hidden="false" order="139" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="WH GR Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_GR&quot;,&quot;QTY_GR&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="WH_GR_Value" hidden="false" order="140" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="WH GR Value"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;VALUE_GR&quot;,&quot;VALUE_GR&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="WH_Issue_Inter_Cost" hidden="false" order="141" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="WH Issue Inter Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_ISSUE_INTER&quot;*-1,&quot;COST_ISSUE_INTER&quot;)</formula>
+      
+        </measure>
+      <measure id="WH_Issue_Inter_Quantity" hidden="false" order="142" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="WH Issue Inter Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_ISSUE_INTER&quot;*-1,&quot;QTY_ISSUE_INTER&quot;)</formula>
+      
+        </measure>
+      <measure id="WH_Issue_Within_Cost" hidden="false" order="143" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="WH Issue Within Cost"/>
+        <formula>&quot;COST_ISSUE_WITHIN_641H&quot; - &quot;COST_ISSUE_WITHIN_642S&quot;</formula>
+      
+        </measure>
+      <measure id="WH_Issue_Within_Quantity" hidden="false" order="144" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="WH Issue Within Quantity"/>
+        <formula>&quot;QTY_ISSUE_WITHIN_641H&quot; - &quot;QTY_ISSUE_WITHIN_642S&quot;</formula>
+      
+        </measure>
+      <measure id="WH_Total_Issues_Cost" hidden="false" order="145" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="WH Total Issues Cost"/>
+        <formula>&quot;WH_Issue_Within_Cost&quot; + &quot;WH_Issue_Inter_Cost&quot;</formula>
+      
+        </measure>
+      <measure id="WH_Total_Issues_Quantity" hidden="false" order="146" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="WH Total Issues Quantity"/>
+        <formula>&quot;WH_Issue_Within_Quantity&quot; + &quot;WH_Issue_Inter_Quantity&quot;</formula>
+      
+        </measure>
+      <measure id="WH_Total_Reciept_Cost" hidden="false" order="147" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="WH Total Reciept Cost"/>
+        <formula>&quot;WH_GR_Cost&quot; +&quot;WH_Free_Stock_Cost&quot;</formula>
+      
+        </measure>
+      <measure id="WH_Total_Reciept_Quantity" hidden="false" order="148" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="WH Total Reciept Quantity"/>
+        <formula>&quot;WH_GR_Quantity&quot; +&quot;WH_Free_Stock_Quantity&quot;</formula>
+      
+        </measure>
+      <measure id="WH_Received_Cost" hidden="false" order="149" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="WH Received Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_RECEIVED_BY_WH&quot;,&quot;COST_RECEIVED_BY_WH&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="WH_Received_Quantity" hidden="false" order="150" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="WH Received Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_RECEIVED_BY_WH&quot;,&quot;QTY_RECEIVED_BY_WH&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="WH_Received_Value" hidden="false" order="151" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="WH Received Value"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;VALUE_RECEIVED_BY_WH&quot;,&quot;VALUE_RECEIVED_BY_WH&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="STS_Cost" hidden="false" order="152" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="STS Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_STS&quot;,&quot;COST_STS&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="STS_Quantity" hidden="false" order="153" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="STS Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_STS&quot;,&quot;QTY_STS&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="STS_Value" hidden="false" order="154" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="STS Value"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;VALUE_STS&quot;,&quot;VALUE_STS&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="STW_Cost" hidden="false" order="155" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="STW Cost"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;COST_STW&quot;,&quot;COST_STW&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="STW_Quantity" hidden="false" order="156" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="STW Quantity"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;QTY_STW&quot;,&quot;QTY_STW&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="STW_Value" hidden="false" order="157" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="STW Value"/>
+        <formula>if(&quot;SHKZG&quot;='S',&quot;VALUE_STW&quot;,&quot;VALUE_STW&quot;*-1)</formula>
+      
+        </measure>
+      <measure id="Yesterday_Sales_Value" hidden="false" order="158" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Yesterday Sales Value"/>
+        <formula>If(&quot;DATE&quot;=&quot;Last_1_Date&quot;,&quot;Sales_Value_Excl_VAT&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Last_7_Days_Sales_Value" hidden="false" order="159" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Last 7 Days Sales Value"/>
+        <formula>If(&quot;DATE&quot;&gt;=&quot;Last_7_Date&quot; and &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;Sales_Value_Excl_VAT&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Last_30_Days_Sales_Value" hidden="false" order="160" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Last 30 Days Sales Value"/>
+        <formula>If(&quot;DATE&quot;&gt;=&quot;Last_30_Date&quot; and &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;Sales_Value_Excl_VAT&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Last_90_Days_Sales_Value" hidden="false" order="161" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Last 90 Days Sales Value"/>
+        <formula>If(&quot;DATE&quot;&gt;=&quot;Last_90_Date&quot; and &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;Sales_Value_Excl_VAT&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Yesterday_Sales_Cost" hidden="false" order="162" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Yesterday Sales Cost"/>
+        <formula>If(&quot;DATE&quot;=&quot;Last_1_Date&quot;,&quot;Sales_Cost&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Last_7_Days_Sales_Cost" hidden="false" order="163" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Last 7 Days Sales Cost"/>
+        <formula>If(&quot;DATE&quot;&gt;=&quot;Last_7_Date&quot; and &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;Sales_Cost&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Last_30_Days_Sales_Cost" hidden="false" order="164" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Last 30 Days Sales Cost"/>
+        <formula>If(&quot;DATE&quot;&gt;=&quot;Last_30_Date&quot; and &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;Sales_Cost&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Last_90_Days_Sales_Cost" hidden="false" order="165" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Last 90 Days Sales Cost"/>
+        <formula>If(&quot;DATE&quot;&gt;=&quot;Last_90_Date&quot; and &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;Sales_Cost&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Yesterday_Sales_Quantity" hidden="false" order="166" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Yesterday Sales Quantity"/>
+        <formula>If(&quot;DATE&quot;=&quot;Last_1_Date&quot;,&quot;Sales_Quantity&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Last_7_Days_Sales_Quantity" hidden="false" order="167" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Last 7 Days Sales Quantity"/>
+        <formula>If(&quot;DATE&quot;&gt;=&quot;Last_7_Date&quot; and &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;Sales_Quantity&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Last_30_Days_Sales_Quantity" hidden="false" order="168" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Last 30 Days Sales Quantity"/>
+        <formula>If(&quot;DATE&quot;&gt;=&quot;Last_30_Date&quot; and &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;Sales_Quantity&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Last_90_Days_Sales_Quantity" hidden="false" order="169" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Last 90 Days Sales Quantity"/>
+        <formula>If(&quot;DATE&quot;&gt;=&quot;Last_90_Date&quot; and &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;Sales_Quantity&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Yesterday_Wastage_Cost" hidden="false" order="170" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Yesterday Wastage Cost"/>
+        <formula>If(&quot;DATE&quot;=&quot;Last_1_Date&quot;,&quot;Total_Waste_Cost&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Last_7_Days_Wastage_Cost" hidden="false" order="171" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Last 7 Days Wastage Cost"/>
+        <formula>If(&quot;DATE&quot;&gt;=&quot;Last_7_Date&quot; and &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;Total_Waste_Cost&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Last_30_Days_Wastage_Cost" hidden="false" order="172" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Last 30 Days Wastage Cost"/>
+        <formula>If(&quot;DATE&quot;&gt;=&quot;Last_30_Date&quot; and &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;Total_Waste_Cost&quot;,0)</formula>
+      
+        </measure>
+      <measure id="Last_90_Days_Wastage_Cost" hidden="false" order="173" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Last 90 Days Wastage Cost"/>
+        <formula>If(&quot;DATE&quot;&gt;=&quot;Last_90_Date&quot; and &quot;DATE&quot;&lt;=&quot;Last_1_Date&quot;,&quot;Total_Waste_Cost&quot;,0)</formula>
+      
+        </measure>
+    </calculatedMeasures>
+    <restrictedMeasures>
+      <measure id="COST_CLAIMS" hidden="true" order="33" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_CLAIMS (X13,X14)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X13"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X14"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_IDT" hidden="true" order="34" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_IDT (X09,X10)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X09"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X10"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_IDT_WASTE" hidden="true" order="35" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_IDT_WASTE (X20,X21)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X20"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X21"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_TRIM_WASTE" hidden="true" order="36" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_TRIM_WASTE (X27,X28)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X27"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X28"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_OUT_PROD_UNITS" hidden="true" order="37" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_OUT_PROD_UNITS (641,642,601,602)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="641"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="642"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="601"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="602"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="ZCUR_REG">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Production"/>
+          </filter>
+          <dimensionUri>AT_MASTER_SITE</dimensionUri>
+        </restriction>
+      </measure>
+      <measure id="COST_QUALITY_INSPECTION" hidden="true" order="38" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_QUALITY_INSPECTION (X15,X16)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X15"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X16"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_RTS" hidden="true" order="39" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_RTS (161,162)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="161"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="162"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_SALES" hidden="true" order="40" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_SALES (251,252)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="251"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="252"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_SALES_ORDER" hidden="true" order="41" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_SALES_ORDER (601,602)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="601"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="602"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_SAMPLING" hidden="true" order="42" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_SAMPLING (Z03,Z04)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Z03"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Z04"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_SHOPUSE" hidden="true" order="43" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_SHOPUSE (201,202)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="201"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="202"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_SHRINKAGE_DC" hidden="true" order="44" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_SHRINKAGE_DC (711,712)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="711"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="712"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_SHRINKAGE_SITE" hidden="true" order="45" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_SHRINKAGE_SITE (701,702)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="701"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="702"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_WASTAGE" hidden="true" order="46" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_WASTAGE (X07,X08)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X07"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X08"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_BOM_CONSUMPTION" hidden="true" order="47" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_BOM_CONSUMPTION (261,262)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="261"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="262"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_FREE_STOCK" hidden="true" order="48" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_FREE_STOCK (501,502)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="501"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="502"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_GR" hidden="true" order="49" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_GR (101,102)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="101"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="102"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_ISSUE_INTER" hidden="true" order="50" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_ISSUE_INTER (643,644)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="643"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="644"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_ISSUE_WITHIN_641H" hidden="true" order="51" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_ISSUE_WITHIN_641H (641)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="641"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="SHKZG">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="H"/>
+          </filter>
+          <attributeName>SHKZG</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_ISSUE_WITHIN_642S" hidden="true" order="52" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_ISSUE_WITHIN_642S (642)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="642"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="SHKZG">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="S"/>
+          </filter>
+          <attributeName>SHKZG</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_RECEIVED_BY_WH" hidden="true" order="53" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_RECEIVED_BY_WH (305,306)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="305"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="306"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_STS" hidden="true" order="54" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_STS (301,302)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="301"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="302"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="COST_STW" hidden="true" order="55" baseMeasure="DMBTR" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="COST_STW (303,304)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="303"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="304"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_CLAIMS" hidden="true" order="56" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_CLAIMS (X13,X14)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X13"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X14"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_IDT" hidden="true" order="57" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_IDT (X09,X10)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X09"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X10"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_IDT_WASTE" hidden="true" order="58" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_IDT_WASTE (X20,X21)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X20"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X21"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_TRIM_WASTE" hidden="true" order="59" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_TRIM_WASTE (X27,X28)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X27"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X28"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_OUT_PROD_UNITS" hidden="true" order="60" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_OUT_PROD_UNITS (641,642,601,602)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="641"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="642"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="601"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="602"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="ZCUR_REG">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Production"/>
+          </filter>
+          <dimensionUri>AT_MASTER_SITE</dimensionUri>
+        </restriction>
+      </measure>
+      <measure id="QTY_QUALITY_INSPECTION" hidden="true" order="61" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_QUALITY_INSPECTION (X15,X16)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X15"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X16"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_RTS" hidden="true" order="62" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_RTS (161,162)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="161"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="162"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_SALES" hidden="true" order="63" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_SALES (251,252)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="251"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="252"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_SALES_ORDER" hidden="true" order="64" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_SALES_ORDER (601,602)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="601"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="602"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_SAMPLING" hidden="true" order="65" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_SAMPLING (Z03,Z04)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Z03"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Z04"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_SHOPUSE" hidden="true" order="66" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_SHOPUSE (201,202)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="201"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="202"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_SHRINKAGE_DC" hidden="true" order="67" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_SHRINKAGE_DC (711,712)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="711"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="712"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_SHRINKAGE_SITE" hidden="true" order="68" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_SHRINKAGE_SITE (701,702)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="701"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="702"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_WASTAGE" hidden="true" order="69" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_WASTAGE (X07,X08)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X07"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="X08"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_SALES_251" hidden="true" order="70" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_SALES_251 (251)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="251"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_SALES_252" hidden="true" order="71" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_SALES_252 (252)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="252"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_BOM_CONSUMPTION" hidden="true" order="72" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_BOM_CONSUMPTION (261,262)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="261"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="262"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_FREE_STOCK" hidden="true" order="73" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_FREE_STOCK (501,502)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="501"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="502"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_GR" hidden="true" order="74" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_GR (101,102)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="101"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="102"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_ISSUE_INTER" hidden="true" order="75" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_ISSUE_INTER (643,644)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="643"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="644"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_ISSUE_WITHIN_641H" hidden="true" order="76" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_ISSUE_WITHIN_641H (641)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="641"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="SHKZG">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="H"/>
+          </filter>
+          <attributeName>SHKZG</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_ISSUE_WITHIN_642S" hidden="true" order="77" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_ISSUE_WITHIN_642S (642)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="642"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="SHKZG">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="S"/>
+          </filter>
+          <attributeName>SHKZG</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_RECEIVED_BY_WH" hidden="true" order="78" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_RECEIVED_BY_WH (305,306)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="305"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="306"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_STS" hidden="true" order="79" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_STS (301,302)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="301"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="302"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="QTY_STW" hidden="true" order="80" baseMeasure="MENGE" datatype="DECIMAL" length="13" scale="3">
+        <descriptions defaultDescription="QTY_STW (303,304)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="303"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="304"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="VALUE_OUT_PROD_UNITS" hidden="true" order="81" baseMeasure="VKWRT" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="VALUE_OUT_PROD_UNITS (641,642,601,602)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="641"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="642"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="601"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="602"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="ZCUR_REG">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Production"/>
+          </filter>
+          <dimensionUri>AT_MASTER_SITE</dimensionUri>
+        </restriction>
+      </measure>
+      <measure id="VALUE_SALES" hidden="true" order="82" baseMeasure="VKWRT" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="VALUE_SALES (251,252)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="251"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="252"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="VALUE_SALES_ORDER" hidden="true" order="83" baseMeasure="VKWRT" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="VALUE_SALES_ORDER (601,602)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="601"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="602"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="VALUE_SALES_251" hidden="true" order="84" baseMeasure="VKWRT" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="VALUE_SALES_251 (251)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="251"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="VALUE_SALES_252" hidden="true" order="85" baseMeasure="VKWRT" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="VALUE_SALES_252 (252)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="252"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="VALUE_FREE_STOCK" hidden="true" order="86" baseMeasure="VKWRT" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="VALUE_FREE_STOCK (501,502)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="501"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="502"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="VALUE_GR" hidden="true" order="87" baseMeasure="VKWRT" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="VALUE_GR (101,102)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="101"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="102"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="VALUE_RECEIVED_BY_WH" hidden="true" order="88" baseMeasure="VKWRT" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="VALUE_RECEIVED_BY_WH (305,306)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="305"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="306"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="VALUE_STS" hidden="true" order="89" baseMeasure="VKWRT" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="VALUE_STS (301,302)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="301"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="302"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+      <measure id="VALUE_STW" hidden="true" order="90" baseMeasure="VKWRT" datatype="DECIMAL" length="13" scale="2">
+        <descriptions defaultDescription="VALUE_STW (303,304)"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="BWART">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="303"/>
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="304"/>
+          </filter>
+          <attributeName>BWART</attributeName>
+        </restriction>
+      </measure>
+    </restrictedMeasures>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE_SITE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_MATNR" attributeName="MATNR"/>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_Article_Code" attributeName="Article_Code"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_SITE">
+        <attributes>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_SITE_WERKS" attributeName="WERKS"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_TIME">
+        <attributes>
+          <attributeRef>BUDAT$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE_SAP</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Filtered_MSEG" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="353"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Mat_Documents" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="257"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="MKPF" modelObjectNameSpace="Mat_Documents" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Filtered_MSEG" modelObjectNameSpace="Mat_Documents" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="Mat_Documents" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="447" y="704"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="224"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="817" y="417"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="817" y="898"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_TIME" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="817" y="16"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

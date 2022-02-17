@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="AT_SITE_ARTICLE_MASTER_PRE" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="DIMENSION" dimensionType="STANDARD" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Attribute View for Site Article Master with out Current Listing"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="T438T" clientColumn="MANDT">
+      <resourceUri>T438T</resourceUri>
+    </DataSource>
+    <DataSource id="T439H" clientColumn="MANDT">
+      <resourceUri>T439H</resourceUri>
+    </DataSource>
+    <DataSource id="T439H_1" clientColumn="MANDT">
+      <resourceUri>T439H</resourceUri>
+    </DataSource>
+    <DataSource id="T024D" clientColumn="MANDT">
+      <resourceUri>T024D</resourceUri>
+    </DataSource>
+    <DataSource id="T001W" clientColumn="MANDT">
+      <resourceUri>T001W</resourceUri>
+    </DataSource>
+    <DataSource id="MARC" clientColumn="MANDT">
+      <resourceUri>MARC</resourceUri>
+    </DataSource>
+    <DataSource id="ZLSTDAT" clientColumn="MANDT">
+      <resourceUri>ZLSTDAT</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="DIBEZ"/>
+        <viewAttribute id="MANDT_1"/>
+        <viewAttribute id="DISMM"/>
+        <viewAttribute id="SPRAS"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="T438T">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_1" source="MANDT"/></input>
+    <filter>(&quot;MANDT_1&quot;='100') AND (&quot;SPRAS&quot;='E')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2" filterExpressionLanguage="SQL">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="PPTXT"/>
+        <viewAttribute id="MANDT_3"/>
+        <viewAttribute id="MRPPP"/>
+        <viewAttribute id="SPRAS"/>
+        <viewAttribute id="WERKS"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="T439H">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_3" source="MANDT"/></input>
+    <filter>(&quot;WERKS&quot;='SREF') AND (&quot;SPRAS&quot;='E')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3" filterExpressionLanguage="COLUMN_ENGINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Delivery_Cycle_Text"/>
+        <viewAttribute id="MANDT_2"/>
+        <viewAttribute id="MRPPP"/>
+        <viewAttribute id="SPRAS"/>
+        <viewAttribute id="WERKS"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="T439H_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_Text" source="PPTXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_2" source="MANDT"/></input>
+    <filter>(&quot;SPRAS&quot; ='E') AND (&quot;WERKS&quot; ='SREF') AND (&quot;MANDT_2&quot; ='100')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_4" filterExpressionLanguage="COLUMN_ENGINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="DSNAM"/>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="DISPO"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="T024D"/>
+    <filter>(&quot;MANDT&quot; ='100')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_5" filterExpressionLanguage="COLUMN_ENGINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MANDT"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="T001W"/>
+    <filter>(&quot;MANDT&quot; ='100')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" dynamic="false" joinType="leftOuter" optimizeJoinColumns="false">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MMSTA"/>
+        <viewAttribute id="MAABC"/>
+        <viewAttribute id="AUSME"/>
+        <viewAttribute id="DISMM"/>
+        <viewAttribute id="DISPO"/>
+        <viewAttribute id="EISBE"/>
+        <viewAttribute id="BSTMI"/>
+        <viewAttribute id="BWSCL"/>
+        <viewAttribute id="STAWN"/>
+        <viewAttribute id="MRPPP"/>
+        <viewAttribute id="LFRHY"/>
+        <viewAttribute id="RDPRF"/>
+        <viewAttribute id="LGFSB"/>
+        <viewAttribute id="FPRFM"/>
+        <viewAttribute id="EISLO"/>
+        <viewAttribute id="DIBEZ"/>
+        <viewAttribute id="MANDT_1"/>
+        <viewAttribute id="SPRAS"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="MARC">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MMSTA" source="MMSTA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAABC" source="MAABC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AUSME" source="AUSME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DISMM" source="DISMM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DISPO" source="DISPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EISBE" source="EISBE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTMI" source="BSTMI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWSCL" source="BWSCL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STAWN" source="STAWN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MRPPP" source="MRPPP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LFRHY" source="LFRHY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RDPRF" source="RDPRF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LGFSB" source="LGFSB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FPRFM" source="FPRFM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EISLO" source="EISLO"/>
+      </input>
+      <input node="Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIBEZ" source="DIBEZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_1" source="MANDT_1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SPRAS" source="SPRAS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DISMM" source="DISMM"/>
+      </input>
+    <joinAttribute name="DISMM"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_1" dynamic="false" joinType="leftOuter" optimizeJoinColumns="false">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MMSTA"/>
+        <viewAttribute id="MAABC"/>
+        <viewAttribute id="AUSME"/>
+        <viewAttribute id="DISMM"/>
+        <viewAttribute id="DISPO"/>
+        <viewAttribute id="EISBE"/>
+        <viewAttribute id="BSTMI"/>
+        <viewAttribute id="BWSCL"/>
+        <viewAttribute id="STAWN"/>
+        <viewAttribute id="MRPPP"/>
+        <viewAttribute id="LFRHY"/>
+        <viewAttribute id="RDPRF"/>
+        <viewAttribute id="LGFSB"/>
+        <viewAttribute id="FPRFM"/>
+        <viewAttribute id="EISLO"/>
+        <viewAttribute id="DIBEZ"/>
+        <viewAttribute id="MANDT_1"/>
+        <viewAttribute id="SPRAS"/>
+        <viewAttribute id="PPTXT"/>
+        <viewAttribute id="MANDT_3"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MMSTA" source="MMSTA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAABC" source="MAABC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AUSME" source="AUSME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DISMM" source="DISMM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DISPO" source="DISPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EISBE" source="EISBE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTMI" source="BSTMI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWSCL" source="BWSCL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STAWN" source="STAWN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MRPPP" source="MRPPP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LFRHY" source="LFRHY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RDPRF" source="RDPRF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LGFSB" source="LGFSB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FPRFM" source="FPRFM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EISLO" source="EISLO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIBEZ" source="DIBEZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_1" source="MANDT_1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SPRAS" source="SPRAS"/>
+      </input>
+      <input node="Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="PPTXT" source="PPTXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_3" source="MANDT_3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LFRHY" source="MRPPP"/>
+      </input>
+    <joinAttribute name="LFRHY"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="C1_1" dynamic="false" joinType="leftOuter" optimizeJoinColumns="false">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MMSTA"/>
+        <viewAttribute id="MAABC"/>
+        <viewAttribute id="AUSME"/>
+        <viewAttribute id="DISMM"/>
+        <viewAttribute id="DISPO"/>
+        <viewAttribute id="EISBE"/>
+        <viewAttribute id="BSTMI"/>
+        <viewAttribute id="BWSCL"/>
+        <viewAttribute id="STAWN"/>
+        <viewAttribute id="MRPPP"/>
+        <viewAttribute id="LFRHY"/>
+        <viewAttribute id="RDPRF"/>
+        <viewAttribute id="LGFSB"/>
+        <viewAttribute id="FPRFM"/>
+        <viewAttribute id="EISLO"/>
+        <viewAttribute id="DIBEZ"/>
+        <viewAttribute id="MANDT_1"/>
+        <viewAttribute id="SPRAS"/>
+        <viewAttribute id="PPTXT"/>
+        <viewAttribute id="MANDT_3"/>
+        <viewAttribute id="Delivery_Cycle_Text"/>
+        <viewAttribute id="MANDT_2"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MMSTA" source="MMSTA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAABC" source="MAABC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AUSME" source="AUSME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DISMM" source="DISMM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DISPO" source="DISPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EISBE" source="EISBE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTMI" source="BSTMI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWSCL" source="BWSCL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STAWN" source="STAWN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MRPPP" source="MRPPP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LFRHY" source="LFRHY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RDPRF" source="RDPRF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LGFSB" source="LGFSB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FPRFM" source="FPRFM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EISLO" source="EISLO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIBEZ" source="DIBEZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_1" source="MANDT_1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SPRAS" source="SPRAS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PPTXT" source="PPTXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_3" source="MANDT_3"/>
+      </input>
+      <input node="Projection_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_Text" source="Delivery_Cycle_Text"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_2" source="MANDT_2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MRPPP" source="MRPPP"/>
+      </input>
+    <joinAttribute name="MRPPP"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="C1_N" dynamic="false" joinType="leftOuter" optimizeJoinColumns="false">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MMSTA"/>
+        <viewAttribute id="MAABC"/>
+        <viewAttribute id="AUSME"/>
+        <viewAttribute id="DISMM"/>
+        <viewAttribute id="DISPO"/>
+        <viewAttribute id="EISBE"/>
+        <viewAttribute id="BSTMI"/>
+        <viewAttribute id="BWSCL"/>
+        <viewAttribute id="STAWN"/>
+        <viewAttribute id="MRPPP"/>
+        <viewAttribute id="LFRHY"/>
+        <viewAttribute id="RDPRF"/>
+        <viewAttribute id="LGFSB"/>
+        <viewAttribute id="FPRFM"/>
+        <viewAttribute id="EISLO"/>
+        <viewAttribute id="DIBEZ"/>
+        <viewAttribute id="MANDT_1"/>
+        <viewAttribute id="PPTXT"/>
+        <viewAttribute id="MANDT_3"/>
+        <viewAttribute id="Delivery_Cycle_Text"/>
+        <viewAttribute id="MANDT_2"/>
+        <viewAttribute id="DSNAM"/>
+        <viewAttribute id="MANDT"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MMSTA" source="MMSTA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAABC" source="MAABC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AUSME" source="AUSME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DISMM" source="DISMM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DISPO" source="DISPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EISBE" source="EISBE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTMI" source="BSTMI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWSCL" source="BWSCL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STAWN" source="STAWN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MRPPP" source="MRPPP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LFRHY" source="LFRHY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RDPRF" source="RDPRF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LGFSB" source="LGFSB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FPRFM" source="FPRFM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EISLO" source="EISLO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIBEZ" source="DIBEZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_1" source="MANDT_1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PPTXT" source="PPTXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_3" source="MANDT_3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_Text" source="Delivery_Cycle_Text"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_2" source="MANDT_2"/>
+      </input>
+      <input node="Projection_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="DSNAM" source="DSNAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DISPO" source="DISPO"/>
+      </input>
+    <joinAttribute name="WERKS"/>
+    <joinAttribute name="DISPO"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_5" cardinality="C1_1" dynamic="false" joinType="leftOuter" optimizeJoinColumns="false">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MMSTA"/>
+        <viewAttribute id="MAABC"/>
+        <viewAttribute id="AUSME"/>
+        <viewAttribute id="DISMM"/>
+        <viewAttribute id="DISPO"/>
+        <viewAttribute id="EISBE"/>
+        <viewAttribute id="BSTMI"/>
+        <viewAttribute id="BWSCL"/>
+        <viewAttribute id="STAWN"/>
+        <viewAttribute id="MRPPP"/>
+        <viewAttribute id="LFRHY"/>
+        <viewAttribute id="RDPRF"/>
+        <viewAttribute id="LGFSB"/>
+        <viewAttribute id="FPRFM"/>
+        <viewAttribute id="EISLO"/>
+        <viewAttribute id="DIBEZ"/>
+        <viewAttribute id="MANDT_1"/>
+        <viewAttribute id="PPTXT"/>
+        <viewAttribute id="MANDT_3"/>
+        <viewAttribute id="Delivery_Cycle_Text"/>
+        <viewAttribute id="MANDT_2"/>
+        <viewAttribute id="DSNAM"/>
+        <viewAttribute id="MANDT"/>
+        <viewAttribute id="LSDTE"/>
+        <viewAttribute id="LODTE"/>
+        <viewAttribute id="LRDTE"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MMSTA" source="MMSTA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MAABC" source="MAABC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AUSME" source="AUSME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DISMM" source="DISMM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DISPO" source="DISPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EISBE" source="EISBE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTMI" source="BSTMI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWSCL" source="BWSCL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STAWN" source="STAWN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MRPPP" source="MRPPP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LFRHY" source="LFRHY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RDPRF" source="RDPRF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LGFSB" source="LGFSB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FPRFM" source="FPRFM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EISLO" source="EISLO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DIBEZ" source="DIBEZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_1" source="MANDT_1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PPTXT" source="PPTXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_3" source="MANDT_3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_Text" source="Delivery_Cycle_Text"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_2" source="MANDT_2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DSNAM" source="DSNAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+      </input>
+      <input node="ZLSTDAT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LSDTE" source="LSDTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LODTE" source="LODTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LRDTE" source="LRDTE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+    <joinAttribute name="WERKS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="multiJoinNode" cardinality="CN_1" dynamic="false" joinType="leftOuter" optimizeJoinColumns="false">
+    <descriptions/>
+    <viewAttributes>
+      <viewAttribute id="MATNR"/>
+      <viewAttribute id="WERKS"/>
+      <viewAttribute id="MMSTA"/>
+      <viewAttribute id="MAABC"/>
+      <viewAttribute id="AUSME"/>
+      <viewAttribute id="DISMM"/>
+      <viewAttribute id="DISPO"/>
+      <viewAttribute id="EISBE"/>
+      <viewAttribute id="BSTMI"/>
+      <viewAttribute id="BWSCL"/>
+      <viewAttribute id="STAWN"/>
+      <viewAttribute id="MRPPP"/>
+      <viewAttribute id="LFRHY"/>
+      <viewAttribute id="RDPRF"/>
+      <viewAttribute id="LGFSB"/>
+      <viewAttribute id="FPRFM"/>
+      <viewAttribute id="EISLO"/>
+      <viewAttribute id="DIBEZ"/>
+      <viewAttribute id="MANDT_1"/>
+      <viewAttribute id="PPTXT"/>
+      <viewAttribute id="MANDT_3"/>
+      <viewAttribute id="Delivery_Cycle_Text"/>
+      <viewAttribute id="MANDT_2"/>
+      <viewAttribute id="DSNAM"/>
+      <viewAttribute id="MANDT"/>
+      <viewAttribute id="LSDTE"/>
+      <viewAttribute id="LODTE"/>
+      <viewAttribute id="LRDTE"/>
+      <viewAttribute id="VKORG"/>
+      <viewAttribute id="EKORG"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_5">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MMSTA" source="MMSTA"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAABC" source="MAABC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="AUSME" source="AUSME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISMM" source="DISMM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DISPO" source="DISPO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EISBE" source="EISBE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BSTMI" source="BSTMI"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BWSCL" source="BWSCL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="STAWN" source="STAWN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MRPPP" source="MRPPP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LFRHY" source="LFRHY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="RDPRF" source="RDPRF"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LGFSB" source="LGFSB"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FPRFM" source="FPRFM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EISLO" source="EISLO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DIBEZ" source="DIBEZ"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_1" source="MANDT_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PPTXT" source="PPTXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_3" source="MANDT_3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_Text" source="Delivery_Cycle_Text"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MANDT_2" source="MANDT_2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DSNAM" source="DSNAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MANDT" source="MANDT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LSDTE" source="LSDTE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LODTE" source="LODTE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LRDTE" source="LRDTE"/>
+    </input>
+    <input node="Projection_5">
+      <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+    </input>
+    <joinAttribute name="WERKS"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="multiJoinNode">
+    <descriptions/>
+    <attributes>
+      <attribute id="MATNR" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MATNR"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="MATNR"/>
+      </attribute>
+      <attribute id="WERKS" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WERKS"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="WERKS"/>
+      </attribute>
+      <attribute id="MMSTA" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MMSTA"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="MMSTA"/>
+      </attribute>
+      <attribute id="MAABC" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MAABC"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="MAABC"/>
+      </attribute>
+      <attribute id="AUSME" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AUSME"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="AUSME"/>
+      </attribute>
+      <attribute id="DISMM" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DISMM"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="DISMM"/>
+      </attribute>
+      <attribute id="DISPO" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DISPO"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="DISPO"/>
+      </attribute>
+      <attribute id="EISBE" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EISBE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="EISBE"/>
+      </attribute>
+      <attribute id="BSTMI" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BSTMI"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="BSTMI"/>
+      </attribute>
+      <attribute id="BWSCL" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BWSCL"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="BWSCL"/>
+      </attribute>
+      <attribute id="STAWN" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STAWN"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="STAWN"/>
+      </attribute>
+      <attribute id="MRPPP" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MRPPP"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="MRPPP"/>
+      </attribute>
+      <attribute id="LFRHY" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LFRHY"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="LFRHY"/>
+      </attribute>
+      <attribute id="RDPRF" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RDPRF"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="RDPRF"/>
+      </attribute>
+      <attribute id="LGFSB" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LGFSB"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="LGFSB"/>
+      </attribute>
+      <attribute id="FPRFM" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FPRFM"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="FPRFM"/>
+      </attribute>
+      <attribute id="EISLO" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EISLO"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="EISLO"/>
+      </attribute>
+      <attribute id="DIBEZ" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DIBEZ"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="DIBEZ"/>
+      </attribute>
+      <attribute id="PPTXT" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PPTXT"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="PPTXT"/>
+      </attribute>
+      <attribute id="Delivery_Cycle_Text" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Delivery Cycle Text"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="Delivery_Cycle_Text"/>
+      </attribute>
+      <attribute id="DSNAM" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DSNAM"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="DSNAM"/>
+      </attribute>
+      <attribute id="LSDTE" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LSDTE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="LSDTE"/>
+      </attribute>
+      <attribute id="LODTE" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LODTE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="LODTE"/>
+      </attribute>
+      <attribute id="LRDTE" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LRDTE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="LRDTE"/>
+      </attribute>
+      <attribute id="MANDT" hidden="true" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MANDT"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="MANDT"/>
+      </attribute>
+      <attribute id="MANDT_1" hidden="true" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MANDT_1"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="MANDT_1"/>
+      </attribute>
+      <attribute id="MANDT_2" hidden="true" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MANDT_2"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="MANDT_2"/>
+      </attribute>
+      <attribute id="MANDT_3" hidden="true" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MANDT_3"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="MANDT_3"/>
+      </attribute>
+      <attribute id="VKORG" order="31" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VKORG"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="VKORG"/>
+      </attribute>
+      <attribute id="EKORG" order="32" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EKORG"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="EKORG"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Article_Code" hidden="false" order="25" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="18">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="RP_Type_Current" hidden="false" order="30" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP Type Current"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="40">
+          <formula>&quot;DISMM&quot;+' - '+&quot;DIBEZ&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Country" hidden="false" order="33" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="3">
+          <formula>If(&quot;VKORG&quot;='6100', 'OM', If(&quot;VKORG&quot;='3100' OR &quot;VKORG&quot;='7100', 'AE', 'OTS'))</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup" expanded="true">
+        <upperLeftCorner x="452" y="112"/>
+        <rectangleSize width="160"/>
+      </shape>
+      <shape modelObjectName="Projection_1" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="91" y="1096"/>
+        <rectangleSize width="160"/>
+      </shape>
+      <shape modelObjectName="Projection_2" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="302" y="956"/>
+        <rectangleSize width="160"/>
+      </shape>
+      <shape modelObjectName="Projection_3" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="409" y="796"/>
+        <rectangleSize width="160"/>
+      </shape>
+      <shape modelObjectName="Projection_4" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="541" y="636"/>
+        <rectangleSize width="160"/>
+      </shape>
+      <shape modelObjectName="Projection_5" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="347" y="316"/>
+        <rectangleSize width="160"/>
+      </shape>
+      <shape modelObjectName="Join_1" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="91" y="956"/>
+        <rectangleSize width="160"/>
+      </shape>
+    <shape modelObjectName="MARC" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="Join_2" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="118" y="796"/>
+        <rectangleSize width="160"/>
+      </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="Join_3" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="145" y="636"/>
+        <rectangleSize width="160"/>
+      </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="Join_4" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="480" y="476"/>
+        <rectangleSize width="160"/>
+      </shape>
+    <shape modelObjectName="Join_3" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_4" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="Join_5" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="557" y="316"/>
+        <rectangleSize width="160"/>
+      </shape>
+    <shape modelObjectName="Join_4" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="ZLSTDAT" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="multiJoinNode" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="452" y="217"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape modelObjectName="Join_5" modelObjectNameSpace="multiJoinNode" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_5" modelObjectNameSpace="multiJoinNode" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

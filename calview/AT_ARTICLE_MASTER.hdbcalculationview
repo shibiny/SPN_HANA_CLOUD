@@ -1,0 +1,1665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="AT_ARTICLE_MASTER" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="DIMENSION" dimensionType="STANDARD" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="AT_ARTICLE_MASTER"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="MAKT">
+      <resourceUri>MAKT</resourceUri>
+    </DataSource>
+    <DataSource id="MLAN">
+      <resourceUri>MLAN</resourceUri>
+    </DataSource>
+    <DataSource id="MVKE">
+      <resourceUri>MVKE</resourceUri>
+    </DataSource>
+    <DataSource id="MARA">
+      <resourceUri>MARA</resourceUri>
+    </DataSource>
+    <DataSource id="MAW1">
+      <resourceUri>MAW1</resourceUri>
+    </DataSource>
+    <DataSource id="ZTATTR_DATA">
+      <resourceUri>ZTATTR_DATA</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="COLUMN_ENGINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="ARTICLE_DESCRIPTION"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="SPRAS"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="MAKT">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="MAKTX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ARTICLE_DESCRIPTION" source="MAKTG"/></input>
+    <filter>(&quot;SPRAS&quot; ='E')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2" filterExpressionLanguage="COLUMN_ENGINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="TAXM1"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="ALAND"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="MLAN"/>
+    <filter>(&quot;ALAND&quot; ='AE')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_3" filterExpressionLanguage="COLUMN_ENGINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="VDVFL"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="MVKE"/>
+    <filter>(&quot;VKORG&quot; ='3100') AND (&quot;VTWEG&quot; ='20')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" dynamic="false" joinType="leftOuter" optimizeJoinColumns="false">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BMC_Code"/>
+        <viewAttribute id="Brand"/>
+        <viewAttribute id="House_Brand"/>
+        <viewAttribute id="Source"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="ERSDA"/>
+        <viewAttribute id="LAEDA"/>
+        <viewAttribute id="MTART"/>
+        <viewAttribute id="LVORM"/>
+        <viewAttribute id="BSTME"/>
+        <viewAttribute id="BRGEW"/>
+        <viewAttribute id="NTGEW"/>
+        <viewAttribute id="GEWEI"/>
+        <viewAttribute id="VOLUM"/>
+        <viewAttribute id="VOLEH"/>
+        <viewAttribute id="TEMPB"/>
+        <viewAttribute id="EAN11"/>
+        <viewAttribute id="LAENG"/>
+        <viewAttribute id="HOEHE"/>
+        <viewAttribute id="MEABM"/>
+        <viewAttribute id="BREIT"/>
+        <viewAttribute id="MHDRZ"/>
+        <viewAttribute id="MHDHB"/>
+        <viewAttribute id="TAKLV"/>
+        <viewAttribute id="WHSTC"/>
+        <viewAttribute id="WHMATGR"/>
+        <viewAttribute id="HNDLCODE"/>
+        <viewAttribute id="ZZATTR03"/>
+        <viewAttribute id="ZZATTR04"/>
+        <viewAttribute id="ZZATTR05"/>
+        <viewAttribute id="ZZATTR07"/>
+        <viewAttribute id="ZZATTR08"/>
+        <viewAttribute id="ZZATTR09"/>
+        <viewAttribute id="ZZATTR10"/>
+        <viewAttribute id="ZZATTR11"/>
+        <viewAttribute id="ZZATTR12"/>
+        <viewAttribute id="ZZATTR13"/>
+        <viewAttribute id="ZZATTR14"/>
+        <viewAttribute id="ZZATTR15"/>
+        <viewAttribute id="ZZATTR16"/>
+        <viewAttribute id="ZZATTR17"/>
+        <viewAttribute id="ZZATTR18"/>
+        <viewAttribute id="ZZATTR19"/>
+        <viewAttribute id="ZZATTR20"/>
+        <viewAttribute id="ZZATTR21"/>
+        <viewAttribute id="ZZATTR24"/>
+        <viewAttribute id="ZZATTR25"/>
+        <viewAttribute id="ZZATTR26"/>
+        <viewAttribute id="ZZATTR27"/>
+        <viewAttribute id="ZZATTR28"/>
+        <viewAttribute id="ZZATTR29"/>
+        <viewAttribute id="ZZATTR30"/>
+        <viewAttribute id="ZZATTR31"/>
+        <viewAttribute id="ZZATTR32"/>
+        <viewAttribute id="ZZATTR33"/>
+        <viewAttribute id="ZZATTR34"/>
+        <viewAttribute id="ZZATTR35"/>
+        <viewAttribute id="ZZATTR36"/>
+        <viewAttribute id="ZZATTR37"/>
+        <viewAttribute id="INHAL"/>
+        <viewAttribute id="INHME"/>
+        <viewAttribute id="BISMT"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="ARTICLE_DESCRIPTION"/>
+        <viewAttribute id="SPRAS"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="MARA">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_Code" source="MATKL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Brand" source="ZZATTR01"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="House_Brand" source="ZZATTR02"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Source" source="ZZATTR06"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ERSDA" source="ERSDA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAEDA" source="LAEDA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MTART" source="MTART"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LVORM" source="LVORM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTME" source="BSTME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BRGEW" source="BRGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NTGEW" source="NTGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GEWEI" source="GEWEI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLUM" source="VOLUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLEH" source="VOLEH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TEMPB" source="TEMPB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EAN11" source="EAN11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAENG" source="LAENG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOEHE" source="HOEHE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEABM" source="MEABM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BREIT" source="BREIT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MHDRZ" source="MHDRZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MHDHB" source="MHDHB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TAKLV" source="TAKLV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WHSTC" source="WHSTC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WHMATGR" source="WHMATGR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HNDLCODE" source="HNDLCODE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR03" source="ZZATTR03"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR04" source="ZZATTR04"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR05" source="ZZATTR05"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR07" source="ZZATTR07"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR08" source="ZZATTR08"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR09" source="ZZATTR09"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR10" source="ZZATTR10"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR11" source="ZZATTR11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR12" source="ZZATTR12"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR13" source="ZZATTR13"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR14" source="ZZATTR14"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR15" source="ZZATTR15"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR16" source="ZZATTR16"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR17" source="ZZATTR17"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR18" source="ZZATTR18"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR19" source="ZZATTR19"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR20" source="ZZATTR20"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR21" source="ZZATTR21"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR24" source="ZZATTR24"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR25" source="ZZATTR25"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR26" source="ZZATTR26"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR27" source="ZZATTR27"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR28" source="ZZATTR28"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR29" source="ZZATTR29"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR30" source="ZZATTR30"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR31" source="ZZATTR31"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR32" source="ZZATTR32"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR33" source="ZZATTR33"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR34" source="ZZATTR34"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR35" source="ZZATTR35"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR36" source="ZZATTR36"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR37" source="ZZATTR37"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INHAL" source="INHAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INHME" source="INHME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BISMT" source="BISMT"/>
+      </input>
+      <input node="Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="Article_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ARTICLE_DESCRIPTION" source="ARTICLE_DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SPRAS" source="SPRAS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_1" dynamic="false" joinType="leftOuter" optimizeJoinColumns="false">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BMC_Code"/>
+        <viewAttribute id="Brand"/>
+        <viewAttribute id="House_Brand"/>
+        <viewAttribute id="Source"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="ERSDA"/>
+        <viewAttribute id="LAEDA"/>
+        <viewAttribute id="MTART"/>
+        <viewAttribute id="LVORM"/>
+        <viewAttribute id="BSTME"/>
+        <viewAttribute id="BRGEW"/>
+        <viewAttribute id="NTGEW"/>
+        <viewAttribute id="GEWEI"/>
+        <viewAttribute id="VOLUM"/>
+        <viewAttribute id="VOLEH"/>
+        <viewAttribute id="TEMPB"/>
+        <viewAttribute id="EAN11"/>
+        <viewAttribute id="LAENG"/>
+        <viewAttribute id="HOEHE"/>
+        <viewAttribute id="MEABM"/>
+        <viewAttribute id="BREIT"/>
+        <viewAttribute id="MHDRZ"/>
+        <viewAttribute id="MHDHB"/>
+        <viewAttribute id="TAKLV"/>
+        <viewAttribute id="WHSTC"/>
+        <viewAttribute id="WHMATGR"/>
+        <viewAttribute id="HNDLCODE"/>
+        <viewAttribute id="ZZATTR03"/>
+        <viewAttribute id="ZZATTR04"/>
+        <viewAttribute id="ZZATTR05"/>
+        <viewAttribute id="ZZATTR07"/>
+        <viewAttribute id="ZZATTR08"/>
+        <viewAttribute id="ZZATTR09"/>
+        <viewAttribute id="ZZATTR10"/>
+        <viewAttribute id="ZZATTR11"/>
+        <viewAttribute id="ZZATTR12"/>
+        <viewAttribute id="ZZATTR13"/>
+        <viewAttribute id="ZZATTR14"/>
+        <viewAttribute id="ZZATTR15"/>
+        <viewAttribute id="ZZATTR16"/>
+        <viewAttribute id="ZZATTR17"/>
+        <viewAttribute id="ZZATTR18"/>
+        <viewAttribute id="ZZATTR19"/>
+        <viewAttribute id="ZZATTR20"/>
+        <viewAttribute id="ZZATTR21"/>
+        <viewAttribute id="ZZATTR24"/>
+        <viewAttribute id="ZZATTR25"/>
+        <viewAttribute id="ZZATTR26"/>
+        <viewAttribute id="ZZATTR27"/>
+        <viewAttribute id="ZZATTR28"/>
+        <viewAttribute id="ZZATTR29"/>
+        <viewAttribute id="ZZATTR30"/>
+        <viewAttribute id="ZZATTR31"/>
+        <viewAttribute id="ZZATTR32"/>
+        <viewAttribute id="ZZATTR33"/>
+        <viewAttribute id="ZZATTR34"/>
+        <viewAttribute id="ZZATTR35"/>
+        <viewAttribute id="ZZATTR36"/>
+        <viewAttribute id="ZZATTR37"/>
+        <viewAttribute id="INHAL"/>
+        <viewAttribute id="INHME"/>
+        <viewAttribute id="BISMT"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="ARTICLE_DESCRIPTION"/>
+        <viewAttribute id="TAXM1"/>
+        <viewAttribute id="ALAND"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_Code" source="BMC_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Brand" source="Brand"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="House_Brand" source="House_Brand"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Source" source="Source"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ERSDA" source="ERSDA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAEDA" source="LAEDA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MTART" source="MTART"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LVORM" source="LVORM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTME" source="BSTME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BRGEW" source="BRGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NTGEW" source="NTGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GEWEI" source="GEWEI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLUM" source="VOLUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLEH" source="VOLEH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TEMPB" source="TEMPB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EAN11" source="EAN11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAENG" source="LAENG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOEHE" source="HOEHE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEABM" source="MEABM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BREIT" source="BREIT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MHDRZ" source="MHDRZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MHDHB" source="MHDHB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TAKLV" source="TAKLV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WHSTC" source="WHSTC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WHMATGR" source="WHMATGR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HNDLCODE" source="HNDLCODE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR03" source="ZZATTR03"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR04" source="ZZATTR04"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR05" source="ZZATTR05"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR07" source="ZZATTR07"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR08" source="ZZATTR08"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR09" source="ZZATTR09"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR10" source="ZZATTR10"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR11" source="ZZATTR11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR12" source="ZZATTR12"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR13" source="ZZATTR13"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR14" source="ZZATTR14"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR15" source="ZZATTR15"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR16" source="ZZATTR16"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR17" source="ZZATTR17"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR18" source="ZZATTR18"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR19" source="ZZATTR19"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR20" source="ZZATTR20"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR21" source="ZZATTR21"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR24" source="ZZATTR24"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR25" source="ZZATTR25"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR26" source="ZZATTR26"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR27" source="ZZATTR27"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR28" source="ZZATTR28"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR29" source="ZZATTR29"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR30" source="ZZATTR30"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR31" source="ZZATTR31"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR32" source="ZZATTR32"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR33" source="ZZATTR33"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR34" source="ZZATTR34"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR35" source="ZZATTR35"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR36" source="ZZATTR36"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR37" source="ZZATTR37"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INHAL" source="INHAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INHME" source="INHME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BISMT" source="BISMT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="Article_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ARTICLE_DESCRIPTION" source="ARTICLE_DESCRIPTION"/>
+      </input>
+      <input node="Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TAXM1" source="TAXM1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ALAND" source="ALAND"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="C1_1" dynamic="false" joinType="leftOuter" optimizeJoinColumns="false">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BMC_Code"/>
+        <viewAttribute id="Brand"/>
+        <viewAttribute id="House_Brand"/>
+        <viewAttribute id="Source"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="ERSDA"/>
+        <viewAttribute id="LAEDA"/>
+        <viewAttribute id="MTART"/>
+        <viewAttribute id="LVORM"/>
+        <viewAttribute id="BSTME"/>
+        <viewAttribute id="BRGEW"/>
+        <viewAttribute id="NTGEW"/>
+        <viewAttribute id="GEWEI"/>
+        <viewAttribute id="VOLUM"/>
+        <viewAttribute id="VOLEH"/>
+        <viewAttribute id="TEMPB"/>
+        <viewAttribute id="EAN11"/>
+        <viewAttribute id="LAENG"/>
+        <viewAttribute id="HOEHE"/>
+        <viewAttribute id="MEABM"/>
+        <viewAttribute id="BREIT"/>
+        <viewAttribute id="MHDRZ"/>
+        <viewAttribute id="MHDHB"/>
+        <viewAttribute id="TAKLV"/>
+        <viewAttribute id="WHSTC"/>
+        <viewAttribute id="WHMATGR"/>
+        <viewAttribute id="HNDLCODE"/>
+        <viewAttribute id="ZZATTR03"/>
+        <viewAttribute id="ZZATTR04"/>
+        <viewAttribute id="ZZATTR05"/>
+        <viewAttribute id="ZZATTR07"/>
+        <viewAttribute id="ZZATTR08"/>
+        <viewAttribute id="ZZATTR09"/>
+        <viewAttribute id="ZZATTR10"/>
+        <viewAttribute id="ZZATTR11"/>
+        <viewAttribute id="ZZATTR12"/>
+        <viewAttribute id="ZZATTR13"/>
+        <viewAttribute id="ZZATTR14"/>
+        <viewAttribute id="ZZATTR15"/>
+        <viewAttribute id="ZZATTR16"/>
+        <viewAttribute id="ZZATTR17"/>
+        <viewAttribute id="ZZATTR18"/>
+        <viewAttribute id="ZZATTR19"/>
+        <viewAttribute id="ZZATTR20"/>
+        <viewAttribute id="ZZATTR21"/>
+        <viewAttribute id="ZZATTR24"/>
+        <viewAttribute id="ZZATTR25"/>
+        <viewAttribute id="ZZATTR26"/>
+        <viewAttribute id="ZZATTR27"/>
+        <viewAttribute id="ZZATTR28"/>
+        <viewAttribute id="ZZATTR29"/>
+        <viewAttribute id="ZZATTR30"/>
+        <viewAttribute id="ZZATTR31"/>
+        <viewAttribute id="ZZATTR32"/>
+        <viewAttribute id="ZZATTR33"/>
+        <viewAttribute id="ZZATTR34"/>
+        <viewAttribute id="ZZATTR35"/>
+        <viewAttribute id="ZZATTR36"/>
+        <viewAttribute id="ZZATTR37"/>
+        <viewAttribute id="INHAL"/>
+        <viewAttribute id="INHME"/>
+        <viewAttribute id="BISMT"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="ARTICLE_DESCRIPTION"/>
+        <viewAttribute id="TAXM1"/>
+        <viewAttribute id="WHERL"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_Code" source="BMC_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Brand" source="Brand"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="House_Brand" source="House_Brand"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Source" source="Source"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ERSDA" source="ERSDA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAEDA" source="LAEDA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MTART" source="MTART"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LVORM" source="LVORM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTME" source="BSTME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BRGEW" source="BRGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NTGEW" source="NTGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GEWEI" source="GEWEI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLUM" source="VOLUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLEH" source="VOLEH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TEMPB" source="TEMPB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EAN11" source="EAN11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAENG" source="LAENG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOEHE" source="HOEHE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEABM" source="MEABM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BREIT" source="BREIT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MHDRZ" source="MHDRZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MHDHB" source="MHDHB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TAKLV" source="TAKLV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WHSTC" source="WHSTC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WHMATGR" source="WHMATGR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HNDLCODE" source="HNDLCODE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR03" source="ZZATTR03"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR04" source="ZZATTR04"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR05" source="ZZATTR05"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR07" source="ZZATTR07"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR08" source="ZZATTR08"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR09" source="ZZATTR09"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR10" source="ZZATTR10"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR11" source="ZZATTR11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR12" source="ZZATTR12"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR13" source="ZZATTR13"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR14" source="ZZATTR14"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR15" source="ZZATTR15"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR16" source="ZZATTR16"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR17" source="ZZATTR17"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR18" source="ZZATTR18"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR19" source="ZZATTR19"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR20" source="ZZATTR20"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR21" source="ZZATTR21"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR24" source="ZZATTR24"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR25" source="ZZATTR25"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR26" source="ZZATTR26"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR27" source="ZZATTR27"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR28" source="ZZATTR28"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR29" source="ZZATTR29"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR30" source="ZZATTR30"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR31" source="ZZATTR31"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR32" source="ZZATTR32"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR33" source="ZZATTR33"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR34" source="ZZATTR34"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR35" source="ZZATTR35"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR36" source="ZZATTR36"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR37" source="ZZATTR37"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INHAL" source="INHAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INHME" source="INHME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BISMT" source="BISMT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="Article_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ARTICLE_DESCRIPTION" source="ARTICLE_DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TAXM1" source="TAXM1"/>
+      </input>
+      <input node="MAW1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="WHERL" source="WHERL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="C1_1" dynamic="false" joinType="leftOuter" optimizeJoinColumns="false">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BMC_Code"/>
+        <viewAttribute id="Brand"/>
+        <viewAttribute id="House_Brand"/>
+        <viewAttribute id="Source"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="ERSDA"/>
+        <viewAttribute id="LAEDA"/>
+        <viewAttribute id="MTART"/>
+        <viewAttribute id="LVORM"/>
+        <viewAttribute id="BSTME"/>
+        <viewAttribute id="BRGEW"/>
+        <viewAttribute id="NTGEW"/>
+        <viewAttribute id="GEWEI"/>
+        <viewAttribute id="VOLUM"/>
+        <viewAttribute id="VOLEH"/>
+        <viewAttribute id="TEMPB"/>
+        <viewAttribute id="EAN11"/>
+        <viewAttribute id="LAENG"/>
+        <viewAttribute id="HOEHE"/>
+        <viewAttribute id="MEABM"/>
+        <viewAttribute id="BREIT"/>
+        <viewAttribute id="MHDRZ"/>
+        <viewAttribute id="MHDHB"/>
+        <viewAttribute id="TAKLV"/>
+        <viewAttribute id="WHSTC"/>
+        <viewAttribute id="WHMATGR"/>
+        <viewAttribute id="HNDLCODE"/>
+        <viewAttribute id="ZZATTR03"/>
+        <viewAttribute id="ZZATTR04"/>
+        <viewAttribute id="ZZATTR05"/>
+        <viewAttribute id="ZZATTR07"/>
+        <viewAttribute id="ZZATTR08"/>
+        <viewAttribute id="ZZATTR09"/>
+        <viewAttribute id="ZZATTR10"/>
+        <viewAttribute id="ZZATTR11"/>
+        <viewAttribute id="ZZATTR12"/>
+        <viewAttribute id="ZZATTR13"/>
+        <viewAttribute id="ZZATTR14"/>
+        <viewAttribute id="ZZATTR15"/>
+        <viewAttribute id="ZZATTR16"/>
+        <viewAttribute id="ZZATTR17"/>
+        <viewAttribute id="ZZATTR18"/>
+        <viewAttribute id="ZZATTR19"/>
+        <viewAttribute id="ZZATTR20"/>
+        <viewAttribute id="ZZATTR21"/>
+        <viewAttribute id="ZZATTR24"/>
+        <viewAttribute id="ZZATTR25"/>
+        <viewAttribute id="ZZATTR26"/>
+        <viewAttribute id="ZZATTR27"/>
+        <viewAttribute id="ZZATTR28"/>
+        <viewAttribute id="ZZATTR29"/>
+        <viewAttribute id="ZZATTR30"/>
+        <viewAttribute id="ZZATTR31"/>
+        <viewAttribute id="ZZATTR32"/>
+        <viewAttribute id="ZZATTR33"/>
+        <viewAttribute id="ZZATTR34"/>
+        <viewAttribute id="ZZATTR35"/>
+        <viewAttribute id="ZZATTR36"/>
+        <viewAttribute id="ZZATTR37"/>
+        <viewAttribute id="INHAL"/>
+        <viewAttribute id="INHME"/>
+        <viewAttribute id="BISMT"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="ARTICLE_DESCRIPTION"/>
+        <viewAttribute id="TAXM1"/>
+        <viewAttribute id="WHERL"/>
+        <viewAttribute id="VDVFL"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_Code" source="BMC_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Brand" source="Brand"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="House_Brand" source="House_Brand"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Source" source="Source"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ERSDA" source="ERSDA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAEDA" source="LAEDA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MTART" source="MTART"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LVORM" source="LVORM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTME" source="BSTME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BRGEW" source="BRGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NTGEW" source="NTGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GEWEI" source="GEWEI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLUM" source="VOLUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLEH" source="VOLEH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TEMPB" source="TEMPB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EAN11" source="EAN11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAENG" source="LAENG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HOEHE" source="HOEHE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEABM" source="MEABM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BREIT" source="BREIT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MHDRZ" source="MHDRZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MHDHB" source="MHDHB"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TAKLV" source="TAKLV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WHSTC" source="WHSTC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WHMATGR" source="WHMATGR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HNDLCODE" source="HNDLCODE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR03" source="ZZATTR03"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR04" source="ZZATTR04"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR05" source="ZZATTR05"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR07" source="ZZATTR07"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR08" source="ZZATTR08"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR09" source="ZZATTR09"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR10" source="ZZATTR10"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR11" source="ZZATTR11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR12" source="ZZATTR12"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR13" source="ZZATTR13"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR14" source="ZZATTR14"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR15" source="ZZATTR15"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR16" source="ZZATTR16"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR17" source="ZZATTR17"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR18" source="ZZATTR18"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR19" source="ZZATTR19"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR20" source="ZZATTR20"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR21" source="ZZATTR21"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR24" source="ZZATTR24"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR25" source="ZZATTR25"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR26" source="ZZATTR26"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR27" source="ZZATTR27"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR28" source="ZZATTR28"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR29" source="ZZATTR29"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR30" source="ZZATTR30"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR31" source="ZZATTR31"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR32" source="ZZATTR32"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR33" source="ZZATTR33"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR34" source="ZZATTR34"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR35" source="ZZATTR35"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR36" source="ZZATTR36"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR37" source="ZZATTR37"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INHAL" source="INHAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INHME" source="INHME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BISMT" source="BISMT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="Article_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ARTICLE_DESCRIPTION" source="ARTICLE_DESCRIPTION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TAXM1" source="TAXM1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WHERL" source="WHERL"/>
+      </input>
+      <input node="Projection_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="VDVFL" source="VDVFL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="multiJoinNode" cardinality="C1_1" dynamic="false" joinType="leftOuter" optimizeJoinColumns="false">
+    <descriptions/>
+    <viewAttributes>
+      <viewAttribute id="MATNR"/>
+      <viewAttribute id="BMC_Code"/>
+      <viewAttribute id="Brand"/>
+      <viewAttribute id="House_Brand"/>
+      <viewAttribute id="Source"/>
+      <viewAttribute id="MEINS"/>
+      <viewAttribute id="ERSDA"/>
+      <viewAttribute id="LAEDA"/>
+      <viewAttribute id="MTART"/>
+      <viewAttribute id="LVORM"/>
+      <viewAttribute id="BSTME"/>
+      <viewAttribute id="BRGEW"/>
+      <viewAttribute id="NTGEW"/>
+      <viewAttribute id="GEWEI"/>
+      <viewAttribute id="VOLUM"/>
+      <viewAttribute id="VOLEH"/>
+      <viewAttribute id="TEMPB"/>
+      <viewAttribute id="EAN11"/>
+      <viewAttribute id="LAENG"/>
+      <viewAttribute id="HOEHE"/>
+      <viewAttribute id="MEABM"/>
+      <viewAttribute id="BREIT"/>
+      <viewAttribute id="MHDRZ"/>
+      <viewAttribute id="MHDHB"/>
+      <viewAttribute id="TAKLV"/>
+      <viewAttribute id="WHSTC"/>
+      <viewAttribute id="WHMATGR"/>
+      <viewAttribute id="HNDLCODE"/>
+      <viewAttribute id="ZZATTR03"/>
+      <viewAttribute id="ZZATTR04"/>
+      <viewAttribute id="ZZATTR05"/>
+      <viewAttribute id="ZZATTR07"/>
+      <viewAttribute id="ZZATTR08"/>
+      <viewAttribute id="ZZATTR09"/>
+      <viewAttribute id="ZZATTR10"/>
+      <viewAttribute id="ZZATTR11"/>
+      <viewAttribute id="ZZATTR12"/>
+      <viewAttribute id="ZZATTR13"/>
+      <viewAttribute id="ZZATTR14"/>
+      <viewAttribute id="ZZATTR15"/>
+      <viewAttribute id="ZZATTR16"/>
+      <viewAttribute id="ZZATTR17"/>
+      <viewAttribute id="ZZATTR18"/>
+      <viewAttribute id="ZZATTR19"/>
+      <viewAttribute id="ZZATTR20"/>
+      <viewAttribute id="ZZATTR21"/>
+      <viewAttribute id="ZZATTR24"/>
+      <viewAttribute id="ZZATTR25"/>
+      <viewAttribute id="ZZATTR26"/>
+      <viewAttribute id="ZZATTR27"/>
+      <viewAttribute id="ZZATTR28"/>
+      <viewAttribute id="ZZATTR29"/>
+      <viewAttribute id="ZZATTR30"/>
+      <viewAttribute id="ZZATTR31"/>
+      <viewAttribute id="ZZATTR32"/>
+      <viewAttribute id="ZZATTR33"/>
+      <viewAttribute id="ZZATTR34"/>
+      <viewAttribute id="ZZATTR35"/>
+      <viewAttribute id="ZZATTR36"/>
+      <viewAttribute id="ZZATTR37"/>
+      <viewAttribute id="INHAL"/>
+      <viewAttribute id="INHME"/>
+      <viewAttribute id="BISMT"/>
+      <viewAttribute id="Article_Description"/>
+      <viewAttribute id="ARTICLE_DESCRIPTION"/>
+      <viewAttribute id="TAXM1"/>
+      <viewAttribute id="WHERL"/>
+      <viewAttribute id="VDVFL"/>
+      <viewAttribute id="ZSTATUS"/>
+      <viewAttribute id="ZBRAND_ETHNICITY"/>
+      <viewAttribute id="ZPRODUCT_PACK"/>
+      <viewAttribute id="ZPACKAGING"/>
+      <viewAttribute id="ZTIER"/>
+      <viewAttribute id="ZPRICE_BAND"/>
+      <viewAttribute id="ZCUISINE"/>
+      <viewAttribute id="ZFOOD_OCCASION"/>
+      <viewAttribute id="ZFOOD_PURPOSE"/>
+      <viewAttribute id="ZPRD_FORMAT"/>
+      <viewAttribute id="ZVARIETY"/>
+      <viewAttribute id="ZPROTEIN"/>
+      <viewAttribute id="ZSTRENGTH"/>
+      <viewAttribute id="ZCOOKING_METHOD"/>
+      <viewAttribute id="ZCOOKING_TIME"/>
+      <viewAttribute id="ZFLAVOUR"/>
+      <viewAttribute id="ZCUT"/>
+      <viewAttribute id="ZTRADING_AREA"/>
+      <viewAttribute id="ZDG_SMALL_CODE"/>
+      <viewAttribute id="ZDG_SMALL_DESC"/>
+      <viewAttribute id="ZDG_LARGE_CODE"/>
+      <viewAttribute id="ZDG_LARGE_DESC"/>
+      <viewAttribute id="ZMAIN_INGR"/>
+      <viewAttribute id="ZBREED"/>
+      <viewAttribute id="ZEGG_FREE"/>
+      <viewAttribute id="ZLACTOSE_FREE"/>
+      <viewAttribute id="ZHALAL"/>
+      <viewAttribute id="ZKOSHER"/>
+      <viewAttribute id="ZREDUCED_FAT"/>
+      <viewAttribute id="ZREDUCED_SUGAR"/>
+      <viewAttribute id="ZPESTICIDE_FREE"/>
+      <viewAttribute id="ZSPINNEYS_EXCL"/>
+      <viewAttribute id="ZINCUBATOR"/>
+      <viewAttribute id="ZGLUTEN_FREE"/>
+      <viewAttribute id="ZWHEAT_FREE"/>
+      <viewAttribute id="ZDAIRY_FREE"/>
+      <viewAttribute id="ZSUGAR_FREE"/>
+      <viewAttribute id="ZGELATINE_FREE"/>
+      <viewAttribute id="ZCONTAINS_NUTS"/>
+      <viewAttribute id="ZVEGETARIAN"/>
+      <viewAttribute id="ZVEGAN"/>
+      <viewAttribute id="ZPLANT_BASED"/>
+      <viewAttribute id="ZFAIRTRADE"/>
+      <viewAttribute id="ZORGANIC"/>
+      <viewAttribute id="ZFREE_RANGE"/>
+      <viewAttribute id="ZVIT_D"/>
+      <viewAttribute id="ZHIGH_PROTEIN"/>
+      <viewAttribute id="ZLOW_FAT"/>
+      <viewAttribute id="ZNO_ARTIF_PRESR"/>
+      <viewAttribute id="ZNO_ARTIF_CLR"/>
+      <viewAttribute id="ZNO_ARTIF_FLAV"/>
+      <viewAttribute id="ZNO_ARTIF_HOR"/>
+      <viewAttribute id="ZPROD_IN_STORE"/>
+      <viewAttribute id="ZSHELF_READY_PAK"/>
+      <viewAttribute id="ZSUBSTITUTABLE"/>
+      <viewAttribute id="ZMCR"/>
+      <viewAttribute id="ZUAE"/>
+      <viewAttribute id="ZOMAN"/>
+      <viewAttribute id="ZBACK_TO_SCHL"/>
+      <viewAttribute id="ZBBQ"/>
+      <viewAttribute id="ZHALLOWEEN"/>
+      <viewAttribute id="ZNATIONAL_DAY"/>
+      <viewAttribute id="ZCHRISTMAS"/>
+      <viewAttribute id="ZNEW_YEARS"/>
+      <viewAttribute id="ZDIWALI"/>
+      <viewAttribute id="ZONAM"/>
+      <viewAttribute id="ZVALENTINES"/>
+      <viewAttribute id="ZTHANKSGIVING"/>
+      <viewAttribute id="ZCHINESE_NY"/>
+      <viewAttribute id="ZMOTHERS_DAY"/>
+      <viewAttribute id="ZEASTER"/>
+      <viewAttribute id="ZSUMMER"/>
+      <viewAttribute id="ZWINTER"/>
+      <viewAttribute id="ZEID"/>
+      <viewAttribute id="ZRAMADAN"/>
+      <viewAttribute id="ZTEMPERATURE"/>
+      <viewAttribute id="TIMESTAMP"/>
+      <viewAttribute id="UNAME"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_4">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BMC_Code" source="BMC_Code"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Brand" source="Brand"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="House_Brand" source="House_Brand"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Source" source="Source"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ERSDA" source="ERSDA"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAEDA" source="LAEDA"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MTART" source="MTART"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LVORM" source="LVORM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BSTME" source="BSTME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BRGEW" source="BRGEW"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NTGEW" source="NTGEW"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GEWEI" source="GEWEI"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VOLUM" source="VOLUM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VOLEH" source="VOLEH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEMPB" source="TEMPB"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EAN11" source="EAN11"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAENG" source="LAENG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HOEHE" source="HOEHE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MEABM" source="MEABM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BREIT" source="BREIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MHDRZ" source="MHDRZ"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MHDHB" source="MHDHB"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TAKLV" source="TAKLV"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WHSTC" source="WHSTC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WHMATGR" source="WHMATGR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HNDLCODE" source="HNDLCODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR03" source="ZZATTR03"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR04" source="ZZATTR04"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR05" source="ZZATTR05"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR07" source="ZZATTR07"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR08" source="ZZATTR08"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR09" source="ZZATTR09"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR10" source="ZZATTR10"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR11" source="ZZATTR11"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR12" source="ZZATTR12"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR13" source="ZZATTR13"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR14" source="ZZATTR14"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR15" source="ZZATTR15"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR16" source="ZZATTR16"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR17" source="ZZATTR17"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR18" source="ZZATTR18"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR19" source="ZZATTR19"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR20" source="ZZATTR20"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR21" source="ZZATTR21"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR24" source="ZZATTR24"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR25" source="ZZATTR25"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR26" source="ZZATTR26"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR27" source="ZZATTR27"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR28" source="ZZATTR28"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR29" source="ZZATTR29"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR30" source="ZZATTR30"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR31" source="ZZATTR31"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR32" source="ZZATTR32"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR33" source="ZZATTR33"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR34" source="ZZATTR34"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR35" source="ZZATTR35"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR36" source="ZZATTR36"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZZATTR37" source="ZZATTR37"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INHAL" source="INHAL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INHME" source="INHME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BISMT" source="BISMT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="Article_Description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ARTICLE_DESCRIPTION" source="ARTICLE_DESCRIPTION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TAXM1" source="TAXM1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WHERL" source="WHERL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="VDVFL" source="VDVFL"/>
+    </input>
+    <input node="ZTATTR_DATA">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZSTATUS" source="ZSTATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZBRAND_ETHNICITY" source="ZBRAND_ETHNICITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZPRODUCT_PACK" source="ZPRODUCT_PACK"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZPACKAGING" source="ZPACKAGING"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZTIER" source="ZTIER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZPRICE_BAND" source="ZPRICE_BAND"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZCUISINE" source="ZCUISINE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZFOOD_OCCASION" source="ZFOOD_OCCASION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZFOOD_PURPOSE" source="ZFOOD_PURPOSE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZPRD_FORMAT" source="ZPRD_FORMAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZVARIETY" source="ZVARIETY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZPROTEIN" source="ZPROTEIN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZSTRENGTH" source="ZSTRENGTH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZCOOKING_METHOD" source="ZCOOKING_METHOD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZCOOKING_TIME" source="ZCOOKING_TIME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZFLAVOUR" source="ZFLAVOUR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZCUT" source="ZCUT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZTRADING_AREA" source="ZTRADING_AREA"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZDG_SMALL_CODE" source="ZDG_SMALL_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZDG_SMALL_DESC" source="ZDG_SMALL_DESC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZDG_LARGE_CODE" source="ZDG_LARGE_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZDG_LARGE_DESC" source="ZDG_LARGE_DESC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZMAIN_INGR" source="ZMAIN_INGR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZBREED" source="ZBREED"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZEGG_FREE" source="ZEGG_FREE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZLACTOSE_FREE" source="ZLACTOSE_FREE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZHALAL" source="ZHALAL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZKOSHER" source="ZKOSHER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZREDUCED_FAT" source="ZREDUCED_FAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZREDUCED_SUGAR" source="ZREDUCED_SUGAR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZPESTICIDE_FREE" source="ZPESTICIDE_FREE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZSPINNEYS_EXCL" source="ZSPINNEYS_EXCL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZINCUBATOR" source="ZINCUBATOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZGLUTEN_FREE" source="ZGLUTEN_FREE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZWHEAT_FREE" source="ZWHEAT_FREE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZDAIRY_FREE" source="ZDAIRY_FREE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZSUGAR_FREE" source="ZSUGAR_FREE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZGELATINE_FREE" source="ZGELATINE_FREE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZCONTAINS_NUTS" source="ZCONTAINS_NUTS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZVEGETARIAN" source="ZVEGETARIAN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZVEGAN" source="ZVEGAN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZPLANT_BASED" source="ZPLANT_BASED"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZFAIRTRADE" source="ZFAIRTRADE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZORGANIC" source="ZORGANIC"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZFREE_RANGE" source="ZFREE_RANGE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZVIT_D" source="ZVIT_D"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZHIGH_PROTEIN" source="ZHIGH_PROTEIN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZLOW_FAT" source="ZLOW_FAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZNO_ARTIF_PRESR" source="ZNO_ARTIF_PRESR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZNO_ARTIF_CLR" source="ZNO_ARTIF_CLR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZNO_ARTIF_FLAV" source="ZNO_ARTIF_FLAV"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZNO_ARTIF_HOR" source="ZNO_ARTIF_HOR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZPROD_IN_STORE" source="ZPROD_IN_STORE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZSHELF_READY_PAK" source="ZSHELF_READY_PAK"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZSUBSTITUTABLE" source="ZSUBSTITUTABLE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZMCR" source="ZMCR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZUAE" source="ZUAE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZOMAN" source="ZOMAN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZBACK_TO_SCHL" source="ZBACK_TO_SCHL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZBBQ" source="ZBBQ"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZHALLOWEEN" source="ZHALLOWEEN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZNATIONAL_DAY" source="ZNATIONAL_DAY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZCHRISTMAS" source="ZCHRISTMAS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZNEW_YEARS" source="ZNEW_YEARS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZDIWALI" source="ZDIWALI"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZONAM" source="ZONAM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZVALENTINES" source="ZVALENTINES"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZTHANKSGIVING" source="ZTHANKSGIVING"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZCHINESE_NY" source="ZCHINESE_NY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZMOTHERS_DAY" source="ZMOTHERS_DAY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZEASTER" source="ZEASTER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZSUMMER" source="ZSUMMER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZWINTER" source="ZWINTER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZEID" source="ZEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZRAMADAN" source="ZRAMADAN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ZTEMPERATURE" source="ZTEMPERATURE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TIMESTAMP" source="TIMESTAMP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UNAME" source="UNAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+    </input>
+    <joinAttribute name="MATNR"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="multiJoinNode">
+    <descriptions/>
+    <attributes>
+      <attribute id="MATNR" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MATNR"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="MATNR"/>
+      </attribute>
+      <attribute id="Article_Description" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Description"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="Article_Description"/>
+      </attribute>
+      <attribute id="ARTICLE_DESCRIPTION" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ARTICLE DESCRIPTION"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ARTICLE_DESCRIPTION"/>
+      </attribute>
+      <attribute id="BMC_Code" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC Code"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="BMC_Code"/>
+      </attribute>
+      <attribute id="Brand" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Brand"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="Brand"/>
+      </attribute>
+      <attribute id="House_Brand" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="House Brand"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="House_Brand"/>
+      </attribute>
+      <attribute id="Source" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Source"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="Source"/>
+      </attribute>
+      <attribute id="MEINS" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MEINS"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="MEINS"/>
+      </attribute>
+      <attribute id="TAXM1" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="TAXM1"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="TAXM1"/>
+      </attribute>
+      <attribute id="ERSDA" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ERSDA"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ERSDA"/>
+      </attribute>
+      <attribute id="LAEDA" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LAEDA"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="LAEDA"/>
+      </attribute>
+      <attribute id="MTART" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MTART"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="MTART"/>
+      </attribute>
+      <attribute id="LVORM" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LVORM"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="LVORM"/>
+      </attribute>
+      <attribute id="BSTME" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BSTME"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="BSTME"/>
+      </attribute>
+      <attribute id="BRGEW" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BRGEW"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="BRGEW"/>
+      </attribute>
+      <attribute id="NTGEW" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="NTGEW"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="NTGEW"/>
+      </attribute>
+      <attribute id="GEWEI" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GEWEI"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="GEWEI"/>
+      </attribute>
+      <attribute id="VOLUM" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VOLUM"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="VOLUM"/>
+      </attribute>
+      <attribute id="VOLEH" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VOLEH"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="VOLEH"/>
+      </attribute>
+      <attribute id="TEMPB" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="TEMPB"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="TEMPB"/>
+      </attribute>
+      <attribute id="EAN11" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EAN11"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="EAN11"/>
+      </attribute>
+      <attribute id="LAENG" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LAENG"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="LAENG"/>
+      </attribute>
+      <attribute id="HOEHE" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="HOEHE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="HOEHE"/>
+      </attribute>
+      <attribute id="MEABM" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MEABM"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="MEABM"/>
+      </attribute>
+      <attribute id="BREIT" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BREIT"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="BREIT"/>
+      </attribute>
+      <attribute id="MHDRZ" order="30" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MHDRZ"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="MHDRZ"/>
+      </attribute>
+      <attribute id="MHDHB" order="31" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MHDHB"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="MHDHB"/>
+      </attribute>
+      <attribute id="TAKLV" order="32" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="TAKLV"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="TAKLV"/>
+      </attribute>
+      <attribute id="WHSTC" order="33" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WHSTC"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="WHSTC"/>
+      </attribute>
+      <attribute id="WHMATGR" order="34" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WHMATGR"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="WHMATGR"/>
+      </attribute>
+      <attribute id="HNDLCODE" order="35" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="HNDLCODE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="HNDLCODE"/>
+      </attribute>
+      <attribute id="ZZATTR03" order="36" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR03"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR03"/>
+      </attribute>
+      <attribute id="ZZATTR04" order="37" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR04"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR04"/>
+      </attribute>
+      <attribute id="ZZATTR05" order="38" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR05"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR05"/>
+      </attribute>
+      <attribute id="ZZATTR07" order="39" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR07"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR07"/>
+      </attribute>
+      <attribute id="ZZATTR08" order="40" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR08"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR08"/>
+      </attribute>
+      <attribute id="ZZATTR09" order="41" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR09"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR09"/>
+      </attribute>
+      <attribute id="ZZATTR10" order="42" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR10"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR10"/>
+      </attribute>
+      <attribute id="ZZATTR11" order="43" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR11"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR11"/>
+      </attribute>
+      <attribute id="ZZATTR12" order="44" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR12"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR12"/>
+      </attribute>
+      <attribute id="ZZATTR13" order="45" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR13"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR13"/>
+      </attribute>
+      <attribute id="ZZATTR14" order="46" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR14"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR14"/>
+      </attribute>
+      <attribute id="ZZATTR15" order="47" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR15"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR15"/>
+      </attribute>
+      <attribute id="ZZATTR16" order="48" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR16"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR16"/>
+      </attribute>
+      <attribute id="ZZATTR17" order="49" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR17"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR17"/>
+      </attribute>
+      <attribute id="ZZATTR18" order="50" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR18"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR18"/>
+      </attribute>
+      <attribute id="ZZATTR19" order="51" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR19"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR19"/>
+      </attribute>
+      <attribute id="ZZATTR20" order="52" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR20"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR20"/>
+      </attribute>
+      <attribute id="ZZATTR21" order="53" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR21"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR21"/>
+      </attribute>
+      <attribute id="ZZATTR24" order="54" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR24"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR24"/>
+      </attribute>
+      <attribute id="ZZATTR25" order="55" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR25"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR25"/>
+      </attribute>
+      <attribute id="ZZATTR26" order="56" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR26"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR26"/>
+      </attribute>
+      <attribute id="ZZATTR27" order="57" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR27"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR27"/>
+      </attribute>
+      <attribute id="ZZATTR28" order="58" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR28"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR28"/>
+      </attribute>
+      <attribute id="ZZATTR29" order="59" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR29"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR29"/>
+      </attribute>
+      <attribute id="ZZATTR30" order="60" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR30"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR30"/>
+      </attribute>
+      <attribute id="ZZATTR31" order="61" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR31"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR31"/>
+      </attribute>
+      <attribute id="ZZATTR32" order="62" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR32"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR32"/>
+      </attribute>
+      <attribute id="ZZATTR33" order="63" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR33"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR33"/>
+      </attribute>
+      <attribute id="ZZATTR34" order="64" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR34"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR34"/>
+      </attribute>
+      <attribute id="ZZATTR35" order="65" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR35"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR35"/>
+      </attribute>
+      <attribute id="ZZATTR36" order="66" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR36"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR36"/>
+      </attribute>
+      <attribute id="ZZATTR37" order="67" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZZATTR37"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZZATTR37"/>
+      </attribute>
+      <attribute id="WHERL" order="68" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WHERL"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="WHERL"/>
+      </attribute>
+      <attribute id="INHAL" order="69" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="INHAL"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="INHAL"/>
+      </attribute>
+      <attribute id="INHME" order="70" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="INHME"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="INHME"/>
+      </attribute>
+      <attribute id="VDVFL" order="71" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="First Sold Date"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="VDVFL"/>
+      </attribute>
+      <attribute id="ZSTATUS" order="72" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZSTATUS"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZSTATUS"/>
+      </attribute>
+      <attribute id="ZBRAND_ETHNICITY" order="73" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZBRAND_ETHNICITY"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZBRAND_ETHNICITY"/>
+      </attribute>
+      <attribute id="ZPRODUCT_PACK" order="74" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZPRODUCT_PACK"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZPRODUCT_PACK"/>
+      </attribute>
+      <attribute id="ZPACKAGING" order="75" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZPACKAGING"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZPACKAGING"/>
+      </attribute>
+      <attribute id="ZTIER" order="76" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZTIER"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZTIER"/>
+      </attribute>
+      <attribute id="ZPRICE_BAND" order="77" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZPRICE_BAND"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZPRICE_BAND"/>
+      </attribute>
+      <attribute id="ZCUISINE" order="78" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZCUISINE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZCUISINE"/>
+      </attribute>
+      <attribute id="ZFOOD_OCCASION" order="79" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZFOOD_OCCASION"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZFOOD_OCCASION"/>
+      </attribute>
+      <attribute id="ZFOOD_PURPOSE" order="80" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZFOOD_PURPOSE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZFOOD_PURPOSE"/>
+      </attribute>
+      <attribute id="ZPRD_FORMAT" order="81" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZPRD_FORMAT"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZPRD_FORMAT"/>
+      </attribute>
+      <attribute id="ZVARIETY" order="82" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZVARIETY"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZVARIETY"/>
+      </attribute>
+      <attribute id="ZPROTEIN" order="83" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZPROTEIN"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZPROTEIN"/>
+      </attribute>
+      <attribute id="ZSTRENGTH" order="84" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZSTRENGTH"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZSTRENGTH"/>
+      </attribute>
+      <attribute id="ZCOOKING_METHOD" order="85" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZCOOKING_METHOD"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZCOOKING_METHOD"/>
+      </attribute>
+      <attribute id="ZCOOKING_TIME" order="86" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZCOOKING_TIME"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZCOOKING_TIME"/>
+      </attribute>
+      <attribute id="ZFLAVOUR" order="87" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZFLAVOUR"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZFLAVOUR"/>
+      </attribute>
+      <attribute id="ZCUT" order="88" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZCUT"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZCUT"/>
+      </attribute>
+      <attribute id="ZTRADING_AREA" order="89" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZTRADING_AREA"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZTRADING_AREA"/>
+      </attribute>
+      <attribute id="ZDG_SMALL_CODE" order="90" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZDG_SMALL_CODE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZDG_SMALL_CODE"/>
+      </attribute>
+      <attribute id="ZDG_SMALL_DESC" order="91" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZDG_SMALL_DESC"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZDG_SMALL_DESC"/>
+      </attribute>
+      <attribute id="ZDG_LARGE_CODE" order="92" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZDG_LARGE_CODE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZDG_LARGE_CODE"/>
+      </attribute>
+      <attribute id="ZDG_LARGE_DESC" order="93" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZDG_LARGE_DESC"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZDG_LARGE_DESC"/>
+      </attribute>
+      <attribute id="ZMAIN_INGR" order="94" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZMAIN_INGR"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZMAIN_INGR"/>
+      </attribute>
+      <attribute id="ZBREED" order="95" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZBREED"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZBREED"/>
+      </attribute>
+      <attribute id="ZEGG_FREE" order="96" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZEGG_FREE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZEGG_FREE"/>
+      </attribute>
+      <attribute id="ZLACTOSE_FREE" order="97" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZLACTOSE_FREE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZLACTOSE_FREE"/>
+      </attribute>
+      <attribute id="ZHALAL" order="98" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZHALAL"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZHALAL"/>
+      </attribute>
+      <attribute id="ZKOSHER" order="99" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZKOSHER"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZKOSHER"/>
+      </attribute>
+      <attribute id="ZREDUCED_FAT" order="100" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZREDUCED_FAT"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZREDUCED_FAT"/>
+      </attribute>
+      <attribute id="ZREDUCED_SUGAR" order="101" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZREDUCED_SUGAR"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZREDUCED_SUGAR"/>
+      </attribute>
+      <attribute id="ZPESTICIDE_FREE" order="102" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZPESTICIDE_FREE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZPESTICIDE_FREE"/>
+      </attribute>
+      <attribute id="ZSPINNEYS_EXCL" order="103" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZSPINNEYS_EXCL"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZSPINNEYS_EXCL"/>
+      </attribute>
+      <attribute id="ZINCUBATOR" order="104" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZINCUBATOR"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZINCUBATOR"/>
+      </attribute>
+      <attribute id="ZGLUTEN_FREE" order="105" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZGLUTEN_FREE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZGLUTEN_FREE"/>
+      </attribute>
+      <attribute id="ZWHEAT_FREE" order="106" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZWHEAT_FREE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZWHEAT_FREE"/>
+      </attribute>
+      <attribute id="ZDAIRY_FREE" order="107" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZDAIRY_FREE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZDAIRY_FREE"/>
+      </attribute>
+      <attribute id="ZSUGAR_FREE" order="108" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZSUGAR_FREE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZSUGAR_FREE"/>
+      </attribute>
+      <attribute id="ZGELATINE_FREE" order="109" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZGELATINE_FREE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZGELATINE_FREE"/>
+      </attribute>
+      <attribute id="ZCONTAINS_NUTS" order="110" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZCONTAINS_NUTS"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZCONTAINS_NUTS"/>
+      </attribute>
+      <attribute id="ZVEGETARIAN" order="111" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZVEGETARIAN"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZVEGETARIAN"/>
+      </attribute>
+      <attribute id="ZVEGAN" order="112" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZVEGAN"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZVEGAN"/>
+      </attribute>
+      <attribute id="ZPLANT_BASED" order="113" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZPLANT_BASED"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZPLANT_BASED"/>
+      </attribute>
+      <attribute id="ZFAIRTRADE" order="114" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZFAIRTRADE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZFAIRTRADE"/>
+      </attribute>
+      <attribute id="ZORGANIC" order="115" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZORGANIC"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZORGANIC"/>
+      </attribute>
+      <attribute id="ZFREE_RANGE" order="116" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZFREE_RANGE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZFREE_RANGE"/>
+      </attribute>
+      <attribute id="ZVIT_D" order="117" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZVIT_D"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZVIT_D"/>
+      </attribute>
+      <attribute id="ZHIGH_PROTEIN" order="118" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZHIGH_PROTEIN"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZHIGH_PROTEIN"/>
+      </attribute>
+      <attribute id="ZLOW_FAT" order="119" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZLOW_FAT"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZLOW_FAT"/>
+      </attribute>
+      <attribute id="ZNO_ARTIF_PRESR" order="120" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZNO_ARTIF_PRESR"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZNO_ARTIF_PRESR"/>
+      </attribute>
+      <attribute id="ZNO_ARTIF_CLR" order="121" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZNO_ARTIF_CLR"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZNO_ARTIF_CLR"/>
+      </attribute>
+      <attribute id="ZNO_ARTIF_FLAV" order="122" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZNO_ARTIF_FLAV"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZNO_ARTIF_FLAV"/>
+      </attribute>
+      <attribute id="ZNO_ARTIF_HOR" order="123" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZNO_ARTIF_HOR"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZNO_ARTIF_HOR"/>
+      </attribute>
+      <attribute id="ZPROD_IN_STORE" order="124" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZPROD_IN_STORE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZPROD_IN_STORE"/>
+      </attribute>
+      <attribute id="ZSHELF_READY_PAK" order="125" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZSHELF_READY_PAK"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZSHELF_READY_PAK"/>
+      </attribute>
+      <attribute id="ZSUBSTITUTABLE" order="126" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZSUBSTITUTABLE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZSUBSTITUTABLE"/>
+      </attribute>
+      <attribute id="ZMCR" order="127" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZMCR"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZMCR"/>
+      </attribute>
+      <attribute id="ZUAE" order="128" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZUAE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZUAE"/>
+      </attribute>
+      <attribute id="ZOMAN" order="129" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZOMAN"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZOMAN"/>
+      </attribute>
+      <attribute id="ZBACK_TO_SCHL" order="130" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZBACK_TO_SCHL"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZBACK_TO_SCHL"/>
+      </attribute>
+      <attribute id="ZBBQ" order="131" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZBBQ"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZBBQ"/>
+      </attribute>
+      <attribute id="ZHALLOWEEN" order="132" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZHALLOWEEN"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZHALLOWEEN"/>
+      </attribute>
+      <attribute id="ZNATIONAL_DAY" order="133" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZNATIONAL_DAY"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZNATIONAL_DAY"/>
+      </attribute>
+      <attribute id="ZCHRISTMAS" order="134" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZCHRISTMAS"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZCHRISTMAS"/>
+      </attribute>
+      <attribute id="ZNEW_YEARS" order="135" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZNEW_YEARS"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZNEW_YEARS"/>
+      </attribute>
+      <attribute id="ZDIWALI" order="136" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZDIWALI"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZDIWALI"/>
+      </attribute>
+      <attribute id="ZONAM" order="137" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZONAM"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZONAM"/>
+      </attribute>
+      <attribute id="ZVALENTINES" order="138" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZVALENTINES"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZVALENTINES"/>
+      </attribute>
+      <attribute id="ZTHANKSGIVING" order="139" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZTHANKSGIVING"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZTHANKSGIVING"/>
+      </attribute>
+      <attribute id="ZCHINESE_NY" order="140" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZCHINESE_NY"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZCHINESE_NY"/>
+      </attribute>
+      <attribute id="ZMOTHERS_DAY" order="141" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZMOTHERS_DAY"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZMOTHERS_DAY"/>
+      </attribute>
+      <attribute id="ZEASTER" order="142" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZEASTER"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZEASTER"/>
+      </attribute>
+      <attribute id="ZSUMMER" order="143" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZSUMMER"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZSUMMER"/>
+      </attribute>
+      <attribute id="ZWINTER" order="144" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZWINTER"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZWINTER"/>
+      </attribute>
+      <attribute id="ZEID" order="145" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZEID"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZEID"/>
+      </attribute>
+      <attribute id="ZRAMADAN" order="146" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZRAMADAN"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZRAMADAN"/>
+      </attribute>
+      <attribute id="ZTEMPERATURE" order="147" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZTEMPERATURE"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="ZTEMPERATURE"/>
+      </attribute>
+      <attribute id="TIMESTAMP" order="148" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="TIMESTAMP"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="TIMESTAMP"/>
+      </attribute>
+      <attribute id="UNAME" order="149" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="UNAME"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="UNAME"/>
+      </attribute>
+      <attribute id="BISMT" order="150" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Old Article Number"/>
+        <keyMapping columnObjectName="multiJoinNode" columnName="BISMT"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Department_Code" hidden="false" order="8" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department Code"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="2">
+          <formula>leftstr(&quot;BMC_Code&quot;,1)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Category_Code" hidden="false" order="9" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category Code"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="3">
+          <formula>leftstr(&quot;BMC_Code&quot;,2)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="SubCategory_Code" hidden="false" order="10" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SubCategory Code"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="4">
+          <formula>leftstr(&quot;BMC_Code&quot;,3)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Article_Code" hidden="false" key="true" order="11" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="18">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup" expanded="true">
+        <upperLeftCorner x="226" y="112"/>
+        <rectangleSize width="160"/>
+      </shape>
+      <shape modelObjectName="Projection_1" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="116" y="731"/>
+        <rectangleSize width="160"/>
+      </shape>
+      <shape modelObjectName="Projection_2" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="326" y="651"/>
+        <rectangleSize width="160"/>
+      </shape>
+      <shape modelObjectName="Projection_3" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="91" y="451"/>
+        <rectangleSize width="160"/>
+      </shape>
+      <shape modelObjectName="Join_1" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="116" y="651"/>
+        <rectangleSize width="160"/>
+      </shape>
+    <shape modelObjectName="MARA" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="Join_2" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="246" y="551"/>
+        <rectangleSize width="160"/>
+      </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="Join_3" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="302" y="451"/>
+        <rectangleSize width="160"/>
+      </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="MAW1" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="Join_4" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="209" y="351"/>
+        <rectangleSize width="160"/>
+      </shape>
+    <shape modelObjectName="Join_3" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_3" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="multiJoinNode" modelObjectNameSpace="CalculationView" expanded="true">
+      <upperLeftCorner x="209" y="211"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape modelObjectName="Join_4" modelObjectNameSpace="multiJoinNode" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="ZTATTR_DATA" modelObjectNameSpace="multiJoinNode" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

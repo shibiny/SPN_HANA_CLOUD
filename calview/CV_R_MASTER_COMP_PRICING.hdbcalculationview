@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_R_MASTER_COMP_PRICING" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="CV_R_MASTER_COMP_PRICING"/>
+  <metadata changedAt="2021-03-09 16:50:52.86"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="ZCOMP_PRICING">
+      <resourceUri>ZCOMP_PRICING</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="CNAME"/>
+        <viewAttribute id="CDATE"/>
+        <viewAttribute id="MAKTX"/>
+        <viewAttribute id="CPRICE"/>
+        <viewAttribute id="COMMENTS"/>
+        <viewAttribute id="MANDT"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="ZCOMP_PRICING"/>
+    <filter>(&quot;MANDT&quot; ='100')</filter>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Projection_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="Sales_Organization" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Organization"/>
+        <keyMapping columnObjectName="Projection_1" columnName="VKORG"/>
+      </attribute>
+      <attribute id="MATNR_1" hidden="true" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MATNR"/>
+        <keyMapping columnObjectName="Projection_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="Competitor_Name" key="true" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Competitor Name"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CNAME"/>
+      </attribute>
+      <attribute id="CDATE" hidden="true" key="true" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDATE"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CDATE"/>
+      </attribute>
+      <attribute id="Competitor_Price" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Competitor Price"/>
+        <keyMapping columnObjectName="Projection_1" columnName="CPRICE"/>
+      </attribute>
+      <attribute id="Comments" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Comments"/>
+        <keyMapping columnObjectName="Projection_1" columnName="COMMENTS"/>
+      </attribute>
+      <attribute id="MATNR$local">
+        <descriptions defaultDescription="MATNR"/>
+        <keyMapping columnObjectName="Projection_1" columnName="MATNR"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Pricing_Date" hidden="false" key="true" order="5" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Pricing Date"/>
+        <keyCalculation datatype="DATE" expressionLanguage="SQL">
+          <formula>TO_DATE(&quot;CDATE&quot;)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures>
+      <measure id="Competitor_Price_Measure" hidden="false" order="8" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="2">
+        <descriptions defaultDescription="Competitor Price Measure"/>
+        <formula>&quot;Competitor_Price&quot;</formula>
+      
+        </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="390"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+      <shape modelObjectName="Projection_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="126" y="119"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="560" y="30"/>
+      </shape></shapes>
+</layout>
+</Calculation:scenario>

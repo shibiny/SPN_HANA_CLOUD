@@ -1,0 +1,885 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="AT_MASTER_MERC_HIERARCHY" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="AT_MASTER_MERC_HIERARCHY"/>
+  <metadata changedAt="2021-11-17 11:23:31.707"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="51"/>
+  <dataSources>
+    <DataSource id="MARA">
+      <resourceUri>MARA</resourceUri>
+    </DataSource>
+    <DataSource id="SWOR">
+      <resourceUri>SWOR</resourceUri>
+    </DataSource>
+    <DataSource id="KLAH">
+      <resourceUri>KLAH</resourceUri>
+    </DataSource>
+    <DataSource id="MCSHIERB">
+      <resourceUri>MCSHIERB</resourceUri>
+    </DataSource>
+    <DataSource id="Level_4$$$$MCSHIERB$$">
+      <resourceUri>MCSHIERB</resourceUri>
+    </DataSource>
+    <DataSource id="Comm_Mgnr$$$$MCSHIERB$$">
+      <resourceUri>MCSHIERB</resourceUri>
+    </DataSource>
+    <DataSource id="MAKT">
+      <resourceUri>MAKT</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Article">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="MATKL"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Department_ID" length="1" expressionLanguage="COLUMN_ENGINE">
+          <formula>leftstr(&quot;MATKL&quot;,1)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Category_ID" length="2" expressionLanguage="COLUMN_ENGINE">
+          <formula>leftstr(&quot;MATKL&quot;,2)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Subcategory_ID" length="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>leftstr(&quot;MATKL&quot;,3)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CDT4_ID" length="4" expressionLanguage="COLUMN_ENGINE">
+          <formula>leftstr(&quot;MATKL&quot;,4)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CDT5_ID" length="5" expressionLanguage="COLUMN_ENGINE">
+          <formula>leftstr(&quot;MATKL&quot;,5)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="CDT6_ID" length="6" expressionLanguage="COLUMN_ENGINE">
+          <formula>leftstr(&quot;MATKL&quot;,6)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="BMC_ID" length="6" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;MATKL&quot;</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Article_Code" length="18" expressionLanguage="COLUMN_ENGINE">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="MARA"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="All_Decs">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="SPRAS"/>
+        <viewAttribute id="KLPOS"/>
+        <viewAttribute id="CLINT"/>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="KSCHG"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="SWOR"/>
+    <filter>(&quot;SPRAS&quot; ='E') AND (&quot;KLPOS&quot; ='01')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="All_Codes">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KLART"/>
+        <viewAttribute id="CLINT"/>
+        <viewAttribute id="CLASS"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="KLAH"/>
+    <filter>(&quot;KLART&quot; ='026')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Codes_Desc" joinType="inner">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="CLASS"/>
+        <viewAttribute id="KSCHG"/>
+        <viewAttribute id="KSCHL"/>
+      <viewAttribute hidden="true" id="JOIN$CLINT$CLINT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="All_Decs">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHG" source="KSCHG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CLINT$CLINT" source="CLINT"/>
+      </input>
+      <input node="All_Codes">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CLASS" source="CLASS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$CLINT$CLINT" source="CLINT"/>
+      </input>
+    <joinAttribute name="JOIN$CLINT$CLINT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Department" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="MATNR"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Article">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+      <input node="Codes_Desc">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Description" source="KSCHG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="CLASS"/>
+      </input>
+    <joinAttribute name="Department_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Category" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="MATNR"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Department">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Description" source="Department_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+      <input node="Codes_Desc">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_Description" source="KSCHG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="CLASS"/>
+      </input>
+    <joinAttribute name="Category_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Subcategory" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="MATNR"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Category">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Description" source="Department_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_Description" source="Category_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+      <input node="Codes_Desc">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_Description" source="KSCHG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="CLASS"/>
+      </input>
+    <joinAttribute name="Subcategory_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="CDT4" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="MATNR"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Subcategory">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Description" source="Department_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_Description" source="Category_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_Description" source="Subcategory_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+      <input node="Codes_Desc">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_Description" source="KSCHG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CLASS"/>
+      </input>
+    <joinAttribute name="CDT4_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="CDT5" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="MATNR"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="CDT4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Description" source="Department_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_Description" source="Category_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_Description" source="Subcategory_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_Description" source="CDT4_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+      <input node="Codes_Desc">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_Description" source="KSCHG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CLASS"/>
+      </input>
+    <joinAttribute name="CDT5_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="CDT6" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="CDT6_Description"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="MATNR"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="CDT5">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Description" source="Department_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_Description" source="Category_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_Description" source="Subcategory_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_Description" source="CDT4_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_Description" source="CDT5_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+      <input node="Codes_Desc">
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_Description" source="KSCHG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CLASS"/>
+      </input>
+    <joinAttribute name="CDT6_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="BMC" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="CDT6_Description"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="BMC_Description"/>
+        <viewAttribute id="MATNR"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="CDT6">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Description" source="Department_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_Description" source="Category_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_Description" source="Subcategory_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_Description" source="CDT4_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_Description" source="CDT5_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_Description" source="CDT6_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+      </input>
+      <input node="Codes_Desc">
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_Description" source="KSCHG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="CLASS"/>
+      </input>
+    <joinAttribute name="BMC_ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Buyers">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="PARENT"/>
+        <viewAttribute id="HNAME"/>
+        <viewAttribute id="TLEVEL"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="MCSHIERB"/>
+    <filter>(&quot;HNAME&quot; ='SP_CATNEW') AND (&quot;TLEVEL&quot; ='03')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Level_4">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="PARENT"/>
+        <viewAttribute id="HNAME"/>
+        <viewAttribute id="TLEVEL"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Level_4$$$$MCSHIERB$$"/>
+    <filter>(&quot;HNAME&quot; ='SP_CATNEW') AND (&quot;TLEVEL&quot; ='04')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Comm_Mgnr">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="ID"/>
+        <viewAttribute id="NAME"/>
+        <viewAttribute id="HNAME"/>
+        <viewAttribute id="TLEVEL"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Comm_Mgnr$$$$MCSHIERB$$"/>
+    <filter>(&quot;HNAME&quot; ='SP_CATNEW') AND (&quot;TLEVEL&quot; ='02')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Buyer_cdt4" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Buyers_Name"/>
+        <viewAttribute id="Subcat_Code"/>
+        <viewAttribute id="PARENT"/>
+      <viewAttribute hidden="true" id="JOIN$PARENT$ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Level_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcat_Code" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PARENT$ID" source="PARENT"/>
+      </input>
+      <input node="Buyers">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Buyers_Name" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PARENT" source="PARENT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PARENT$ID" source="ID"/>
+      </input>
+    <joinAttribute name="JOIN$PARENT$ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Managers" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Subcat_Code"/>
+        <viewAttribute id="Buyers_Name"/>
+        <viewAttribute id="Commercial_Manager"/>
+      <viewAttribute hidden="true" id="JOIN$PARENT$ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Buyer_cdt4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcat_Code" source="Subcat_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Buyers_Name" source="Buyers_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PARENT$ID" source="PARENT"/>
+      </input>
+      <input node="Comm_Mgnr">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Commercial_Manager" source="NAME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PARENT$ID" source="ID"/>
+      </input>
+    <joinAttribute name="JOIN$PARENT$ID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="SPRAS"/>
+        <viewAttribute id="MAKTX"/>
+        <viewAttribute id="MATNR"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="MAKT"/>
+    <filter>(&quot;SPRAS&quot; ='E')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Hierarchy" cardinality="C1_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="CDT6_Description"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="BMC_Description"/>
+      <viewAttribute hidden="true" id="JOIN$MATNR$MATNR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="BMC">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Description" source="Department_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_Description" source="Category_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_Description" source="Subcategory_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_Description" source="CDT4_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_Description" source="CDT5_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_Description" source="CDT6_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_Description" source="BMC_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+      </input>
+      <input node="Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="MAKTX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+      </input>
+    <joinAttribute name="JOIN$MATNR$MATNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="All" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="Article_Description"/>
+        <viewAttribute id="Department_ID"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_ID"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_ID"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="CDT4_ID"/>
+        <viewAttribute id="CDT4_Description"/>
+        <viewAttribute id="CDT5_ID"/>
+        <viewAttribute id="CDT5_Description"/>
+        <viewAttribute id="CDT6_ID"/>
+        <viewAttribute id="CDT6_Description"/>
+        <viewAttribute id="BMC_ID"/>
+        <viewAttribute id="BMC_Description"/>
+        <viewAttribute id="Buyers_Name"/>
+        <viewAttribute id="Commercial_Manager"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Hierarchy">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Article_Description" source="Article_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_ID" source="Department_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Department_Description" source="Department_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_ID" source="Category_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Category_Description" source="Category_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_ID" source="Subcategory_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Subcategory_Description" source="Subcategory_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="CDT4_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_Description" source="CDT4_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_ID" source="CDT5_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT5_Description" source="CDT5_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_ID" source="CDT6_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT6_Description" source="CDT6_Description"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_ID" source="BMC_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BMC_Description" source="BMC_Description"/>
+      </input>
+      <input node="Managers">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Buyers_Name" source="Buyers_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Commercial_Manager" source="Commercial_Manager"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="CDT4_ID" source="Subcat_Code"/>
+      </input>
+    <joinAttribute name="CDT4_ID"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="All">
+    <descriptions/>
+    <attributes>
+      <attribute id="Article_Code" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article_Code"/>
+        <keyMapping columnObjectName="All" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="Article_Description" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article_Description"/>
+        <keyMapping columnObjectName="All" columnName="Article_Description"/>
+      </attribute>
+      <attribute id="Department_ID" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department_ID"/>
+        <keyMapping columnObjectName="All" columnName="Department_ID"/>
+      </attribute>
+      <attribute id="Department_Description" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department_Description"/>
+        <keyMapping columnObjectName="All" columnName="Department_Description"/>
+      </attribute>
+      <attribute id="Category_ID" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category_ID"/>
+        <keyMapping columnObjectName="All" columnName="Category_ID"/>
+      </attribute>
+      <attribute id="Category_Description" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category_Description"/>
+        <keyMapping columnObjectName="All" columnName="Category_Description"/>
+      </attribute>
+      <attribute id="Subcategory_ID" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Subcategory_ID"/>
+        <keyMapping columnObjectName="All" columnName="Subcategory_ID"/>
+      </attribute>
+      <attribute id="Subcategory_Description" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Subcategory_Description"/>
+        <keyMapping columnObjectName="All" columnName="Subcategory_Description"/>
+      </attribute>
+      <attribute id="CDT4_ID" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4_ID"/>
+        <keyMapping columnObjectName="All" columnName="CDT4_ID"/>
+      </attribute>
+      <attribute id="CDT4_Description" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4_Description"/>
+        <keyMapping columnObjectName="All" columnName="CDT4_Description"/>
+      </attribute>
+      <attribute id="CDT5_ID" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5_ID"/>
+        <keyMapping columnObjectName="All" columnName="CDT5_ID"/>
+      </attribute>
+      <attribute id="CDT5_Description" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5_Description"/>
+        <keyMapping columnObjectName="All" columnName="CDT5_Description"/>
+      </attribute>
+      <attribute id="CDT6_ID" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6_ID"/>
+        <keyMapping columnObjectName="All" columnName="CDT6_ID"/>
+      </attribute>
+      <attribute id="CDT6_Description" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6_Description"/>
+        <keyMapping columnObjectName="All" columnName="CDT6_Description"/>
+      </attribute>
+      <attribute id="BMC_ID" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC_ID"/>
+        <keyMapping columnObjectName="All" columnName="BMC_ID"/>
+      </attribute>
+      <attribute id="BMC_Description" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC_Description"/>
+        <keyMapping columnObjectName="All" columnName="BMC_Description"/>
+      </attribute>
+      <attribute id="Buyers_Name" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Buyers_Name"/>
+        <keyMapping columnObjectName="All" columnName="Buyers_Name"/>
+      </attribute>
+      <attribute id="Commercial_Manager" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Commercial_Manager"/>
+        <keyMapping columnObjectName="All" columnName="Commercial_Manager"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Department" hidden="false" order="19" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="60">
+          <formula>&quot;Department_ID&quot;+'-'+&quot;Department_Description&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Category" hidden="false" order="20" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="60">
+          <formula>&quot;Category_ID&quot;+'-'+&quot;Category_Description&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="SubCategory" hidden="false" order="21" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SubCategory"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="60">
+          <formula>&quot;Subcategory_ID&quot;+'-'+&quot;Subcategory_Description&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="CDT4" hidden="false" order="22" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="60">
+          <formula>&quot;CDT4_ID&quot;+'-'+&quot;CDT4_Description&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="CDT5" hidden="false" order="23" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="60">
+          <formula>&quot;CDT5_ID&quot;+'-'+&quot;CDT5_Description&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="CDT6" hidden="false" order="24" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="60">
+          <formula>&quot;CDT6_ID&quot;+'-'+&quot;CDT6_Description&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="BMC" hidden="false" order="25" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="60">
+          <formula>&quot;BMC_ID&quot;+'-'+&quot;BMC_Description&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Article" hidden="false" order="26" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="60">
+          <formula>&quot;Article_Code&quot;+'-'+&quot;Article_Description&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Operational_Department" hidden="false" order="27" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Operational Department"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="40">
+          <formula>Case(&quot;Department_ID&quot;, 'B', 'BAKERY', 'D', 'MEAT', 'E', 'PRODUCE', 'Q', 'PRODUCE', 'J', 'FISH', 'H', 'DELI', 'W', 'PORK', &quot;Department_Description&quot;)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="456" y="112"/>
+        <rectangleSize height="0" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Article" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="771" y="1796"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="All_Decs" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="652" y="1956"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="All_Codes" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="442" y="1956"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Codes_Desc" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="469" y="1796"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    <shape modelObjectName="All_Decs" modelObjectNameSpace="Codes_Desc" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="All_Codes" modelObjectNameSpace="Codes_Desc" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Department" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="747" y="1516"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    <shape modelObjectName="Article" modelObjectNameSpace="Department" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Codes_Desc" modelObjectNameSpace="Department" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Category" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="737" y="1356"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    <shape modelObjectName="Department" modelObjectNameSpace="Category" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Codes_Desc" modelObjectNameSpace="Category" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Subcategory" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="710" y="1196"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    <shape modelObjectName="Category" modelObjectNameSpace="Subcategory" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Codes_Desc" modelObjectNameSpace="Subcategory" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="CDT4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="691" y="1036"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    <shape modelObjectName="Subcategory" modelObjectNameSpace="CDT4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Codes_Desc" modelObjectNameSpace="CDT4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="CDT5" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="664" y="876"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    <shape modelObjectName="CDT4" modelObjectNameSpace="CDT5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Codes_Desc" modelObjectNameSpace="CDT5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="CDT6" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="642" y="716"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    <shape modelObjectName="CDT5" modelObjectNameSpace="CDT6" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Codes_Desc" modelObjectNameSpace="CDT6" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="BMC" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="722" y="536"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    <shape modelObjectName="CDT6" modelObjectNameSpace="BMC" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Codes_Desc" modelObjectNameSpace="BMC" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Buyers" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="190" y="716"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Level_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="400" y="716"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Comm_Mgnr" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="92" y="536"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Buyer_cdt4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="302" y="536"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    <shape modelObjectName="Level_4" modelObjectNameSpace="Buyer_cdt4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Buyers" modelObjectNameSpace="Buyer_cdt4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Managers" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="275" y="376"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    <shape modelObjectName="Buyer_cdt4" modelObjectNameSpace="Managers" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Comm_Mgnr" modelObjectNameSpace="Managers" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="512" y="536"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Hierarchy" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="538" y="376"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    <shape modelObjectName="BMC" modelObjectNameSpace="Hierarchy" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Hierarchy" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="All" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="456" y="217"/>
+        <rectangleSize height="-1" width="160"/>
+      </shape>
+    
+    <shape modelObjectName="Hierarchy" modelObjectNameSpace="All" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Managers" modelObjectNameSpace="All" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

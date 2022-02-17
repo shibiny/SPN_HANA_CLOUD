@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_SALES_VIEW_V01" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="CV_SALES_VIEW_V01"/>
+  <metadata changedAt="2021-10-25 17:04:04.435"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="19"/>
+  <dataSources>
+    <DataSource id="VBRK" clientColumn="MANDT">
+      <resourceUri>VBRK</resourceUri>
+    </DataSource>
+    <DataSource id="VBRP" clientColumn="MANDT">
+      <resourceUri>VBRP</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Sales_Tables" cardinality="C1_N" joinType="referential">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="VBELN"/>
+        <viewAttribute id="POSNR"/>
+        <viewAttribute id="FKART"/>
+        <viewAttribute id="FKTYP"/>
+        <viewAttribute id="WAERK"/>
+        <viewAttribute id="FKDAT"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="ERNAM"/>
+        <viewAttribute id="BSTNK_VF"/>
+        <viewAttribute id="FKIMG"/>
+        <viewAttribute id="VRKME"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="FKLMG"/>
+        <viewAttribute id="NTGEW"/>
+        <viewAttribute id="BRGEW"/>
+        <viewAttribute id="GEWEI"/>
+        <viewAttribute id="KURSK"/>
+        <viewAttribute id="NETWR"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="SHKZG"/>
+        <viewAttribute id="STAFO"/>
+        <viewAttribute id="WAVWR"/>
+        <viewAttribute id="KZWI1"/>
+        <viewAttribute id="KZWI4"/>
+        <viewAttribute id="KZWI5"/>
+        <viewAttribute id="EAN11"/>
+        <viewAttribute id="VKORG_AUFT"/>
+        <viewAttribute id="VTWEG_AUFT"/>
+        <viewAttribute id="BRTWR"/>
+        <viewAttribute id="SGTXT"/>
+        <viewAttribute id="AKTNR"/>
+      <viewAttribute hidden="true" id="JOIN$VBELN$VBELN"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="VBRK">
+        <mapping xsi:type="Calculation:AttributeMapping" target="FKART" source="FKART"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FKTYP" source="FKTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WAERK" source="WAERK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FKDAT" source="FKDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ERNAM" source="ERNAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTNK_VF" source="BSTNK_VF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$VBELN$VBELN" source="VBELN"/>
+      </input>
+      <input node="VBRP">
+        <mapping xsi:type="Calculation:AttributeMapping" target="VBELN" source="VBELN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="POSNR" source="POSNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FKIMG" source="FKIMG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VRKME" source="VRKME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FKLMG" source="FKLMG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NTGEW" source="NTGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BRGEW" source="BRGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GEWEI" source="GEWEI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KURSK" source="KURSK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETWR" source="NETWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SHKZG" source="SHKZG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STAFO" source="STAFO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WAVWR" source="WAVWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KZWI1" source="KZWI1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KZWI4" source="KZWI4"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KZWI5" source="KZWI5"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EAN11" source="EAN11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG_AUFT" source="VKORG_AUFT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG_AUFT" source="VTWEG_AUFT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BRTWR" source="BRTWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SGTXT" source="SGTXT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AKTNR" source="AKTNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$VBELN$VBELN" source="VBELN"/>
+      </input>
+    <joinAttribute name="JOIN$VBELN$VBELN"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Sales_Tables">
+    <descriptions/>
+    <attributes>
+      <attribute id="VBELN" hidden="true" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VBELN"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="VBELN"/>
+      </attribute>
+      <attribute id="POSNR" hidden="true" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="POSNR"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="POSNR"/>
+      </attribute>
+      <attribute id="FKART" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Billing Type"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="FKART"/>
+      </attribute>
+      <attribute id="FKTYP" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Billing Category"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="FKTYP"/>
+      </attribute>
+      <attribute id="WAERK" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Document Currency"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="WAERK"/>
+      </attribute>
+      <attribute id="FKDAT" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Billing Date"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="FKDAT"/>
+      </attribute>
+      <attribute id="ERNAM" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Created By"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="ERNAM"/>
+      </attribute>
+      <attribute id="BUKRS" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Company Code"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="BUKRS"/>
+      </attribute>
+      <attribute id="BSTNK_VF" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PO Number"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="BSTNK_VF"/>
+      </attribute>
+      <attribute id="VRKME" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Unit"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="VRKME"/>
+      </attribute>
+      <attribute id="MEINS" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Base Unit"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="MEINS"/>
+      </attribute>
+      <attribute id="GEWEI" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Weight Unit"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="GEWEI"/>
+      </attribute>
+      <attribute id="SHKZG" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Credit/Debit Indicator"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="SHKZG"/>
+      </attribute>
+      <attribute id="STAFO" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Update Group"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="STAFO"/>
+      </attribute>
+      <attribute id="EAN11" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Barcode"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="EAN11"/>
+      </attribute>
+      <attribute id="VKORG_AUFT" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VKORG_AUFT"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="VKORG_AUFT"/>
+      </attribute>
+      <attribute id="VTWEG_AUFT" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="VTWEG_AUFT"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="VTWEG_AUFT"/>
+      </attribute>
+      <attribute id="SGTXT" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Text"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="SGTXT"/>
+      </attribute>
+      <attribute id="MATNR$local">
+        <keyMapping columnObjectName="Sales_Tables" columnName="MATNR"/>
+      </attribute>
+      <attribute id="WERKS$local">
+        <keyMapping columnObjectName="Sales_Tables" columnName="WERKS"/>
+      </attribute>
+      <attribute id="FKDAT$local">
+        <descriptions defaultDescription="Billing Date"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="FKDAT"/>
+      </attribute>
+      <attribute id="AKTNR$local">
+        <keyMapping columnObjectName="Sales_Tables" columnName="AKTNR"/>
+      </attribute>
+      <attribute id="VRKME$local">
+        <descriptions defaultDescription="Sales Unit"/>
+        <keyMapping columnObjectName="Sales_Tables" columnName="VRKME"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Billing_Document" hidden="false" order="40" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Billing Document"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="10">
+          <formula>ltrim(&quot;VBELN&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Billing_Document_Item" hidden="false" order="41" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Billing Document Item"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="10">
+          <formula>ltrim(&quot;POSNR&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Online_Channel" hidden="false" order="42" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Online Channel"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="20">
+          <formula>If(Match(rightstr(&quot;SGTXT&quot;,10),'****/IN**') OR Match(rightstr(&quot;SGTXT&quot;,13),'****/**/IN**'),'InstaShop',If(Match(rightstr(&quot;SGTXT&quot;,10),'/NOON****') OR Match(rightstr(&quot;SGTXT&quot;,10),'/NNOW****'),'NOON', If(Match(rightstr(&quot;SGTXT&quot;,10),'****/EC**'),'Spinneys','In-Store')))
+</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Online_Indicator" hidden="false" order="43" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Online Indicator"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="20">
+          <formula>If(Match(rightstr(&quot;SGTXT&quot;,10),'/****/IN**') OR Match(rightstr(&quot;SGTXT&quot;,13),'/****/**/IN**') OR Match(rightstr(&quot;SGTXT&quot;,10),'/NOON/****') OR Match(rightstr(&quot;SGTXT&quot;,10),'/NNOW/****') OR Match(rightstr(&quot;SGTXT&quot;,10),'****/EC**'),'Online','In-Store')
+</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="FKIMG" order="10" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="FKIMG"/>
+        <measureMapping columnObjectName="Sales_Tables" columnName="FKIMG"/>
+      </measure>
+      <measure id="FKLMG" order="13" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="FKLMG"/>
+        <measureMapping columnObjectName="Sales_Tables" columnName="FKLMG"/>
+      </measure>
+      <measure id="NTGEW" order="14" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="NTGEW"/>
+        <measureMapping columnObjectName="Sales_Tables" columnName="NTGEW"/>
+      </measure>
+      <measure id="BRGEW" order="15" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="BRGEW"/>
+        <measureMapping columnObjectName="Sales_Tables" columnName="BRGEW"/>
+      </measure>
+      <measure id="KURSK" order="17" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Exchange Rate"/>
+        <measureMapping columnObjectName="Sales_Tables" columnName="KURSK"/>
+      </measure>
+      <measure id="NETWR" order="18" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="NETWR"/>
+        <measureMapping columnObjectName="Sales_Tables" columnName="NETWR"/>
+      </measure>
+      <measure id="WAVWR" order="21" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="WAVWR"/>
+        <measureMapping columnObjectName="Sales_Tables" columnName="WAVWR"/>
+      </measure>
+      <measure id="KZWI1" order="22" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="KZWI1"/>
+        <measureMapping columnObjectName="Sales_Tables" columnName="KZWI1"/>
+      </measure>
+      <measure id="KZWI4" order="23" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="KZWI4"/>
+        <measureMapping columnObjectName="Sales_Tables" columnName="KZWI4"/>
+      </measure>
+      <measure id="KZWI5" order="24" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="KZWI5"/>
+        <measureMapping columnObjectName="Sales_Tables" columnName="KZWI5"/>
+      </measure>
+      <measure id="BRTWR" order="28" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="BRTWR"/>
+        <measureMapping columnObjectName="Sales_Tables" columnName="BRTWR"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="Gross_Sales_AED" hidden="false" order="30" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Gross Sales in AED"/>
+        <fixedCurrency>AED</fixedCurrency>
+        <currencyConversion errorHandling="failOnError" generateOutputUnitCurrencyAttribute="false" convert="true">
+          <client>
+            <value>100</value>
+          </client>
+          <currencyConversionTables rates="TCURR" configuration="TCURV" prefactors="TCURF" notations="TCURN" precisions="TCURX"/>
+          <sourceCurrency>
+            <attribute attributeName="WAERK"/>
+          </sourceCurrency>
+          <erpDecimalShift>true</erpDecimalShift>
+          <targetCurrency>
+            <value>AED</value>
+          </targetCurrency>
+          <referenceDate>
+            <attribute attributeName="DATE_SAP" dimensionUri="AT_MASTER_TIME"/>
+          </referenceDate>
+          <exchangeRateType>M</exchangeRateType>
+        </currencyConversion>
+        <formula>&quot;KZWI1&quot;</formula>
+      </measure>
+      <measure id="Net_Sales_AED" hidden="false" order="31" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Net Sales in AED"/>
+        <fixedCurrency>AED</fixedCurrency>
+        <currencyConversion errorHandling="failOnError" generateOutputUnitCurrencyAttribute="false" convert="true">
+          <client>
+            <value>100</value>
+          </client>
+          <currencyConversionTables rates="TCURR" configuration="TCURV" prefactors="TCURF" notations="TCURN" precisions="TCURX"/>
+          <sourceCurrency>
+            <attribute attributeName="WAERK"/>
+          </sourceCurrency>
+          <erpDecimalShift>true</erpDecimalShift>
+          <targetCurrency>
+            <value>AED</value>
+          </targetCurrency>
+          <referenceDate>
+            <attribute attributeName="DATE_SAP" dimensionUri="AT_MASTER_TIME"/>
+          </referenceDate>
+          <exchangeRateType>M</exchangeRateType>
+        </currencyConversion>
+        <formula>if(&quot;FKART&quot;='S1',-1*&quot;NETWR&quot;,&quot;NETWR&quot;)</formula>
+      </measure>
+      <measure id="Cost_Of_Sales_AED" hidden="false" order="32" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Cost Of Sales in AED"/>
+        <fixedCurrency>AED</fixedCurrency>
+        <currencyConversion errorHandling="failOnError" generateOutputUnitCurrencyAttribute="false" convert="true">
+          <client>
+            <value>100</value>
+          </client>
+          <currencyConversionTables rates="TCURR" configuration="TCURV" prefactors="TCURF" notations="TCURN" precisions="TCURX"/>
+          <sourceCurrency>
+            <attribute attributeName="WAERK"/>
+          </sourceCurrency>
+          <erpDecimalShift>true</erpDecimalShift>
+          <targetCurrency>
+            <value>AED</value>
+          </targetCurrency>
+          <referenceDate>
+            <attribute attributeName="DATE_SAP" dimensionUri="AT_MASTER_TIME"/>
+          </referenceDate>
+          <exchangeRateType>M</exchangeRateType>
+        </currencyConversion>
+        <formula>if(&quot;FKART&quot;='S1',-1*&quot;WAVWR&quot;,&quot;WAVWR&quot;)</formula>
+      </measure>
+      <measure id="Total_Discount_AED" hidden="false" order="33" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Total Discount in AED"/>
+        <fixedCurrency>AED</fixedCurrency>
+        <currencyConversion errorHandling="failOnError" generateOutputUnitCurrencyAttribute="false" convert="true">
+          <client>
+            <value>100</value>
+          </client>
+          <currencyConversionTables rates="TCURR" configuration="TCURV" prefactors="TCURF" notations="TCURN" precisions="TCURX"/>
+          <sourceCurrency>
+            <attribute attributeName="WAERK"/>
+          </sourceCurrency>
+          <erpDecimalShift>true</erpDecimalShift>
+          <targetCurrency>
+            <value>AED</value>
+          </targetCurrency>
+          <referenceDate>
+            <attribute attributeName="DATE_SAP" dimensionUri="AT_MASTER_TIME"/>
+          </referenceDate>
+          <exchangeRateType>M</exchangeRateType>
+        </currencyConversion>
+        <formula>(if(&quot;VKORG&quot; ='6100',&quot;KZWI4&quot;, If(&quot;DATE_SAP&quot;&gt;'20180703' and &quot;DATE_SAP&quot;&lt;'20180924', If(&quot;Tax_Code&quot;='2',&quot;KZWI4&quot;/1.0476,&quot;KZWI4&quot;) ,&quot;KZWI4&quot;)))-&quot;KZWI1&quot;</formula>
+      </measure>
+      <measure id="Gross_Sales_Doc_Curr" hidden="false" order="34" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Gross Sales in Document Currency"/>
+        <currencyConversion errorHandling="failOnError" generateOutputUnitCurrencyAttribute="false">
+          <client/>
+          <currencyConversionTables rates="TCURR" configuration="TCURV" prefactors="TCURF" notations="TCURN" precisions="TCURX"/>
+          <sourceCurrency>
+            <attribute attributeName="WAERK"/>
+          </sourceCurrency>
+          <erpDecimalShift>true</erpDecimalShift>
+          <targetCurrency/>
+          <referenceDate/>
+        </currencyConversion>
+        <formula>&quot;KZWI1&quot;</formula>
+      </measure>
+      <measure id="Net_Sales_Doc_Curr" hidden="false" order="35" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Net Sales in Document Currency"/>
+        <currencyConversion errorHandling="failOnError" generateOutputUnitCurrencyAttribute="false">
+          <client/>
+          <currencyConversionTables rates="TCURR" configuration="TCURV" prefactors="TCURF" notations="TCURN" precisions="TCURX"/>
+          <sourceCurrency>
+            <attribute attributeName="WAERK"/>
+          </sourceCurrency>
+          <erpDecimalShift>true</erpDecimalShift>
+          <targetCurrency/>
+          <referenceDate/>
+        </currencyConversion>
+        <formula>if(&quot;FKART&quot;='S1',-1*&quot;NETWR&quot;,&quot;NETWR&quot;)</formula>
+      </measure>
+      <measure id="Cost_Of_Sales_Doc_Curr" hidden="false" order="36" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Cost Of Sales in Document Currency"/>
+        <currencyConversion errorHandling="failOnError" generateOutputUnitCurrencyAttribute="false">
+          <client/>
+          <currencyConversionTables rates="TCURR" configuration="TCURV" prefactors="TCURF" notations="TCURN" precisions="TCURX"/>
+          <sourceCurrency>
+            <attribute attributeName="WAERK"/>
+          </sourceCurrency>
+          <erpDecimalShift>true</erpDecimalShift>
+          <targetCurrency/>
+          <referenceDate/>
+        </currencyConversion>
+        <formula>if(&quot;FKART&quot;='S1',-1*&quot;WAVWR&quot;,&quot;WAVWR&quot;)</formula>
+      </measure>
+      <measure id="Total_Discount_Doc_Curr" hidden="false" order="37" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Total Discount in Document Currency"/>
+        <currencyConversion errorHandling="failOnError" generateOutputUnitCurrencyAttribute="false">
+          <client/>
+          <currencyConversionTables rates="TCURR" configuration="TCURV" prefactors="TCURF" notations="TCURN" precisions="TCURX"/>
+          <sourceCurrency>
+            <attribute attributeName="WAERK"/>
+          </sourceCurrency>
+          <erpDecimalShift>true</erpDecimalShift>
+          <targetCurrency/>
+          <referenceDate/>
+        </currencyConversion>
+        <formula>(if(&quot;VKORG&quot; ='6100',&quot;KZWI4&quot;, If(&quot;DATE_SAP&quot;&gt;'20180703' and &quot;DATE_SAP&quot;&lt;'20180924', If(&quot;Tax_Code&quot;='2',&quot;KZWI4&quot;/1.0476,&quot;KZWI4&quot;) ,&quot;KZWI4&quot;)))-&quot;KZWI1&quot;</formula>
+      </measure>
+      <measure id="Quantity_BUn" hidden="false" order="38" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Quantity at Base Unit"/>
+        <formula>if(&quot;SHKZG&quot;='X',&quot;FKLMG&quot;*-1,&quot;FKLMG&quot;)</formula>
+      </measure>
+      <measure id="Quantity_SUn" hidden="false" order="39" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Quantity at Sales Unit"/>
+        <formula>if(&quot;SHKZG&quot;='X',&quot;FKIMG&quot;*-1,&quot;FKIMG&quot;)</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE_SITE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_MATNR" attributeName="MATNR"/>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_Article_Code" attributeName="Article_Code"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_SITE">
+        <attributes>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_SITE_WERKS" attributeName="WERKS"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_TIME">
+        <attributes>
+          <attributeRef>FKDAT$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE_SAP</attributeName>
+        </associatedAttributeNames>
+        <properties joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_PROMOTION">
+        <attributes>
+          <attributeRef>AKTNR$local</attributeRef>
+          <attributeRef>MATNR$local</attributeRef>
+          <attributeRef>VRKME$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>AKTNR</attributeName>
+          <attributeName>ARTNR</attributeName>
+          <attributeName>Sales_Unit_Promotion</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_PROMOTION_Article_Code" attributeName="Article_Code"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Sales_Tables" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="40" y="420"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="VBRK" modelObjectNameSpace="Sales_Tables" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="VBRP" modelObjectNameSpace="Sales_Tables" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="Sales_Tables" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="447" y="656"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="96"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="701" y="417"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="701" y="898"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_TIME" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="701" y="16"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_PROMOTION" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="1553"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

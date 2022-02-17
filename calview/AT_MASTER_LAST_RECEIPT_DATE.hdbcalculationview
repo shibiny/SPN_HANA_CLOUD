@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="AT_MASTER_LAST_RECEIPT_DATE" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View to get the Last Receipt date for Article Site combination"/>
+  <metadata changedAt="2020-12-13 14:00:33.16" createdAt="2020-12-13 14:00:28.214"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="S032">
+      <resourceUri>S032</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_2">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute aggregationType="max" id="LETZTZUG"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+      <input node="S032"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="LETZTZUG"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Article_Code" length="18" expressionLanguage="COLUMN_ENGINE">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Last_Receipt_Date" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(If(&quot;LETZTZUG&quot;='00000000', '20000101', &quot;LETZTZUG&quot;))</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Aggregation_2"/>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Projection_2">
+    <descriptions/>
+    <attributes>
+      <attribute id="Article_Code" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article_Code"/>
+        <keyMapping columnObjectName="Projection_2" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="Site_ID" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site ID"/>
+        <keyMapping columnObjectName="Projection_2" columnName="WERKS"/>
+      </attribute>
+      <attribute id="Last_Receipt_Date" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last_Receipt_Date"/>
+        <keyMapping columnObjectName="Projection_2" columnName="Last_Receipt_Date"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/></shape>
+      <shape expanded="true" modelObjectName="Aggregation_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="243"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape></shapes>
+</layout>
+</Calculation:scenario>

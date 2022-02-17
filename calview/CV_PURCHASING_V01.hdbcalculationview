@@ -1,0 +1,948 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_PURCHASING_V01" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Reporting View for Purchasing Data"/>
+  <metadata changedAt="2021-05-19 15:15:05.709"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="23"/>
+  <dataSources>
+    <DataSource id="EKKO">
+      <resourceUri>EKKO</resourceUri>
+    </DataSource>
+    <DataSource id="EKPO">
+      <resourceUri>EKPO</resourceUri>
+    </DataSource>
+    <DataSource id="CV_GR_DATA">
+      <resourceUri>CV_GR_DATA</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="POs" cardinality="C1_N" joinType="referential">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="EBELP"/>
+        <viewAttribute id="BSTYP"/>
+        <viewAttribute id="BSART"/>
+        <viewAttribute id="LOEKZ"/>
+        <viewAttribute id="STATU"/>
+        <viewAttribute id="ERNAM"/>
+        <viewAttribute id="TXZ01"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="LGORT"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="EKGRP"/>
+        <viewAttribute id="WAERS"/>
+        <viewAttribute id="WKURS"/>
+        <viewAttribute id="BEDAT"/>
+        <viewAttribute id="MATKL"/>
+        <viewAttribute id="INFNR"/>
+        <viewAttribute id="IDNLF"/>
+        <viewAttribute id="KTMNG"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="BPRME"/>
+        <viewAttribute id="UMREZ"/>
+        <viewAttribute id="UMREN"/>
+        <viewAttribute id="NETPR"/>
+        <viewAttribute id="PEINH"/>
+        <viewAttribute id="NETWR"/>
+        <viewAttribute id="BRTWR"/>
+        <viewAttribute id="WEBAZ"/>
+        <viewAttribute id="MWSKZ"/>
+        <viewAttribute id="SCHPR"/>
+        <viewAttribute id="ANGNR"/>
+        <viewAttribute id="IHREZ"/>
+        <viewAttribute id="LLIEF"/>
+        <viewAttribute id="RESWK"/>
+        <viewAttribute id="INCO1"/>
+        <viewAttribute id="INCO2"/>
+        <viewAttribute id="KNUMV"/>
+        <viewAttribute id="FRGKE"/>
+        <viewAttribute id="FRGRL"/>
+        <viewAttribute id="UNTTO"/>
+        <viewAttribute id="ELIKZ"/>
+        <viewAttribute id="WEPOS"/>
+        <viewAttribute id="REPOS"/>
+        <viewAttribute id="WEBRE"/>
+        <viewAttribute id="KZABS"/>
+        <viewAttribute id="LMEIN"/>
+        <viewAttribute id="EVERS"/>
+        <viewAttribute id="ZWERT"/>
+        <viewAttribute id="MEMORY"/>
+        <viewAttribute id="ABMNG"/>
+        <viewAttribute id="PRDAT"/>
+        <viewAttribute id="EFFWR"/>
+        <viewAttribute id="SKTOF"/>
+        <viewAttribute id="STAFO"/>
+        <viewAttribute id="PLIFZ"/>
+        <viewAttribute id="NTGEW"/>
+        <viewAttribute id="GEWEI"/>
+        <viewAttribute id="EAN11"/>
+        <viewAttribute id="BRGEW"/>
+        <viewAttribute id="VOLUM"/>
+        <viewAttribute id="VOLEH"/>
+        <viewAttribute id="ANFNR"/>
+        <viewAttribute id="BANFN"/>
+        <viewAttribute id="BNFPO"/>
+        <viewAttribute id="RETPO"/>
+        <viewAttribute id="AFNAM"/>
+        <viewAttribute id="AEDAT"/>
+      <viewAttribute hidden="true" id="JOIN$EBELN$EBELN"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="EKKO">
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTYP" source="BSTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSART" source="BSART"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ERNAM" source="ERNAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKGRP" source="EKGRP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WAERS" source="WAERS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WKURS" source="WKURS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BEDAT" source="BEDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ANGNR" source="ANGNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IHREZ" source="IHREZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LLIEF" source="LLIEF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RESWK" source="RESWK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INCO1" source="INCO1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INCO2" source="INCO2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KNUMV" source="KNUMV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FRGKE" source="FRGKE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FRGRL" source="FRGRL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEMORY" source="MEMORY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AEDAT" source="AEDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$EBELN$EBELN" source="EBELN"/>
+      </input>
+      <input node="EKPO">
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELN" source="EBELN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELP" source="EBELP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LOEKZ" source="LOEKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATU" source="STATU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TXZ01" source="TXZ01"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LGORT" source="LGORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATKL" source="MATKL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INFNR" source="INFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IDNLF" source="IDNLF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTMNG" source="KTMNG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MENGE" source="MENGE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BPRME" source="BPRME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREZ" source="UMREZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREN" source="UMREN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETPR" source="NETPR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PEINH" source="PEINH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETWR" source="NETWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BRTWR" source="BRTWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEBAZ" source="WEBAZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MWSKZ" source="MWSKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHPR" source="SCHPR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UNTTO" source="UNTTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ELIKZ" source="ELIKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEPOS" source="WEPOS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPOS" source="REPOS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEBRE" source="WEBRE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KZABS" source="KZABS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LMEIN" source="LMEIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EVERS" source="EVERS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZWERT" source="ZWERT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ABMNG" source="ABMNG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRDAT" source="PRDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EFFWR" source="EFFWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SKTOF" source="SKTOF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STAFO" source="STAFO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PLIFZ" source="PLIFZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NTGEW" source="NTGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GEWEI" source="GEWEI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EAN11" source="EAN11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BRGEW" source="BRGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLUM" source="VOLUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLEH" source="VOLEH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ANFNR" source="ANFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BANFN" source="BANFN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BNFPO" source="BNFPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RETPO" source="RETPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AFNAM" source="AFNAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$EBELN$EBELN" source="EBELN"/>
+      </input>
+    <joinAttribute name="JOIN$EBELN$EBELN"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="EBELP"/>
+        <viewAttribute id="BSTYP"/>
+        <viewAttribute id="BSART"/>
+        <viewAttribute id="LOEKZ"/>
+        <viewAttribute id="STATU"/>
+        <viewAttribute id="ERNAM"/>
+        <viewAttribute id="TXZ01"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="LGORT"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="EKGRP"/>
+        <viewAttribute id="WAERS"/>
+        <viewAttribute id="WKURS"/>
+        <viewAttribute id="BEDAT"/>
+        <viewAttribute id="MATKL"/>
+        <viewAttribute id="INFNR"/>
+        <viewAttribute id="IDNLF"/>
+        <viewAttribute id="KTMNG"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="BPRME"/>
+        <viewAttribute id="UMREZ"/>
+        <viewAttribute id="UMREN"/>
+        <viewAttribute id="NETPR"/>
+        <viewAttribute id="PEINH"/>
+        <viewAttribute id="NETWR"/>
+        <viewAttribute id="BRTWR"/>
+        <viewAttribute id="WEBAZ"/>
+        <viewAttribute id="MWSKZ"/>
+        <viewAttribute id="SCHPR"/>
+        <viewAttribute id="ANGNR"/>
+        <viewAttribute id="IHREZ"/>
+        <viewAttribute id="LLIEF"/>
+        <viewAttribute id="RESWK"/>
+        <viewAttribute id="INCO1"/>
+        <viewAttribute id="INCO2"/>
+        <viewAttribute id="KNUMV"/>
+        <viewAttribute id="FRGKE"/>
+        <viewAttribute id="FRGRL"/>
+        <viewAttribute id="UNTTO"/>
+        <viewAttribute id="ELIKZ"/>
+        <viewAttribute id="WEPOS"/>
+        <viewAttribute id="REPOS"/>
+        <viewAttribute id="WEBRE"/>
+        <viewAttribute id="KZABS"/>
+        <viewAttribute id="LMEIN"/>
+        <viewAttribute id="EVERS"/>
+        <viewAttribute id="ZWERT"/>
+        <viewAttribute id="MEMORY"/>
+        <viewAttribute id="ABMNG"/>
+        <viewAttribute id="PRDAT"/>
+        <viewAttribute id="EFFWR"/>
+        <viewAttribute id="SKTOF"/>
+        <viewAttribute id="STAFO"/>
+        <viewAttribute id="PLIFZ"/>
+        <viewAttribute id="NTGEW"/>
+        <viewAttribute id="GEWEI"/>
+        <viewAttribute id="EAN11"/>
+        <viewAttribute id="BRGEW"/>
+        <viewAttribute id="VOLUM"/>
+        <viewAttribute id="VOLEH"/>
+        <viewAttribute id="ANFNR"/>
+        <viewAttribute id="BANFN"/>
+        <viewAttribute id="BNFPO"/>
+        <viewAttribute id="RETPO"/>
+        <viewAttribute id="AFNAM"/>
+        <viewAttribute id="AEDAT"/>
+        <viewAttribute id="GR_Value"/>
+        <viewAttribute id="GR_Date"/>
+        <viewAttribute id="GR_Qty_BUn"/>
+        <viewAttribute id="GR_Base_Unit"/>
+        <viewAttribute id="GR_Qty_OUn"/>
+        <viewAttribute id="GR_Order_Unit"/>
+        <viewAttribute id="BUDAT_MKPF"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="POs">
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELN" source="EBELN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELP" source="EBELP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSTYP" source="BSTYP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BSART" source="BSART"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LOEKZ" source="LOEKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STATU" source="STATU"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ERNAM" source="ERNAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TXZ01" source="TXZ01"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LGORT" source="LGORT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKGRP" source="EKGRP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WAERS" source="WAERS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WKURS" source="WKURS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BEDAT" source="BEDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATKL" source="MATKL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INFNR" source="INFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IDNLF" source="IDNLF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KTMNG" source="KTMNG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MENGE" source="MENGE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEINS" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BPRME" source="BPRME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREZ" source="UMREZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMREN" source="UMREN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETPR" source="NETPR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PEINH" source="PEINH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NETWR" source="NETWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BRTWR" source="BRTWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEBAZ" source="WEBAZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MWSKZ" source="MWSKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHPR" source="SCHPR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ANGNR" source="ANGNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="IHREZ" source="IHREZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LLIEF" source="LLIEF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RESWK" source="RESWK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INCO1" source="INCO1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INCO2" source="INCO2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KNUMV" source="KNUMV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FRGKE" source="FRGKE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FRGRL" source="FRGRL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UNTTO" source="UNTTO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ELIKZ" source="ELIKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEPOS" source="WEPOS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="REPOS" source="REPOS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WEBRE" source="WEBRE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KZABS" source="KZABS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LMEIN" source="LMEIN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EVERS" source="EVERS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZWERT" source="ZWERT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MEMORY" source="MEMORY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ABMNG" source="ABMNG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PRDAT" source="PRDAT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EFFWR" source="EFFWR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SKTOF" source="SKTOF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STAFO" source="STAFO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PLIFZ" source="PLIFZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NTGEW" source="NTGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GEWEI" source="GEWEI"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EAN11" source="EAN11"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BRGEW" source="BRGEW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLUM" source="VOLUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VOLEH" source="VOLEH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ANFNR" source="ANFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BANFN" source="BANFN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BNFPO" source="BNFPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RETPO" source="RETPO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AFNAM" source="AFNAM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AEDAT" source="AEDAT"/>
+      </input>
+      <input node="CV_GR_DATA">
+        <mapping xsi:type="Calculation:AttributeMapping" target="GR_Value" source="GR_Value"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GR_Date" source="GR_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GR_Qty_BUn" source="GR_Qty_BUn"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GR_Base_Unit" source="MEINS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GR_Qty_OUn" source="GR_Qty_OUn"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GR_Order_Unit" source="ERFME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUDAT_MKPF" source="BUDAT_MKPF"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELN" source="EBELN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EBELP" source="EBELP"/>
+      </input>
+    <joinAttribute name="EBELN"/>
+    <joinAttribute name="EBELP"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="EBELN_1" hidden="true" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EBELN"/>
+        <keyMapping columnObjectName="Join_1" columnName="EBELN"/>
+      </attribute>
+      <attribute id="EBELP_1" hidden="true" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EBELP"/>
+        <keyMapping columnObjectName="Join_1" columnName="EBELP"/>
+      </attribute>
+      <attribute id="BSTYP" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Document Category"/>
+        <keyMapping columnObjectName="Join_1" columnName="BSTYP"/>
+      </attribute>
+      <attribute id="BSART" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Document Type"/>
+        <keyMapping columnObjectName="Join_1" columnName="BSART"/>
+      </attribute>
+      <attribute id="LOEKZ" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Deletion Indicator"/>
+        <keyMapping columnObjectName="Join_1" columnName="LOEKZ"/>
+      </attribute>
+      <attribute id="STATU" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Status"/>
+        <keyMapping columnObjectName="Join_1" columnName="STATU"/>
+      </attribute>
+      <attribute id="ERNAM" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Created By"/>
+        <keyMapping columnObjectName="Join_1" columnName="ERNAM"/>
+      </attribute>
+      <attribute id="TXZ01" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="TXZ01"/>
+        <keyMapping columnObjectName="Join_1" columnName="TXZ01"/>
+      </attribute>
+      <attribute id="MATNR_1" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MATNR"/>
+        <keyMapping columnObjectName="Join_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="BUKRS" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Company Code"/>
+        <keyMapping columnObjectName="Join_1" columnName="BUKRS"/>
+      </attribute>
+      <attribute id="WERKS_1" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WERKS"/>
+        <keyMapping columnObjectName="Join_1" columnName="WERKS"/>
+      </attribute>
+      <attribute id="LGORT" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Storage Location"/>
+        <keyMapping columnObjectName="Join_1" columnName="LGORT"/>
+      </attribute>
+      <attribute id="LIFNR" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LIFNR"/>
+        <keyMapping columnObjectName="Join_1" columnName="LIFNR"/>
+      </attribute>
+      <attribute id="EKORG_1" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EKORG"/>
+        <keyMapping columnObjectName="Join_1" columnName="EKORG"/>
+      </attribute>
+      <attribute id="EKGRP" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchase Group"/>
+        <keyMapping columnObjectName="Join_1" columnName="EKGRP"/>
+      </attribute>
+      <attribute id="WAERS" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Currency Key"/>
+        <keyMapping columnObjectName="Join_1" columnName="WAERS"/>
+      </attribute>
+      <attribute id="WKURS" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Exchange Rate"/>
+        <keyMapping columnObjectName="Join_1" columnName="WKURS"/>
+      </attribute>
+      <attribute id="BEDAT" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Document Date"/>
+        <keyMapping columnObjectName="Join_1" columnName="BEDAT"/>
+      </attribute>
+      <attribute id="MATKL" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MATKL"/>
+        <keyMapping columnObjectName="Join_1" columnName="MATKL"/>
+      </attribute>
+      <attribute id="INFNR" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Info Record"/>
+        <keyMapping columnObjectName="Join_1" columnName="INFNR"/>
+      </attribute>
+      <attribute id="IDNLF" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor Article Number"/>
+        <keyMapping columnObjectName="Join_1" columnName="IDNLF"/>
+      </attribute>
+      <attribute id="MEINS" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Order Unit"/>
+        <keyMapping columnObjectName="Join_1" columnName="MEINS"/>
+      </attribute>
+      <attribute id="BPRME" order="30" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Order Price Unit"/>
+        <keyMapping columnObjectName="Join_1" columnName="BPRME"/>
+      </attribute>
+      <attribute id="MWSKZ" order="31" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Tax Code"/>
+        <keyMapping columnObjectName="Join_1" columnName="MWSKZ"/>
+      </attribute>
+      <attribute id="SCHPR" order="32" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHPR"/>
+        <keyMapping columnObjectName="Join_1" columnName="SCHPR"/>
+      </attribute>
+      <attribute id="ANGNR" order="33" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ANGNR"/>
+        <keyMapping columnObjectName="Join_1" columnName="ANGNR"/>
+      </attribute>
+      <attribute id="IHREZ" order="34" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="IHREZ"/>
+        <keyMapping columnObjectName="Join_1" columnName="IHREZ"/>
+      </attribute>
+      <attribute id="LLIEF" order="35" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Supplying Vendor"/>
+        <keyMapping columnObjectName="Join_1" columnName="LLIEF"/>
+      </attribute>
+      <attribute id="RESWK" order="36" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Supplying Site"/>
+        <keyMapping columnObjectName="Join_1" columnName="RESWK"/>
+      </attribute>
+      <attribute id="INCO1" order="37" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Incoterms Part 1"/>
+        <keyMapping columnObjectName="Join_1" columnName="INCO1"/>
+      </attribute>
+      <attribute id="INCO2" order="38" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Incoterms Part 2"/>
+        <keyMapping columnObjectName="Join_1" columnName="INCO2"/>
+      </attribute>
+      <attribute id="KNUMV" order="39" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Condition Document"/>
+        <keyMapping columnObjectName="Join_1" columnName="KNUMV"/>
+      </attribute>
+      <attribute id="FRGKE" order="40" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FRGKE"/>
+        <keyMapping columnObjectName="Join_1" columnName="FRGKE"/>
+      </attribute>
+      <attribute id="FRGRL" order="41" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FRGRL"/>
+        <keyMapping columnObjectName="Join_1" columnName="FRGRL"/>
+      </attribute>
+      <attribute id="UNTTO" order="42" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="UNTTO"/>
+        <keyMapping columnObjectName="Join_1" columnName="UNTTO"/>
+      </attribute>
+      <attribute id="ELIKZ" order="43" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Delivery Completion"/>
+        <keyMapping columnObjectName="Join_1" columnName="ELIKZ"/>
+      </attribute>
+      <attribute id="WEPOS" order="44" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Goods Receipt Indicator"/>
+        <keyMapping columnObjectName="Join_1" columnName="WEPOS"/>
+      </attribute>
+      <attribute id="REPOS" order="45" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Invoice Receipt Indicator"/>
+        <keyMapping columnObjectName="Join_1" columnName="REPOS"/>
+      </attribute>
+      <attribute id="WEBRE" order="46" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEBRE"/>
+        <keyMapping columnObjectName="Join_1" columnName="WEBRE"/>
+      </attribute>
+      <attribute id="KZABS" order="47" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="KZABS"/>
+        <keyMapping columnObjectName="Join_1" columnName="KZABS"/>
+      </attribute>
+      <attribute id="LMEIN" order="48" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Base Unit"/>
+        <keyMapping columnObjectName="Join_1" columnName="LMEIN"/>
+      </attribute>
+      <attribute id="EVERS" order="49" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Shipping Instructions"/>
+        <keyMapping columnObjectName="Join_1" columnName="EVERS"/>
+      </attribute>
+      <attribute id="ZWERT" order="50" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZWERT"/>
+        <keyMapping columnObjectName="Join_1" columnName="ZWERT"/>
+      </attribute>
+      <attribute id="MEMORY" order="51" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MEMORY"/>
+        <keyMapping columnObjectName="Join_1" columnName="MEMORY"/>
+      </attribute>
+      <attribute id="ABMNG" order="52" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ABMNG"/>
+        <keyMapping columnObjectName="Join_1" columnName="ABMNG"/>
+      </attribute>
+      <attribute id="PRDAT" order="53" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Price Date"/>
+        <keyMapping columnObjectName="Join_1" columnName="PRDAT"/>
+      </attribute>
+      <attribute id="SKTOF" order="54" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SKTOF"/>
+        <keyMapping columnObjectName="Join_1" columnName="SKTOF"/>
+      </attribute>
+      <attribute id="STAFO" order="55" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STAFO"/>
+        <keyMapping columnObjectName="Join_1" columnName="STAFO"/>
+      </attribute>
+      <attribute id="PLIFZ" order="56" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Planned Delivery Time"/>
+        <keyMapping columnObjectName="Join_1" columnName="PLIFZ"/>
+      </attribute>
+      <attribute id="NTGEW" order="57" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Net Weight"/>
+        <keyMapping columnObjectName="Join_1" columnName="NTGEW"/>
+      </attribute>
+      <attribute id="GEWEI" order="58" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Unit of Weight"/>
+        <keyMapping columnObjectName="Join_1" columnName="GEWEI"/>
+      </attribute>
+      <attribute id="EAN11" order="59" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Barcode"/>
+        <keyMapping columnObjectName="Join_1" columnName="EAN11"/>
+      </attribute>
+      <attribute id="BRGEW" order="60" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Gross Weight"/>
+        <keyMapping columnObjectName="Join_1" columnName="BRGEW"/>
+      </attribute>
+      <attribute id="VOLUM" order="61" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Volume"/>
+        <keyMapping columnObjectName="Join_1" columnName="VOLUM"/>
+      </attribute>
+      <attribute id="VOLEH" order="62" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Volume Unit"/>
+        <keyMapping columnObjectName="Join_1" columnName="VOLEH"/>
+      </attribute>
+      <attribute id="ANFNR" order="63" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ANFNR"/>
+        <keyMapping columnObjectName="Join_1" columnName="ANFNR"/>
+      </attribute>
+      <attribute id="BANFN" order="64" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BANFN"/>
+        <keyMapping columnObjectName="Join_1" columnName="BANFN"/>
+      </attribute>
+      <attribute id="BNFPO" order="65" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BNFPO"/>
+        <keyMapping columnObjectName="Join_1" columnName="BNFPO"/>
+      </attribute>
+      <attribute id="RETPO" order="66" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RETPO"/>
+        <keyMapping columnObjectName="Join_1" columnName="RETPO"/>
+      </attribute>
+      <attribute id="AFNAM" order="67" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AFNAM"/>
+        <keyMapping columnObjectName="Join_1" columnName="AFNAM"/>
+      </attribute>
+      <attribute id="AEDAT" order="68" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="AEDAT"/>
+        <keyMapping columnObjectName="Join_1" columnName="AEDAT"/>
+      </attribute>
+      <attribute id="GR_Date" order="69" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GR Date"/>
+        <keyMapping columnObjectName="Join_1" columnName="GR_Date"/>
+      </attribute>
+      <attribute id="UMREZ" order="77" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Numerator"/>
+        <keyMapping columnObjectName="Join_1" columnName="UMREZ"/>
+      </attribute>
+      <attribute id="UMREN" order="78" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Denominator"/>
+        <keyMapping columnObjectName="Join_1" columnName="UMREN"/>
+      </attribute>
+      <attribute id="GR_Base_Unit" order="82" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Base Unit"/>
+        <keyMapping columnObjectName="Join_1" columnName="GR_Base_Unit"/>
+      </attribute>
+      <attribute id="GR_Order_Unit" order="84" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Order Unit"/>
+        <keyMapping columnObjectName="Join_1" columnName="GR_Order_Unit"/>
+      </attribute>
+      <attribute id="BUDAT_MKPF" order="85" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BUDAT_MKPF"/>
+        <keyMapping columnObjectName="Join_1" columnName="BUDAT_MKPF"/>
+      </attribute>
+      <attribute id="MATNR$local">
+        <keyMapping columnObjectName="Join_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="WERKS$local">
+        <keyMapping columnObjectName="Join_1" columnName="WERKS"/>
+      </attribute>
+      <attribute id="AEDAT$local">
+        <descriptions defaultDescription="AEDAT"/>
+        <keyMapping columnObjectName="Join_1" columnName="AEDAT"/>
+      </attribute>
+      <attribute id="LIFNR$local">
+        <descriptions defaultDescription="LIFNR"/>
+        <keyMapping columnObjectName="Join_1" columnName="LIFNR"/>
+      </attribute>
+      <attribute id="BUKRS$local">
+        <descriptions defaultDescription="Company Code"/>
+        <keyMapping columnObjectName="Join_1" columnName="BUKRS"/>
+      </attribute>
+      <attribute id="EBELN$local">
+        <keyMapping columnObjectName="Join_1" columnName="EBELN"/>
+      </attribute>
+      <attribute id="EBELP$local">
+        <keyMapping columnObjectName="Join_1" columnName="EBELP"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="PO_Number" hidden="false" order="1" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PO Number"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="10">
+          <formula>ltrim(&quot;EBELN&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="PO_Item" hidden="false" order="2" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PO Item"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="10">
+          <formula>ltrim(&quot;EBELP&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="KTMNG" order="70" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Target Quantity"/>
+        <measureMapping columnObjectName="Join_1" columnName="KTMNG"/>
+      </measure>
+      <measure id="MENGE" order="71" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Order Quantity"/>
+        <measureMapping columnObjectName="Join_1" columnName="MENGE"/>
+      </measure>
+      <measure id="NETPR" order="72" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Net Price TRXN"/>
+        <measureMapping columnObjectName="Join_1" columnName="NETPR"/>
+      </measure>
+      <measure id="PEINH" order="73" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Price Unit"/>
+        <measureMapping columnObjectName="Join_1" columnName="PEINH"/>
+      </measure>
+      <measure id="NETWR" order="74" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Gross Value TRXN"/>
+        <measureMapping columnObjectName="Join_1" columnName="NETWR"/>
+      </measure>
+      <measure id="BRTWR" order="75" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="PO Value TRXN"/>
+        <measureMapping columnObjectName="Join_1" columnName="BRTWR"/>
+      </measure>
+      <measure id="WEBAZ" order="76" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="WEBAZ"/>
+        <measureMapping columnObjectName="Join_1" columnName="WEBAZ"/>
+      </measure>
+      <measure id="EFFWR" order="79" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Net Value TRXN"/>
+        <measureMapping columnObjectName="Join_1" columnName="EFFWR"/>
+      </measure>
+      <measure id="GR_Value" order="80" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="GR_Value"/>
+        <measureMapping columnObjectName="Join_1" columnName="GR_Value"/>
+      </measure>
+      <measure id="GR_Qty_BUn" order="81" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="GR_Qty_BUn"/>
+        <measureMapping columnObjectName="Join_1" columnName="GR_Qty_BUn"/>
+      </measure>
+      <measure id="GR_Qty_OUn" order="83" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="GR_Qty_OUn"/>
+        <measureMapping columnObjectName="Join_1" columnName="GR_Qty_OUn"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="Net_Price_AED" hidden="false" order="3" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Net Price in AED"/>
+        <fixedCurrency>AED</fixedCurrency>
+        <currencyConversion errorHandling="failOnError" generateOutputUnitCurrencyAttribute="false" convert="true">
+          <client>
+            <value>100</value>
+          </client>
+          <currencyConversionTables rates="TCURR" configuration="TCURV" prefactors="TCURF" notations="TCURN" precisions="TCURX"/>
+          <sourceCurrency>
+            <attribute attributeName="WAERS"/>
+          </sourceCurrency>
+          <erpDecimalShift>true</erpDecimalShift>
+          <targetCurrency>
+            <value>AED</value>
+          </targetCurrency>
+          <referenceDate>
+            <attribute attributeName="DATE_SAP" dimensionUri="AT_MASTER_TIME"/>
+          </referenceDate>
+          <exchangeRateType>M</exchangeRateType>
+          <exchangeRateAttribute attributeName="WKURS"/>
+        </currencyConversion>
+        <formula>&quot;NETPR&quot;</formula>
+      </measure>
+      <measure id="Net_Value_AED" hidden="false" order="4" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Net Value in AED"/>
+        <fixedCurrency>AED</fixedCurrency>
+        <currencyConversion errorHandling="failOnError" generateOutputUnitCurrencyAttribute="false" convert="true">
+          <client>
+            <value>100</value>
+          </client>
+          <currencyConversionTables rates="TCURR" configuration="TCURV" prefactors="TCURF" notations="TCURN" precisions="TCURX"/>
+          <sourceCurrency>
+            <attribute attributeName="WAERS"/>
+          </sourceCurrency>
+          <erpDecimalShift>true</erpDecimalShift>
+          <targetCurrency>
+            <value>AED</value>
+          </targetCurrency>
+          <referenceDate>
+            <attribute attributeName="DATE_SAP" dimensionUri="AT_MASTER_TIME"/>
+          </referenceDate>
+          <exchangeRateType>M</exchangeRateType>
+          <exchangeRateAttribute attributeName="WKURS"/>
+        </currencyConversion>
+        <formula>&quot;EFFWR&quot;</formula>
+      </measure>
+      <measure id="Gross_Value_AED" hidden="false" order="5" semanticType="amount" aggregationType="sum" measureType="amount" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="2">
+        <descriptions defaultDescription="Gross Value in AED"/>
+        <fixedCurrency>AED</fixedCurrency>
+        <currencyConversion errorHandling="failOnError" generateOutputUnitCurrencyAttribute="false" convert="true">
+          <client>
+            <value>100</value>
+          </client>
+          <currencyConversionTables rates="TCURR" configuration="TCURV" prefactors="TCURF" notations="TCURN" precisions="TCURX"/>
+          <sourceCurrency>
+            <attribute attributeName="WAERS"/>
+          </sourceCurrency>
+          <erpDecimalShift>true</erpDecimalShift>
+          <targetCurrency>
+            <value>AED</value>
+          </targetCurrency>
+          <referenceDate>
+            <attribute attributeName="DATE_SAP" dimensionUri="AT_MASTER_TIME"/>
+          </referenceDate>
+          <exchangeRateType>M</exchangeRateType>
+          <exchangeRateAttribute attributeName="WKURS"/>
+        </currencyConversion>
+        <formula>&quot;NETWR&quot;</formula>
+      </measure>
+      <measure id="Unit_Conversion_Factor" hidden="false" order="6" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Unit Conversion Factor"/>
+        <formula>If(&quot;UMREN&quot;=0, 0, &quot;UMREZ&quot;/&quot;UMREN&quot;)</formula>
+      </measure>
+      <measure id="Order_Quantity_BUn" hidden="false" order="7" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="13" scale="3">
+        <descriptions defaultDescription="Order Quantity at Base Unit"/>
+        <formula>&quot;MENGE&quot;* if(&quot;UMREN&quot;=0, 0, &quot;UMREZ&quot;/&quot;UMREN&quot;)</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+        <associatedHierarchyFeature hierarchyName="Heirarchy_Codes">
+          <joinProperties nodeElementName="Heirarchy_CodesNode" expressionParameterName="Heirarchy_CodesExpression"/>
+        </associatedHierarchyFeature>
+        <associatedHierarchyFeature hierarchyName="Heirarchy_Descriptions">
+          <joinProperties nodeElementName="Heirarchy_DescriptionsNode" expressionParameterName="Heirarchy_DescriptionsExpression"/>
+        </associatedHierarchyFeature>
+        <associatedHierarchyFeature hierarchyName="Heirarchy_Full_Names">
+          <joinProperties nodeElementName="Heirarchy_Full_NamesNode" expressionParameterName="Heirarchy_Full_NamesExpression"/>
+        </associatedHierarchyFeature>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE_SITE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_MATNR" attributeName="MATNR"/>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_Article_Code" attributeName="Article_Code"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_SITE">
+        <attributes>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_SITE_WERKS" attributeName="WERKS"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_TIME">
+        <attributes>
+          <attributeRef>AEDAT$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE_SAP</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_VENDOR">
+        <attributes>
+          <attributeRef>LIFNR$local</attributeRef>
+          <attributeRef>BUKRS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>Vendor</attributeName>
+          <attributeName>Company_Code</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_VENDOR_Fax" attributeName="Fax"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_PO_DELIVERY_DATE">
+        <attributes>
+          <attributeRef>EBELN$local</attributeRef>
+          <attributeRef>EBELP$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>EBELN</attributeName>
+          <attributeName>EBELP</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="C1_1" joinType="referential" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_FREIGHT_FORWARDER">
+        <attributes>
+          <attributeRef>EBELN$local</attributeRef>
+          <attributeRef>EBELP$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>EBELN</attributeName>
+          <attributeName>EBELP</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="C1_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_FREIGHT_FORWARDER_EBELN" attributeName="EBELN"/>
+          <attributeReference alias="AT_MASTER_FREIGHT_FORWARDER_EBELP" attributeName="EBELP"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="POs" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="425"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="EKKO" modelObjectNameSpace="POs" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="EKPO" modelObjectNameSpace="POs" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="329"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="POs" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="CV_GR_DATA" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape modelObjectName="Join_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="477" y="560"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="855" y="161"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="497"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="978"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_TIME" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="855" y="1971"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_VENDOR" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="855" y="1666"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_PO_DELIVERY_DATE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="855" y="16"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_FREIGHT_FORWARDER" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="384"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

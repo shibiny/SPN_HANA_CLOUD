@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_GR_DATA" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View for GR Date, Qty and Value"/>
+  <metadata changedAt="2020-11-30 09:40:41.207"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="MSEG">
+      <resourceUri>MSEG</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MJAHR"/>
+        <viewAttribute id="BWART"/>
+        <viewAttribute id="SHKZG"/>
+        <viewAttribute id="DMBTR"/>
+        <viewAttribute id="MENGE"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="ERFMG"/>
+        <viewAttribute id="ERFME"/>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="EBELP"/>
+        <viewAttribute id="BUDAT_MKPF"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DECIMAL" id="GR_Qty_BUn" length="13" scale="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>If(&quot;SHKZG&quot;='H',&quot;MENGE&quot;*-1,&quot;MENGE&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DECIMAL" id="GR_Qty_OUn" length="13" scale="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>If(&quot;SHKZG&quot;='H',&quot;ERFMG&quot;*-1,&quot;ERFMG&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DECIMAL" id="GR_Value" length="13" scale="2" expressionLanguage="COLUMN_ENGINE">
+          <formula>If(&quot;SHKZG&quot;='H',&quot;DMBTR&quot;*-1,&quot;DMBTR&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="MSEG"/>
+    <filter>(&quot;MJAHR&quot; &gt;='2017') AND (&quot;BWART&quot; ='101')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="EBELN"/>
+        <viewAttribute id="EBELP"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="ERFME"/>
+        <viewAttribute aggregationType="max" id="BUDAT_MKPF"/>
+        <viewAttribute aggregationType="sum" id="DMBTR"/>
+        <viewAttribute aggregationType="sum" id="MENGE"/>
+        <viewAttribute aggregationType="sum" id="ERFMG"/>
+        <viewAttribute aggregationType="sum" id="GR_Qty_BUn"/>
+        <viewAttribute aggregationType="sum" id="GR_Qty_OUn"/>
+        <viewAttribute aggregationType="sum" id="GR_Value"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+      <input node="Projection_2"/>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Aggregation_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="EBELN" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EBELN"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="EBELN"/>
+      </attribute>
+      <attribute id="EBELP" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EBELP"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="EBELP"/>
+      </attribute>
+      <attribute id="BUDAT_MKPF" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BUDAT_MKPF"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="BUDAT_MKPF"/>
+      </attribute>
+      <attribute id="MEINS" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Base Unit"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="MEINS"/>
+      </attribute>
+      <attribute id="ERFME" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Order Unit"/>
+        <keyMapping columnObjectName="Aggregation_1" columnName="ERFME"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="GR_Date" hidden="false" order="4" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GR Date"/>
+        <keyCalculation datatype="DATE" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;BUDAT_MKPF&quot;)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="GR_Qty_BUn" order="5" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="GR_Qty_BUn"/>
+        <measureMapping columnObjectName="Aggregation_1" columnName="GR_Qty_BUn"/>
+      </measure>
+      <measure id="GR_Qty_OUn" order="7" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="GR_Qty_OUn"/>
+        <measureMapping columnObjectName="Aggregation_1" columnName="GR_Qty_OUn"/>
+      </measure>
+      <measure id="GR_Value" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="GR_Value"/>
+        <measureMapping columnObjectName="Aggregation_1" columnName="GR_Value"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="243"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+      <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape></shapes>
+</layout>
+</Calculation:scenario>

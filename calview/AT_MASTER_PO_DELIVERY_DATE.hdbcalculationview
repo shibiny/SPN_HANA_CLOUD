@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="AT_MASTER_PO_DELIVERY_DATE" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="View for the PO Delivery Dates"/>
+  <metadata changedAt="2021-08-18 12:22:05.649"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="EKET">
+      <resourceUri>EKET</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews/>
+  <logicalModel id="EKET">
+    <descriptions/>
+    <attributes>
+      <attribute id="EBELN" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EBELN"/>
+        <keyMapping columnObjectName="EKET" columnName="EBELN"/>
+      </attribute>
+      <attribute id="EBELP" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EBELP"/>
+        <keyMapping columnObjectName="EKET" columnName="EBELP"/>
+      </attribute>
+      <attribute id="EINDT" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EINDT"/>
+        <keyMapping columnObjectName="EKET" columnName="EINDT"/>
+      </attribute>
+      <attribute id="SLFDT" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SLFDT"/>
+        <keyMapping columnObjectName="EKET" columnName="SLFDT"/>
+      </attribute>
+      <attribute id="LICHA" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="FIRS Number"/>
+        <keyMapping columnObjectName="EKET" columnName="LICHA"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Planned_Delivery_Date" hidden="false" order="6" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Planned Delivery Date"/>
+        <keyCalculation datatype="DATE" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;EINDT&quot;)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Original_Delivery_Date" hidden="false" order="7" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Original Delivery Date"/>
+        <keyCalculation datatype="DATE" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;SLFDT&quot;)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

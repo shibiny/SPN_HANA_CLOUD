@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" schemaVersion="3.0" id="CV_POS_TRANSACTION_DATA" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="CV_POS_TRANSACTION_DATA"/>
+  <metadata changedAt="2021-10-07 15:50:08.286"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="ZTSP_POS_DATA">
+      <resourceUri>ZTSP_POS_DATA</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="ZDATE"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="ZTIME_OF_SALE"/>
+        <viewAttribute id="ZHOUR_OF_SALE"/>
+        <viewAttribute id="ZDEMOGRAPH"/>
+        <viewAttribute id="ZUNI_RCPT_NO"/>
+        <viewAttribute id="EAN11"/>
+        <viewAttribute id="ZSALES_QTY"/>
+        <viewAttribute id="MEINS"/>
+        <viewAttribute id="ZSALES_VAL_IVAT"/>
+        <viewAttribute id="ZSALES_VAL_EVAT"/>
+        <viewAttribute id="ZCOST_OF_SALES"/>
+        <viewAttribute id="ZCUST_CARD_NO"/>
+        <viewAttribute id="ZCHECK_OUT_NO"/>
+        <viewAttribute id="ZTENDER_TYPE"/>
+        <viewAttribute id="ZTRANS_TYPE"/>
+        <viewAttribute id="ZMASTER_CARD"/>
+        <viewAttribute id="RSP"/>
+        <viewAttribute id="MAP"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="ZTSP_POS_DATA"/>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Projection_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="ZTIME_OF_SALE" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZTIME_OF_SALE"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ZTIME_OF_SALE"/>
+      </attribute>
+      <attribute id="ZHOUR_OF_SALE" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZHOUR_OF_SALE"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ZHOUR_OF_SALE"/>
+      </attribute>
+      <attribute id="ZDEMOGRAPH_1" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZDEMOGRAPH"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ZDEMOGRAPH"/>
+      </attribute>
+      <attribute id="ZUNI_RCPT_NO" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZUNI_RCPT_NO"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ZUNI_RCPT_NO"/>
+      </attribute>
+      <attribute id="EAN11" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Barcode"/>
+        <keyMapping columnObjectName="Projection_1" columnName="EAN11"/>
+      </attribute>
+      <attribute id="MEINS" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MEINS"/>
+        <keyMapping columnObjectName="Projection_1" columnName="MEINS"/>
+      </attribute>
+      <attribute id="ZCUST_CARD_NO" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Airmiles Number"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ZCUST_CARD_NO"/>
+      </attribute>
+      <attribute id="ZCHECK_OUT_NO" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Checkout Number"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ZCHECK_OUT_NO"/>
+      </attribute>
+      <attribute id="ZTENDER_TYPE" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Tender Type"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ZTENDER_TYPE"/>
+      </attribute>
+      <attribute id="ZTRANS_TYPE" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Transaction Type"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ZTRANS_TYPE"/>
+      </attribute>
+      <attribute id="ZMASTER_CARD" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Masked Credit Card"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ZMASTER_CARD"/>
+      </attribute>
+      <attribute id="ZDATE" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZDATE"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ZDATE"/>
+      </attribute>
+      <attribute id="MATNR$local">
+        <keyMapping columnObjectName="Projection_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="WERKS$local">
+        <keyMapping columnObjectName="Projection_1" columnName="WERKS"/>
+      </attribute>
+      <attribute id="ZDATE$local">
+        <descriptions defaultDescription="ZDATE"/>
+        <keyMapping columnObjectName="Projection_1" columnName="ZDATE"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Buckets_Excl_VAT" hidden="false" order="17" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Buckets Based on Sales Excl_VAT"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="3">
+          <formula>if(&quot;Sales_Value_Excl_VAT&quot;&gt;0 AND &quot;Sales_Value_Excl_VAT&quot;&lt;=100,'B1',if(&quot;Sales_Value_Excl_VAT&quot;&gt;100 AND &quot;Sales_Value_Excl_VAT&quot;&lt;=250,'B2',if(&quot;Sales_Value_Excl_VAT&quot;&gt;250 AND &quot;Sales_Value_Excl_VAT&quot;&lt;=500,'B3',if(&quot;Sales_Value_Excl_VAT&quot;&gt;500 AND &quot;Sales_Value_Excl_VAT&quot;&lt;=1000,'B4',if(&quot;Sales_Value_Excl_VAT&quot;&gt;1000 AND &quot;Sales_Value_Excl_VAT&quot;&lt;=1500,'B5',if(&quot;Sales_Value_Excl_VAT&quot;&gt;1500 AND &quot;Sales_Value_Excl_VAT&quot;&lt;=2000,'B6',if(&quot;Sales_Value_Excl_VAT&quot;&gt;2000,'B7','B0')))))))
+</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Buckets" hidden="false" order="18" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Buckets Based on Sales Incl_VAT"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="3">
+          <formula>if(&quot;Sales_Value_Incl_VAT&quot;&gt;0 AND &quot;Sales_Value_Incl_VAT&quot;&lt;=100,'B1',if(&quot;Sales_Value_Incl_VAT&quot;&gt;100 AND &quot;Sales_Value_Incl_VAT&quot;&lt;=250,'B2',if(&quot;Sales_Value_Incl_VAT&quot;&gt;250 AND &quot;Sales_Value_Incl_VAT&quot;&lt;=500,'B3',if(&quot;Sales_Value_Incl_VAT&quot;&gt;500 AND &quot;Sales_Value_Incl_VAT&quot;&lt;=1000,'B4',if(&quot;Sales_Value_Incl_VAT&quot;&gt;1000 AND &quot;Sales_Value_Incl_VAT&quot;&lt;=1500,'B5',if(&quot;Sales_Value_Incl_VAT&quot;&gt;1500 AND &quot;Sales_Value_Incl_VAT&quot;&lt;=2000,'B6',if(&quot;Sales_Value_Incl_VAT&quot;&gt;2000,'B7','B0')))))))</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Customer_Demograph" hidden="false" order="19" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Customer Demograph"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="40">
+          <formula>case(&quot;ZDEMOGRAPH_1&quot;,
+'00', 'Asian',
+'01', 'Chinese',
+'02', 'Westerner',
+'03', 'Arabic',
+'04', 'Self Checkout',
+'Not Assigned')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Checkout_Indicator" hidden="false" order="20" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Checkout Indicator"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="10">
+          <formula>case(&quot;ZDEMOGRAPH_1&quot;,
+'00', 'RCO',
+'01', 'RCO',
+'02', 'RCO',
+'03', 'RCO',
+'04', 'SSCO')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="ZSALES_QTY" order="6" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="ZSALES_QTY"/>
+        <measureMapping columnObjectName="Projection_1" columnName="ZSALES_QTY"/>
+      </measure>
+      <measure id="ZSALES_VAL_IVAT" order="8" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="ZSALES_VAL_IVAT"/>
+        <measureMapping columnObjectName="Projection_1" columnName="ZSALES_VAL_IVAT"/>
+      </measure>
+      <measure id="ZCOST_OF_SALES" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Cos"/>
+        <measureMapping columnObjectName="Projection_1" columnName="ZCOST_OF_SALES"/>
+      </measure>
+      <measure id="RSP" order="15" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="RSP"/>
+        <measureMapping columnObjectName="Projection_1" columnName="RSP"/>
+      </measure>
+      <measure id="MAP" order="16" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="MAP"/>
+        <measureMapping columnObjectName="Projection_1" columnName="MAP"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="Sales_Quantity" hidden="false" order="21" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Sales Quantity"/>
+        <formula>&quot;ZSALES_QTY&quot;*-1</formula>
+      
+        </measure>
+      <measure id="Sales_Cost" hidden="false" order="22" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Sales Cost"/>
+        <formula>&quot;MAP&quot;*&quot;Sales_Quantity&quot;</formula>
+      
+        </measure>
+      <measure id="Sales_Value_Incl_VAT" hidden="false" order="23" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Sales Value Incl VAT"/>
+        <formula>&quot;ZSALES_VAL_IVAT&quot;</formula>
+      
+        </measure>
+      <measure id="Sales_Value_Excl_VAT" hidden="false" order="24" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Sales Value Excl VAT"/>
+        <formula>(if(&quot;TAXM1&quot;='2', &quot;ZSALES_VAL_IVAT&quot;/1.05, &quot;ZSALES_VAL_IVAT&quot;))</formula>
+      
+        </measure>
+      <measure id="SSCO_Terminal_Count" hidden="false" order="28" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="SSCO Terminal Count"/>
+        <formula>&quot;Count_Self_Checkout&quot;</formula>
+      
+        </measure>
+      <measure id="Regular_Terminal_Count" hidden="false" order="29" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Regular Terminal Count"/>
+        <formula>&quot;Count_Regular_Checkout&quot;</formula>
+      
+        </measure>
+      <measure id="Total_Terminal_Count" hidden="false" order="30" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Total Terminal Count"/>
+        <formula>&quot;SSCO_Terminal_Count&quot;+&quot;Regular_Terminal_Count&quot;</formula>
+      
+        </measure>
+      <measure id="Avg_Sales_Per_SSCO" hidden="false" order="31" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Average Sales Per SSCO"/>
+        <formula>If(&quot;SSCO_Terminal_Count&quot;=0, 0, &quot;SSCO_Sales_Value&quot;/&quot;SSCO_Terminal_Count&quot;)</formula>
+      
+        </measure>
+      <measure id="Avg_Sales_Per_RCO" hidden="false" order="32" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Average Sales Per RCO"/>
+        <formula>If (&quot;Regular_Terminal_Count&quot;=0, 0,&quot;RCO_Sales_Value&quot;/&quot;Regular_Terminal_Count&quot;)</formula>
+      
+        </measure>
+      <measure id="Avg_Sales_Per_CO" hidden="false" order="33" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Average Sales Per CO"/>
+        <formula>If (&quot;Total_Terminal_Count&quot;=0, 0,&quot;Sales_Value_Incl_VAT&quot;/&quot;Total_Terminal_Count&quot;)</formula>
+      
+        </measure>
+      <measure id="Transaction_Count" hidden="false" order="34" aggregationType="sum" measureType="simple" aggregatable="true" calculatedMeasureType="counter" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Transaction Count"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="ZUNI_RCPT_NO"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      
+        </measure>
+      <measure id="Avg_Transactions_Per_CO" hidden="false" order="35" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Average Transactions Per CO"/>
+        <formula>If (&quot;Total_Terminal_Count&quot;=0, 0,&quot;Transaction_Count&quot;/&quot;Total_Terminal_Count&quot;)</formula>
+      
+        </measure>
+    </calculatedMeasures>
+    <restrictedMeasures>
+      <measure id="SSCO_Sales_Value" hidden="false" order="26" baseMeasure="ZSALES_VAL_IVAT" datatype="DECIMAL" length="19" scale="3">
+        <descriptions defaultDescription="SSCO Sales Value"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="ZDEMOGRAPH_1">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="04"/>
+          </filter>
+          <attributeName>ZDEMOGRAPH_1</attributeName>
+        </restriction>
+      </measure>
+      <measure id="RCO_Sales_Value" hidden="false" order="27" baseMeasure="ZSALES_VAL_IVAT" datatype="DECIMAL" length="19" scale="3">
+        <descriptions defaultDescription="Regular Sales Value"/>
+        <restriction logicalOperator="AND">
+          <filter xsi:type="Privilege:AttributeFilter" attributeName="ZDEMOGRAPH_1">
+            <valueFilter xsi:type="AccessControl:SingleValueFilter" including="false" value="04"/>
+          </filter>
+          <attributeName>ZDEMOGRAPH_1</attributeName>
+        </restriction>
+      </measure>
+    </restrictedMeasures>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE_SITE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_MATNR" attributeName="MATNR"/>
+          <attributeReference alias="AT_MASTER_ARTICLE_SITE_Article_Code" attributeName="Article_Code"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_SITE">
+        <attributes>
+          <attributeRef>WERKS$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_SITE_WERKS" attributeName="WERKS"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_TIME">
+        <attributes>
+          <attributeRef>ZDATE$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE_SAP</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="257"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape modelObjectName="Projection_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="447" y="784"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="224"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="801" y="417"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="801" y="898"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_TIME" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="801" y="16"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

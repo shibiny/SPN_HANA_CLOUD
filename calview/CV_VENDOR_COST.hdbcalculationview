@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_VENDOR_COST" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="CV_VENDOR_COST"/>
+  <metadata changedAt="2020-01-07 16:14:15.616"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="34"/>
+  <dataSources>
+    <DataSource id="A018">
+      <resourceUri>A018</resourceUri>
+    </DataSource>
+    <DataSource id="KONP">
+      <resourceUri>KONP</resourceUri>
+    </DataSource>
+    <DataSource id="Promotional$$$$A018$$">
+      <resourceUri>A018</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Normal" filterExpressionLanguage="COLUMN_ENGINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KAPPL"/>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="DATBI"/>
+        <viewAttribute id="DATAB"/>
+        <viewAttribute id="KNUMH"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="Date_From" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;DATAB&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Date_To" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;DATBI&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Current_Date" expressionLanguage="COLUMN_ENGINE">
+          <formula>now()</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="A018"/>
+    <filter>&quot;Current_Date&quot;&gt;=&quot;Date_From&quot; and &quot;Current_Date&quot;&lt;=&quot;Date_To&quot; and 
+&quot;KSCHL&quot; ='PB00'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="InfoRecord">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KNUMH"/>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="KBETR"/>
+        <viewAttribute id="KONWA"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="KONP"/>
+    <filter>(in (&quot;KSCHL&quot;,'PA00','PB00'))</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Promotional" filterExpressionLanguage="COLUMN_ENGINE">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KAPPL"/>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="DATBI"/>
+        <viewAttribute id="DATAB"/>
+        <viewAttribute id="KNUMH"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="Date_From" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;DATAB&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Date_To" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;DATBI&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DATE" id="Current_Date" expressionLanguage="COLUMN_ENGINE">
+          <formula>now()</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Promotional$$$$A018$$"/>
+    <filter>&quot;Current_Date&quot;&gt;=&quot;Date_From&quot; and &quot;Current_Date&quot;&lt;=&quot;Date_To&quot; and 
+&quot;KSCHL&quot; ='PA00'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="N_Cost" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="Date_From"/>
+        <viewAttribute id="KBETR_Normal"/>
+        <viewAttribute id="KONWA"/>
+      <viewAttribute hidden="true" id="JOIN$KNUMH$KNUMH"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Normal">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Date_From" source="Date_From"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KNUMH$KNUMH" source="KNUMH"/>
+      </input>
+      <input node="InfoRecord">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_Normal" source="KBETR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONWA" source="KONWA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KNUMH$KNUMH" source="KNUMH"/>
+      </input>
+    <joinAttribute name="KSCHL"/>
+    <joinAttribute name="JOIN$KNUMH$KNUMH"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="P_Cost" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="Date_From"/>
+        <viewAttribute id="KBETR_Promotional"/>
+        <viewAttribute id="KONWA"/>
+      <viewAttribute hidden="true" id="JOIN$KNUMH$KNUMH"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Promotional">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Date_From" source="Date_From"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KNUMH$KNUMH" source="KNUMH"/>
+      </input>
+      <input node="InfoRecord">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_Promotional" source="KBETR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONWA" source="KONWA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$KNUMH$KNUMH" source="KNUMH"/>
+      </input>
+    <joinAttribute name="KSCHL"/>
+    <joinAttribute name="JOIN$KNUMH$KNUMH"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="KSCHL"/>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="Date_From"/>
+        <viewAttribute id="KBETR_Normal"/>
+        <viewAttribute id="KBETR_Promotional"/>
+        <viewAttribute id="KONWA"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="N_Cost">
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Date_From" source="Date_From"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_Normal" source="KBETR_Normal"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONWA" source="KONWA"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="KBETR_Promotional" null="true" value=""/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="P_Cost">
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="KBETR_Normal" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KSCHL" source="KSCHL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Date_From" source="Date_From"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KONWA" source="KONWA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KBETR_Promotional" source="KBETR_Promotional"/>
+      </input>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Union_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="Purchase_Org" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchase Organization"/>
+        <keyMapping columnObjectName="Union_1" columnName="EKORG"/>
+      </attribute>
+      <attribute id="LIFNR" hidden="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LIFNR"/>
+        <keyMapping columnObjectName="Union_1" columnName="LIFNR"/>
+      </attribute>
+      <attribute id="MATNR" hidden="true" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MATNR"/>
+        <keyMapping columnObjectName="Union_1" columnName="MATNR"/>
+      </attribute>
+      <attribute id="Date_From" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Date_From"/>
+        <keyMapping columnObjectName="Union_1" columnName="Date_From"/>
+      </attribute>
+      <attribute id="Currency" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Currency"/>
+        <keyMapping columnObjectName="Union_1" columnName="KONWA"/>
+      </attribute>
+      <attribute id="Cost_Normal" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Cost Normal"/>
+        <keyMapping columnObjectName="Union_1" columnName="KBETR_Normal"/>
+      </attribute>
+      <attribute id="Cost_Promotional" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Cost Promotional"/>
+        <keyMapping columnObjectName="Union_1" columnName="KBETR_Promotional"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Article_Code" hidden="false" order="10" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="18">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Vendor_Code" hidden="false" order="11" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor Code"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="18">
+          <formula>ltrim(&quot;LIFNR&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Normal_Cost" order="8" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Normal Cost"/>
+        <measureMapping columnObjectName="Union_1" columnName="KBETR_Normal"/>
+      </measure>
+      <measure id="Promotional_Cost" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Promotional Cost"/>
+        <measureMapping columnObjectName="Union_1" columnName="KBETR_Promotional"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="176" y="87"/></shape>
+      <shape expanded="true" modelObjectName="Normal" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="377"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="InfoRecord" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="377"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Promotional" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="330" y="377"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="N_Cost" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="281"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Normal" modelObjectNameSpace="N_Cost" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="InfoRecord" modelObjectNameSpace="N_Cost" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="P_Cost" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="253" y="281"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Promotional" modelObjectNameSpace="P_Cost" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="InfoRecord" modelObjectNameSpace="P_Cost" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

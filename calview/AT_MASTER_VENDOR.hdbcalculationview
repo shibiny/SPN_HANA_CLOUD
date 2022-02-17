@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="AT_MASTER_VENDOR" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Calculation View for Vendor Master Data"/>
+  <metadata changedAt="2021-05-19 10:48:40.77"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="T005T">
+      <resourceUri>T005T</resourceUri>
+    </DataSource>
+    <DataSource id="LFA1">
+      <resourceUri>LFA1</resourceUri>
+    </DataSource>
+    <DataSource id="T052U">
+      <resourceUri>T052U</resourceUri>
+    </DataSource>
+    <DataSource id="LFB1">
+      <resourceUri>LFB1</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="SPRAS"/>
+        <viewAttribute id="LAND1"/>
+        <viewAttribute id="LANDX"/>
+        <viewAttribute id="MANDT"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="T005T"/>
+    <filter>(&quot;SPRAS&quot; ='E') AND (&quot;MANDT&quot; ='100')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="LAND1"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="ORT01"/>
+        <viewAttribute id="PFACH"/>
+        <viewAttribute id="KUNNR"/>
+        <viewAttribute id="STCD1"/>
+        <viewAttribute id="TELF1"/>
+        <viewAttribute id="TELF2"/>
+        <viewAttribute id="TELFX"/>
+        <viewAttribute id="LANDX"/>
+        <viewAttribute id="LOEVM"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="LFA1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAND1" source="LAND1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORT01" source="ORT01"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PFACH" source="PFACH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR" source="KUNNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STCD1" source="STCD1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELF1" source="TELF1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELF2" source="TELF2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELFX" source="TELFX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LOEVM" source="LOEVM"/>
+      </input>
+      <input node="Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LANDX" source="LANDX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAND1" source="LAND1"/>
+      </input>
+    <joinAttribute name="LAND1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="SPRAS"/>
+        <viewAttribute id="ZTERM"/>
+        <viewAttribute id="TEXT1"/>
+        <viewAttribute id="MANDT"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="T052U"/>
+    <filter>(&quot;SPRAS&quot; ='E') AND (&quot;MANDT&quot; ='100')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="ZTERM"/>
+        <viewAttribute id="TEXT1"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="LFB1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZTERM" source="ZTERM"/>
+      </input>
+      <input node="Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TEXT1" source="TEXT1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZTERM" source="ZTERM"/>
+      </input>
+    <joinAttribute name="ZTERM"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_N" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="LAND1"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="ORT01"/>
+        <viewAttribute id="PFACH"/>
+        <viewAttribute id="KUNNR"/>
+        <viewAttribute id="STCD1"/>
+        <viewAttribute id="TELF1"/>
+        <viewAttribute id="TELF2"/>
+        <viewAttribute id="TELFX"/>
+        <viewAttribute id="LANDX"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="ZTERM"/>
+        <viewAttribute id="TEXT1"/>
+        <viewAttribute id="LOEVM"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAND1" source="LAND1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ORT01" source="ORT01"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PFACH" source="PFACH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR" source="KUNNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STCD1" source="STCD1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELF1" source="TELF1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELF2" source="TELF2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TELFX" source="TELFX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LANDX" source="LANDX"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LOEVM" source="LOEVM"/>
+      </input>
+      <input node="Join_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZTERM" source="ZTERM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="TEXT1" source="TEXT1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+      </input>
+    <joinAttribute name="LIFNR"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Join_2">
+    <descriptions/>
+    <attributes>
+      <attribute id="Company_Code" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Company Code"/>
+        <keyMapping columnObjectName="Join_2" columnName="BUKRS"/>
+      </attribute>
+      <attribute id="Vendor" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor"/>
+        <keyMapping columnObjectName="Join_2" columnName="LIFNR"/>
+      </attribute>
+      <attribute id="Country_Code" hidden="true" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country Code"/>
+        <keyMapping columnObjectName="Join_2" columnName="LAND1"/>
+      </attribute>
+      <attribute id="Country_Name" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country Name"/>
+        <keyMapping columnObjectName="Join_2" columnName="LANDX"/>
+      </attribute>
+      <attribute id="Vendor_Name" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor Name"/>
+        <keyMapping columnObjectName="Join_2" columnName="NAME1"/>
+      </attribute>
+      <attribute id="City" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="City"/>
+        <keyMapping columnObjectName="Join_2" columnName="ORT01"/>
+      </attribute>
+      <attribute id="PO_Box" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="PO Box"/>
+        <keyMapping columnObjectName="Join_2" columnName="PFACH"/>
+      </attribute>
+      <attribute id="Customer" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Customer"/>
+        <keyMapping columnObjectName="Join_2" columnName="KUNNR"/>
+      </attribute>
+      <attribute id="Tax_Number" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Tax Number"/>
+        <keyMapping columnObjectName="Join_2" columnName="STCD1"/>
+      </attribute>
+      <attribute id="Telephone1" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Telephone1"/>
+        <keyMapping columnObjectName="Join_2" columnName="TELF1"/>
+      </attribute>
+      <attribute id="Telephone2" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Telephone2"/>
+        <keyMapping columnObjectName="Join_2" columnName="TELF2"/>
+      </attribute>
+      <attribute id="Fax" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Fax"/>
+        <keyMapping columnObjectName="Join_2" columnName="TELFX"/>
+      </attribute>
+      <attribute id="Payment_Term_Code" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Payment Term Code"/>
+        <keyMapping columnObjectName="Join_2" columnName="ZTERM"/>
+      </attribute>
+      <attribute id="Payment_Term_Description" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Payment Term Description"/>
+        <keyMapping columnObjectName="Join_2" columnName="TEXT1"/>
+      </attribute>
+      <attribute id="Deletion_Flag" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Deletion Flag"/>
+        <keyMapping columnObjectName="Join_2" columnName="LOEVM"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Vendor_Number" hidden="false" key="true" order="1" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor Number"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="10">
+          <formula>ltrim(&quot;Vendor&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="357"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="LFA1" modelObjectNameSpace="Join" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="180" y="356"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="LFB1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+    <shape modelObjectName="Join" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

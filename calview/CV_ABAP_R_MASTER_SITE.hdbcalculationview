@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_ABAP_R_MASTER_SITE" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Site Master to be consumed in ABAP"/>
+  <metadata changedAt="2021-05-19 10:48:43.543"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="CV_R_MASTER_SITE">
+      <resourceUri>CV_R_MASTER_SITE</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews/>
+  <logicalModel id="CV_R_MASTER_SITE">
+    <descriptions/>
+    <attributes>
+      <attribute id="ZHIER_TYPE" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Hierarchy Type"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZHIER_TYPE"/>
+      </attribute>
+      <attribute id="WERKS" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site ID"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="WERKS"/>
+      </attribute>
+      <attribute id="NAME1" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Description"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="NAME1"/>
+      </attribute>
+      <attribute id="Site_Region" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Region"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="Site_Region"/>
+      </attribute>
+      <attribute id="ZCUR_REG" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Group"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZCUR_REG"/>
+      </attribute>
+      <attribute id="ZREG_MGR" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Regional Manager"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZREG_MGR"/>
+      </attribute>
+      <attribute id="ZCITY" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="City"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZCITY"/>
+      </attribute>
+      <attribute id="ZDELI_CTR" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Deli Counter"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZDELI_CTR"/>
+      </attribute>
+      <attribute id="ZRES_VILLAS" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Residential - Villas"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZRES_VILLAS"/>
+      </attribute>
+      <attribute id="ZRES_APRT" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Residential - Apartments"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZRES_APRT"/>
+      </attribute>
+      <attribute id="ZCLS_SCH" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Close to School"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZCLS_SCH"/>
+      </attribute>
+      <attribute id="ZCOM_CTR" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Community Center"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZCOM_CTR"/>
+      </attribute>
+      <attribute id="ZSHOP_MAL" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Shopping Mall"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZSHOP_MAL"/>
+      </attribute>
+      <attribute id="ZCOMM_AREA" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Commercial Area"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZCOMM_AREA"/>
+      </attribute>
+      <attribute id="ZOFF_BLK" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Office Block"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZOFF_BLK"/>
+      </attribute>
+      <attribute id="ZNEW_CMTY" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="New Community"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZNEW_CMTY"/>
+      </attribute>
+      <attribute id="ZEST_CMTY" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Established Community"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZEST_CMTY"/>
+      </attribute>
+      <attribute id="ZGOOD_ASBTY" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Good Accessibility"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZGOOD_ASBTY"/>
+      </attribute>
+      <attribute id="ZAMP_PRK" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Ample Parking"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZAMP_PRK"/>
+      </attribute>
+      <attribute id="ZENR_WORK" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Enroute to Work or Home"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZENR_WORK"/>
+      </attribute>
+      <attribute id="ZOPN_HRS" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Opening Hours"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZOPN_HRS"/>
+      </attribute>
+      <attribute id="ZMAIN_SHP" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Main Shop"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZMAIN_SHP"/>
+      </attribute>
+      <attribute id="ZTOP_SHP" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Top-Up Shop"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZTOP_SHP"/>
+      </attribute>
+      <attribute id="ZCONV" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Convenience"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZCONV"/>
+      </attribute>
+      <attribute id="ZLUCNH_TIME" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Lunch Time"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZLUCNH_TIME"/>
+      </attribute>
+      <attribute id="ZWESTERN" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Western"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZWESTERN"/>
+      </attribute>
+      <attribute id="ZASIAN" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Asian"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZASIAN"/>
+      </attribute>
+      <attribute id="ZARABIC" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Arabic"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZARABIC"/>
+      </attribute>
+      <attribute id="ZCHINESE" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Chinese"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZCHINESE"/>
+      </attribute>
+      <attribute id="ZPOP_LOW" order="30" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Population Low"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZPOP_LOW"/>
+      </attribute>
+      <attribute id="ZPOP_MED" order="31" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Population Medium"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZPOP_MED"/>
+      </attribute>
+      <attribute id="ZPOP_HIGH" order="32" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Population High"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZPOP_HIGH"/>
+      </attribute>
+      <attribute id="ZEXP_SALES" order="33" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZEXP_SALES"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZEXP_SALES"/>
+      </attribute>
+      <attribute id="ZCOMP" order="34" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Competition Name"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZCOMP"/>
+      </attribute>
+      <attribute id="ZSTORE_TYPE" order="35" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Store Type"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZSTORE_TYPE"/>
+      </attribute>
+      <attribute id="ZNEW_REG" order="36" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="New Region"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZNEW_REG"/>
+      </attribute>
+      <attribute id="ZDEMOGRAPH" order="37" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demographic"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZDEMOGRAPH"/>
+      </attribute>
+      <attribute id="ZACE_CLUSTER" order="38" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ACE Cluster"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZACE_CLUSTER"/>
+      </attribute>
+      <attribute id="ZOPR_HRS" order="39" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Operating Hours"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZOPR_HRS"/>
+      </attribute>
+      <attribute id="ZLIQUOR_STORE" order="40" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Liqour Store Name"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="ZLIQUOR_STORE"/>
+      </attribute>
+      <attribute id="SCHLD" order="41" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHLD"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="SCHLD"/>
+      </attribute>
+      <attribute id="Site_Group" order="42" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Group"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="Site_Group"/>
+      </attribute>
+      <attribute id="Site" order="43" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="Site"/>
+      </attribute>
+      <attribute id="Email_Address" order="44" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Email_Address"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="Email_Address"/>
+      </attribute>
+      <attribute id="EKORG" order="45" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Org"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="EKORG"/>
+      </attribute>
+      <attribute id="VKORG" order="46" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchase Org"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="VKORG"/>
+      </attribute>
+      <attribute id="VTWEG" order="47" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Distribution Channel"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="VTWEG"/>
+      </attribute>
+      <attribute id="PSTLZ" order="48" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Postal Code"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="PSTLZ"/>
+      </attribute>
+      <attribute id="VLFKZ" order="49" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Category"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="VLFKZ"/>
+      </attribute>
+      <attribute id="Store_Manager" order="50" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Store_Manager"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="Store_Manager"/>
+      </attribute>
+      <attribute id="Mobile_Number" order="51" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Mobile_Number"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="Mobile_Number"/>
+      </attribute>
+      <attribute id="Latitude" order="52" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Latitude"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="Latitude"/>
+      </attribute>
+      <attribute id="Longitude" order="53" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Longitude"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="Longitude"/>
+      </attribute>
+      <attribute id="Store_Type" order="54" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Store_Type"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="Store_Type"/>
+      </attribute>
+      <attribute id="Fax" order="55" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Fax"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="Fax"/>
+      </attribute>
+      <attribute id="Sales_Area" order="56" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Area"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="Sales_Area"/>
+      </attribute>
+      <attribute id="Sales_Area_Unit" order="57" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Area Unit"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="Sales_Area_Unit"/>
+      </attribute>
+      <attribute id="EROED" order="59" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EROED"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="EROED"/>
+      </attribute>
+      <attribute id="Country_Code" order="60" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country Code"/>
+        <keyMapping columnObjectName="CV_R_MASTER_SITE" columnName="Country_Code"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Site_Count" order="58" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Site Count"/>
+        <measureMapping columnObjectName="CV_R_MASTER_SITE" columnName="Site_Count"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

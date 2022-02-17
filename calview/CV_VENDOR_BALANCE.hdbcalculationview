@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_VENDOR_BALANCE" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Vendor Balance"/>
+  <metadata changedAt="2020-12-06 16:31:01.083"/>
+  <localVariables>
+    <variable id="Comp_Code">
+      <descriptions defaultDescription="Company Code"/>
+      <variableProperties defaultValue="3000" mandatory="true">
+        <valueDomain type="AttributeValue">
+          <attribute name="BUKRS"/>
+        </valueDomain>
+        <selection multiLine="true" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+    <variable id="Fiscal_Year">
+      <descriptions defaultDescription="Year"/>
+      <variableProperties mandatory="true">
+        <valueDomain type="AttributeValue">
+          <attribute name="GJAHR"/>
+        </valueDomain>
+        <selection multiLine="true" type="SingleValue"/>
+      </variableProperties>
+    </variable>
+  </localVariables>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="30"/>
+  <dataSources>
+    <DataSource id="LFA1">
+      <resourceUri>LFA1</resourceUri>
+    </DataSource>
+    <DataSource id="LFC1">
+      <resourceUri>LFC1</resourceUri>
+    </DataSource>
+    <DataSource id="Receivable$$$$LFA1$$">
+      <resourceUri>LFA1</resourceUri>
+    </DataSource>
+    <DataSource id="BSID">
+      <resourceUri>BSID</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Payable" cardinality="C1_N" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="LAND1"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="KUNNR"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="GJAHR"/>
+        <viewAttribute id="UMSAV"/>
+        <viewAttribute id="UM01S"/>
+        <viewAttribute id="UM01H"/>
+        <viewAttribute id="UM02S"/>
+        <viewAttribute id="UM02H"/>
+        <viewAttribute id="UM03S"/>
+        <viewAttribute id="UM03H"/>
+        <viewAttribute id="UM04S"/>
+        <viewAttribute id="UM04H"/>
+        <viewAttribute id="UM05S"/>
+        <viewAttribute id="UM05H"/>
+        <viewAttribute id="UM06S"/>
+        <viewAttribute id="UM06H"/>
+        <viewAttribute id="UM07S"/>
+        <viewAttribute id="UM07H"/>
+        <viewAttribute id="UM08S"/>
+        <viewAttribute id="UM08H"/>
+        <viewAttribute id="UM09S"/>
+        <viewAttribute id="UM09H"/>
+        <viewAttribute id="UM10S"/>
+        <viewAttribute id="UM10H"/>
+        <viewAttribute id="UM11S"/>
+        <viewAttribute id="UM11H"/>
+        <viewAttribute id="UM12S"/>
+        <viewAttribute id="UM12H"/>
+        <viewAttribute id="UM13S"/>
+        <viewAttribute id="UM13H"/>
+        <viewAttribute id="UM14S"/>
+        <viewAttribute id="UM14H"/>
+        <viewAttribute id="UM15S"/>
+        <viewAttribute id="UM15H"/>
+        <viewAttribute id="UM16S"/>
+        <viewAttribute id="UM16H"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DECIMAL" id="Account_Payable" length="15" scale="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>&quot;UMSAV&quot; + (&quot;UM01S&quot;+&quot;UM02S&quot;+&quot;UM03S&quot;+&quot;UM04S&quot;+&quot;UM05S&quot;+&quot;UM06S&quot;+&quot;UM07S&quot;+&quot;UM08S&quot;+&quot;UM09S&quot;+&quot;UM10S&quot;+&quot;UM11S&quot;+&quot;UM12S&quot;+&quot;UM13S&quot;+&quot;UM14S&quot;+&quot;UM15S&quot;+&quot;UM16S&quot;) - (&quot;UM01H&quot;+&quot;UM02H&quot;+&quot;UM03H&quot;+&quot;UM04H&quot;+&quot;UM05H&quot;+&quot;UM06H&quot;+&quot;UM07H&quot;+&quot;UM08H&quot;+&quot;UM09H&quot;+&quot;UM10H&quot;+&quot;UM11H&quot;+&quot;UM12H&quot;+&quot;UM13H&quot;+&quot;UM14H&quot;+&quot;UM15H&quot;+&quot;UM16H&quot;)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Vendor" length="10" expressionLanguage="COLUMN_ENGINE">
+          <formula>ltrim(&quot;LIFNR&quot;,'0')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="LFA1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAND1" source="LAND1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR" source="KUNNR"/>
+      </input>
+      <input node="LFC1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GJAHR" source="GJAHR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMSAV" source="UMSAV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM01S" source="UM01S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM01H" source="UM01H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM02S" source="UM02S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM02H" source="UM02H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM03S" source="UM03S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM03H" source="UM03H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM04S" source="UM04S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM04H" source="UM04H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM05S" source="UM05S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM05H" source="UM05H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM06S" source="UM06S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM06H" source="UM06H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM07S" source="UM07S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM07H" source="UM07H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM08S" source="UM08S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM08H" source="UM08H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM09S" source="UM09S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM09H" source="UM09H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM10S" source="UM10S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM10H" source="UM10H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM11S" source="UM11S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM11H" source="UM11H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM12S" source="UM12S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM12H" source="UM12H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM13S" source="UM13S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM13H" source="UM13H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM14S" source="UM14S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM14H" source="UM14H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM15S" source="UM15S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM15H" source="UM15H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM16S" source="UM16S"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UM16H" source="UM16H"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+      </input>
+    <joinAttribute name="LIFNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Receivable" cardinality="CN_N" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="LAND1"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="KUNNR"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="GJAHR"/>
+        <viewAttribute id="SHKZG"/>
+        <viewAttribute id="DMBTR"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Vendor" length="10" expressionLanguage="COLUMN_ENGINE">
+          <formula>ltrim(&quot;LIFNR&quot;,'0')</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="DECIMAL" id="Account_Receivable" length="15" scale="3" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;SHKZG&quot;='S',&quot;DMBTR&quot;,-1*&quot;DMBTR&quot;)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Receivable$$$$LFA1$$">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAND1" source="LAND1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR" source="KUNNR"/>
+      </input>
+      <input node="BSID">
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GJAHR" source="GJAHR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SHKZG" source="SHKZG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="DMBTR" source="DMBTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR" source="KUNNR"/>
+      </input>
+    <joinAttribute name="KUNNR"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Acc_Payable">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="LAND1"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="KUNNR"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="GJAHR"/>
+        <viewAttribute id="Vendor"/>
+        <viewAttribute aggregationType="sum" id="Account_Payable"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+      <input node="Payable"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Acc_Receivable">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="LAND1"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="KUNNR"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="GJAHR"/>
+        <viewAttribute id="Vendor"/>
+        <viewAttribute aggregationType="sum" id="Account_Receivable"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+      <input node="Receivable"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="LIFNR"/>
+        <viewAttribute id="LAND1"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="KUNNR"/>
+        <viewAttribute id="BUKRS"/>
+        <viewAttribute id="GJAHR"/>
+        <viewAttribute id="Vendor"/>
+        <viewAttribute id="Account_Payable"/>
+        <viewAttribute id="Account_Receivable"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="Acc_Payable">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAND1" source="LAND1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR" source="KUNNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GJAHR" source="GJAHR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Account_Payable" source="Account_Payable"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Account_Receivable" null="true" value=""/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="Acc_Receivable">
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="Account_Payable" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LIFNR" source="LIFNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LAND1" source="LAND1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="KUNNR" source="KUNNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BUKRS" source="BUKRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="GJAHR" source="GJAHR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Vendor" source="Vendor"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Account_Receivable" source="Account_Receivable"/>
+      </input>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Union_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="LIFNR" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Account Number of Vendor or Creditor"/>
+        <keyMapping columnObjectName="Union_1" columnName="LIFNR"/>
+      </attribute>
+      <attribute id="LAND1" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country Key"/>
+        <keyMapping columnObjectName="Union_1" columnName="LAND1"/>
+      </attribute>
+      <attribute id="NAME1" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Name 1"/>
+        <keyMapping columnObjectName="Union_1" columnName="NAME1"/>
+      </attribute>
+      <attribute id="KUNNR" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Customer Number"/>
+        <keyMapping columnObjectName="Union_1" columnName="KUNNR"/>
+      </attribute>
+      <attribute id="BUKRS" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Company Code"/>
+        <localVariable>Comp_Code</localVariable>
+        <keyMapping columnObjectName="Union_1" columnName="BUKRS"/>
+      </attribute>
+      <attribute id="GJAHR" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Fiscal Year"/>
+        <localVariable>Fiscal_Year</localVariable>
+        <keyMapping columnObjectName="Union_1" columnName="GJAHR"/>
+      </attribute>
+      <attribute id="Vendor" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor"/>
+        <keyMapping columnObjectName="Union_1" columnName="Vendor"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Account_Payable" order="8" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Account Payable"/>
+        <measureMapping columnObjectName="Union_1" columnName="Account_Payable"/>
+      </measure>
+      <measure id="Account_Receivable" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Account Receivable"/>
+        <measureMapping columnObjectName="Union_1" columnName="Account_Receivable"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="Account_Balance" hidden="false" order="10" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="15" scale="3">
+        <descriptions defaultDescription="Account Balance"/>
+        <formula>&quot;Account_Receivable&quot;+&quot;Account_Payable&quot;</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/></shape>
+      <shape expanded="true" modelObjectName="Payable" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="359"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="LFA1" modelObjectNameSpace="Payable" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="LFC1" modelObjectNameSpace="Payable" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Receivable" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="359"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="LFA1" modelObjectNameSpace="Receivable" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="BSID" modelObjectNameSpace="Receivable" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Acc_Payable" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="281"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Acc_Receivable" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="281"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

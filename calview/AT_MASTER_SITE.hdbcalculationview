@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="3.0" id="AT_MASTER_SITE" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="DIMENSION" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Attribute View for Site Master"/>
+  <metadata changedAt="2021-10-19 16:21:10.835"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="33"/>
+  <dataSources>
+    <DataSource id="ZSTORE_DATA">
+      <resourceUri>ZSTORE_DATA</resourceUri>
+    </DataSource>
+    <DataSource id="WRF1">
+      <resourceUri>WRF1</resourceUri>
+    </DataSource>
+    <DataSource id="T001W">
+      <resourceUri>T001W</resourceUri>
+    </DataSource>
+    <DataSource id="ADRC">
+      <resourceUri>ADRC</resourceUri>
+    </DataSource>
+    <DataSource id="ADR2">
+      <resourceUri>ADR2</resourceUri>
+    </DataSource>
+    <DataSource id="ADR6">
+      <resourceUri>ADR6</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="ZDEPT"/>
+        <viewAttribute id="ZREG_MGR"/>
+        <viewAttribute id="ZCUR_REG"/>
+        <viewAttribute id="ZCITY"/>
+        <viewAttribute id="ZDELI_CTR"/>
+        <viewAttribute id="ZRES_VILLAS"/>
+        <viewAttribute id="ZRES_APRT"/>
+        <viewAttribute id="ZCLS_SCH"/>
+        <viewAttribute id="ZCOM_CTR"/>
+        <viewAttribute id="ZSHOP_MAL"/>
+        <viewAttribute id="ZCOMM_AREA"/>
+        <viewAttribute id="ZOFF_BLK"/>
+        <viewAttribute id="ZNEW_CMTY"/>
+        <viewAttribute id="ZEST_CMTY"/>
+        <viewAttribute id="ZGOOD_ASBTY"/>
+        <viewAttribute id="ZAMP_PRK"/>
+        <viewAttribute id="ZENR_WORK"/>
+        <viewAttribute id="ZOPN_HRS"/>
+        <viewAttribute id="ZMAIN_SHP"/>
+        <viewAttribute id="ZTOP_SHP"/>
+        <viewAttribute id="ZCONV"/>
+        <viewAttribute id="ZLUCNH_TIME"/>
+        <viewAttribute id="ZWESTERN"/>
+        <viewAttribute id="ZASIAN"/>
+        <viewAttribute id="ZARABIC"/>
+        <viewAttribute id="ZCHINESE"/>
+        <viewAttribute id="ZPOP_LOW"/>
+        <viewAttribute id="ZPOP_MED"/>
+        <viewAttribute id="ZPOP_HIGH"/>
+        <viewAttribute id="ZEXP_SALES"/>
+        <viewAttribute id="ZCOMP"/>
+        <viewAttribute id="ZSTORE_TYPE"/>
+        <viewAttribute id="ZHIER_TYPE"/>
+        <viewAttribute id="ZNEW_REG"/>
+        <viewAttribute id="ZDEMOGRAPH"/>
+        <viewAttribute id="ZACE_CLUSTER"/>
+        <viewAttribute id="ZLONGITUDE"/>
+        <viewAttribute id="ZLATITUDE"/>
+        <viewAttribute id="ZGSA"/>
+        <viewAttribute id="ZOPR_HRS"/>
+        <viewAttribute id="ZLIQUOR_STORE"/>
+        <viewAttribute id="SCHLD"/>
+        <viewAttribute id="VERFL"/>
+        <viewAttribute id="VERFE"/>
+        <viewAttribute id="ZRCCO"/>
+        <viewAttribute id="ZSCCO"/>
+        <viewAttribute id="ZSCCO_IND"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="NVARCHAR" id="Site_ID_Generic" length="4" expressionLanguage="COLUMN_ENGINE">
+          <formula>replace(&quot;WERKS&quot;,'E','R')</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="ZSTORE_DATA">
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZDEPT" source="ZDEPT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZREG_MGR" source="ZREG_MGR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCUR_REG" source="ZCUR_REG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCITY" source="ZCITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZDELI_CTR" source="ZDELI_CTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZRES_VILLAS" source="ZRES_VILLAS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZRES_APRT" source="ZRES_APRT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCLS_SCH" source="ZCLS_SCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCOM_CTR" source="ZCOM_CTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZSHOP_MAL" source="ZSHOP_MAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCOMM_AREA" source="ZCOMM_AREA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZOFF_BLK" source="ZOFF_BLK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZNEW_CMTY" source="ZNEW_CMTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZEST_CMTY" source="ZEST_CMTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZGOOD_ASBTY" source="ZGOOD_ASBTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZAMP_PRK" source="ZAMP_PRK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZENR_WORK" source="ZENR_WORK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZOPN_HRS" source="ZOPN_HRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZMAIN_SHP" source="ZMAIN_SHP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZTOP_SHP" source="ZTOP_SHP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCONV" source="ZCONV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLUCNH_TIME" source="ZLUCNH_TIME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZWESTERN" source="ZWESTERN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZASIAN" source="ZASIAN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZARABIC" source="ZARABIC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCHINESE" source="ZCHINESE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZPOP_LOW" source="ZPOP_LOW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZPOP_MED" source="ZPOP_MED"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZPOP_HIGH" source="ZPOP_HIGH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZEXP_SALES" source="ZEXP_SALES"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCOMP" source="ZCOMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZSTORE_TYPE" source="ZSTORE_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZHIER_TYPE" source="ZHIER_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZNEW_REG" source="ZNEW_REG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZDEMOGRAPH" source="ZDEMOGRAPH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZACE_CLUSTER" source="ZACE_CLUSTER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLONGITUDE" source="ZLONGITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLATITUDE" source="ZLATITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZGSA" source="ZGSA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZOPR_HRS" source="ZOPR_HRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLIQUOR_STORE" source="ZLIQUOR_STORE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZRCCO" source="ZRCCO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZSCCO" source="ZSCCO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZSCCO_IND" source="ZSCCO_IND"/>
+      </input>
+      <input node="WRF1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHLD" source="SCHLD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERFL" source="VERFL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERFE" source="VERFE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="LOCNR"/>
+      </input>
+    <joinAttribute name="WERKS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Ad">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="ADRNR"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="PSTLZ"/>
+        <viewAttribute id="VLFKZ"/>
+        <viewAttribute id="NAME1"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="T001W"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="CLIENT"/>
+        <viewAttribute id="ADDRNUMBER"/>
+        <viewAttribute id="NAME_CO"/>
+        <viewAttribute id="STR_SUPPL3"/>
+        <viewAttribute id="LOCATION"/>
+        <viewAttribute id="SORT2"/>
+        <viewAttribute id="FAX_NUMBER"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="ADRC"/>
+    <filter>(&quot;CLIENT&quot; ='100')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="R3_USER"/>
+        <viewAttribute id="CLIENT"/>
+        <viewAttribute id="ADDRNUMBER"/>
+        <viewAttribute id="TEL_NUMBER"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="ADR2"/>
+    <filter>(&quot;R3_USER&quot; ='3') AND (&quot;CLIENT&quot; ='100')</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_6" joinType="inner">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="ADDRNUMBER"/>
+        <viewAttribute id="NAME_CO"/>
+        <viewAttribute id="STR_SUPPL3"/>
+        <viewAttribute id="LOCATION"/>
+        <viewAttribute id="SORT2"/>
+        <viewAttribute id="TEL_NUMBER"/>
+        <viewAttribute id="FAX_NUMBER"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Projection_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME_CO" source="NAME_CO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="STR_SUPPL3" source="STR_SUPPL3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LOCATION" source="LOCATION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SORT2" source="SORT2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="FAX_NUMBER" source="FAX_NUMBER"/>
+      </input>
+      <input node="Projection_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="TEL_NUMBER" source="TEL_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ADDRNUMBER" source="ADDRNUMBER"/>
+      </input>
+    <joinAttribute name="ADDRNUMBER"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="PSTLZ"/>
+        <viewAttribute id="VLFKZ"/>
+        <viewAttribute id="Store_Manager"/>
+        <viewAttribute id="Latitude"/>
+        <viewAttribute id="Longitude"/>
+        <viewAttribute id="Store_Type"/>
+        <viewAttribute id="Mobile_Number"/>
+        <viewAttribute id="Fax"/>
+        <viewAttribute id="NAME1"/>
+      <viewAttribute hidden="true" id="JOIN$ADRNR$ADDRNUMBER"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Ad">
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PSTLZ" source="PSTLZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VLFKZ" source="VLFKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADRNR$ADDRNUMBER" source="ADRNR"/>
+      </input>
+      <input node="Join_6">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Store_Manager" source="NAME_CO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Latitude" source="STR_SUPPL3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Longitude" source="LOCATION"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Store_Type" source="SORT2"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Mobile_Number" source="TEL_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Fax" source="FAX_NUMBER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADRNR$ADDRNUMBER" source="ADDRNUMBER"/>
+      </input>
+    <joinAttribute name="JOIN$ADRNR$ADDRNUMBER"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="C1_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="Email_Address"/>
+        <viewAttribute id="NAME1"/>
+      <viewAttribute hidden="true" id="JOIN$ADRNR$ADDRNUMBER"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Ad">
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADRNR$ADDRNUMBER" source="ADRNR"/>
+      </input>
+      <input node="ADR6">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Email_Address" source="SMTP_ADDR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ADRNR$ADDRNUMBER" source="ADDRNUMBER"/>
+      </input>
+    <joinAttribute name="JOIN$ADRNR$ADDRNUMBER"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_4" cardinality="C1_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="Email_Address"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="PSTLZ"/>
+        <viewAttribute id="VLFKZ"/>
+        <viewAttribute id="Store_Manager"/>
+        <viewAttribute id="Latitude"/>
+        <viewAttribute id="Longitude"/>
+        <viewAttribute id="Store_Type"/>
+        <viewAttribute id="Mobile_Number"/>
+        <viewAttribute id="Fax"/>
+        <viewAttribute id="NAME1"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_2">
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PSTLZ" source="PSTLZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VLFKZ" source="VLFKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Store_Manager" source="Store_Manager"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Latitude" source="Latitude"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Longitude" source="Longitude"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Store_Type" source="Store_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Mobile_Number" source="Mobile_Number"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Fax" source="Fax"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+      </input>
+      <input node="Join_3">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Email_Address" source="Email_Address"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+      </input>
+    <joinAttribute name="WERKS"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_5" cardinality="CN_1" joinType="inner">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="ZDEPT"/>
+        <viewAttribute id="ZREG_MGR"/>
+        <viewAttribute id="ZCUR_REG"/>
+        <viewAttribute id="ZCITY"/>
+        <viewAttribute id="ZDELI_CTR"/>
+        <viewAttribute id="ZRES_VILLAS"/>
+        <viewAttribute id="ZRES_APRT"/>
+        <viewAttribute id="ZCLS_SCH"/>
+        <viewAttribute id="ZCOM_CTR"/>
+        <viewAttribute id="ZSHOP_MAL"/>
+        <viewAttribute id="ZCOMM_AREA"/>
+        <viewAttribute id="ZOFF_BLK"/>
+        <viewAttribute id="ZNEW_CMTY"/>
+        <viewAttribute id="ZEST_CMTY"/>
+        <viewAttribute id="ZGOOD_ASBTY"/>
+        <viewAttribute id="ZAMP_PRK"/>
+        <viewAttribute id="ZENR_WORK"/>
+        <viewAttribute id="ZOPN_HRS"/>
+        <viewAttribute id="ZMAIN_SHP"/>
+        <viewAttribute id="ZTOP_SHP"/>
+        <viewAttribute id="ZCONV"/>
+        <viewAttribute id="ZLUCNH_TIME"/>
+        <viewAttribute id="ZWESTERN"/>
+        <viewAttribute id="ZASIAN"/>
+        <viewAttribute id="ZARABIC"/>
+        <viewAttribute id="ZCHINESE"/>
+        <viewAttribute id="ZPOP_LOW"/>
+        <viewAttribute id="ZPOP_MED"/>
+        <viewAttribute id="ZPOP_HIGH"/>
+        <viewAttribute id="ZEXP_SALES"/>
+        <viewAttribute id="ZCOMP"/>
+        <viewAttribute id="ZSTORE_TYPE"/>
+        <viewAttribute id="ZHIER_TYPE"/>
+        <viewAttribute id="ZNEW_REG"/>
+        <viewAttribute id="ZDEMOGRAPH"/>
+        <viewAttribute id="ZACE_CLUSTER"/>
+        <viewAttribute id="ZLONGITUDE"/>
+        <viewAttribute id="ZLATITUDE"/>
+        <viewAttribute id="ZGSA"/>
+        <viewAttribute id="ZOPR_HRS"/>
+        <viewAttribute id="ZLIQUOR_STORE"/>
+        <viewAttribute id="SCHLD"/>
+        <viewAttribute id="Email_Address"/>
+        <viewAttribute id="EKORG"/>
+        <viewAttribute id="VKORG"/>
+        <viewAttribute id="VTWEG"/>
+        <viewAttribute id="PSTLZ"/>
+        <viewAttribute id="VLFKZ"/>
+        <viewAttribute id="Store_Manager"/>
+        <viewAttribute id="Latitude"/>
+        <viewAttribute id="Longitude"/>
+        <viewAttribute id="Store_Type"/>
+        <viewAttribute id="Mobile_Number"/>
+        <viewAttribute id="Fax"/>
+        <viewAttribute id="NAME1"/>
+        <viewAttribute id="VERFL"/>
+        <viewAttribute id="VERFE"/>
+        <viewAttribute id="ZRCCO"/>
+        <viewAttribute id="ZSCCO"/>
+        <viewAttribute id="ZSCCO_IND"/>
+        <viewAttribute id="Site_ID_Generic"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Join_1">
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZDEPT" source="ZDEPT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZREG_MGR" source="ZREG_MGR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCUR_REG" source="ZCUR_REG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCITY" source="ZCITY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZDELI_CTR" source="ZDELI_CTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZRES_VILLAS" source="ZRES_VILLAS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZRES_APRT" source="ZRES_APRT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCLS_SCH" source="ZCLS_SCH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCOM_CTR" source="ZCOM_CTR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZSHOP_MAL" source="ZSHOP_MAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCOMM_AREA" source="ZCOMM_AREA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZOFF_BLK" source="ZOFF_BLK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZNEW_CMTY" source="ZNEW_CMTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZEST_CMTY" source="ZEST_CMTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZGOOD_ASBTY" source="ZGOOD_ASBTY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZAMP_PRK" source="ZAMP_PRK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZENR_WORK" source="ZENR_WORK"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZOPN_HRS" source="ZOPN_HRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZMAIN_SHP" source="ZMAIN_SHP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZTOP_SHP" source="ZTOP_SHP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCONV" source="ZCONV"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLUCNH_TIME" source="ZLUCNH_TIME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZWESTERN" source="ZWESTERN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZASIAN" source="ZASIAN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZARABIC" source="ZARABIC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCHINESE" source="ZCHINESE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZPOP_LOW" source="ZPOP_LOW"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZPOP_MED" source="ZPOP_MED"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZPOP_HIGH" source="ZPOP_HIGH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZEXP_SALES" source="ZEXP_SALES"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZCOMP" source="ZCOMP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZSTORE_TYPE" source="ZSTORE_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZHIER_TYPE" source="ZHIER_TYPE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZNEW_REG" source="ZNEW_REG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZDEMOGRAPH" source="ZDEMOGRAPH"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZACE_CLUSTER" source="ZACE_CLUSTER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLONGITUDE" source="ZLONGITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLATITUDE" source="ZLATITUDE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZGSA" source="ZGSA"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZOPR_HRS" source="ZOPR_HRS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZLIQUOR_STORE" source="ZLIQUOR_STORE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SCHLD" source="SCHLD"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERFL" source="VERFL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VERFE" source="VERFE"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZRCCO" source="ZRCCO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZSCCO" source="ZSCCO"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZSCCO_IND" source="ZSCCO_IND"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_ID_Generic" source="Site_ID_Generic"/>
+      </input>
+      <input node="Join_4">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Email_Address" source="Email_Address"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EKORG" source="EKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKORG" source="VKORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VTWEG" source="VTWEG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="PSTLZ" source="PSTLZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VLFKZ" source="VLFKZ"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Store_Manager" source="Store_Manager"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Latitude" source="Latitude"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Longitude" source="Longitude"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Store_Type" source="Store_Type"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Mobile_Number" source="Mobile_Number"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Fax" source="Fax"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NAME1" source="NAME1"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_ID_Generic" source="WERKS"/>
+      </input>
+    <joinAttribute name="Site_ID_Generic"/>
+  </calculationView>
+</calculationViews>
+  <inlineHierarchy xsi:type="Dimension:LeveledHierarchy" id="Site_Hierarchy" aggregateAllNodes="true" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_ONLY_ENFORCED">
+    <descriptions defaultDescription="Site Hierarchy"/>
+    <unassignedMemberProperties mode="TRUE" name="_NA_" drillable="true" includeNulls="true" nullConvertValue="_#_">
+      <caption label="Not Assigned"/>
+      <nullCaption label="Null"/>
+    </unassignedMemberProperties>
+    <levels>
+      <level levelAttribute="Site_Region" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="Site_Region"/>
+      <level levelAttribute="Site_Group" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="Site_Group"/>
+      <level levelAttribute="Site" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="Site"/>
+    </levels>
+  </inlineHierarchy>
+  <logicalModel id="Join_5">
+    <descriptions/>
+    <attributes>
+      <attribute id="ZHIER_TYPE" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Hierarchy Type"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZHIER_TYPE"/>
+      </attribute>
+      <attribute id="WERKS" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site ID"/>
+        <keyMapping columnObjectName="Join_5" columnName="WERKS"/>
+      </attribute>
+      <attribute id="NAME1" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Description"/>
+        <keyMapping columnObjectName="Join_5" columnName="NAME1"/>
+      </attribute>
+      <attribute id="ZCUR_REG" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Group"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZCUR_REG"/>
+      </attribute>
+      <attribute id="ZREG_MGR" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Regional Manager"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZREG_MGR"/>
+      </attribute>
+      <attribute id="ZCITY" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="City"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZCITY"/>
+      </attribute>
+      <attribute id="ZDELI_CTR" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Deli Counter"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZDELI_CTR"/>
+      </attribute>
+      <attribute id="ZRES_VILLAS" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Residential - Villas"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZRES_VILLAS"/>
+      </attribute>
+      <attribute id="ZRES_APRT" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Residential - Apartments"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZRES_APRT"/>
+      </attribute>
+      <attribute id="ZCLS_SCH" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Close to School"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZCLS_SCH"/>
+      </attribute>
+      <attribute id="ZCOM_CTR" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Community Center"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZCOM_CTR"/>
+      </attribute>
+      <attribute id="ZSHOP_MAL" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Shopping Mall"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZSHOP_MAL"/>
+      </attribute>
+      <attribute id="ZCOMM_AREA" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Commercial Area"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZCOMM_AREA"/>
+      </attribute>
+      <attribute id="ZOFF_BLK" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Office Block"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZOFF_BLK"/>
+      </attribute>
+      <attribute id="ZNEW_CMTY" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="New Community"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZNEW_CMTY"/>
+      </attribute>
+      <attribute id="ZEST_CMTY" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Established Community"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZEST_CMTY"/>
+      </attribute>
+      <attribute id="ZGOOD_ASBTY" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Good Accessibility"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZGOOD_ASBTY"/>
+      </attribute>
+      <attribute id="ZAMP_PRK" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Ample Parking"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZAMP_PRK"/>
+      </attribute>
+      <attribute id="ZENR_WORK" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Enroute to Work or Home"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZENR_WORK"/>
+      </attribute>
+      <attribute id="ZOPN_HRS" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Opening Hours"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZOPN_HRS"/>
+      </attribute>
+      <attribute id="ZMAIN_SHP" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Main Shop"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZMAIN_SHP"/>
+      </attribute>
+      <attribute id="ZTOP_SHP" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Top-Up Shop"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZTOP_SHP"/>
+      </attribute>
+      <attribute id="ZCONV" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Convenience"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZCONV"/>
+      </attribute>
+      <attribute id="ZLUCNH_TIME" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Lunch Time"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZLUCNH_TIME"/>
+      </attribute>
+      <attribute id="ZWESTERN" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Western"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZWESTERN"/>
+      </attribute>
+      <attribute id="ZASIAN" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Asian"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZASIAN"/>
+      </attribute>
+      <attribute id="ZARABIC" order="28" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Arabic"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZARABIC"/>
+      </attribute>
+      <attribute id="ZCHINESE" order="29" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Chinese"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZCHINESE"/>
+      </attribute>
+      <attribute id="ZPOP_LOW" order="30" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Population Low"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZPOP_LOW"/>
+      </attribute>
+      <attribute id="ZPOP_MED" order="31" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Population Medium"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZPOP_MED"/>
+      </attribute>
+      <attribute id="ZPOP_HIGH" order="32" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Population High"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZPOP_HIGH"/>
+      </attribute>
+      <attribute id="ZEXP_SALES" order="33" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZEXP_SALES"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZEXP_SALES"/>
+      </attribute>
+      <attribute id="ZCOMP" order="34" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Competition Name"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZCOMP"/>
+      </attribute>
+      <attribute id="ZSTORE_TYPE" order="35" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Store Type"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZSTORE_TYPE"/>
+      </attribute>
+      <attribute id="ZNEW_REG" order="36" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="New Region"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZNEW_REG"/>
+      </attribute>
+      <attribute id="ZDEMOGRAPH" order="37" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demographic"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZDEMOGRAPH"/>
+      </attribute>
+      <attribute id="ZACE_CLUSTER" order="38" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ACE Cluster"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZACE_CLUSTER"/>
+      </attribute>
+      <attribute id="ZLONGITUDE" order="39" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Longitude"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZLONGITUDE"/>
+      </attribute>
+      <attribute id="ZLATITUDE" order="40" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Latitude"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZLATITUDE"/>
+      </attribute>
+      <attribute id="ZGSA" order="41" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Gross Selling Area (GSA)"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZGSA"/>
+      </attribute>
+      <attribute id="ZOPR_HRS" order="42" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Operating Hours"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZOPR_HRS"/>
+      </attribute>
+      <attribute id="ZLIQUOR_STORE" order="43" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Liqour Store Name"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZLIQUOR_STORE"/>
+      </attribute>
+      <attribute id="SCHLD" hidden="true" order="44" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SCHLD"/>
+        <keyMapping columnObjectName="Join_5" columnName="SCHLD"/>
+      </attribute>
+      <attribute id="ZDEPT" order="45" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Desc"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZDEPT"/>
+      </attribute>
+      <attribute id="Email_Address" order="49" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Email_Address"/>
+        <keyMapping columnObjectName="Join_5" columnName="Email_Address"/>
+      </attribute>
+      <attribute id="EKORG" order="50" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchase Org"/>
+        <keyMapping columnObjectName="Join_5" columnName="EKORG"/>
+      </attribute>
+      <attribute id="VKORG" order="51" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Org"/>
+        <keyMapping columnObjectName="Join_5" columnName="VKORG"/>
+      </attribute>
+      <attribute id="VTWEG" order="52" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Distribution Channel"/>
+        <keyMapping columnObjectName="Join_5" columnName="VTWEG"/>
+      </attribute>
+      <attribute id="PSTLZ" order="53" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Postal Code"/>
+        <keyMapping columnObjectName="Join_5" columnName="PSTLZ"/>
+      </attribute>
+      <attribute id="VLFKZ" order="54" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Category"/>
+        <keyMapping columnObjectName="Join_5" columnName="VLFKZ"/>
+      </attribute>
+      <attribute id="Store_Manager" order="55" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Store_Manager"/>
+        <keyMapping columnObjectName="Join_5" columnName="Store_Manager"/>
+      </attribute>
+      <attribute id="Mobile_Number" order="56" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Mobile_Number"/>
+        <keyMapping columnObjectName="Join_5" columnName="Mobile_Number"/>
+      </attribute>
+      <attribute id="Latitude" order="57" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Latitude"/>
+        <keyMapping columnObjectName="Join_5" columnName="Latitude"/>
+      </attribute>
+      <attribute id="Longitude" order="58" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Longitude"/>
+        <keyMapping columnObjectName="Join_5" columnName="Longitude"/>
+      </attribute>
+      <attribute id="Store_Type" order="59" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Store_Type"/>
+        <keyMapping columnObjectName="Join_5" columnName="Store_Type"/>
+      </attribute>
+      <attribute id="Fax" order="60" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Fax"/>
+        <keyMapping columnObjectName="Join_5" columnName="Fax"/>
+      </attribute>
+      <attribute id="Sales_Area" order="61" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Area"/>
+        <keyMapping columnObjectName="Join_5" columnName="VERFL"/>
+      </attribute>
+      <attribute id="Sales_Area_Unit" order="62" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Area Unit"/>
+        <keyMapping columnObjectName="Join_5" columnName="VERFE"/>
+      </attribute>
+      <attribute id="ZRCCO" hidden="true" order="63" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZRCCO"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZRCCO"/>
+      </attribute>
+      <attribute id="ZSCCO" hidden="true" order="64" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZSCCO"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZSCCO"/>
+      </attribute>
+      <attribute id="Self_Checkout_Indicator" order="65" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Self Checkout Indicator"/>
+        <keyMapping columnObjectName="Join_5" columnName="ZSCCO_IND"/>
+      </attribute>
+      <attribute id="Site_ID_Generic" order="69" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site ID Generic"/>
+        <keyMapping columnObjectName="Join_5" columnName="Site_ID_Generic"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Site_Region" hidden="false" order="4" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Region"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="40">
+          <formula>If((&quot;ZSTORE_TYPE&quot;='WAITROSE' OR &quot;ZSTORE_TYPE&quot;='SOUQ PLANET'), 'Dubai', If(&quot;ZCITY&quot;='Abu Dhabi', 'Abudhabi', if(&quot;ZCITY&quot;='Ajman', 'Dubai', &quot;ZCITY&quot;)))</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Site_Group" hidden="false" order="46" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Group"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="40">
+          <formula>&quot;ZCUR_REG&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Site" hidden="false" order="47" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="60">
+          <formula>&quot;Site_ID_Generic&quot;+' - '+&quot;NAME1&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Site_Closing_Date" hidden="false" order="48" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Closing Date"/>
+        <keyCalculation datatype="DATE" expressionLanguage="COLUMN_ENGINE">
+          <formula>daydate(&quot;SCHLD&quot;)
+</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Count_Regular_Checkout" hidden="false" order="66" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Count of Regular Checkout"/>
+        <keyCalculation datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+          <formula>int(&quot;ZRCCO&quot;)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Count_Self_Checkout" hidden="false" order="67" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Count of Self Checkout"/>
+        <keyCalculation datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+          <formula>int(&quot;ZSCCO&quot;)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="SSCO_Sites" hidden="false" order="68" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SSCO Sites"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="4">
+          <formula>case(&quot;Self_Checkout_Indicator&quot;='Y',&quot;WERKS&quot;)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="ZSTORE_DATA" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="WRF1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Ad" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="175" y="453"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="0" y="570"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="155" y="567"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Join_6" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="30" y="480"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_6" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_6" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="98" y="357"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Ad" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Join_6" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="252" y="357"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Ad" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="ADR6" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Join_4" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="261"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Join_3" modelObjectNameSpace="Join_4" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Join_5" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Join_4" modelObjectNameSpace="Join_5" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

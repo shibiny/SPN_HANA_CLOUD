@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_VENDOR_ARTICLE_EAN" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="CV_VENDOR_ARTICLE_EAN"/>
+  <metadata changedAt="2020-02-19 11:30:40.141"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="MLEA">
+      <resourceUri>MLEA</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews/>
+  <logicalModel id="MLEA">
+    <descriptions/>
+    <attributes>
+      <attribute id="MATNR" hidden="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MATNR"/>
+        <keyMapping columnObjectName="MLEA" columnName="MATNR"/>
+      </attribute>
+      <attribute id="Unit_of_Measure" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Unit of Measure"/>
+        <keyMapping columnObjectName="MLEA" columnName="MEINH"/>
+      </attribute>
+      <attribute id="LIFNR" hidden="true" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LIFNR"/>
+        <keyMapping columnObjectName="MLEA" columnName="LIFNR"/>
+      </attribute>
+      <attribute id="LFNUM" hidden="true" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="LFNUM"/>
+        <keyMapping columnObjectName="MLEA" columnName="LFNUM"/>
+      </attribute>
+      <attribute id="Barcode" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Barcode"/>
+        <keyMapping columnObjectName="MLEA" columnName="EAN11"/>
+      </attribute>
+      <attribute id="Main_Barcode" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Main Barcode"/>
+        <keyMapping columnObjectName="MLEA" columnName="LFEAN"/>
+      </attribute>
+      <attribute id="Vendor_Article_Number" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor_Article_Number"/>
+        <keyMapping columnObjectName="MLEA" columnName="LARTN"/>
+      </attribute>
+      <attribute id="GTIN_VARIANT" hidden="true" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="GTIN_VARIANT"/>
+        <keyMapping columnObjectName="MLEA" columnName="GTIN_VARIANT"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Article_Code" hidden="false" key="true" order="10" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="18">
+          <formula>ltrim(&quot;MATNR&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Vendor_Code" hidden="false" key="true" order="11" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Vendor Code"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="10">
+          <formula>ltrim(&quot;LIFNR&quot;,'0')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures>
+      <measure id="Unique_Count" hidden="false" order="9" aggregationType="sum" measureType="simple" aggregatable="true" calculatedMeasureType="counter" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Unique_Count"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="MATNR"/>
+          <attribute attributeName="LIFNR"/>
+          <attribute attributeName="Unit_of_Measure"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/></shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

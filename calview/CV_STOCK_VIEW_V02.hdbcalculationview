@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_STOCK_VIEW_V02" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Current as of now Stock "/>
+  <metadata changedAt="2020-09-16 17:09:51.854"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="MARD">
+      <resourceUri>MARD</resourceUri>
+    </DataSource>
+    <DataSource id="MBEW">
+      <resourceUri>MBEW</resourceUri>
+    </DataSource>
+    <DataSource id="AT_MASTER_ARTICLE_SITE">
+      <resourceUri>AT_MASTER_ARTICLE_SITE</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggr_MARD">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute aggregationType="sum" id="LABST"/>
+        <viewAttribute aggregationType="sum" id="UMLME"/>
+        <viewAttribute aggregationType="sum" id="INSME"/>
+        <viewAttribute aggregationType="sum" id="EINME"/>
+        <viewAttribute aggregationType="sum" id="SPEME"/>
+        <viewAttribute aggregationType="sum" id="RETME"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+      <input node="MARD"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Curr_Stk" cardinality="C1_1" joinType="inner">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BWKEY"/>
+        <viewAttribute id="LBKUM"/>
+        <viewAttribute id="SALK3"/>
+        <viewAttribute id="VKSAL"/>
+        <viewAttribute id="LABST"/>
+        <viewAttribute id="UMLME"/>
+        <viewAttribute id="INSME"/>
+        <viewAttribute id="EINME"/>
+        <viewAttribute id="SPEME"/>
+        <viewAttribute id="RETME"/>
+      <viewAttribute hidden="true" id="JOIN$MATNR$MATNR"/>
+      <viewAttribute hidden="true" id="JOIN$WERKS$BWKEY"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="DATE" id="Current_Date" expressionLanguage="SQL">
+          <formula>to_date(current_date)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Aggr_MARD">
+        <mapping xsi:type="Calculation:AttributeMapping" target="LABST" source="LABST"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="UMLME" source="UMLME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="INSME" source="INSME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="EINME" source="EINME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SPEME" source="SPEME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RETME" source="RETME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$WERKS$BWKEY" source="WERKS"/>
+      </input>
+      <input node="MBEW">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWKEY" source="BWKEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="LBKUM" source="LBKUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="SALK3" source="SALK3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="VKSAL" source="VKSAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATNR$MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$WERKS$BWKEY" source="BWKEY"/>
+      </input>
+    <joinAttribute name="JOIN$MATNR$MATNR"/>
+    <joinAttribute name="JOIN$WERKS$BWKEY"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BWKEY"/>
+        <viewAttribute id="Stk_Qty_Valuated"/>
+        <viewAttribute id="Stk_Value_Cost"/>
+        <viewAttribute id="Stk_Value_Sale"/>
+        <viewAttribute id="Stk_Qty_Unrestricted"/>
+        <viewAttribute id="Stk_Qty_In_Transfer"/>
+        <viewAttribute id="Stk_Qty_QA"/>
+        <viewAttribute id="Stk_Qty_Batch"/>
+        <viewAttribute id="Stk_Qty_Blocked"/>
+        <viewAttribute id="Stk_Qty_Blocked_Return"/>
+        <viewAttribute id="Current_Date"/>
+        <viewAttribute id="Blocked_for_Procurement"/>
+        <viewAttribute id="ABC_Indicator"/>
+        <viewAttribute id="Unit_Issue"/>
+        <viewAttribute id="RP_Type_ID_Current"/>
+        <viewAttribute id="Facings"/>
+        <viewAttribute id="Min_Lot_Size"/>
+        <viewAttribute id="Source_Of_Supply"/>
+        <viewAttribute id="HS_Code"/>
+        <viewAttribute id="Delivery_Cycle_ID"/>
+        <viewAttribute id="Planning_Cycle_ID"/>
+        <viewAttribute id="Rounding_Profile"/>
+        <viewAttribute id="Distribution_Profile"/>
+        <viewAttribute id="Safety_Stock"/>
+        <viewAttribute id="RP_Type_Description_Current"/>
+        <viewAttribute id="Planning_Cycle_Text"/>
+        <viewAttribute id="Delivery_Cycle_Text"/>
+        <viewAttribute id="RA_Name"/>
+        <viewAttribute id="Last_Sold_Date"/>
+        <viewAttribute id="Last_Order_Date"/>
+        <viewAttribute id="Last_Receipt_Date"/>
+        <viewAttribute id="AT_MASTER_ARTICLE_SITE_Article_Code"/>
+        <viewAttribute id="Listed_Current"/>
+        <viewAttribute id="RP_Type_Current"/>
+        <viewAttribute id="Site_Article"/>
+        <viewAttribute id="AT_MASTER_ARTICLE_SITE_MATNR"/>
+        <viewAttribute id="WERKS"/>
+      </viewAttributes>
+    <calculatedViewAttributes>
+        <calculatedViewAttribute datatype="INTEGER" id="In_Stock_Count" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;Listed_Current&quot;='Y' AND &quot;Stk_Qty_Unrestricted&quot; &gt;0,1,0)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="INTEGER" id="Listed_Count" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;Listed_Current&quot;='Y',1,0)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="INTEGER" id="Out_Of_Stock_Count" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;Listed_Current&quot;='Y' AND &quot;Stk_Qty_Unrestricted&quot; &lt;=0,1,0)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="INTEGER" id="Not_Zero_Stock_Count" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;Listed_Current&quot;='Y' AND &quot;Stk_Qty_Unrestricted&quot; !=0,1,0)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="INTEGER" id="Zero_Stock_Count" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;Listed_Current&quot;='Y' AND &quot;Stk_Qty_Unrestricted&quot; =0,1,0)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="INTEGER" id="Negative_Stock_Count" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;Listed_Current&quot;='Y' AND &quot;Stk_Qty_Unrestricted&quot; &lt;0,1,0)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="INTEGER" id="In_Stock_Above_Safety_Count" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;Listed_Current&quot;='Y' AND &quot;Stk_Qty_Unrestricted&quot; &gt;int(&quot;Safety_Stock&quot;),1,0)</formula>
+        </calculatedViewAttribute>
+        <calculatedViewAttribute datatype="INTEGER" id="In_Stock_Above_Facing_Count" expressionLanguage="COLUMN_ENGINE">
+          <formula>if(&quot;Listed_Current&quot;='Y' AND &quot;Stk_Qty_Unrestricted&quot; &gt;int(&quot;Facings&quot;),1,0)</formula>
+        </calculatedViewAttribute>
+      </calculatedViewAttributes>
+      <input node="Curr_Stk">
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWKEY" source="BWKEY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Stk_Qty_Valuated" source="LBKUM"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Stk_Value_Cost" source="SALK3"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Stk_Value_Sale" source="VKSAL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Stk_Qty_Unrestricted" source="LABST"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Stk_Qty_In_Transfer" source="UMLME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Stk_Qty_QA" source="INSME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Stk_Qty_Batch" source="EINME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Stk_Qty_Blocked" source="SPEME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Stk_Qty_Blocked_Return" source="RETME"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Current_Date" source="Current_Date"/>
+      </input>
+      <input node="AT_MASTER_ARTICLE_SITE">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Blocked_for_Procurement" source="Blocked_for_Procurement"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ABC_Indicator" source="ABC_Indicator"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Unit_Issue" source="Unit_Issue"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RP_Type_ID_Current" source="RP_Type_ID_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Facings" source="Facings"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Min_Lot_Size" source="Min_Lot_Size"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Source_Of_Supply" source="Source_Of_Supply"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="HS_Code" source="HS_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_ID" source="Delivery_Cycle_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Planning_Cycle_ID" source="Planning_Cycle_ID"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Rounding_Profile" source="Rounding_Profile"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Distribution_Profile" source="Distribution_Profile"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Safety_Stock" source="Safety_Stock"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RP_Type_Description_Current" source="RP_Type_Description_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Planning_Cycle_Text" source="Planning_Cycle_Text"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Delivery_Cycle_Text" source="Delivery_Cycle_Text"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RA_Name" source="RA_Name"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Sold_Date" source="Last_Sold_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Order_Date" source="Last_Order_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Last_Receipt_Date" source="Last_Receipt_Date"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AT_MASTER_ARTICLE_SITE_Article_Code" source="Article_Code"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Listed_Current" source="Listed_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="RP_Type_Current" source="RP_Type_Current"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Site_Article" source="Site_Article"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AT_MASTER_ARTICLE_SITE_MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="WERKS" source="WERKS"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="MATNR" source="MATNR"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="BWKEY" source="WERKS"/>
+      </input>
+    <joinAttribute name="MATNR"/>
+    <joinAttribute name="BWKEY"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Curr_Stk_with_Counts">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Current_Date"/>
+        <viewAttribute id="Blocked_for_Procurement"/>
+        <viewAttribute id="ABC_Indicator"/>
+        <viewAttribute id="Unit_Issue"/>
+        <viewAttribute id="RP_Type_ID_Current"/>
+        <viewAttribute id="Facings"/>
+        <viewAttribute id="Min_Lot_Size"/>
+        <viewAttribute id="Source_Of_Supply"/>
+        <viewAttribute id="HS_Code"/>
+        <viewAttribute id="Delivery_Cycle_ID"/>
+        <viewAttribute id="Planning_Cycle_ID"/>
+        <viewAttribute id="Rounding_Profile"/>
+        <viewAttribute id="Distribution_Profile"/>
+        <viewAttribute id="Safety_Stock"/>
+        <viewAttribute id="RP_Type_Description_Current"/>
+        <viewAttribute id="Planning_Cycle_Text"/>
+        <viewAttribute id="Delivery_Cycle_Text"/>
+        <viewAttribute id="RA_Name"/>
+        <viewAttribute id="Last_Sold_Date"/>
+        <viewAttribute id="Last_Order_Date"/>
+        <viewAttribute id="Last_Receipt_Date"/>
+        <viewAttribute id="AT_MASTER_ARTICLE_SITE_Article_Code"/>
+        <viewAttribute id="Listed_Current"/>
+        <viewAttribute id="RP_Type_Current"/>
+        <viewAttribute id="Site_Article"/>
+        <viewAttribute id="AT_MASTER_ARTICLE_SITE_MATNR"/>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="MATNR"/>
+        <viewAttribute id="BWKEY"/>
+        <viewAttribute aggregationType="sum" id="Stk_Qty_Valuated"/>
+        <viewAttribute aggregationType="sum" id="Stk_Value_Cost"/>
+        <viewAttribute aggregationType="sum" id="Stk_Value_Sale"/>
+        <viewAttribute aggregationType="sum" id="Stk_Qty_Unrestricted"/>
+        <viewAttribute aggregationType="sum" id="Stk_Qty_In_Transfer"/>
+        <viewAttribute aggregationType="sum" id="Stk_Qty_QA"/>
+        <viewAttribute aggregationType="sum" id="Stk_Qty_Batch"/>
+        <viewAttribute aggregationType="sum" id="Stk_Qty_Blocked"/>
+        <viewAttribute aggregationType="sum" id="Stk_Qty_Blocked_Return"/>
+        <viewAttribute aggregationType="sum" id="In_Stock_Count"/>
+        <viewAttribute aggregationType="sum" id="Listed_Count"/>
+        <viewAttribute aggregationType="sum" id="Out_Of_Stock_Count"/>
+        <viewAttribute aggregationType="sum" id="Not_Zero_Stock_Count"/>
+        <viewAttribute aggregationType="sum" id="Zero_Stock_Count"/>
+        <viewAttribute aggregationType="sum" id="Negative_Stock_Count"/>
+        <viewAttribute aggregationType="sum" id="In_Stock_Above_Safety_Count"/>
+        <viewAttribute aggregationType="sum" id="In_Stock_Above_Facing_Count"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+      <input node="Join_1"/>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Curr_Stk_with_Counts">
+    <descriptions/>
+    <attributes>
+      <attribute id="Blocked_for_Procurement" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Blocked for Procurement"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Blocked_for_Procurement"/>
+      </attribute>
+      <attribute id="ABC_Indicator" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ABC Indicator"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="ABC_Indicator"/>
+      </attribute>
+      <attribute id="Unit_Issue" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Unit Issue"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Unit_Issue"/>
+      </attribute>
+      <attribute id="RP_Type_ID_Current" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP Type ID Current"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="RP_Type_ID_Current"/>
+      </attribute>
+      <attribute id="Facings" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Facings"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Facings"/>
+      </attribute>
+      <attribute id="Min_Lot_Size" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Minimum Lot Size"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Min_Lot_Size"/>
+      </attribute>
+      <attribute id="Source_Of_Supply" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Source Of Supply"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Source_Of_Supply"/>
+      </attribute>
+      <attribute id="HS_Code" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="HS Code (Import Code)"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="HS_Code"/>
+      </attribute>
+      <attribute id="Delivery_Cycle_ID" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Delivery Cycle ID"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Delivery_Cycle_ID"/>
+      </attribute>
+      <attribute id="Planning_Cycle_ID" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Planning Cycle ID"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Planning_Cycle_ID"/>
+      </attribute>
+      <attribute id="Rounding_Profile" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Rounding Profile"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Rounding_Profile"/>
+      </attribute>
+      <attribute id="Distribution_Profile" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Distribution Profile"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Distribution_Profile"/>
+      </attribute>
+      <attribute id="Safety_Stock" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Safety Stock"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Safety_Stock"/>
+      </attribute>
+      <attribute id="RP_Type_Description_Current" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP Type Description Current"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="RP_Type_Description_Current"/>
+      </attribute>
+      <attribute id="Planning_Cycle_Text" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Planning Cycle Text"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Planning_Cycle_Text"/>
+      </attribute>
+      <attribute id="Delivery_Cycle_Text" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Delivery Cycle Text"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Delivery_Cycle_Text"/>
+      </attribute>
+      <attribute id="RA_Name" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RA Name"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="RA_Name"/>
+      </attribute>
+      <attribute id="Last_Sold_Date" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Sold Date"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Last_Sold_Date"/>
+      </attribute>
+      <attribute id="Last_Order_Date" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Order Date"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Last_Order_Date"/>
+      </attribute>
+      <attribute id="Last_Receipt_Date" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Receipt Date"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Last_Receipt_Date"/>
+      </attribute>
+      <attribute id="AT_MASTER_ARTICLE_SITE_Article_Code" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="AT_MASTER_ARTICLE_SITE_Article_Code"/>
+      </attribute>
+      <attribute id="Listed_Current" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Listed Current"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Listed_Current"/>
+      </attribute>
+      <attribute id="RP_Type_Current" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP Type Current"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="RP_Type_Current"/>
+      </attribute>
+      <attribute id="Site_Article" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Article"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Site_Article"/>
+      </attribute>
+      <attribute id="AT_MASTER_ARTICLE_SITE_MATNR" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article with Leading Zero"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="AT_MASTER_ARTICLE_SITE_MATNR"/>
+      </attribute>
+      <attribute id="WERKS" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WERKS"/>
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="WERKS"/>
+      </attribute>
+      <attribute id="MATNR$local">
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="MATNR"/>
+      </attribute>
+      <attribute id="BWKEY$local">
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="BWKEY"/>
+      </attribute>
+      <attribute id="Current_Date$local">
+        <keyMapping columnObjectName="Curr_Stk_with_Counts" columnName="Current_Date"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Issue_Unit" hidden="false" order="1" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Issue Unit"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="5">
+          <formula>if(isNull(&quot;Unit_Issue&quot;) OR &quot;Unit_Issue&quot;='',&quot;Base_Unit&quot;,&quot;Unit_Issue&quot;)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Stk_Qty_Valuated" order="28" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity Valuated"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="Stk_Qty_Valuated"/>
+      </measure>
+      <measure id="Stk_Value_Cost" order="29" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Value Cost"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="Stk_Value_Cost"/>
+      </measure>
+      <measure id="Stk_Value_Sale" order="30" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Value Sale"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="Stk_Value_Sale"/>
+      </measure>
+      <measure id="Stk_Qty_Unrestricted" order="31" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity Unrestricted"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="Stk_Qty_Unrestricted"/>
+      </measure>
+      <measure id="Stk_Qty_In_Transfer" order="32" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity In Transfer"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="Stk_Qty_In_Transfer"/>
+      </measure>
+      <measure id="Stk_Qty_QA" order="33" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity QA"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="Stk_Qty_QA"/>
+      </measure>
+      <measure id="Stk_Qty_Batch" order="34" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity Batch"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="Stk_Qty_Batch"/>
+      </measure>
+      <measure id="Stk_Qty_Blocked" order="35" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity Blocked"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="Stk_Qty_Blocked"/>
+      </measure>
+      <measure id="Stk_Qty_Blocked_Return" order="36" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity Blocked Return"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="Stk_Qty_Blocked_Return"/>
+      </measure>
+      <measure id="In_Stock_Count" order="37" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="In Stock Count"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="In_Stock_Count"/>
+      </measure>
+      <measure id="Listed_Count" order="38" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Listed Count"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="Listed_Count"/>
+      </measure>
+      <measure id="Out_Of_Stock_Count" order="39" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Out Of Stock Count"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="Out_Of_Stock_Count"/>
+      </measure>
+      <measure id="Not_Zero_Stock_Count" order="40" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Not Zero Stock Count"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="Not_Zero_Stock_Count"/>
+      </measure>
+      <measure id="Zero_Stock_Count" order="41" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Zero Stock Count"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="Zero_Stock_Count"/>
+      </measure>
+      <measure id="Negative_Stock_Count" order="42" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Negative Stock Count"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="Negative_Stock_Count"/>
+      </measure>
+      <measure id="In_Stock_Above_Safety_Count" order="43" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="In Stock Above Safety Count"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="In_Stock_Above_Safety_Count"/>
+      </measure>
+      <measure id="In_Stock_Above_Facing_Count" order="44" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="In Stock Above Facing Count"/>
+        <measureMapping columnObjectName="Curr_Stk_with_Counts" columnName="In_Stock_Above_Facing_Count"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_MASTER_ARTICLE">
+        <attributes>
+          <attributeRef>MATNR$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_SITE">
+        <attributes>
+          <attributeRef>BWKEY$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>WERKS</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures>
+          <attributeReference alias="AT_MASTER_SITE_WERKS" attributeName="WERKS"/>
+        </associatedAttributeFeatures>
+      </logicalJoin>
+      <logicalJoin associatedObjectUri="AT_MASTER_TIME">
+        <attributes>
+          <attributeRef>Current_Date$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>DATE</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="41" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Aggr_MARD" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="41" y="509"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Curr_Stk" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="41" y="413"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Aggr_MARD" modelObjectNameSpace="Curr_Stk" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="MBEW" modelObjectNameSpace="Curr_Stk" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="41" y="317"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    <shape modelObjectName="Curr_Stk" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="AT_MASTER_ARTICLE_SITE" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+      <shape expanded="true" modelObjectName="Curr_Stk_with_Counts" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="239"/>
+        <rectangleSize height="64" width="179"/>
+      </shape>
+      <shape modelObjectName="Curr_Stk_with_Counts" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+        <upperLeftCorner x="447" y="800"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_ARTICLE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="16" y="224"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_SITE" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="774" y="497"/>
+      </shape>
+      <shape modelObjectName="AT_MASTER_TIME" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+        <upperLeftCorner x="774" y="1474"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

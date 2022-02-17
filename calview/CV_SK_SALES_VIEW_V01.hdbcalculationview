@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:DataFoundation="http://www.sap.com/ndb/BiModelDataFoundation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="3.0" id="CV_SK_SALES_VIEW_V01" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="Sales View for Spinneys Kitchen"/>
+  <metadata changedAt="2021-09-02 14:17:09.785"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="CV_POS_TRANSACTION_DATA">
+      <resourceUri>CV_POS_TRANSACTION_DATA</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="Article_Code"/>
+        <viewAttribute id="DATE_SAP"/>
+        <viewAttribute id="ZHIER_TYPE"/>
+        <viewAttribute id="AT_MASTER_SITE_WERKS"/>
+        <viewAttribute id="Sales_Quantity"/>
+        <viewAttribute id="Sales_Value_Excl_VAT"/>
+        <viewAttribute id="ZCHECK_OUT_NO"/>
+        <viewAttribute id="DATE"/>
+        <viewAttribute id="YEAR"/>
+        <viewAttribute id="MONTH"/>
+        <viewAttribute id="ZUNI_RCPT_NO"/>
+        <viewAttribute id="Sales_Value_Incl_VAT"/>
+        <viewAttribute id="Article_Description_Upper"/>
+        <viewAttribute id="Brand"/>
+        <viewAttribute id="Department_Description"/>
+        <viewAttribute id="Category_Description"/>
+        <viewAttribute id="Subcategory_Description"/>
+        <viewAttribute id="WEEK"/>
+        <viewAttribute id="DAY_OF_WEEK"/>
+        <viewAttribute id="ZHOUR_OF_SALE"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="CV_POS_TRANSACTION_DATA"/>
+    <filter>(&quot;DATE_SAP&quot; &gt;='20210714') AND (&quot;ZHIER_TYPE&quot; ='REGIONAL') AND (&quot;AT_MASTER_SITE_WERKS&quot; ='RS90') AND (&quot;ZCHECK_OUT_NO&quot; ='007')</filter>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Projection_2">
+    <descriptions/>
+    <attributes>
+      <attribute id="Article_Code" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyMapping columnObjectName="Projection_2" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="AT_MASTER_SITE_WERKS" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site ID"/>
+        <keyMapping columnObjectName="Projection_2" columnName="AT_MASTER_SITE_WERKS"/>
+      </attribute>
+      <attribute id="DATE" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DATE"/>
+        <keyMapping columnObjectName="Projection_2" columnName="DATE"/>
+      </attribute>
+      <attribute id="YEAR" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="YEAR"/>
+        <keyMapping columnObjectName="Projection_2" columnName="YEAR"/>
+      </attribute>
+      <attribute id="MONTH" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="MONTH"/>
+        <keyMapping columnObjectName="Projection_2" columnName="MONTH"/>
+      </attribute>
+      <attribute id="Article_Description_Upper" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ARTICLE DESCRIPTION"/>
+        <keyMapping columnObjectName="Projection_2" columnName="Article_Description_Upper"/>
+      </attribute>
+      <attribute id="Brand" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Brand"/>
+        <keyMapping columnObjectName="Projection_2" columnName="Brand"/>
+      </attribute>
+      <attribute id="Department_Description" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department Description"/>
+        <keyMapping columnObjectName="Projection_2" columnName="Department_Description"/>
+      </attribute>
+      <attribute id="Category_Description" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category Description"/>
+        <keyMapping columnObjectName="Projection_2" columnName="Category_Description"/>
+      </attribute>
+      <attribute id="Subcategory_Description" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Subcategory Description"/>
+        <keyMapping columnObjectName="Projection_2" columnName="Subcategory_Description"/>
+      </attribute>
+      <attribute id="WEEK" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WEEK"/>
+        <keyMapping columnObjectName="Projection_2" columnName="WEEK"/>
+      </attribute>
+      <attribute id="DAY_OF_WEEK" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="DAY_OF_WEEK"/>
+        <keyMapping columnObjectName="Projection_2" columnName="DAY_OF_WEEK"/>
+      </attribute>
+      <attribute id="ZHOUR_OF_SALE" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZHOUR_OF_SALE"/>
+        <keyMapping columnObjectName="Projection_2" columnName="ZHOUR_OF_SALE"/>
+      </attribute>
+      <attribute id="ZUNI_RCPT_NO" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZUNI_RCPT_NO"/>
+        <keyMapping columnObjectName="Projection_2" columnName="ZUNI_RCPT_NO"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Weekday" hidden="false" order="2" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Weekday"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="20">
+          <formula>case(&quot;DAY_OF_WEEK&quot;, '06', 'Sunday', '00', 'Monday', '01', 'Tuesday', '02', 'Wednesday', '03', 'Thursday', '04', 'Friday', '05', 'Saturday', '')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Hour_Of_Sales" hidden="false" order="3" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Hour Of Sales"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="2">
+          <formula>case(&quot;ZHOUR_OF_SALE&quot;, '1', '01', '2', '02', '3', '03', '4', '04', '5', '05', '6', '06', '7', '07', '8', '08', '9', '09',&quot;ZHOUR_OF_SALE&quot;)</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Yesterday_Flag" hidden="false" order="4" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Yesterday Flag"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="1">
+          <formula>If(&quot;DATE&quot;=adddays(daydate(now()),-1), 'Y', 'N')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Last_7_Days_Flag" hidden="false" order="5" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last 7 Days Flag"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="1">
+          <formula>If(&quot;DATE&quot;&gt;adddays(daydate(now()),-8) AND &quot;DATE&quot;&lt;=adddays(daydate(now()),-1), 'Y', 'N')</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Sales_Quantity" order="8" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="SK Sales Quantity"/>
+        <measureMapping columnObjectName="Projection_2" columnName="Sales_Quantity"/>
+      </measure>
+      <measure id="Sales_Value_Excl_VAT" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="SK Sales Value"/>
+        <measureMapping columnObjectName="Projection_2" columnName="Sales_Value_Excl_VAT"/>
+      </measure>
+      <measure id="Sales_Value_Incl_VAT" order="21" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Sales Value Incl VAT"/>
+        <measureMapping columnObjectName="Projection_2" columnName="Sales_Value_Incl_VAT"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="Transaction_Count" hidden="false" order="1" aggregationType="sum" measureType="simple" aggregatable="true" calculatedMeasureType="counter" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Transaction Count"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="ZUNI_RCPT_NO"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions>
+      <localDimension id="Article_Hierarchy">
+        <attributeRef xsi:type="DataFoundation:Attribute">Department_Description</attributeRef>
+        <attributeRef xsi:type="DataFoundation:Attribute">Category_Description</attributeRef>
+        <attributeRef xsi:type="DataFoundation:Attribute">Subcategory_Description</attributeRef>
+        <attributeRef xsi:type="DataFoundation:Attribute">Article_Description_Upper</attributeRef>
+        <hierarchies>
+          <hierarchy xsi:type="Dimension:LeveledHierarchy" id="Article_Hierarchy" aggregateAllNodes="true" emptyValueIsNull="true" rootNodeVisibility="DO_NOT_ADD_ROOT_NODE" withRootNode="false" nodeStyle="NAME_PATH_ENFORCED">
+            <descriptions defaultDescription="Article Hierarchy"/>
+            <levels>
+              <level levelAttribute="Department_Description" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="Department_Description"/>
+              <level levelAttribute="Category_Description" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="Category_Description"/>
+              <level levelAttribute="Subcategory_Description" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="Subcategory_Description"/>
+              <level levelAttribute="Article_Description_Upper" levelType="MDLEVEL_TYPE_REGULAR" order="4" orderAttribute="Article_Description_Upper"/>
+            </levels>
+          </hierarchy>
+        </hierarchies>
+      </localDimension>
+      <localDimension id="Date_Hierarchy">
+        <attributeRef xsi:type="DataFoundation:Attribute">Weekday</attributeRef>
+        <hierarchies>
+          <hierarchy xsi:type="Dimension:LeveledHierarchy" id="Date_Hierarchy" aggregateAllNodes="true" emptyValueIsNull="true" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED">
+            <descriptions defaultDescription="Date Hierarchy"/>
+            <levels>
+              <level levelAttribute="Weekday" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="Weekday"/>
+            </levels>
+          </hierarchy>
+        </hierarchies>
+      </localDimension>
+    </localDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="22" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="165"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

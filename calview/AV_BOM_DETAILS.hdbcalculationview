@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="AV_BOM_DETAILS" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" analyticViewCompatibilityMode="true" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" rowCounterName="row.count" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="AV_BOM_DETAILS"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="STKO" clientColumn="MANDT">
+      <resourceUri>STKO</resourceUri>
+    </DataSource>
+    <DataSource id="STPO" clientColumn="MANDT">
+      <resourceUri>STPO</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="BOM_Category"/>
+        <viewAttribute id="BOM"/>
+        <viewAttribute id="Alternative_BOM"/>
+        <viewAttribute id="Base_Unit"/>
+        <viewAttribute id="Base_Quantity"/>
+        <viewAttribute id="Created_On"/>
+        <viewAttribute id="Changed_On"/>
+        <viewAttribute id="Creation_Site"/>
+        <viewAttribute id="Component_Unit"/>
+        <viewAttribute id="Trim_Percentage"/>
+        <viewAttribute id="Waste_Perentage"/>
+        <viewAttribute id="Components"/>
+        <viewAttribute id="Component_Quantity"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="multiJoinNode"/>
+    </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="multiJoinNode" cardinality="C1_N" dynamic="false" joinType="leftOuter" optimizeJoinColumns="false">
+    <descriptions/>
+    <viewAttributes>
+      <viewAttribute id="BOM_Category"/>
+      <viewAttribute id="BOM"/>
+      <viewAttribute id="Alternative_BOM"/>
+      <viewAttribute id="Base_Unit"/>
+      <viewAttribute id="Base_Quantity"/>
+      <viewAttribute id="Created_On"/>
+      <viewAttribute id="Changed_On"/>
+      <viewAttribute id="Creation_Site"/>
+      <viewAttribute id="Component_Unit"/>
+      <viewAttribute id="Trim_Percentage"/>
+      <viewAttribute id="Waste_Perentage"/>
+      <viewAttribute id="Components"/>
+      <viewAttribute id="Component_Quantity"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="STKO">
+      <mapping xsi:type="Calculation:AttributeMapping" target="BOM_Category" source="STLTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BOM" source="STLNR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Alternative_BOM" source="STLAL"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Base_Unit" source="BMEIN"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Base_Quantity" source="BMENG"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Created_On" source="ANDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Changed_On" source="AEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Creation_Site" source="WRKAN"/>
+    </input>
+    <input node="STPO">
+      <mapping xsi:type="Calculation:AttributeMapping" target="Component_Unit" source="MEINS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Trim_Percentage" source="AUSCH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Waste_Perentage" source="AVOAU"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Components" source="IDNRK"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Component_Quantity" source="MENGE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BOM_Category" source="STLTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="BOM" source="STLNR"/>
+    </input>
+    <joinAttribute name="BOM_Category"/>
+    <joinAttribute name="BOM"/>
+  </calculationView>
+</calculationViews>
+  <logicalModel id="Projection">
+    <descriptions/>
+    <attributes>
+      <attribute id="BOM_Category" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BOM Category"/>
+        <keyMapping columnObjectName="Projection" columnName="BOM_Category"/>
+      </attribute>
+      <attribute id="BOM" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BOM"/>
+        <keyMapping columnObjectName="Projection" columnName="BOM"/>
+      </attribute>
+      <attribute id="Alternative_BOM" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Alternative BOM"/>
+        <keyMapping columnObjectName="Projection" columnName="Alternative_BOM"/>
+      </attribute>
+      <attribute id="Base_Unit" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Base Unit"/>
+        <keyMapping columnObjectName="Projection" columnName="Base_Unit"/>
+      </attribute>
+      <attribute id="Base_Quantity" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Base Quantity"/>
+        <keyMapping columnObjectName="Projection" columnName="Base_Quantity"/>
+      </attribute>
+      <attribute id="Created_On" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Created On"/>
+        <keyMapping columnObjectName="Projection" columnName="Created_On"/>
+      </attribute>
+      <attribute id="Changed_On" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Changed On"/>
+        <keyMapping columnObjectName="Projection" columnName="Changed_On"/>
+      </attribute>
+      <attribute id="Creation_Site" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Creation Site"/>
+        <keyMapping columnObjectName="Projection" columnName="Creation_Site"/>
+      </attribute>
+      <attribute id="Component_Unit" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Component Unit"/>
+        <keyMapping columnObjectName="Projection" columnName="Component_Unit"/>
+      </attribute>
+      <attribute id="Trim_Percentage" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Trim Percentage"/>
+        <keyMapping columnObjectName="Projection" columnName="Trim_Percentage"/>
+      </attribute>
+      <attribute id="Waste_Perentage" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Waste Perentage"/>
+        <keyMapping columnObjectName="Projection" columnName="Waste_Perentage"/>
+      </attribute>
+      <attribute id="Components$local">
+        <descriptions defaultDescription="IDNRK"/>
+        <keyMapping columnObjectName="Projection" columnName="Components"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes>
+      <calculatedAttribute id="Component_Article_Code" hidden="false" order="11" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Component Article Code"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="18">
+          <formula>&quot;Article_Code&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+      <calculatedAttribute id="Component_Article_Desc" hidden="false" order="12" semanticType="empty" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Component Article Description"/>
+        <keyCalculation datatype="NVARCHAR" expressionLanguage="COLUMN_ENGINE" length="40">
+          <formula>&quot;Article_Description&quot;</formula>
+        </keyCalculation>
+      </calculatedAttribute>
+    </calculatedAttributes>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Component_Quantity" order="10" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Component Quantity"/>
+        <measureMapping columnObjectName="Projection" columnName="Component_Quantity"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+    <sharedDimensions>
+      <logicalJoin associatedObjectUri="AT_ARTICLE_MASTER">
+        <attributes>
+          <attributeRef>Components$local</attributeRef>
+        </attributes>
+        <associatedAttributeNames>
+          <attributeName>MATNR</attributeName>
+        </associatedAttributeNames>
+        <properties cardinality="CN_1" joinType="leftOuter" optimizeJoinColumns="false" joinOperator="Equal"/>
+        <associatedAttributeFeatures/>
+      </logicalJoin>
+    </sharedDimensions>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup" expanded="true">
+        <upperLeftCorner x="92" y="112"/>
+        <rectangleSize width="160"/>
+      </shape><shape><upperLeftCorner/><rectangleSize/></shape>
+      <shape modelObjectName="Projection" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="92" y="192"/>
+        <rectangleSize width="160"/>
+      </shape>
+    <shape modelObjectName="multiJoinNode" modelObjectNameSpace="CalculationView" expanded="true">
+      <upperLeftCorner x="92" y="272"/>
+      <rectangleSize width="160"/>
+    </shape>
+    
+    <shape modelObjectName="STKO" modelObjectNameSpace="multiJoinNode" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="STPO" modelObjectNameSpace="multiJoinNode" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="Projection" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="AT_ARTICLE_MASTER" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

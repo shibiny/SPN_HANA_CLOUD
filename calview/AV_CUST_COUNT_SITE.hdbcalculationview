@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="AV_CUST_COUNT_SITE" applyPrivilegeType="NONE" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" analyticViewCompatibilityMode="true" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" rowCounterName="row.count" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="AV_CUST_COUNT_SITE"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="ZTSP_POS_DATA" clientColumn="MANDT">
+      <resourceUri>ZTSP_POS_DATA</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="WERKS"/>
+        <viewAttribute id="ZDATE"/>
+        <viewAttribute id="ZUNI_RCPT_NO"/>
+        <viewAttribute id="ZSALES_VAL_IVAT"/>
+        <viewAttribute id="ZSALES_QTY"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="ZTSP_POS_DATA"/>
+    </calculationView>
+</calculationViews>
+  <logicalModel id="Projection">
+    <descriptions/>
+    <attributes>
+      <attribute id="WERKS" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WERKS"/>
+        <keyMapping columnObjectName="Projection" columnName="WERKS"/>
+      </attribute>
+      <attribute id="ZDATE" key="true" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZDATE"/>
+        <keyMapping columnObjectName="Projection" columnName="ZDATE"/>
+      </attribute>
+      <attribute id="ZUNI_RCPT_NO" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZUNI_RCPT_NO"/>
+        <keyMapping columnObjectName="Projection" columnName="ZUNI_RCPT_NO"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="ZSALES_VAL_IVAT" order="4" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="ZSALES_VAL_IVAT"/>
+        <measureMapping columnObjectName="Projection" columnName="ZSALES_VAL_IVAT"/>
+      </measure>
+      <measure id="ZSALES_QTY" order="5" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="ZSALES_QTY"/>
+        <measureMapping columnObjectName="Projection" columnName="ZSALES_QTY"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="Transaction_Count_Site" hidden="false" order="6" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" datatype="INTEGER" expressionLanguage="COLUMN_ENGINE">
+        <descriptions defaultDescription="Transaction Count Site"/>
+        <exceptionAggregation exceptionAggregationType="countDistinct">
+          <attribute attributeName="ZUNI_RCPT_NO"/>
+        </exceptionAggregation>
+        <formula>1</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup" expanded="true">
+        <upperLeftCorner/></shape>
+      <shape modelObjectName="Projection" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner/></shape>
+    </shapes>
+</layout>
+</Calculation:scenario>

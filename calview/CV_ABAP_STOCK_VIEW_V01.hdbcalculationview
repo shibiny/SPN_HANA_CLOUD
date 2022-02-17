@@ -1,0 +1,843 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="3.0" id="CV_ABAP_STOCK_VIEW_V01" applyPrivilegeType="NONE" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation" xscCompatibilityMode="true">
+<origin/>
+  <descriptions defaultDescription="For External View in ABAP of the Stock View"/>
+  <metadata changedAt="2021-05-19 10:48:44.66"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="CV_STOCK_VIEW_V01">
+      <resourceUri>CV_STOCK_VIEW_V01</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews/>
+  <logicalModel id="CV_STOCK_VIEW_V01">
+    <descriptions/>
+    <attributes>
+      <attribute id="Issue_Unit" order="1" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Issue Unit"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Issue_Unit"/>
+      </attribute>
+      <attribute id="Local_Currency" order="2" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Local Currency"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Local_Currency"/>
+      </attribute>
+      <attribute id="RP_Type_History" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP Type History"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="RP_Type_History"/>
+      </attribute>
+      <attribute id="Listed_History" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Listed History"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Listed_History"/>
+      </attribute>
+      <attribute id="Blocked_for_Procurement" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Blocked for Procurement"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Blocked_for_Procurement"/>
+      </attribute>
+      <attribute id="ABC_Indicator" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ABC Indicator"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ABC_Indicator"/>
+      </attribute>
+      <attribute id="Unit_Issue" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Unit Issue"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Unit_Issue"/>
+      </attribute>
+      <attribute id="RP_Type_ID_Current" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP Type ID Current"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="RP_Type_ID_Current"/>
+      </attribute>
+      <attribute id="Facings" order="9" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Facings"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Facings"/>
+      </attribute>
+      <attribute id="Min_Lot_Size" order="10" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Minimum Lot Size"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Min_Lot_Size"/>
+      </attribute>
+      <attribute id="Source_Of_Supply" order="11" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Source Of Supply"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Source_Of_Supply"/>
+      </attribute>
+      <attribute id="HS_Code" order="12" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="HS Code (Import Code)"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="HS_Code"/>
+      </attribute>
+      <attribute id="Delivery_Cycle_ID" order="13" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Delivery Cycle ID"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Delivery_Cycle_ID"/>
+      </attribute>
+      <attribute id="Planning_Cycle_ID" order="14" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Planning Cycle ID"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Planning_Cycle_ID"/>
+      </attribute>
+      <attribute id="Rounding_Profile" order="15" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Rounding Profile"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Rounding_Profile"/>
+      </attribute>
+      <attribute id="Distribution_Profile" order="16" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Distribution Profile"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Distribution_Profile"/>
+      </attribute>
+      <attribute id="Safety_Stock" order="17" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Safety Stock"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Safety_Stock"/>
+      </attribute>
+      <attribute id="RP_Type_Description_Current" order="18" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP Type Description Current"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="RP_Type_Description_Current"/>
+      </attribute>
+      <attribute id="Planning_Cycle_Text" order="19" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Planning Cycle Text"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Planning_Cycle_Text"/>
+      </attribute>
+      <attribute id="Delivery_Cycle_Text" order="20" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Delivery Cycle Text"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Delivery_Cycle_Text"/>
+      </attribute>
+      <attribute id="RA_Name" order="21" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RA Name"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="RA_Name"/>
+      </attribute>
+      <attribute id="Last_Sold_Date" order="22" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Sold Date"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Last_Sold_Date"/>
+      </attribute>
+      <attribute id="Last_Order_Date" order="23" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Order Date"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Last_Order_Date"/>
+      </attribute>
+      <attribute id="Last_Receipt_Date" order="24" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Receipt Date"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Last_Receipt_Date"/>
+      </attribute>
+      <attribute id="Listed_Current" order="25" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Listed Current"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Listed_Current"/>
+      </attribute>
+      <attribute id="RP_Type_Current" order="26" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP Type Current"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="RP_Type_Current"/>
+      </attribute>
+      <attribute id="Site_Article" order="27" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Article"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Site_Article"/>
+      </attribute>
+      <attribute id="AT_MASTER_ARTICLE_SITE_MATNR" order="47" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article with Leading Zero"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="AT_MASTER_ARTICLE_SITE_MATNR"/>
+      </attribute>
+      <attribute id="WERKS" order="48" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="WERKS"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="WERKS"/>
+      </attribute>
+      <attribute id="AT_MASTER_ARTICLE_SITE_Article_Code" order="49" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="AT_MASTER_ARTICLE_SITE_Article_Code"/>
+      </attribute>
+      <attribute id="STOCK_DATE" order="50" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="STOCK_DATE"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="STOCK_DATE"/>
+      </attribute>
+      <attribute id="Article_Code" order="51" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Code"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Article_Code"/>
+      </attribute>
+      <attribute id="Article_Description" order="52" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Description"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Article_Description"/>
+      </attribute>
+      <attribute id="Article_Description_Upper" order="53" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ARTICLE DESCRIPTION"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Article_Description_Upper"/>
+      </attribute>
+      <attribute id="Brand" order="54" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Brand"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Brand"/>
+      </attribute>
+      <attribute id="House_Brand" order="55" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="House Brand"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="House_Brand"/>
+      </attribute>
+      <attribute id="Source" order="56" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Source"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Source"/>
+      </attribute>
+      <attribute id="Base_Unit" order="57" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Base Unit"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Base_Unit"/>
+      </attribute>
+      <attribute id="Tax_Code" order="58" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Tax Code"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Tax_Code"/>
+      </attribute>
+      <attribute id="Created_On" order="59" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Created On"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Created_On"/>
+      </attribute>
+      <attribute id="Last_Change" order="60" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Last Change"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Last_Change"/>
+      </attribute>
+      <attribute id="Article_Type" order="61" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Type"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Article_Type"/>
+      </attribute>
+      <attribute id="Order_Unit" order="62" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Order Unit"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Order_Unit"/>
+      </attribute>
+      <attribute id="Gross_Weight" order="63" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Gross Weight"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Gross_Weight"/>
+      </attribute>
+      <attribute id="Net_Weight" order="64" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Net Weight"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Net_Weight"/>
+      </attribute>
+      <attribute id="Weight_Unit" order="65" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Weight Unit"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Weight_Unit"/>
+      </attribute>
+      <attribute id="Volume" order="66" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Volume"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Volume"/>
+      </attribute>
+      <attribute id="Volume_Unit" order="67" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Volume Unit"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Volume_Unit"/>
+      </attribute>
+      <attribute id="Temperature" order="68" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Temperature"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Temperature"/>
+      </attribute>
+      <attribute id="Barcode" order="69" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Barcode"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Barcode"/>
+      </attribute>
+      <attribute id="Length" order="70" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Length"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Length"/>
+      </attribute>
+      <attribute id="Height" order="71" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Height"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Height"/>
+      </attribute>
+      <attribute id="Width" order="72" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Width"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Width"/>
+      </attribute>
+      <attribute id="Unit" order="73" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Unit"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Unit"/>
+      </attribute>
+      <attribute id="Remaining_Shelf_Life" order="74" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Remaining Shelf Life"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Remaining_Shelf_Life"/>
+      </attribute>
+      <attribute id="Total_Shelf_Life" order="75" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Total Shelf Life"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Total_Shelf_Life"/>
+      </attribute>
+      <attribute id="Tax_Class" order="76" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Tax Class"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Tax_Class"/>
+      </attribute>
+      <attribute id="EWM_Storage_Condition" order="77" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EWM Storage Condition"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="EWM_Storage_Condition"/>
+      </attribute>
+      <attribute id="EWM_Article_Group" order="78" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EWM Article Group"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="EWM_Article_Group"/>
+      </attribute>
+      <attribute id="EWM_Article_Type" order="79" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="EWM Article Type"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="EWM_Article_Type"/>
+      </attribute>
+      <attribute id="Quality" order="80" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Quality"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Quality"/>
+      </attribute>
+      <attribute id="Strategy" order="81" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Strategy"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Strategy"/>
+      </attribute>
+      <attribute id="Expected_Waste_Percent" order="82" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Expected Waste Percentage"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Expected_Waste_Percent"/>
+      </attribute>
+      <attribute id="Ethnic_Group" order="83" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Ethnic Group"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Ethnic_Group"/>
+      </attribute>
+      <attribute id="Purpose" order="84" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purpose"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Purpose"/>
+      </attribute>
+      <attribute id="Expected_Margin_Value" order="85" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Expected Margin Value"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Expected_Margin_Value"/>
+      </attribute>
+      <attribute id="Label_Short_Description" order="86" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Label Short Description"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Label_Short_Description"/>
+      </attribute>
+      <attribute id="Print_Expiry" order="87" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Print Expiry"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Print_Expiry"/>
+      </attribute>
+      <attribute id="Dimension_Verify" order="88" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Dimension Verify"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Dimension_Verify"/>
+      </attribute>
+      <attribute id="Price_Classification" order="89" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Price Classification"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Price_Classification"/>
+      </attribute>
+      <attribute id="Label_Description" order="90" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Label Description"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Label_Description"/>
+      </attribute>
+      <attribute id="Status" order="91" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Status"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Status"/>
+      </attribute>
+      <attribute id="Expected_Sales_Week" order="92" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Expected Sales Week"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Expected_Sales_Week"/>
+      </attribute>
+      <attribute id="Speciality" order="93" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Speciality"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Speciality"/>
+      </attribute>
+      <attribute id="Generic_Article" order="94" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Generic Article"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Generic_Article"/>
+      </attribute>
+      <attribute id="Generic_Article_UOM" order="95" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Generic Article UOM"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Generic_Article_UOM"/>
+      </attribute>
+      <attribute id="Generic_Article_Conversion" order="96" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Generic Article Conversion"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Generic_Article_Conversion"/>
+      </attribute>
+      <attribute id="Top_20Percent_Contributor" order="97" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Top 20% Contributor"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Top_20Percent_Contributor"/>
+      </attribute>
+      <attribute id="Safety_Stk_Multiplier" order="98" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Safety Stock Multiplier"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Safety_Stk_Multiplier"/>
+      </attribute>
+      <attribute id="Seasonal" order="99" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Seasonal"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Seasonal"/>
+      </attribute>
+      <attribute id="Listed_Sites" order="100" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Listed Sites"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Listed_Sites"/>
+      </attribute>
+      <attribute id="Centrally_Produced" order="101" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Centrally Produced"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Centrally_Produced"/>
+      </attribute>
+      <attribute id="Allow_Poor_Performance" order="102" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Allow Poor Performance"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Allow_Poor_Performance"/>
+      </attribute>
+      <attribute id="Excise_Tax_Percent" order="103" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Excise Tax%"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Excise_Tax_Percent"/>
+      </attribute>
+      <attribute id="Excise_Value" order="104" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Excise Value"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Excise_Value"/>
+      </attribute>
+      <attribute id="Expected_RTS_Percent" order="105" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Expected RTS%"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Expected_RTS_Percent"/>
+      </attribute>
+      <attribute id="Display_Temperature" order="106" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Display Temperature"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Display_Temperature"/>
+      </attribute>
+      <attribute id="Article_Role" order="107" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article Role"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Article_Role"/>
+      </attribute>
+      <attribute id="Additional_Barcode_List" order="108" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Additional Barcode List"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Additional_Barcode_List"/>
+      </attribute>
+      <attribute id="Anchor" order="109" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Anchor"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Anchor"/>
+      </attribute>
+      <attribute id="ECommerce" order="110" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ECommerce"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ECommerce"/>
+      </attribute>
+      <attribute id="Department_ID" order="111" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department ID"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Department_ID"/>
+      </attribute>
+      <attribute id="Department_Description" order="112" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department Description"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Department_Description"/>
+      </attribute>
+      <attribute id="Category_ID" order="113" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category ID"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Category_ID"/>
+      </attribute>
+      <attribute id="Category_Description" order="114" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category Description"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Category_Description"/>
+      </attribute>
+      <attribute id="Subcategory_ID" order="115" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Subcategory ID"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Subcategory_ID"/>
+      </attribute>
+      <attribute id="Subcategory_Description" order="116" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Subcategory Description"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Subcategory_Description"/>
+      </attribute>
+      <attribute id="CDT4_ID" order="117" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4 ID"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="CDT4_ID"/>
+      </attribute>
+      <attribute id="CDT5_ID" order="118" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5 ID"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="CDT5_ID"/>
+      </attribute>
+      <attribute id="CDT6_ID" order="119" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6 ID"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="CDT6_ID"/>
+      </attribute>
+      <attribute id="CDT6_Description" order="120" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6 Description"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="CDT6_Description"/>
+      </attribute>
+      <attribute id="BMC_ID" order="121" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC ID"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="BMC_ID"/>
+      </attribute>
+      <attribute id="BMC_Description" order="122" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC Description"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="BMC_Description"/>
+      </attribute>
+      <attribute id="Buyers_Name" order="123" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Buyers Name"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Buyers_Name"/>
+      </attribute>
+      <attribute id="Commercial_Manager" order="124" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Commercial Manager"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Commercial_Manager"/>
+      </attribute>
+      <attribute id="MATNR" order="125" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article with Leading Zeros"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="MATNR"/>
+      </attribute>
+      <attribute id="EComm_Min_Max" order="126" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ECommerce Min Max"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="EComm_Min_Max"/>
+      </attribute>
+      <attribute id="CDT4_Description" order="127" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4_Description"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="CDT4_Description"/>
+      </attribute>
+      <attribute id="CDT5_Description" order="128" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5_Description"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="CDT5_Description"/>
+      </attribute>
+      <attribute id="Department" order="129" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Department"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Department"/>
+      </attribute>
+      <attribute id="Category" order="130" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Category"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Category"/>
+      </attribute>
+      <attribute id="SubCategory" order="131" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="SubCategory"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="SubCategory"/>
+      </attribute>
+      <attribute id="CDT4" order="132" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT4"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="CDT4"/>
+      </attribute>
+      <attribute id="CDT5" order="133" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT5"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="CDT5"/>
+      </attribute>
+      <attribute id="CDT6" order="134" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="CDT6"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="CDT6"/>
+      </attribute>
+      <attribute id="BMC" order="135" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="BMC"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="BMC"/>
+      </attribute>
+      <attribute id="Article" order="136" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Article"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Article"/>
+      </attribute>
+      <attribute id="Country_Of_Origin_Article" order="137" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Country Of Origin - Article"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Country_Of_Origin_Article"/>
+      </attribute>
+      <attribute id="Content" order="138" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Content"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Content"/>
+      </attribute>
+      <attribute id="Content_UOM" order="139" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Content UOM"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Content_UOM"/>
+      </attribute>
+      <attribute id="First_Sold_Date" order="140" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="First Sold Date"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="First_Sold_Date"/>
+      </attribute>
+      <attribute id="RP_Type_Description" order="141" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="RP Type Description"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="RP_Type_Description"/>
+      </attribute>
+      <attribute id="ZHIER_TYPE" order="142" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Hierarchy Type"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZHIER_TYPE"/>
+      </attribute>
+      <attribute id="AT_MASTER_SITE_WERKS" order="143" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site ID"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="AT_MASTER_SITE_WERKS"/>
+      </attribute>
+      <attribute id="NAME1" order="144" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Description"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="NAME1"/>
+      </attribute>
+      <attribute id="Site_Region" order="145" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Region"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Site_Region"/>
+      </attribute>
+      <attribute id="ZCUR_REG" order="146" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Group"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZCUR_REG"/>
+      </attribute>
+      <attribute id="ZREG_MGR" order="147" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Regional Manager"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZREG_MGR"/>
+      </attribute>
+      <attribute id="ZCITY" order="148" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="City"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZCITY"/>
+      </attribute>
+      <attribute id="ZDELI_CTR" order="149" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Deli Counter"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZDELI_CTR"/>
+      </attribute>
+      <attribute id="ZRES_VILLAS" order="150" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Residential - Villas"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZRES_VILLAS"/>
+      </attribute>
+      <attribute id="ZRES_APRT" order="151" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Residential - Apartments"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZRES_APRT"/>
+      </attribute>
+      <attribute id="ZCLS_SCH" order="152" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Close to School"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZCLS_SCH"/>
+      </attribute>
+      <attribute id="ZCOM_CTR" order="153" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Community Center"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZCOM_CTR"/>
+      </attribute>
+      <attribute id="ZSHOP_MAL" order="154" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Shopping Mall"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZSHOP_MAL"/>
+      </attribute>
+      <attribute id="ZCOMM_AREA" order="155" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Commercial Area"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZCOMM_AREA"/>
+      </attribute>
+      <attribute id="ZOFF_BLK" order="156" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Office Block"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZOFF_BLK"/>
+      </attribute>
+      <attribute id="ZNEW_CMTY" order="157" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="New Community"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZNEW_CMTY"/>
+      </attribute>
+      <attribute id="ZEST_CMTY" order="158" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Established Community"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZEST_CMTY"/>
+      </attribute>
+      <attribute id="ZGOOD_ASBTY" order="159" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Good Accessibility"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZGOOD_ASBTY"/>
+      </attribute>
+      <attribute id="ZAMP_PRK" order="160" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Ample Parking"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZAMP_PRK"/>
+      </attribute>
+      <attribute id="ZENR_WORK" order="161" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Enroute to Work or Home"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZENR_WORK"/>
+      </attribute>
+      <attribute id="ZOPN_HRS" order="162" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Opening Hours"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZOPN_HRS"/>
+      </attribute>
+      <attribute id="ZMAIN_SHP" order="163" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Main Shop"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZMAIN_SHP"/>
+      </attribute>
+      <attribute id="ZTOP_SHP" order="164" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Top-Up Shop"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZTOP_SHP"/>
+      </attribute>
+      <attribute id="ZCONV" order="165" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Convenience"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZCONV"/>
+      </attribute>
+      <attribute id="ZLUCNH_TIME" order="166" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Lunch Time"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZLUCNH_TIME"/>
+      </attribute>
+      <attribute id="ZWESTERN" order="167" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Western"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZWESTERN"/>
+      </attribute>
+      <attribute id="ZASIAN" order="168" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Asian"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZASIAN"/>
+      </attribute>
+      <attribute id="ZARABIC" order="169" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Arabic"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZARABIC"/>
+      </attribute>
+      <attribute id="ZCHINESE" order="170" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demo - Chinese"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZCHINESE"/>
+      </attribute>
+      <attribute id="ZPOP_LOW" order="171" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Population Low"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZPOP_LOW"/>
+      </attribute>
+      <attribute id="ZPOP_MED" order="172" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Population Medium"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZPOP_MED"/>
+      </attribute>
+      <attribute id="ZPOP_HIGH" order="173" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Population High"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZPOP_HIGH"/>
+      </attribute>
+      <attribute id="ZEXP_SALES" order="174" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ZEXP_SALES"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZEXP_SALES"/>
+      </attribute>
+      <attribute id="ZCOMP" order="175" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Competition Name"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZCOMP"/>
+      </attribute>
+      <attribute id="ZSTORE_TYPE" order="176" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Store Type"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZSTORE_TYPE"/>
+      </attribute>
+      <attribute id="ZNEW_REG" order="177" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="New Region"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZNEW_REG"/>
+      </attribute>
+      <attribute id="ZDEMOGRAPH" order="178" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Demographic"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZDEMOGRAPH"/>
+      </attribute>
+      <attribute id="ZACE_CLUSTER" order="179" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="ACE Cluster"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZACE_CLUSTER"/>
+      </attribute>
+      <attribute id="ZLONGITUDE" order="180" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Longitude"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZLONGITUDE"/>
+      </attribute>
+      <attribute id="ZLATITUDE" order="181" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Latitude"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZLATITUDE"/>
+      </attribute>
+      <attribute id="ZGSA" order="182" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Gross Selling Area (GSA)"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZGSA"/>
+      </attribute>
+      <attribute id="ZOPR_HRS" order="183" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Operating Hours"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZOPR_HRS"/>
+      </attribute>
+      <attribute id="ZLIQUOR_STORE" order="184" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Liqour Store Name"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZLIQUOR_STORE"/>
+      </attribute>
+      <attribute id="ZDEPT" order="185" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Desc"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="ZDEPT"/>
+      </attribute>
+      <attribute id="Site_Group" order="186" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Group"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Site_Group"/>
+      </attribute>
+      <attribute id="Site" order="187" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Site"/>
+      </attribute>
+      <attribute id="Email_Address" order="188" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Email_Address"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Email_Address"/>
+      </attribute>
+      <attribute id="EKORG" order="189" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Org"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="EKORG"/>
+      </attribute>
+      <attribute id="VKORG" order="190" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Purchase Org"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="VKORG"/>
+      </attribute>
+      <attribute id="VTWEG" order="191" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Distribution Channel"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="VTWEG"/>
+      </attribute>
+      <attribute id="PSTLZ" order="192" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Postal Code"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="PSTLZ"/>
+      </attribute>
+      <attribute id="VLFKZ" order="193" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Site Category"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="VLFKZ"/>
+      </attribute>
+      <attribute id="Store_Manager" order="194" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Store_Manager"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Store_Manager"/>
+      </attribute>
+      <attribute id="Mobile_Number" order="195" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Mobile_Number"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Mobile_Number"/>
+      </attribute>
+      <attribute id="Latitude" order="196" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Latitude"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Latitude"/>
+      </attribute>
+      <attribute id="Longitude" order="197" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Longitude"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Longitude"/>
+      </attribute>
+      <attribute id="Store_Type" order="198" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Store_Type"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Store_Type"/>
+      </attribute>
+      <attribute id="Fax" order="199" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Fax"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Fax"/>
+      </attribute>
+      <attribute id="Sales_Area" order="200" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Area"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Sales_Area"/>
+      </attribute>
+      <attribute id="Sales_Area_Unit" order="201" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="Sales Area Unit"/>
+        <keyMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Sales_Area_Unit"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="Stk_Qty_Valuated" order="28" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity Valuated"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Stk_Qty_Valuated"/>
+      </measure>
+      <measure id="Stk_Value_Cost" order="29" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Value Cost"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Stk_Value_Cost"/>
+      </measure>
+      <measure id="Stk_Value_Sale" order="30" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Value Sale"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Stk_Value_Sale"/>
+      </measure>
+      <measure id="Stk_Qty_Unrestricted" order="31" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity Unrestricted"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Stk_Qty_Unrestricted"/>
+      </measure>
+      <measure id="Stk_Qty_In_Transfer" order="32" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity In Transfer"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Stk_Qty_In_Transfer"/>
+      </measure>
+      <measure id="Stk_Qty_QA" order="33" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity QA"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Stk_Qty_QA"/>
+      </measure>
+      <measure id="Stk_Qty_Batch" order="34" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity Batch"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Stk_Qty_Batch"/>
+      </measure>
+      <measure id="Stk_Qty_Blocked" order="35" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity Blocked"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Stk_Qty_Blocked"/>
+      </measure>
+      <measure id="Stk_Qty_Blocked_Return" order="36" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Stock Quantity Blocked Return"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Stk_Qty_Blocked_Return"/>
+      </measure>
+      <measure id="Facings_History" order="37" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Facings History"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Facings_History"/>
+      </measure>
+      <measure id="Listed_Count" order="38" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Listed Count"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Listed_Count"/>
+      </measure>
+      <measure id="In_Stock_Count" order="39" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="In Stock Count"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="In_Stock_Count"/>
+      </measure>
+      <measure id="Cycle_Stock" order="40" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Cycle Stock"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Cycle_Stock"/>
+      </measure>
+      <measure id="In_Stock_Above_Facing_Count" order="41" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="In Stock Above Facing Count"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="In_Stock_Above_Facing_Count"/>
+      </measure>
+      <measure id="In_Stock_Above_Safety_Count" order="42" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="In Stock Above Safety Count"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="In_Stock_Above_Safety_Count"/>
+      </measure>
+      <measure id="Negative_Stock_Count" order="43" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Negative Stock Count"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Negative_Stock_Count"/>
+      </measure>
+      <measure id="Not_Zero_Stock_Count" order="44" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Not Zero Stock Count"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Not_Zero_Stock_Count"/>
+      </measure>
+      <measure id="Out_Of_Stock_Count" order="45" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Out Of Stock Count"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Out_Of_Stock_Count"/>
+      </measure>
+      <measure id="Zero_Stock_Count" order="46" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Zero Stock Count"/>
+        <measureMapping columnObjectName="CV_STOCK_VIEW_V01" columnName="Zero_Stock_Count"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="40" y="85"/></shape>
+    </shapes>
+</layout>
+</Calculation:scenario>
