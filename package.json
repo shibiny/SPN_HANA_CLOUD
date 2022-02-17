@@ -1,0 +1,64 @@
+{
+  "_args": [
+    [
+      "@sap/hdi-deploy@4.2.3",
+      "/home/user/projects/SPN/db"
+    ]
+  ],
+  "_from": "@sap/hdi-deploy@4.2.3",
+  "_id": "@sap/hdi-deploy@4.2.3",
+  "_inBundle": false,
+  "_integrity": "sha512-98YOfDOiVCIOa3TTqjMNf4Dwj5YRsuh1BdqU6C+lDGf/4nyMC/UOgfTMcHLxoTpBMAzLfNX6gAa37tpGi6AFKQ==",
+  "_location": "/@sap/hdi-deploy",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@sap/hdi-deploy@4.2.3",
+    "name": "@sap/hdi-deploy",
+    "escapedName": "@sap%2fhdi-deploy",
+    "scope": "@sap",
+    "rawSpec": "4.2.3",
+    "saveSpec": null,
+    "fetchSpec": "4.2.3"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "http://nginx-redirector.repo-cache.svc.cluster.local/repository/appstudio-npm-group/@sap/hdi-deploy/-/hdi-deploy-4.2.3.tgz",
+  "_spec": "4.2.3",
+  "_where": "/home/user/projects/SPN/db",
+  "dependencies": {
+    "@sap/hana-client": "2.9.28",
+    "@sap/hdi": "4.1.0",
+    "@sap/xsenv": "3.1.0",
+    "async": "3.1.0",
+    "dotenv": "10.0.0",
+    "handlebars": "4.7.7",
+    "micromatch": "4.0.4"
+  },
+  "description": "HDI content deployment",
+  "engines": {
+    "node": "^12.0.0 || ^14.0.0 || ^16.0.0"
+  },
+  "files": [
+    "package.json",
+    "lib",
+    "deploy.js",
+    "library.js",
+    "node_modules",
+    "npm-shrinkwrap.json",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "license": "See LICENSE file",
+  "main": "deploy.js",
+  "name": "@sap/hdi-deploy",
+  "repository": {},
+  "scripts": {
+    "backup-shrinkwrap": "cp npm-shrinkwrap.json backup-npm-shrinkwrap.json",
+    "restore-shrinkwrap": "mv backup-npm-shrinkwrap.json npm-shrinkwrap.json"
+  },
+  "version": "4.2.3"
+}
