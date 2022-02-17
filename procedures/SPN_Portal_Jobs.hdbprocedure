@@ -1,0 +1,35 @@
+PROCEDURE "procedures::SPN_Portal_Jobs" ( )
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --READS SQL DATA 
+   AS
+BEGIN
+   /*************************************
+       Write your procedure logic 
+   *************************************/
+   START TASK "TASK_VT_PORTAL_BB_Buying_Book";
+   START TASK "TASK_VT_PORTAL_Company";
+   START TASK "TASK_VT_PORTAL_Company";
+   START TASK "TASK_VT_PORTAL_CP_Complaints_Accident";
+   START TASK "TASK_VT_PORTAL_CP_Complaints_Incident";
+   START TASK "TASK_VT_PORTAL_CP_Complaints_IQC";
+   START TASK "TASK_VT_PORTAL_CP_Complaints_LNC";
+   START TASK "TASK_VT_PORTAL_CP_Complaints_RCC";
+   START TASK "TASK_VT_PORTAL_CP_Complaints_Transaction";
+   START TASK "TASK_VT_PORTAL_CP_Complaints";
+   START TASK "TASK_VT_PORTAL_CP_Master_Audit_Type";
+   START TASK "TASK_VT_PORTAL_CP_Master_Complaint_Type";
+   START TASK "TASK_VT_PORTAL_CP_Master_Reason_Codes";
+   START TASK "TASK_VT_PORTAL_CP_Site_Master";
+   START TASK "TASK_VT_PORTAL_Employee";
+   START TASK "TASK_VT_PORTAL_HR_Employee_Profile";
+   START TASK "TASK_VT_PORTAL_HR_General_Health_Information";
+   START TASK "TASK_VT_PORTAL_HR_Master_Covid_Vaccine_Type";
+   START TASK "TASK_VT_PORTAL_NPD_ProductBrief";
+   START TASK "TASK_VT_PORTAL_NPD_ProductBrief_Transaction";
+   START TASK "TASK_VT_PORTAL_NPD_Workflow_Status";
+   START TASK "TASK_VT_PORTAL_SU_Suppliers";
+
+
+
+END;

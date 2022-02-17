@@ -1,0 +1,25 @@
+{
+  "role": {
+    "name": "ERP_PROD_DATA_MODELING::access_role#",
+    "object_privileges": [
+      {
+        "name": "SUB_VT_BSEG",
+        "type": "REMOTE SUBSCRIPTION",
+        "privileges": [
+          "PROCESS REMOTE SUBSCRIPTION EXCEPTION"
+        ]
+      }
+    ],
+    "schema_privileges": [
+      {
+        "privileges_with_grant_option": [
+          "SELECT",
+          "SELECT METADATA",
+          "INSERT",
+          "DELETE",
+          "ALTER"
+        ]
+      }
+    ]
+  }
+}

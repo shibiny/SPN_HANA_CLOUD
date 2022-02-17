@@ -1,0 +1,98 @@
+{
+  "ERP_PROD_Data_Modeling/CV_BUDGET_DATA": {
+    "target": {
+      "object": "CV_BUDGET_DATA",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_BATCH_STOCK": {
+    "target": {
+      "object": "CV_BATCH_STOCK",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_POS_TRANSACTION_DATA": {
+    "target": {
+      "object": "CV_POS_TRANSACTION_DATA",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_STOCK_V02": {
+    "target": {
+      "object": "CV_STOCK_V02",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_MOVEMENTS_V01": {
+    "target": {
+      "object": "CV_MOVEMENTS_V01",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_SALES_DATA": {
+    "target": {
+      "object": "CV_SALES_DATA",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_R_MASTER_ORIGINAL_VENDOR": {
+    "target": {
+      "object": "CV_R_MASTER_ORIGINAL_VENDOR",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_PURCHASE_ORDER_SNAPSHOT": {
+    "target": {
+      "object": "CV_PURCHASE_ORDER_SNAPSHOT",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_PURCHASE_CONDITIONS": {
+    "target": {
+      "object": "CV_PURCHASE_CONDITIONS",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_PURCHASING_V01": {
+    "target": {
+      "object": "CV_PURCHASING_V01",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_PURCHASING_V05": {
+    "target": {
+      "object": "CV_PURCHASING_V01",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_SALES_V01": {
+    "target": {
+      "object": "CV_SALES_V01",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_STOCK_V01": {
+    "target": {
+      "object": "CV_STOCK_V01",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_VENDOR_BALANCE": {
+    "target": {
+      "object": "CV_VENDOR_BALANCE",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_ZAGED_SAP_REPORT": {
+    "target": {
+      "object": "CV_ZAGED_SAP_REPORT",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  },
+  "ERP_PROD_Data_Modeling/CV_LISTING_DETAILS": {
+    "target": {
+      "object": "CV_LISTING_DETAILS",
+      "schema": "ERP_PROD_DATA_MODELING"
+    }
+  }
+}
